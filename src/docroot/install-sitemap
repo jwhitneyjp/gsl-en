@@ -69,6 +69,7 @@ class SiteMap:
                       mypathList = startdirList[:]
                       mystub = link.attrib['href']
                       mystubList = mystub.split('/')
+                      mystubList.pop(1)
                       mypathList.extend(mystubList)
                       for k in range(len(mypathList) - 1, -1, -1):
                           if not mypathList[k]:

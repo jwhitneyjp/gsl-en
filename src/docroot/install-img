@@ -1,0 +1,13 @@
+#!/usr/bin/env python2.7
+
+import os,sys
+base = '%s/../../' % (os.path.dirname(sys.argv[0]),)
+sys.path.append(base + '/release/lib/python')
+
+from GslPhoto import gslPhotoDir
+from GslDoc import gslDocDir
+from pathtool import gslpath
+p = gslpath()
+
+gslPhotoDir( p.photo )
+gslPhotoDir( p.graphic )

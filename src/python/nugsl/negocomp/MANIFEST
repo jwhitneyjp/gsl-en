@@ -1,0 +1,7 @@
+__init__.py
+setup.py
+negocomp/OneSheetGroups.py
+negocomp/__init__.py
+scripts/nugsl-negomerge
+templates/arbplates_template.odt
+templates/negoplates_template.odt

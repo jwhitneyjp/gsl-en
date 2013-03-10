@@ -1,0 +1,274 @@
+title: Admission and Scholarships
+
+* Table of contents
+{: toc}
+
+
+# Admissions
+
+## Requesting application materials
+Applications for overseas student programs are available from the
+[Admissions area of this website][admissions], If necessary,
+application materials can be sent by ordinary post. To receive an
+application by post, send a letter requesting, as appropriate, the
+*LL.M. (Comparative Law) Program Application* or the *LL.M.
+(Comparative Law) Program Application* to the [Student Affairs
+Section][kyomu], enclosing a self-addressed envelope (size 33 cm x 24
+cm) addressed to yourself, and affixed with a 390 yen-stamp.
+
+[admissions]: /admissions
+
+
+## Submission of applications
+All applications for admission to the Graduate School of Law must be
+sent to the [Student Affairs Section][kyomu] of the Graduate School of
+Law.  Applications sent by fax or email will not be accepted.
+
+## Entrance examination inquiries
+
+Non-urgent queries
+: All non-urgent queries concerning entrance examination 
+procedures should be sent to the [Student Affairs Section][kyomu] 
+by email.
+
+Urgent queries in Japanese
+: Urgent queries concerning examinations should be made
+by telephone or fax directly to the [Student Affairs Section][kyomu].
+
+Urgent queries in English
+: Urgent queries in English only should be made to the
+[International Student Advisor][advisor].
+
+[kyomu]: index.html#student_affairs_section
+[advisor]: index.html#international_student_advisor
+
+
+# Tuition and expenses
+
+## Living costs in Nagoya
+
+
+Generally speaking, the cost of living, excluding tuition and
+other school fees, is estimated at about &yen;130,000 per month,
+consisting of: &yen;20,000 for University housing and utilities,
+and approximately &yen;60,000 per month for private accomodation);
+&yen;45,000 per month for food; and &yen;30,000 per month for
+personal expenses.
+
+
+## Tuition and fees
+
+The fees for the academic session 2012 are as follows:
+
+<table class="tuition">
+  <colgroup>
+    <col class="label" />
+  </colgroup>
+  <colgroup span="3">
+    <col class="number" />
+  </colgroup>
+  <thead>
+  <tr>
+    <td>
+      Student status
+    </td>
+    <td>
+      Application (&yen;)
+    </td>
+    <td>
+      Registration (&yen;)
+    </td>
+    <td>
+      Tuition (&yen;)
+    </td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>
+      Degree-seeking student<br />(undergraduate)
+    </td>
+    <td style="text-align:right;">
+      &yen;17,000
+    </td>
+    <td style="text-align:right;">
+      &yen;282,000
+    </td>
+    <td style="text-align:right;">
+      &yen;535,800<br />(per year) 
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Degree-seeking student<br />(graduate)
+    </td>
+    <td style="text-align:right;">
+      &yen;30,000
+    </td>
+    <td style="text-align:right;">
+      &yen;282,000
+    </td>
+    <td style="text-align:right;">
+      &yen;535,800<br />(per year) 
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Law School student<br />(Japanese-taught professional course)
+    </td>
+    <td style="text-align:right;">
+      &yen;30,000
+    </td>
+    <td style="text-align:right;">
+      &yen;282,000
+    </td>
+    <td style="text-align:right;">
+      &yen;804,000<br />(per year) 
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Research student                       
+    </td>
+    <td style="text-align:right;">
+      &yen;9,800         
+    </td>
+    <td style="text-align:right;">
+      &yen;84,600          
+    </td>
+    <td style="text-align:right;">
+      &yen;29,700<br />(per month) 
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Auditing student                       
+    </td>
+    <td style="text-align:right;">
+      &yen;9,800         
+    </td>
+    <td style="text-align:right;">
+      &yen;28,200           
+    </td>
+    <td style="text-align:right;">
+      &yen;14,800<br />(per month) 
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Training course in Japanese
+    </td>
+    <td style="text-align:right;">
+      &yen;9,900  
+    </td>
+    <td style="text-align:right;">
+      &yen;43,500    
+    </td>
+    <td style="text-align:right;">
+      &yen;30,200<br />(per month) 
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Training course in Japanese<br /> language and culture  
+    </td>
+    <td style="text-align:right;">
+      &yen;9,800          
+    </td>
+    <td style="text-align:right;">
+      &yen;84,600           
+    </td>
+    <td style="text-align:right;">
+      &yen;29,700<br />(per month) 
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+Note that fees are subjected to change each academic year.
+
+# Financial Aid
+
+## Scholarships and loans
+
+The best general reference on this subject
+is the [Japan Student Services Organization (JASSO)][jasso] website,
+which provides up to date details
+on scholarship programs offered by Japanese sponsoring
+organizations, as well as a needs-based loan program
+for overseas students.
+
+[jasso]: index.html#japan_student_services_organization_jasso
+
+See the [Admissions][admissions] page of this website
+for information about how individual scholarship
+programs affect the admissions process.
+
+[admissions]: /admissions
+
+### Undergraduate study
+
+The Embassy Recommendation screening process administered
+at overseas locations by the [Ministry of Foreign Affairs (MOFA)][mofa]
+is the only viable scholarship option for overseas
+applicants.  For information on the admissions process,
+please refer to the [Admissions][admissions] page of this
+website.
+
+[mofa]: /support/index.html#japan_ministry_of_foreign_affairs_mofa
+
+Students applying from inside Japan may wish to explore
+other scholarship option through the website of the
+[Japan Student Services Organization (JASSO)][jasso].
+
+### Postgraduate study
+
+For overseas applicants, the principle scholarship options
+are the [Japanese Grant Aid for
+Human Resource Development Scholarship (JDS)][jds] scheme
+and the Japanese Government (Monbukagakusho) Scholarship
+offered in connection with the Nagoya University Graduate
+School of Law Human Resources Development Program to
+Contribute to Asian Technical Legal Assistance Projects.
+
+[jds]: /support/index.html#japan_international_cooperation_center_jice
+
+In addition to these two schemes, overseas applicants
+may wish to explore the Embassy Recommendation screening
+process for overseas applicants operated by the
+[Ministry of Foreign Affairs (MOFA)][mofa].
+
+Both overseas applicants and students applying from
+within Japan may wish to explore other scholarship options
+via the [Japan Student Services Organization (JASSO)][jasso] website.
+
+For details on how each scholarship scheme affects
+the admissions process of the Nagoya University Graduate
+School of Law, see the [Admissions][admissions] page
+of this website.
+
+## Fee exemptions
+
+Recipients of the Monbukagakusho (MEXT) Scholarship receive a
+complete waiver of the entrance exam fee, the registration fee, and 
+of tuition.  
+
+
+Independently-financed undergraduate or graduate students who
+with excellent academic records
+are eligible to be considered for needs-based fee exemptions of either
+all or half of their tuition and registration fees.
+However, please be aware that in the last few years the number of
+tuition fee exemptions granted has been decreasing.
+
+Students wishing to apply for fee exemptions are required to submit
+the necessary documents during the student registration period.
+Successful applicants must apply for a renewal of the exemption
+every term (6 months).
+The application period for the spring term is from the end of March
+through to the start of April and for the autumn term it falls in the
+middle part of September.
+
+No fee exemption is available for research and auditing students.
+
+

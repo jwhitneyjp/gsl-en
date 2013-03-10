@@ -1,0 +1,101 @@
+title: 4. Editing a page
+css: manual.css
+
+###### Step 3
+
+![](/materials/graphic/man011_checkout_showing_info_smaller_new.png)
+
+# Editable pages folder
+The editable pages of the site are located
+below `src/docroot/info` in the
+working copy folder.  The illustration to
+the right shows a view of the `info`
+folder.  It may be convenient to put a link
+to this folder on your desktop, to save the
+trouble of navigating to it.
+
+The directories immediately below `info` are
+fixed; if you add directories or files here,
+they will not be visible on the website.
+To work with the content, we must navigate
+downward, into one of the subfolders.
+In this example, we will navigate into the
+`admissions` folder.
+
+###### Step 3
+
+![](/materials/graphic/man012_admissions_new.png)
+
+# Admissions folder
+The illustration to the right shows a view of
+the `admissions` folder.  This corresponds to
+the **Admissions** link in the navigation bar
+of the website.  Note that the folder contains
+three documents and one subfolder.  The
+`index.txt` file corresponds to the page that
+is diplayed when the user clicks on the 
+**Admissions** link.  The other two files
+correspond to the two file items in the **Folder
+contents** for the folder page, and the subfolder
+corresponds to the **Before you apply** folder link.
+
+This same pattern is followed everywhere below `info`.
+Every folder contains an `index.txt` file.
+Other `*.txt` documents correspond to pages.
+Subfolders correspond to folder links.  And so
+on.
+
+Editing site content is simply a matter of editing
+the content of the `*.txt` files.  On Windows
+computers, we will use Wordpad for this purpose.
+
+###### Step 3
+
+![](/materials/graphic/man013_admissions_menu_wordpad_new.png)
+
+# Editing with Wordpad
+To open a file with Wordpad, hold the cursor over the file
+and click on the right mouse button.  You can then select
+Wordpad from the menu, as shown in the illustration to
+the right.
+
+###### Step 3
+
+![](/materials/graphic/man014_admissions_index_edit_new.png)
+
+# Editing a file
+You can open the file and edit it in the normal way.
+Inside the file, you will see one or more lines of
+text, each beginning with a word and a colon.  This is
+the *metadata header* for this page, and ends
+at the first blank line.  The `title:` item is
+required in every page.  Other items, such as the
+`toc:` item shown in the illustration to the right,
+are optional.  See the chapter on 
+[Metadata fields](/appendix/manual/site/metadata.html) for more details 
+on the fields that can
+be entered in the metadata header.
+
+###### Step 3
+
+![](/materials/graphic/man015_admissions_index_edit_done_new.png)
+
+# Make a change
+In this example, we change the title of the
+page from `Overview of programs` to `Programs
+overview`.
+
+###### Step 3
+
+![](/materials/graphic/man016_admissions_index_edit_exclam_new.png)
+
+# Save the file
+After saving the file, notice the red exclamation
+mark in the file icon.  This is a reminder that
+it has been changed since the last update from the
+Subversion server, and that the changes have not
+yet been committed.  It is not
+necessary to fix this immediately; if you have
+a set of changes to make, can continue editing, and
+commit your changes when you are finished.
+

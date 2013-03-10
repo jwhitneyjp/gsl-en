@@ -1,0 +1,18 @@
+h6 {
+    clear: right;
+    visibility: hidden;
+}
+
+h1 {
+    border-top: dashed 3px #cccccc;
+}
+
+h6 + p {
+    float: right;
+    width: 400px;
+    text-align: right;
+}
+
+h6 + p > img {
+    float: none;
+}

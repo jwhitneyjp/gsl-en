@@ -1,0 +1,28 @@
+title: Japanese curriculum
+pagetitle: LL.M. Comparative Law: Japanese curriculum
+css: wide-sidenote.css
+
+Students enrolled in the Japanese-taught LL.M. (comparative law)
+course should refer to the following sources for curriculum information:
+
+> [Full Japanese-taught course list][hogaku-courses] (Japanese)
+
+> [Courses of the LL.M. (Comparative Law) course][llm-cl] (Japanese)
+
+> [Courses of other LL.M. courses, including some open to students on the Comparative Law course][llm-cl] (Japanese)
+
+> [Online Syllabus System][ss] (Japanese)  
+> *(Password required)*{: style='color: red;'}
+
+General information on Japanese-taught programs and events
+is available from the main GSL website:
+
+> [School of Law website][gsl-jp] (Japanese)
+
+[gsl-jp]: http://www.law.nagoya-u.ac.jp/
+[hogaku-courses]: http://infosv.law.nagoya-u.ac.jp/syllabus/as/v/ngo/law/gs/13/pubList
+[llm-cl]: http://www.law.nagoya-u.ac.jp/gs/curri_gcjp.html
+[llm-gen]: http://www.law.nagoya-u.ac.jp/gs/curri_gc1.html
+[ss]: http://infosv.nomolog.nagoya-u.ac.jp/syllabus/as/v/ngo/law/ug/13
+
+

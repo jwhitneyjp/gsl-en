@@ -1,0 +1,3 @@
+Total docs: 2205
+Valid totals of 5000 or more: 792
+Max of 31 or less: 301

@@ -1,0 +1,12 @@
+require 'toppage'
+
+class TC_TopPage < Test::Unit::TestCase
+
+    def test_children
+	top_page = TopPage.new
+	paths = top_page.children.collect { |child| child.sub_path }
+	assert(paths.include?('test/'),
+	    "'test' not found in root's children #{paths.inspect}")
+    end
+
+end

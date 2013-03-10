@@ -1,0 +1,17 @@
+/* 
+* indexpage-pageempty.css
+*
+*   Style specific to index pages with no page content of their own.
+*
+* { border: 1px solid red; }
+*/
+
+div.toc-title {
+    padding-top: 0px;
+    padding-bottom: 1em;
+    /* font-family: Vollkorn,Times,serif; */
+    /* font-weight: 700; */
+    font-family: Lato,sans;
+    font-weight: 900;
+}
+

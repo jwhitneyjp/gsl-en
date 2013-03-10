@@ -1,0 +1,22 @@
+title: Alumni
+banner-image: /image/banner-alumni.jpg
+css: indexpage-pagenone.css
+
+There is a single alumni association for all GSL
+graduates.  To offer or receive notices of events,
+or if you have a proposal for enhancement of alumni
+services, please [contact the Association secretary][alumni].
+
+[alumni]: /support/index.html#alumni_association
+
+If you wish to contact a former classmate
+or tie up with a circle of GSL graduates, 
+the [International Student Advisor][advisor]
+may be able to help with contact details.
+
+[advisor]: /support/index.html#international_student_advisor
+
+The Ministry of Foreign Affairs (MOFA) maintains a
+useful [database of local Japan alumni associations][mof-study].
+
+[mof-study]: /support/index.html#study_in_japan_website

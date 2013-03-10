@@ -1,0 +1,23 @@
+## Tasks
+
+Update to Admissions Booklet and Prospectus (2013).
+
+Look into updating staff photos.
+
+Review of formatting of staff content. citeproc-js for citations?
+
+Refine date parser for Syllabus System re-rendering,
+and revive Excel timetable generator.
+
+Draft a manual for front page editors using the new
+GitHub-based workflow
+
+Draft a last will and testament note for the next
+site maintainer
+
+Revise http://gsl-nagoya-u.net/support/visa.html#alien_registration
+Revise http://gsl-nagoya-u.net/support/disaster.html
+Revise http://gsl-nagoya-u.net/support/research-facilities.html
+
+Keep "Finger Paint" (title) and "Irish Grover" (text) in mind for
+April Fool's Day.

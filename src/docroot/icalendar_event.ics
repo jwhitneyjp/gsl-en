@@ -1,0 +1,9 @@
+BEGIN:VEVENT
+UID:@@obj_name@@@gsl-nagoya-u.net
+DTSTAMP:@@timestamp@@
+ORGANIZER;CN=@@organizer@@:MAILTO:@@email@@
+DTSTART:@@start@@
+DTEND:@@end@@
+SUMMARY:@@title@@
+LOCATION:@@place@@@@description@@
+END:VEVENT

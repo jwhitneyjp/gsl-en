@@ -1,0 +1,56 @@
+#!/usr/bin/env python
+
+import sys
+from datetime import date
+from optparse import OptionParser
+from nugsl.mergetool import *
+from nugsl.datetool import *
+
+# Set default starting date
+today = date.today()
+thisyear, thismonth = today.year, today.month
+day = 1
+
+# Options
+parser = OptionParser()
+
+parser.add_option("-y", "--year", dest="year", default=thisyear,
+                  help="Starting year (defaults to this year)")
+parser.add_option("-m", "--month", dest="month", default=thismonth,
+                  help="Starting year (defaults to this month)")
+parser.add_option("-a", "--amount", dest="amount", default='0',
+                  help="Amount of bill (defaults to zero)")
+parser.add_option("-b", "--bills", dest="bills", default=12,
+                  help="Number of bills in series (defaults to 12)")
+
+(options, args) = parser.parse_args()
+
+year = int(options.year)
+month = int(options.month)
+amount = str(options.amount)
+bills = int(options.bills)
+
+if amount == '0':
+    parser.print_help()
+    sys.exit()
+
+dt = date(year,month,1)
+files = ['seikyuu','mitsumori','houkoku']
+
+def generate_data(dt):
+    data = []
+    for pos in range(0,bills,1):
+        m = {}
+        d = dateDelta(dt)
+        m['CFY'], m['CFM'], m['CFD'] = date_tuple( d.get_first_day() )
+        m['CLY'], m['CLM'], m['CLD'] = date_tuple( d.get_last_day() )
+        m['NFY'], m['NFM'], m['NFD'] = date_tuple( d.get_first_day(d_months=1) )
+        m['AMOUNT'] = amount
+        data.append(m)
+        dt = d.get_next_month()
+    return data
+
+for file in files:
+    mf = mergeTool(file)
+    data = generate_data(dt)
+    mf.merge(data)

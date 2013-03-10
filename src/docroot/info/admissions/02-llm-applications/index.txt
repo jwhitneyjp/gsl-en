@@ -1,0 +1,103 @@
+title: Applications (LL.M.)
+pagetitle: Applications for LL.M. Comparative Law program
+
+This program is suited to
+overseas students from a variety of backgrounds
+in law and public service.
+The application forms 
+and applicable scholarship programs are dependent upon
+the primary language
+of instruction, and the date of entry.
+The normal path of admission is the April-entry
+cohort.  The October-entry cohort is specially
+offered for students enrolling through the Special Program
+scheme described in the [Admissions][admissions] page.
+
+[admissions]: /admissions
+
+* # English-taught, April-entry
+
+  The April-entry application should be used
+  by all applicants, other than Special Program
+  scholars, who intend to pursue their studies
+  in English, including the [JDS program][jds].
+  The curriculum requires
+  preparation of a thesis and completion of 
+  coursework.  The program for JDS scholars
+  is two and a half years in length.  For other
+  scholarship recipients, the program runs for
+  two years after passing the entrance examination.
+  
+  [jds]: /support/index.html#japan_international_cooperation_center_jice
+  
+  *Please consult the application form for details
+  of the application process.*
+
+  Final application deadlines
+  : *September 4, 2012*{: style='color:red'} (Autumn selection)
+  : *January 8, 2013*{: style='color:red'} (Spring selection)
+
+  Download application form
+  : [English-taught, April-entry LL.M.][llm-en-apr]
+
+  {: class='sidenote'}
+
+  [llm-en-apr]: app-llm-cl-en-apr
+
+
+* # English-taught, October-entry
+
+  This two-year program is open only to students
+  applying from [selected partner institutions][partners].
+  The curriculum requires
+  preparation of a thesis and completion of 
+  coursework.  The applicable scholarship program
+  is the Japanese Government (Monbukagakusho)
+  Scholarship,  
+  the forms for which are included
+  in the application booklet.
+
+  [partners]: index.html#exchangebased_integrated_scholarship_special_program
+
+  *Please consult the application form for details
+  of the application process.*
+
+  Final application deadline
+  : *January 8, 2013*{: style='color:red'}
+
+  Download application form
+  : [English-taught, October-entry LL.M.][llm-en-oct]
+  
+  {: class='sidenote'}
+
+  [llm-en-oct]: app-llm-cl-en-oct
+
+
+* # Japanese-taught program
+
+  This program commenced in October of 2007, in
+  cooperation with Japanese Law Centers established
+  in a number of partner institutions in Asia.
+  Two years of study, including coursework and
+  a thesis, are required for the degree.
+  The applicable scholarship program
+  is the Japanese Government (Monbukagakusho)
+  Scholarship, the forms for which are included
+  in the application booklet.  
+  
+  *Please consult the application form for details
+  of the application process.*
+
+  Final application deadline
+  : *January 31, 2013*{: style='color:red'}
+
+  Download application form
+  : [Japanese-taught, October-entry LL.M.][llm-ja-oct]
+
+  {: class='sidenote'}
+
+  [llm-ja-oct]: app-llm-cl-ja-oct
+
+{: class='blocklist'}
+
+

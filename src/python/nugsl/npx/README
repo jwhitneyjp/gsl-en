@@ -1,0 +1,12 @@
+batang-i.box
+  This file was hacked to work around three FATALITIES for
+  symbols not found.  Moving the symbols to another location in
+  the graphic and retraining fixed the problem.  Go figure.
+
+batang-r.box
+  The graphical glyphs for 平 and 額 needed to be displaced
+  slightly to get tess to find them during training.  Same
+  solution as for batang-i, less drastic solution.
+
+Several other font files were jiggled around for the same reason.
+Some have fonts in a non-standard order as a result.

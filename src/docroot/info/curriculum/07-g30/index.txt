@@ -1,0 +1,15 @@
+title: Curriculum
+pagetitle: Global 30 Program (Law & Politics) Curriculum
+css: wide-sidenote.css
+javascript: popup.js
+
+The full content of courses is available
+via the faculty's online Syllabus System:
+
+> [Visit the online Syllabus System][ss] (English)  
+> *(Password required)*{: style='color: red;'}
+
+[ss]: http://infosv.nomolog.nagoya-u.ac.jp/english/syllabus/as/v/30g13
+
+
+%%content%%

@@ -1,0 +1,47 @@
+#!/usr/bin/python
+
+import os
+
+from nugsl.brazil.DocumentConverter import DocumentConverter, DocumentConversionException
+from nugsl.brazil.FixOO import fixOO
+from nugsl.brazil.Config import brazilConfig
+import tempfile
+import atexit
+
+class Database:
+    
+    def __init__(self):
+        self.config = brazilConfig()
+        self.tempdir = tempfile.mkdtemp()
+        atexit.register( self.cleanup )
+
+    def cleanup(self):
+        for file in self.tempdir:
+            os.unlink( os.path.join( self.tempdir, file ) )
+        os.rmdir( self.tempdir )
+
+    def run(self):
+        rtf_dir = os.path.join( self.config.data_path, 'brazil-data', 'rtf' )
+        html_dir = os.path.join( self.config.data_path, 'brazil-data', 'html' )
+        if not os.path.exists( html_dir ):
+            os.makedirs( html_dir )
+        count = 0
+        for file_rtf in os.listdir(rtf_dir):
+            print '%d: %s' % ( count, file_rtf )
+            file_base = os.path.splitext(file_rtf)[0]
+            file_rtf = file_base + '.rtf'
+            if file_base + '.html' in os.listdir( html_dir ):
+                count += 1
+                continue
+    
+            converter = DocumentConverter()
+            converter.convert( os.path.join(rtf_dir, file_rtf), os.path.join(self.tempdir,'TEMP.html') )
+            html = fixOO( open( os.path.join(self.tempdir,'TEMP.html') ).read() ).html
+
+            open( os.path.join( html_dir, file_base + '.html'),'w+').write( html )
+
+            count += 1
+    
+if __name__ == '__main__':
+    db = Database()
+    db.run()

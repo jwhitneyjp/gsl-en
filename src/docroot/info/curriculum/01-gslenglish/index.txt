@@ -1,0 +1,17 @@
+title: English curriculum
+pagetitle: LL.M. Comparative Law: English curriculum
+css: wide-sidenote.css
+javascript: popup.js
+
+The full content of courses is available
+via the faculty's online Syllabus System:
+
+> [Visit the online Syllabus System][ss] (English)  
+> *(Password required)*{: style='color: red;'}
+
+Entries in **bold** in the list below are compulsory subjects.
+
+
+[ss]: http://infosv.nomolog.nagoya-u.ac.jp/english/syllabus/as/v/gs13
+
+%%content%%

@@ -1,0 +1,84 @@
+require 'qam/headerbody'
+
+module QAM
+
+class TC_HeaderBody < Test::Unit::TestCase
+
+    def test_parse_text
+	    file_data = <<__EOD__
+line: foo
+oTheR-heAder: bar baz
+
+stuff here
+more stuff here
+__EOD__
+	hb = HeaderBody.parse_text(file_data)
+	assert_equal('foo', hb.header['line'])
+	assert_equal('bar baz', hb.header['other-header'])
+	assert_equal("stuff here\nmore stuff here\n", hb.body)
+    end
+
+    def test_parsing_removes_carriage_returns_and_needs_no_newline_at_eof
+	hb = HeaderBody.parse_text([
+		"one: 1", "two: 2\r", "",
+		"1\r", "2", "3",
+	    ].join("\n"))
+	assert_equal('1', hb.header['one'])
+	assert_equal('2', hb.header['two'])
+	assert_equal("1\n2\n3\n", hb.body)
+    end
+
+end
+
+class TC_HeaderBodyAsTime < Test::Unit::TestCase
+
+    def test_as_time_parse_error
+	hb = HeaderBody.parse_text("date: 2007-3-04")
+	e = assert_raise(ArgumentError) { hb.header['date'].as_time }
+	assert_equal('Cannot parse date/time: 2007-3-04', e.message)
+    end
+
+    def test_as_time_fix_zone
+	class << at = Object.new
+	    include HeaderBody::AsTime
+	end
+	{
+	    nil		=> '+00:00',
+	    ''		=> '+00:00',
+	    '+12:00'	=> '+12:00',
+	    '-09:00'	=> '-09:00',
+	    '+1200'	=> '+12:00',
+	    '-0800'	=> '-08:00',
+	    'JST'	=> '+09:00',
+	}.each {
+	    |input, expected|
+	    assert_equal(expected, at.fix_zone(input), "input: #{input}")
+	}
+    end
+
+    def test_as_time
+	with_secs = Time.iso8601('2007-06-07T14:14:15+00:00')
+	without_secs = Time.iso8601('2007-06-07T14:14:00+00:00')
+	[
+	    "2007-06-07T13:14:15-01:00",
+	    "2007-06-07 15:14:15 +01:00",
+	    "2007-06-07 13:14:15 -0100",
+	    "2007-06-07 23:14:15 JST",
+	    "2007-06-07 14:14:15",
+	    "2007-06-07T14:14",
+	    "2007-06-07 14:14",
+	].each {
+	    |input|
+	    hb = HeaderBody.parse_text("date: #{input}")
+	    time = hb.header['date']
+	    assert_equal(input, time, "input: #{input}")
+	    expected_time = (input.length > 16) ? with_secs : without_secs
+	    assert_equal(expected_time, time.as_time, "input: #{input}")
+	}
+	assert_equal(Time.iso8601('2007-06-07T00:00:00+00:00'),
+	    HeaderBody.parse_text("date: 2007-06-07").header['date'].as_time)
+    end
+
+end
+
+end

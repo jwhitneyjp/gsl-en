@@ -1,0 +1,64 @@
+@import "flowboxes.css";
+
+/*
+*  Two-column boxed lists, for contacts and other info
+*  These are special-purpose boxes, there are lots of little
+*  tweaks here.
+*/
+
+* html ul.blocklist li { width: 330px; }
+ul.blocklist li > * { width: 330px; }
+
+
+ul.blocklist li {
+    margin-left: 20px;
+}
+
+ul.blocklist li img {
+    float: left;
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+ul.blocklist li img + img {
+    margin-left: -0.5em;
+}
+
+ul.blocklist h1 {
+    font-size: 1em;
+    margin-top: 0.8em;
+    margin-bottom: 0.8em;
+    padding-bottom: 0px;
+}
+
+ul.blocklist li p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+ul.blocklist li blockquote {
+    margin-left: 40px;
+    margin-right: 0px;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    width: 310px;
+}
+
+ul.blocklist li blockquote p {
+    margin: 0px;
+    padding: 0px;
+    padding-bottom: 1px;
+}
+
+ul.blocklist li p + blockquote {
+    margin-top: 0px;
+}
+
+ul.blocklist li a {
+    border-bottom-width: 1px;
+}
+
+ul.blocklist li blockquote + blockquote p {
+    line-height: normal;
+}
+

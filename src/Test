@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+# Copyright 2006-2007 by Starling Software, K.K.
+# This is part of QAM from http://www.starling-software.com.
+# For license terms, see the LICENSE.QAM file included with this distribution.
+
+THISDIR = File.expand_path(__FILE__ + '/../')
+
+quiet = (ARGV[0] == '-q')
+
+puts "-----   Install" unless quiet
+system(THISDIR + '/Install', '-q')
+
+Dir[THISDIR + '/*/Test'].sort.each { |test|
+    puts "-----   #{test.gsub(THISDIR + '/', '').gsub('/Test', '')}" unless
+	quiet
+    unless system(test, '-q')
+	$stderr.puts("***** FAILED")
+	exit(1)
+    end
+}

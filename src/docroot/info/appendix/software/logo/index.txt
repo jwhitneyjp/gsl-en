@@ -1,0 +1,13 @@
+title: Nagoya University logo
+
+Unofficial vector graphics versions of the 
+Nagoya University logo are provided here for 
+internal use.  The square logo is suitable 
+for rendering at very small sizes, such as a
+browser "favicon" logo.
+
+Advance permission must be obtained for display
+of the Nagoya University logo by private parties.
+A copy of the relevant application form is linked
+to the right.
+

@@ -1,0 +1,42 @@
+#!/usr/bin/python
+
+from nugsl.nporip import npoRip
+import sys
+import csv
+
+get_authorities = None
+block_authorities = None
+
+if len(sys.argv) > 1:
+    param = sys.argv[1]
+    if param.startswith('-'):
+        block_authorities = param[1:].split(',')
+    elif param.startswith('+'):
+        get_authorities = param[1:].split(',')
+    else:
+        get_authorities = param.split(',')
+    
+nr = npoRip()
+
+fetchlist = nr.get_toplist()
+
+for authority in fetchlist:
+    if get_authorities and authority[0] not in get_authorities: 
+        continue
+    if block_authorities and authority[0] in block_authorities:
+        continue
+    
+    print 'Processing %s: %s' % (authority[0],authority[1].encode('utf8'))
+    datafile = open( '%s-%s.csv' % (authority[0], authority[1].encode('utf8') ), 'w+' )
+    csv_out = csv.writer(datafile)
+    csv_out.writerow( nr.get_labels() )
+    sublist = nr.get_sublist( authority[0] )
+    for orgo in sublist:
+        row = nr.get_infopage(authority[0],orgo)
+        csv_out.writerow( row )
+        sys.stdout.write('.')
+        sys.stdout.flush()
+    datafile.close()
+    print ''
+    
+print '\ndone!'

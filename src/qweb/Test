@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+# Copyright 2006-2007 by Starling Software, K.K.
+# This software is licenced as part of the QAM Application Framework.
+# Please see your licence agreement for details of use, or contact
+# info@starling-software.com.
+
+require File.expand_path(__FILE__ + "/../../../release/qam")
+require 'qam/testsuite'
+
+i = QAM::Install.new
+d = i.dirs
+i.run_quiet_install(d.mine)
+
+QAM::TestSuite.new(d.mine('lib')).run

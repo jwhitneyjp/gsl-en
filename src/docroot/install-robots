@@ -1,0 +1,33 @@
+#!/bin/sh
+
+file='release/docroot/robots.txt'
+
+cat > $file <<HUP
+User-agent: *
+Disallow: /test/
+Disallow: /faculty/member/
+Disallow: /curriculum/syllabus/
+Disallow: /curriculum/icon/
+Disallow: /curriculum/image/
+Disallow: /curriculum/inc/
+Disallow: /curriculum/materials/
+HUP
+
+for ext in zip ico js css tgz ics; do
+  find release/docroot/ -name "*.$ext" \
+  | cut -f 3- -d '/' \
+  | sed -e 's~\(.*\)~Disallow: /\1~' \
+  >> $file
+done
+
+cat >> $file <<HUP
+
+User-agent: ia_archiver
+Disallow: /test/
+Disallow: /faculty/member/
+Disallow: /curriculum/syllabus/
+Disallow: /curriculum/icon/
+Disallow: /curriculum/image/
+Disallow: /curriculum/inc/
+Disallow: /curriculum/materials/
+HUP

@@ -1,0 +1,71 @@
+/* 
+* indexpage-pagecontent.css
+*
+*   Style specific to index pages that have their own page content.
+*
+* { border: 1px solid red; }
+*/
+
+
+div.toc-title {
+    font-size: 0.83em;
+    padding-top: 1.35em;
+    /* font-family: Vollkorn,Times,serif; */
+    /* font-weight: 700; */
+    font-family: Lato,Times,serif;
+    font-weight: 900;
+}
+
+
+div.sidenote {
+    margin-left: 10px;
+    margin-right: 0px;
+    padding: 15px;    
+    border: 2px solid #999999;
+}
+
+div.sidenote ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+ul.sidenote {
+    width: 437px;
+}
+
+div.page-title {
+    width: 437px;
+    /* font-family: Vollkorn,Times,serif; */
+    /* font-weight: 700; */
+    font-family: Lato,sans;
+    font-weight: 900;
+}
+
+div.toc {
+    background: white;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 0px;
+    padding-bottom: 1em !important;
+    border-left: solid 1px black;
+    border-right: solid 1px black;
+    border-bottom: solid 1px black;
+    margin-top: -1px;
+    margin-left: 10px;
+    margin-right: 0px;
+    margin-bottom: 0.5em !important;
+}
+
+div.toc ul {
+    margin-top: 0.5em;
+}
+
+div.toc-wrapper {
+    clear: none;
+    float: right;
+    width: 288px;
+    padding: 0px;
+    margin: 0px;
+}
+

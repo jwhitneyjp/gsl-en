@@ -1,0 +1,179 @@
+#!/usr/bin/python
+#-*- encoding: utf8 -*-
+
+import os,sys,re,csv,dbm
+import signal
+
+from nugsl.renumerate.IncomeStatement import incomeStatement
+from nugsl.renumerate.CategoryHint import categoryHinter
+from nugsl.renumerate.PenaltyEngine import penaltyEngine
+from nugsl.renumerate.Report import Report
+from nugsl.renumerate.Config import renumerateConfig
+
+config = renumerateConfig( sys.argv )
+
+path = config.data_path
+
+ch = categoryHinter( config.category_config )
+pe = penaltyEngine
+
+unpaper = 'unpaper -bn h -bs 1 -bd 70 -bp 1 -bt 0.9 -bi 1 -li 0.01 --overwrite --deskew-scan-step 0.05 --no-noisefilter --grayfilter-size 5 --grayfilter-step 1 --grayfilter-threshold 0.1'
+
+def handler(signum, frame):
+    print 'OOOOOkay'
+    print 'Received signal %s' % signum
+    sys.exit()
+
+signal.signal(signal.SIGINT, handler)
+signal.signal(signal.SIGABRT, handler)
+
+class SigHandler:
+    def __init__(self):
+        self.signaled = 0
+        self.sn=None
+        
+    reset = __init__
+        
+    def __call__(self, sn, sf):
+        self.sn = sn    # latest
+        self.signaled += 1
+
+def pth( *elements ):
+    mypath = os.path.join( path, *elements )
+    dir_path = os.path.sep.join( os.path.split( mypath )[:-1] )
+    if not os.path.exists( dir_path ):
+        os.makedirs( dir_path )
+    return mypath
+    
+def finalize( cache, filename, allocr ):
+    #
+    # Drop failures on the floor
+    if not cache:
+        print ' ... Fail'
+        open( pth( 'read_failure', filename+'.txt'), 'w+' ).write( allocr )
+        return
+    else:
+        cache.reverse()
+        print ' ... Success'
+
+    ofh = open( pth( 'raw', filename, 'data.csv' ), 'w+')
+    c = csv.writer( ofh )
+    for pos in range(0,len(cache),1):
+        line = cache[pos][1]
+        c.writerow( line )
+    ofh.close()
+    os.system('mv %s %s' % (pth('tmp','page*.png'),pth('raw',filename)))
+
+def analyze( text ):
+    incomer = incomeStatement( ch, pe )
+    incomer.read( text )
+    incomer.analyze()
+    if not incomer:
+        return None
+    if incomer[-1] != 0 and len(incomer) == 1:
+        return None
+    data = []
+    for section in ch.ordered_sections():
+        #
+        # Collect numbers associated with this section, leaving
+        # out anything that's a total
+        data.append( [] )
+        for number in incomer:
+            if number.info['nontotal'] == section and not number.state():
+                data[-1].append(number)
+    line = [','.join( [y.str for y in  x] ) for x in data]
+    #
+    #
+    # Include the grand total in the return, so we can decide which
+    # one of these is of interest
+    return (incomer[-1],line)
+
+donefiles = dbm.open( pth('fileslist'),'n')
+
+for file in os.listdir( pth('raw') ):
+    donefiles[ file ] = '1'
+
+for pdf_file in os.listdir( pth('read_failure') ):
+    file = pdf_file[:-4]
+    donefiles[ file ] = '1'
+
+files = os.listdir( pth( 'pdf' ) )
+files.sort()
+
+count = len(donefiles.keys())-1
+
+for filename in files:
+    filename = os.path.splitext( filename )[0]
+    if donefiles.has_key(filename):
+        continue
+    skip = False
+    count += 1
+    pdf_filename = filename + '.pdf'
+    sys.stdout.write('%d: %s' % (count,filename))
+    sys.stdout.flush()
+
+    shfilename = pdf_filename.replace('(','\(')
+    shfilename = shfilename.replace(')','\)')
+    
+    info = os.popen('pdfinfo "%s"' % pth( 'pdf', shfilename ) ).read()
+
+    r = re.match('(?i)(?m)(?s).*pages: *([0-9])+.*',info)
+    pages = int(r.group(1))
+
+    for file in os.listdir( pth('tmp') ):
+        os.unlink( pth('tmp', file))
+
+    found_page = False
+    not_found_count = 0
+    text = ''
+    allocr = ''
+    cache = []
+    for page in range(pages,0,-1):
+        sys.stdout.write(' %d' % page)
+        sys.stdout.flush()
+        os.system("pdfimages -f %d -l %d '%s' %s 2>/dev/null" % (page,page, pth( 'pdf', pdf_filename ), pth('tmp','DATA')))
+        os.system('pnmcat -tb %s 2>/dev/null | pnminvert 2>/dev/null > %s' % (pth('tmp','DATA-*'),pth('tmp','DATA.pgm')))
+        os.system('cat %s | pgmtopbm > %s' % (pth('tmp','DATA.pgm'),pth('tmp','DATA.pbm')))
+        os.system('cat %s | pnmcrop | pnmscale -xsize 700 2>/dev/null | pnmtopng 2>/dev/null > %s' % (pth('tmp','DATA.pgm'),pth('tmp','page%0.4d.png' % page)))
+        os.system('%s %s %s >/dev/null' % (unpaper,pth('tmp','DATA.pbm'),pth('tmp','DATA-CLEAN.pbm')))
+        os.system('pnmtotiff %s > %s' % (pth('tmp','DATA-CLEAN.pbm'),pth('tmp','DATA.tif')))
+        os.system('tesseract %s %s -l npx %s 2>/dev/null' % (pth('tmp','DATA.tif'),pth('tmp','DATA'),config.tess_config))
+        try:
+            newtext = open( pth('tmp', 'DATA.txt' )).read().decode('utf8')
+        except:
+            pdf = open( pth( 'pdf',  pdf_filename)).read()
+            open( pth('fail_error', pdf_filename ),'w+').write(pdf)
+            skip = True
+            print 'Script ERROR!'
+            sys.exit()
+            break
+
+        r = re.match('(?s)(?m).*%s.*' % ch.re_start,newtext)
+        if r:
+            found_page = True
+        if found_page and not r:
+            if not_found_count > 0:
+                break
+            else:
+                not_found_count += 1
+        #
+        # Cache the result of attempts to interpret the document.  Reports often have 
+        # multiple income statements, possibly with one of them reporting zero income.
+        # We need to override that with a better figure if possible.
+        #
+        text = newtext + text
+        allocr = newtext + allocr
+        if r:
+            result = analyze( text )
+            if result:
+                cache.append( result )
+                #text = ''
+
+        for file in os.listdir( pth( 'tmp' )):
+            if not file.endswith('.png'):
+                os.unlink( pth( 'tmp', file ))
+
+    if skip:
+        continue
+
+    finalize( cache, filename, allocr )

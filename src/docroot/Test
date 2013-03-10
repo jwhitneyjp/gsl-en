@@ -1,0 +1,68 @@
+#!/usr/bin/env ruby
+
+require File.expand_path(__FILE__ + '/../../../release/qam')
+i = QAM::Install.new; d = i.dirs
+i.run_quiet_install(d.mine)
+
+###########################################################################
+# Functional test for Install's build of HTML files from content files.
+
+require 'test/unit/testcase'
+include Test::Unit::Assertions
+
+def assert_docroot_file(path)
+    expected_file = QAM::Install.new.dirs.release('docroot', path)
+    content = File.open(expected_file) { |s| s.read }
+    content.instance_variable_set(:@content_path, path)
+    def content.inspect
+	"\n--------------- vvv HTML: #{@content_path}\n" + to_s +
+	"\n--------------- ^^^ HTML: #{@content_path}\n"
+    end
+    yield content
+end
+
+assert_docroot_file('test/one/two/index.html') {
+    |content|
+    assert_match("<title>Test Page Two</title>", content)
+    assert_match("/image/banner-test-image.jpg", content)
+    assert_match("<a href='/'>Top</a> &#171; " +
+	"<a href='/test/'>Test Page Zero</a> &#171; " +
+	"<a href='/test/one/'>Test Page One</a> &#171;\n",
+	content)
+}
+
+assert_docroot_file('test/index.html') {
+    |content|
+    assert_match("<a href='/test/one/' title='Test Page One'>" +
+	"Test Page One</a>", content)
+    assert_no_match(%r!<a href=.index.html!, content)
+    assert_match("This page is used by the automated tests", content)
+
+    assert_match("href='application-2007-fall.doc'", content)
+    assert_match("href='application-2007-fall.zip'", content)
+    assert_match("href='something.foo'", content)
+    assert_match("src='/icon/doc.png'", content)
+    assert_match("src='/icon/unknown.png'", content)
+    assert_match("href='obsolete'", content)
+}
+
+def assert_file_exists(path)
+    assert(File.exists?(path), "Expected and didn't find #{path}")
+end
+assert_file_exists(d.release('docroot', 'test', 'something.foo'))
+assert_file_exists(d.release('docroot', 'test', 'something.zip'))
+
+assert(!File.exists?(d.release('docroot', 'info', 'index.html')))
+assert_docroot_file('index.html') { |content| true }
+
+assert_docroot_file('test/info.html') {
+    |content|
+    assert_match("class=\"page-title\">Test Info Page.</div>", content)
+    assert_match("/image/banner-test-image.jpg", content)
+}
+
+assert_docroot_file('index.html') {
+    |content|
+    assert_match(/class=.news-links/, content)
+    assert_match(/class=.news-content/, content)
+}

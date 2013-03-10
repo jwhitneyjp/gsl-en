@@ -1,0 +1,50 @@
+title: Security, stress and disputes
+
+* Table of contents
+{: toc}
+
+# Automobile accident
+
+International students are strongly discouraged from driving
+automobiles, including motorcycles, in Japan,
+because of the risk of accident and the serious consequences
+that can follow.  However, if
+you are involved in an automobile accident, either as
+a driver or as a victim, the [Nagoya Automobile Insurance
+Claims Consulting Center][claims] provides a free service
+for resolving disputes and settling claims.
+
+[claims]: index.html#automobile_insurance_claims_consulting_center
+
+
+# Sexual Harassment
+
+The University takes a zero-tolerance view of sexual
+and other forms of harassment.  Anyone who is a
+target of sexual harassment, or who witnesses an
+instance of harassment, should not hesitate to 
+contact the [Sexual Harassment Help Desk][shhd] for
+an appointment.  Consultations are strictly confidential. and
+no actions will be taken without the consent of the
+person suffering from harassment.
+
+[shhd]: index.html#sexual_harassment_help_desk
+
+
+# Stress and culture shock
+
+Adjusting to life in a foreign country is often a
+stressful experience.  There are several avenues
+of help that students suffering
+from stress or anxiety may pursue.  The [International
+Student Advising Office][isa] is available for general
+consultation, and can provide advice on steps that
+can help resolve a difficult situation.  The 
+[Center for Student Counseling][nucsc] can provide
+counseling and therapy for serious cases of anxiety
+and stress-related illness.
+
+[nucsc]: index.html#center_for_student_counseling_nucsc
+[isa]: index.html#international_student_advising_office_isa
+
+

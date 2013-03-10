@@ -1,0 +1,28 @@
+[1st per.]
+row: 1
+column: 0
+
+[2nd per.]
+row: 2
+column: 0
+
+[Lunch]
+row: 3
+column: 0
+
+[3rd per.]
+row: 1
+column: 1
+
+[4th per.]
+row: 2
+column: 1
+
+[5th per.]
+row: 3
+column: 1
+
+[After school]
+row: 4
+column: 0
+columnspan: 2

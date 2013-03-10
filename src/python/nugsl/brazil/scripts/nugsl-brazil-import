@@ -1,0 +1,108 @@
+#!/usr/bin/python
+#-*- encoding: utf8 -*-
+
+''' Module
+'''
+
+import sys, dbm, os, re
+from nugsl.tagtool import tagfix
+
+from nugsl.brazil.TableRepair import Splice, Merge, FixHeadings, ValidateHeadings, AnalyzeStuff
+from nugsl.brazil.Config import brazilConfig, preConfig, postConfig
+from nugsl.brazil.TableRepair import Base
+
+class DatabaseImport(Base):
+    
+    def do_cell(self, cell):
+        if self.rowcount == 0:
+            pass
+
+
+if __name__ == '__main__':
+
+    config = brazilConfig()
+    headings_pre = preConfig().headings
+    headings_post = postConfig().headings
+    
+    sys.exit()
+    
+    info = {}
+    info['preamendment'] = []
+    info['postamendment'] = []
+    info['keys'] = []
+
+    info['PATCH'] = {}
+
+    patch = []
+    patch.append('M.P.')
+    patch.append('EMENTA')
+    patch.append('D.O.U')
+    patch.append('PRAZO EMENDA ADMISSIB')
+    patch.append('PRAZO C.M.')
+    patch.append('PRAZO C.N.')
+    patch.append('TOTAL EMENDAS OFEREC.')
+    patch.append('PARECER ADMISSIB.')
+    patch.append('PARECER MÉRITO')
+    patch.append('PRESI DENTE VICE')
+    patch.append('RELATOR/ RELATOR REVISOR')
+    patch.append('PAUTA')
+    patch.append('SECRETÁRIO')    
+    info['PATCH']['200307100000.html:1'] = patch[:]
+
+    patch = []
+    patch.append('M.P.')
+    patch.append('EMENTA')
+    patch.append('D.O.U')
+    patch.append('PRAZO EMENDA ADMISSIB')
+    patch.append('PRAZO C.M.')
+    patch.append('PRAZO C.N.')
+    patch.append('TOTAL EMENDAS OFEREC.')
+    patch.append('PARECER ADMISSIB.')
+    patch.append('PARECER MÉRITO')
+    patch.append('PRESI DENTE VICE')
+    patch.append('RELATOR/ RELATOR REVISOR')
+    patch.append('PAUTA SECRETÁRIO(A)')
+    info['PATCH']['200311180000.html:3'] = patch[:]
+
+    count = 0
+    files = os.listdir( os.path.join( config.data_path, 'brazil-data', 'html' ) )
+
+    for pos in range(0,len(files),1):
+        #if count < 69:
+        #    count += 1
+        #    continue
+        
+        file = files[pos]
+        filename = os.path.join( config.data_path, 'brazil-data', 'html', file)
+        #print '%d: %s' % (count,filename)
+        sys.stdout.write('%d ' % count)
+        sys.stdout.flush()
+        ifh = open( filename )
+        html = ifh.read()
+        ifh.close()
+
+        html = Splice( html, filename ).html
+        html = Merge( html, filename ).html
+        html = FixHeadings( html, filename, info=info ).html        
+        html = ValidateHeadings( html, filename ).html
+        #html = AnalyzeStuff( html, filename, info=info ).html
+        DatabaseImport( html, filename, info=headings )
+
+        count += 1
+
+        #if count > 12:
+        #    break
+    ofh = open( os.path.join( config.data_path, 'headings-pre.txt'), 'w+')
+    for heading in info['preamendment']:
+        ofh.write( heading + '\n')
+    ofh.close()
+
+    ofh = open( os.path.join( config.data_path, 'headings-post.txt'),'w+')
+    for heading in info['postamendment']:
+        ofh.write( heading + '\n')
+    ofh.close()
+
+    ofh = open( os.path.join( config.data_path, 'keys.txt'), 'w+')
+    for key in info['keys']:
+        ofh.write( key + '\n' )
+    ofh.close()

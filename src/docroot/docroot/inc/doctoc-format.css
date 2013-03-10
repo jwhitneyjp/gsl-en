@@ -1,0 +1,37 @@
+/*
+* display: block;
+*/
+
+div.maruku_toc {
+    display: inline-block;
+    margin-left: 2em;
+    padding-bottom: 1.35em;
+    border-left: solid 1.5em #ddd;
+    clear:left;
+}
+
+div.maruku_toc > ul {
+    padding-left: 1.2em;
+}
+
+div.maruku_toc li {
+    display: block;
+}
+
+/* div.maruku_toc > ul:before {
+*    display: block;
+*    font-weight: bold;
+*    font-size: 0.83em;
+*    padding-top: 1.35em;
+*    padding-bottom: 1.35em;
+*    content: "In this page";
+*}
+*/
+
+div.maruku_toc a { 
+    border-bottom-width: 1px !important;
+    font-size: smaller;
+}
+
+
+

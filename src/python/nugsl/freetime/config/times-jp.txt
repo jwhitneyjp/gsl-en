@@ -1,0 +1,28 @@
+[１時限目]
+row: 1
+column: 0
+
+[２時限目]
+row: 2
+column: 0
+
+[昼休み]
+row: 3
+column: 0
+
+[３時限目]
+row: 1
+column: 1
+
+[４時限目]
+row: 2
+column: 1
+
+[５時限目]
+row: 3
+column: 1
+
+[夕方]
+row: 4
+column: 0
+columnspan: 2

@@ -1,0 +1,91 @@
+#!/usr/bin/env python2.7
+#-*- encoding: utf-8 -*-
+
+import sys,os,os.path,re
+
+sys.path.append('%s' % (os.path.dirname(sys.argv[0]),))
+base = '%s/../../' % (os.path.dirname(sys.argv[0]),)
+pythonlib = base + '/release/lib/python'
+sys.path.append(pythonlib)
+
+from pagetool import pageEngine
+from pathtool import gslpath
+from csvtool import gslCsv
+
+gp = gslpath()
+
+rex6 = re.compile('^[A-Z0]_[A-Z][a-z]+[0-9]*\.(png)$')
+
+###### initialize page engine ######
+pg = pageEngine('instructors.csv')
+
+
+###### photos (start) ######
+#pg.staffphotos('instructors.csv')
+
+# Get photo filenames
+filenames = []
+for i in os.listdir(gp.faculty.src('')):
+    if rex6.match(i):
+        filenames.append(i)
+            
+png_small_cmd = 'cat %s | pngtopnm | pnmscale -xsize 70 | pnmtojpeg --greyscale --optimize --quality=65'   
+png_large_cmd = 'cat %s | pngtopnm | pnmtojpeg --greyscale --optimize --quality=50'
+    
+curdir = os.getcwd()
+os.chdir( gp.faculty.src('') )
+
+# Get spreadsheet data
+fh = open( gp.csv.src('instructors.csv') )
+c = gslCsv( fh, offset=0 )
+for data in c:
+    # delete existing photo if any
+    check_filename = data['uid'] + '.png'
+    thumbname = "%s_small.jpg" %check_filename[:-4]
+        
+    # upload if permitted and a photo is available
+    if data['photo_web_ok'].lower() == 'no' or not check_filename in filenames:
+        in_filename = "0_Blank.png"
+    else:
+        in_filename = check_filename
+        
+    out_filename = data['uid'] + '.jpg'
+            
+    fin,fout,ferr = os.popen3(png_large_cmd %in_filename)
+    fin.close()
+    ferr.close()
+    photo = fout.read()
+    fout.close()
+
+    fin,fout,ferr = os.popen3(png_small_cmd %in_filename)
+    fin.close()
+    ferr.close()
+    thumbnail = fout.read()
+    fout.close()
+            
+    # Upload thumbnail and photo
+    open( gp.facultycache.release(thumbname), 'w+' ).write(thumbnail)
+    open( gp.facultycache.release(out_filename), 'w+' ).write(photo)
+    
+os.chdir(curdir)
+    
+###### photos (end) ######
+
+
+###### course popups ######
+pg.coursepages('courses.csv')
+
+
+###### write course index (start) ######
+pg.courseindex('gslenglish',200,299)
+pg.courseindex('leading',600,699)
+pg.courseindex('econ',900,999)
+pg.courseindex('g30',100,199)
+
+
+###### staff popups ######
+pg.staffpages()
+
+
+###### write staff index pages (start) ######
+pg.staffindexes()

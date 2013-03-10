@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require File.expand_path(__FILE__ + '/../../../release/qam')
+i = QAM::Install.new; d = i.dirs
+
+require 'template'
+require 'toppage'
+
+MaRuKu::Globals[:on_error] = :ignore	# :ignore, :raise, :warning
+
+template = Template.parse_file(d.mine('page-template.html'))
+top_page = TopPage.new
+top_page.install_html(template)

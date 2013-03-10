@@ -1,0 +1,24 @@
+(dp1
+S'Fall start'
+p2
+cdatetime
+date
+p3
+(S'\x07\xd7\n\x01'
+tRp4
+sS'Spring start'
+p5
+g3
+(S'\x07\xd7\x04\n'
+tRp6
+sS'Winter return'
+p7
+g3
+(S'\x07\xd8\x01\x0b'
+tRp8
+sS'Winter break'
+p9
+g3
+(S'\x07\xd7\x0c\x1c'
+tRp10
+s.

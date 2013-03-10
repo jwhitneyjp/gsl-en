@@ -1,0 +1,244 @@
+title: Connect to wireless LAN
+css: manual.css
+
+Wireless network connections are available in many
+of the rooms around campus, including both the Law
+building and the Integrated Research Building
+where many classes are held.  To access the wireless
+network, you must first create an account.  This
+guide provides step-by-step instructions on how
+to create an account and log onto the wireless
+network.
+
+If you are unable to connect to the network, and
+you are uable to sort out the problem after talking
+with your classmates, please feel free to ask for
+help via the mail address at the bottom of this page.
+We cannot promise to solve the problem for you, but
+we may be able help get you pointed toward
+a solution.
+
+* **Preliminary notes**
+
+  > Your computer needs to have a wireless network
+  > device (either a builtin device, or an add-on
+  > PCMCIA or USB card) to access wireless networks.
+  > If you need a card, these are sold at most electronic stores
+  > and at the University Co-op, but it is worth
+  > first asking classmates whether they have a spare
+  > card -- there should be many old cards floating
+  > around campus.
+
+  > These instructions assume the use
+  > of the Windows XP operating system, and the 
+  > illustrations are from the Japanese version of this OS.
+  > If you use Windows XP with a different language
+  > (such as English), some of the menu names will differ,
+  > but the steps should be the same.
+
+  > If you use a different operating system
+  > (such as a Mac OS, Linux or Vista), some of the 
+  > steps themselves will differ.
+  
+  > *If you would like to help extend 
+  > this guide to cover other operating systems, please 
+  > get in touch!*
+
+{: class='sidenote'}
+
+
+
+
+###### Step 0
+
+![](/materials/graphic/wl_000.png)
+
+# Wireless network device
+In Windows XP, begin by opening the network
+connections menu.  Do this by clicking
+on **Start** 「スタート」, then
+the connections item 「接続」, then
+the wireless network connections item 「ワイアレスネットワーク接続」,
+as shown in the illustration to the right.
+Windows XP computers sometimes have a slightly different
+**Start** menu; you may need to click around a little
+to find the wireless network device menu on your
+computer.
+
+###### Step 1
+
+![](/materials/graphic/wl_001.png)
+
+# Display wireless networks
+The wireless device menu is shown to the right.
+In this menu, click on the button to show
+wireless networks, 「ワイアレスネットワークの表示」,
+circled in red in the illustration to the right.
+
+###### Step 2
+
+![](/materials/graphic/wl_002.png)
+
+# Request connection
+Windows XP should display a window similar to
+that shown to the right.  The University
+wireless network routers will show up with
+names beginning with **nuwnet**.  Choose a
+**nuwnet** item with a strong signal (the strongest
+signals are at the top of the list), and highlight
+it by left-clicking on it with the mouse.  After
+selecting a router, click on the connection button
+「接続」to initiate the connection.
+
+###### Step 3
+
+![](/materials/graphic/wl_003.png)
+
+# Wait for connection
+It may take a few seconds for your computer
+to complete the connection.  While your
+computer is attempting to establish a connection,
+a window like that shown to the right will be displayed.
+The window should disappear when the connection is
+complete.
+
+###### Step 4
+
+![](/materials/graphic/wl_004.png)
+
+# Start a browser
+When the connection has been established,
+you can immediately log onto the network 
+system if you have a network account.
+If you do not yet have an account, you can
+create one online right away.
+
+In either case, the next step is to start up
+a browser, as shown in the illustration to the
+right.  (If you already have a browser running,
+you may need to stop and restart it in order
+to open the account creation/login menus.)
+
+###### Step 5
+
+![](/materials/graphic/wl_005.png)
+
+# Permit the connection
+When your browser attempts to connect to the network,
+it will find an unknown security certificate and
+raise a security warning.  This is normal, for
+the Nagoya University wireless network.
+Accept the certificate and permit the connection
+by clicking on the OK button　「はい(Y)」.
+
+###### Step 6
+
+![](/materials/graphic/wl_006.png)
+
+# Create your account
+The login menu is shown to the right.
+If you do not yet have a wireless network account,
+you can create on by clicking on the 
+registration link 「新規登録」, circled in
+red in the illustration to the right.
+
+###### Step 7
+
+![](/materials/graphic/wl_007.png)
+
+# Accept terms and conditions
+Before you can create a network account, you
+must accept a set of terms and conditions,
+which are all written in Japanese.  It is
+not clear whether these would be binding
+on someone who is unable to read them, but
+in any case, you can proceed to create
+an account by ticking the left-hand 
+item 「承諾します」, and then clicking
+on the button to proceed to the registration
+form 「登録フォームへ」.
+
+
+###### Step 8
+
+![](/materials/graphic/wl_008.png)
+
+# Enter account details
+In the registration form, shown to the right, enter
+the required details, as follows:
+
+1. **Wireless network ID** You can enter any personal ID that you
+   like for your wireless network ID (so long as another user has
+   not already claimed it).  Be sure to choose an ID that is easy
+   for you to remember.
+2. **University ID** This is the same 全学ID that you use to
+   log onto University computers and the University mail
+   system.
+3. **University password** This is the password for the
+   全学ID.
+4. **Name** Enter your full name in the fourth field.
+5. **Affiliation**  Click on the fifth field and select
+   your faculty from the list.  For Law students, this will
+   be the item containing the characters for law「法学」.
+6. **Office** If you know the room number of your office,
+   enter it here.
+7. **Status** In the eighth field, select the appropriate item, 
+    either student
+   「学生」or academic staff 「教員」.
+8. **Year of study** In the ninth field, enter your year of
+   study as a student (academic staff can set any value
+   here).
+9. **Telephone** If you have a telephone, enter its number
+   in the ninth field.
+10. **Email**  You must enter an email address inside the
+    `nagoya-u.ac.jp` domain in the tenth field.  The email
+    address connected to your University ID will work
+    for this purpose.
+
+After filling out the form, click on the registration
+button 「登録」.
+
+
+###### Step 9
+
+![](/materials/graphic/wl_009.png)
+
+# Enter ID and password
+After your account is registered, you will
+be returned to the login form.  Enter the
+ID that you chose, and for the password
+enter the email address that you entered
+in item 10 of the registration form.
+
+###### Step 10
+
+![](/materials/graphic/wl_010.png)
+
+# Accept connection (again)
+Windows XP will again find the unknown
+security certificate, and raise a security
+warning.  Accept the certificate again
+by clicking on the OK button 「はい(Y)」.
+
+
+###### Step 11
+
+![](/materials/graphic/wl_011.png)
+
+# Wait for login
+The system should display a screen similar to that
+shown to the right.  If you are impatient, you
+can click on the `click here` link.
+
+
+###### Step 12
+
+![](/materials/graphic/wl_012.png)
+
+# Click to the Internet!
+If you reach a screen like that shown to the right,
+your login was successful (hurray).  Your computer
+should now have a full connection to the Internet.
+You can click on the "from here" link 「ここから」to open the
+page your browser was originally attempting to access when
+the login process was triggered.

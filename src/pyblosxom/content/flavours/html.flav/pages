@@ -1,0 +1,27 @@
+<div class="content">
+    <div class="breadcrumbs">
+	
+    </div>
+    <a name="newstoc"></a>
+    <div class="content-pane-left">
+	
+	    <div class='news-links'>
+	    <ul>
+		<li><div>
+
+            <div class="dean">
+                <span><a href="/en/dean">Message from the Dean</a></span>
+            </div>
+		    <h3>News &amp; Announcements</h3>
+$(news)
+		</div></li>
+		<li><div>
+		    <h3>Upcoming Events&nbsp;&nbsp;<a href="/en/index.atom" class="icon" title="Atom News Feed"><img src="/en/icon/Feed_24x24.png"/></a></h3>
+$(events)
+		</div></li>
+	    </ul>
+	    </div><div class='clear-both'>&nbsp;</div>
+	
+	
+    </div>
+</div>

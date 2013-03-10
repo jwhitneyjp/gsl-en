@@ -1,0 +1,70 @@
+#!/usr/bin/env ruby
+# Copyright 2006-2007 by Starling Software, K.K.
+# This software is licenced as part of the QAM Application Framework.
+# Please see your licence agreement for details of use, or contact
+# info@starling-software.com.
+
+require File.expand_path(__FILE__ + '/../../../release/qam')
+
+i = QAM::Install.new; d = i.dirs
+
+pythonsitelib = d.release('lib', 'python')
+DIRS = [
+    d.build('extsrc', 'python'),
+    d.bin,
+    pythonsitelib
+]
+DIRS.each { |d| FileUtils.mkdir_p(d) }
+
+def python_extsrc(*path)
+    QAM::Install.new.dirs.mine(path)
+end
+
+def package_exists(name, test_file)
+    return false unless File.directory?(python_extsrc(name))
+    puts("***** Installing #{name}") unless ARGV.include?('-q')
+    true
+end
+
+expected_ical_dir = File.join(pythonsitelib, 'icalendar')
+if package_exists('icalendar', File.join(expected_ical_dir, 'cal.py'))
+    FileUtils.rm_rf(expected_ical_dir)
+    FileUtils.mkdir_p(expected_ical_dir)
+    FileUtils.cp_r(python_extsrc('icalendar/src/icalendar/'), pythonsitelib)
+end
+
+expected_elet_dir = File.join(pythonsitelib, 'elementtree')
+if package_exists('elementtree', File.join(expected_elet_dir, 'ElementTree.py'))
+    FileUtils.rm_rf(expected_elet_dir)
+    FileUtils.mkdir_p(expected_elet_dir)
+    FileUtils.cp_r(python_extsrc('elementtree/elementtree/'), pythonsitelib)
+end
+
+expected_gdat_dir = File.join(pythonsitelib, 'gdata')
+expected_atom_dir = File.join(pythonsitelib, 'atom')
+if package_exists('gdata', File.join(expected_gdat_dir, 'service.py'))
+    FileUtils.rm_rf(expected_gdat_dir)
+    FileUtils.rm_rf(expected_atom_dir)
+    FileUtils.mkdir_p(expected_atom_dir)
+    FileUtils.mkdir_p(expected_gdat_dir)
+    FileUtils.cp_r(python_extsrc('gdata', 'src', 'gdata'), pythonsitelib)
+    FileUtils.cp_r(python_extsrc('gdata', 'src', 'atom'), pythonsitelib)
+end
+
+expected_kid_dir = File.join(pythonsitelib, 'kid')
+if package_exists('kid', File.join(expected_kid_dir, 'service.py'))
+    FileUtils.rm_rf(expected_kid_dir)
+    FileUtils.mkdir_p(expected_kid_dir)
+    FileUtils.cp_r(python_extsrc('kid', 'kid'), pythonsitelib)
+end
+
+expected_pyexc_dir = File.join(pythonsitelib, 'pyExcelerator')
+if package_exists('pyexcelerator', File.join(expected_kid_dir, '__init__.py'))
+    FileUtils.rm_rf(expected_pyexc_dir)
+    FileUtils.mkdir_p(expected_pyexc_dir)
+    FileUtils.cp_r(python_extsrc('pyexcelerator', 'pyExcelerator'), pythonsitelib)
+end
+
+%w[ textile pexif markdown ].each { |package|
+    FileUtils.cp_r(python_extsrc(package, "#{package}.py"), pythonsitelib)
+}

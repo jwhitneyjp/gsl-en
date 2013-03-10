@@ -1,0 +1,85 @@
+#!/usr/bin/python
+
+import sys,os
+from urllib2 import urlopen
+import urllib
+import libxml2
+from exceptions import Exception
+
+from nugsl.brazil.FixHtml import fixHtml
+from nugsl.brazil.TidyHtml import tidyHtml
+from nugsl.brazil.UnZip import unZip
+from nugsl.brazil.Config import brazilConfig
+
+class Finished(Exception):
+    pass
+
+class pageIterate:
+
+    def __init__(self, root, path):
+        self.root = root
+        self.path = path
+        
+    def __iter__(self):
+        return self
+
+    def next(self):
+        if self.path == None:
+            raise Finished
+        uh = urlopen( self.root + self.path )
+        html = uh.read()
+        html = fixHtml( html ).html
+        html = tidyHtml( html ).html
+
+        doc = libxml2.htmlParseDoc( html, 'iso-8859-1')
+
+        res = doc.xpathEval('//a/img[contains(@src,"ba_pag1")]/..')
+        if res:
+            self.path = urllib.unquote( res[0].prop('href') )
+        else:
+            self.path = None
+        return doc
+
+if __name__ == '__main__':
+    
+    WEBROOT="http://webthes.senado.gov.br"
+    SEED="/bin/gate.exe?f=tocn&p_toc=tocn&p_doc=recordn&p_d=SILN&p_op_all=E&p_SortBy1=DINV&p_Ascend1=no&p_lang=english&expr=ALL&p_s_ALL=%40DOCN+E+Comissoes%5bNV01%5d+E+Mistas%5bNV02%5d+E+MP%5bNV03%5d+E+Resumo%5bNV04%5d&p_search=search&a_search=ENTRA&p_L=10"
+    
+    pages = pageIterate( WEBROOT, SEED )
+
+    config = brazilConfig()
+    
+    zip_dir = os.path.join( config.data_path, 'brazil-data', 'zipfiles' )
+    if not os.path.exists( zip_dir ):
+        os.makedirs( zip_dir )
+    
+    rtf_dir = os.path.join( config.data_path, 'brazil-data', 'rtf' )
+    if not os.path.exists( rtf_dir ):
+        os.makedirs( rtf_dir )
+
+    count = 1
+    for page in pages:
+        print '\n%d: %s ' % (count,pages.path)
+        res = page.xpathEval('//a[contains(@href,"ZIP")]')
+        for doc_path in [x.prop('href') for x in res]:
+            
+            filename = os.path.split(doc_path)[-1]
+            zip_filename =os.path.join( zip_dir, filename )
+
+            if not os.path.exists( zip_filename ):
+                txt = urlopen( pages.root + doc_path ).read()
+                open( zip_filename, 'w+' ).write(txt)
+            
+            content = unZip( zip_filename )
+            
+            rtf_filename = os.path.join( rtf_dir, os.path.splitext(filename)[0] + '.rtf' )
+            if content:
+                open( rtf_filename, 'w+' ).write( content )
+            else:
+                rtf_url = pages.root + doc_path[:-4] + '.rtf'
+                content = urlopen( rtf_url ).read()
+                open( rtf_filename, 'w+' ).write( content )
+            
+            sys.stdout.write('.')
+            sys.stdout.flush()
+        count += 1

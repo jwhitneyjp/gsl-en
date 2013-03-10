@@ -1,0 +1,7 @@
+title: Nagoya University Graduate School of Law
+banner-image: /image/banner-default.jpg
+css: toppage.css
+
+This is a web page. Hi! Welcome! Have a look around and buy something!
+
+-- The Management

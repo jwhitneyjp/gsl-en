@@ -1,0 +1,23 @@
+title: Renumerate: extract totals and grand totals from OCR text
+
+This Python package provides document repair and analysis for
+financial data embedded in OCR text.  Conservative heuristics are
+applied at the string level, followed by a line analysis that tries
+multiple assumptions against the text stream.  The results are
+analyzed at document level, modelled as multiple assumptions covering
+all possible combinations for unresolved ambiguities.  The top-level
+class object `incomeStatement` returns a set of numbers with attached
+metadata when a grand total is successfully identified, otherwise an
+empty string.
+
+Operations are broken into discrete classes for ease of
+customization, and the code is supported by a reasonably thorough set
+of unit and integration tests. Line analysis and penalty formulas for
+choosing numeric clusters to discard during repeated attempts at
+resolution are pluggable, for full customizability to suit local
+requirements.
+
+Version 1.7 incorporates a number of bug fixes that significantly
+increase the rate of successful resolution.
+
+Enjoy!

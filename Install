@@ -1,0 +1,64 @@
+#!/usr/bin/env ruby
+# Copyright 2006-2007 by Starling Software, K.K.
+# This is part of QAM from http://www.starling-software.com.
+# For license terms, see the LICENSE.QAM file included with this distribution.
+
+SRC_TO_CLEAN = %w[
+    build/src
+    release/lib/ruby/site_ruby
+    release/libdata/server
+]
+
+require 'fileutils'
+require 'rbconfig'
+
+def usage(message = nil)
+    $stderr.puts(message) if message
+    $stderr.puts([
+	"Usage: #{File.basename($0)} $0) [-b] [-C] [-c] [-q]",
+	"    -b exit after bootstrapping QAM",
+	"    -C full clean build (including extsrc)",
+	"    -c clean build of src only",
+	"    -q quiet",
+    ].join("\n"))
+    exit(1)
+end
+
+$exit_after_bootstrap = false
+$quiet = false
+while ARGV[0]; case ARGV[0]
+    when '-b':
+	ARGV.shift; $exit_after_bootstrap = true
+    when '-C':
+	ARGV.shift
+	%w[ build release ].each {
+	    |dir| FileUtils.rm_rf(File.join(File.dirname($0), dir)) }
+    when '-c':
+	ARGV.shift
+	SRC_TO_CLEAN.each {
+	    |dir| FileUtils.rm_rf(File.join(File.dirname($0), dir)) }
+    when '-q':
+	ARGV.shift
+	$quiet = true
+    else
+	usage("Unknown option: #{ARGV[0]}")
+end; end
+
+# Bootstrap qam
+def thisdir(path = ''); File.expand_path(__FILE__ + '/../') + '/' + path; end
+qamlibdir = thisdir('release/lib/ruby/site_ruby/') +
+    Config::CONFIG['ruby_version'] + '/qam'
+FileUtils.mkdir_p(qamlibdir)
+FileUtils.cp(thisdir('src/qam/qam.rb'), thisdir('release/'))
+FileUtils.cp(thisdir('src/qam/lib/qam/install.rb'), qamlibdir)
+
+require File.expand_path(__FILE__ + '/../release/qam')
+exit if $exit_after_bootstrap
+
+i = QAM::Install.new; d = i.dirs
+to_build = []
+to_build << 'extsrc' unless /^mswin/.match(Config::CONFIG['host_os'])
+to_build << 'src'
+to_build.each { |dir|
+    i.run_install(d.base(dir), :message => "===== Installing #{dir}")
+}

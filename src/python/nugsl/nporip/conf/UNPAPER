@@ -1,0 +1,1 @@
+unpaper -bn v -bs 1 -bd 70 -bp 1 -bt 0.9 -bi 1 -li 0.01 --overwrite --grayfilter-size 5 --grayfilter-step 1 --grayfilter-threshold 0.1 

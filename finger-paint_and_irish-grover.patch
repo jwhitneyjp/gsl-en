@@ -1,0 +1,242 @@
+Index: src/pyblosxom/content/flavours/html.flav/head
+===================================================================
+--- src/pyblosxom/content/flavours/html.flav/head	(revision 2005)
++++ src/pyblosxom/content/flavours/html.flav/head	(working copy)
+@@ -7,7 +7,9 @@
+     <meta name="keywords" content="Nagoya University Law School, Nagoya University Graduates School of Law, Nagoya University, Meidai, Law Programs, Programs in English, English Program, Japan, Nagoya, Aichi, legal, education, research, college, international, overseas, graduate, undergraduate, lld, llm, Monbukagakusho, Monbusho, globalisation, oda, asian studies" />
+     <link href="/inc/screen.css" rel="stylesheet" type="text/css">
+     <link href="/inc/toppage.css" rel="stylesheet" type="text/css">
+-    <link href='http://fonts.googleapis.com/css?family=Lato:900|Noticia+Text:400,400italic' rel='stylesheet' type='text/css'>
++    <link href='http://fonts.googleapis.com/css?family=Finger+Paint|Irish+Grover:400,700' rel='stylesheet' type='text/css'/>
++
++    <!-- <link href='http://fonts.googleapis.com/css?family=Lato:900|Noticia+Text:400,400italic' rel='stylesheet' type='text/css'> -->
+     <!--
+         <link href='http://fonts.googleapis.com/css?family=Noticia+Text:400,400italic|Anton' rel='stylesheet' type='text/css'>
+     -->
+Index: src/docroot/page-template.html
+===================================================================
+--- src/docroot/page-template.html	(revision 2040)
++++ src/docroot/page-template.html	(working copy)
+@@ -8,7 +8,8 @@
+     <meta http-equiv="Content-Style-Type" content="text/css"/>
+     <link href="/inc/screen.css" rel="stylesheet" type="text/css"/>
+     @@css@@
+-    <link href='http://fonts.googleapis.com/css?family=Lato:900|Noticia+Text:400,400italic' rel='stylesheet' type='text/css'/>
++    <!-- <link href='http://fonts.googleapis.com/css?family=Lato:900|Noticia+Text:400,400italic' rel='stylesheet' type='text/css'/> -->
++    <link href='http://fonts.googleapis.com/css?family=Finger+Paint|Irish+Grover:400,700' rel='stylesheet' type='text/css'/>
+     <script src='/inc/navi.js' type='text/javascript'></script>
+     <script src='/inc/size.js' type='text/javascript'></script>
+     <script src='/inc/hi.js' type='text/javascript'></script>
+Index: src/docroot/popup-template.html
+===================================================================
+--- src/docroot/popup-template.html	(revision 2005)
++++ src/docroot/popup-template.html	(working copy)
+@@ -5,7 +5,8 @@
+ <title>@@name@@</title>
+ <link href="/inc/screen.css" type="text/css" rel="stylesheet"/>
+ <link href="/inc/popup.css" type="text/css" rel="stylesheet"/>
+-<link href='http://fonts.googleapis.com/css?family=Lato:900|Noticia+Text:400,400italic' rel='stylesheet' type='text/css'/>
++<link href='http://fonts.googleapis.com/css?family=Finger+Paint|Irish+Grover:400,700' rel='stylesheet' type='text/css'/>
++<!-- <link href='http://fonts.googleapis.com/css?family=Lato:900|Noticia+Text:400,400italic' rel='stylesheet' type='text/css'/> -->
+ <!--
+ <link href='http://fonts.googleapis.com/css?family=Noticia+Text:400,400italic|Anton' rel='stylesheet' type='text/css'>
+ -->
+Index: src/docroot/docroot/inc/indexpage-pageempty.css
+===================================================================
+--- src/docroot/docroot/inc/indexpage-pageempty.css	(revision 2005)
++++ src/docroot/docroot/inc/indexpage-pageempty.css	(working copy)
+@@ -11,7 +11,7 @@
+     padding-bottom: 1em;
+     /* font-family: Vollkorn,Times,serif; */
+     /* font-weight: 700; */
+-    font-family: Lato,sans;
+-    font-weight: 900;
++    font-family: Finger Paint,sans;
++    font-weight: 400;
+ }
+ 
+Index: src/docroot/docroot/inc/screen.css
+===================================================================
+--- src/docroot/docroot/inc/screen.css	(revision 2023)
++++ src/docroot/docroot/inc/screen.css	(working copy)
+@@ -66,16 +66,17 @@
+ 
+ h1 {
+     clear: none;
+-    font-family:	Lato,sans;
+-    font-weight: 900;
++    font-family:	Finger Paint,sans;
++    font-weight: 400;
+ }
+-h2 { font-family: Lato,sans; font-weight: 900; }
+-h3 { font-family: Lato,sans; font-weight: 900; }
+-h4 { font-family: Lato,sans; font-weight: 900; }
+-h5 { font-family: Lato,sans; font-weight: 900; }
+-b { font-family: Lato,sans; font-weight: 900;}
+-strong { font-family: Lato,sans; font-weight: 900;}
++h2 { font-family: Finger Paint,sans; font-weight: 400; }
++h3 { font-family: Finger Paint,sans; font-weight: 400; }
++h4 { font-family: Finger Paint,sans; font-weight: 400; }
++h5 { font-family: Finger Paint,sans; font-weight: 400; }
++b { font-family: Finger Paint,sans; font-weight: 400;}
++strong { font-family: Finger Paint,sans; font-weight: 400;}
+ 
++
+ /*
+ h1 {
+     clear: none;
+@@ -220,7 +221,7 @@
+     font-size: 11pt;
+     color: #262626;
+     /* font-family:	Cardo,Times,serif; */
+-    font-family:	Noticia+Text,sans;
++    font-family:	Irish Grover,sans;
+     font-weight: 400;
+ }
+ 
+@@ -248,8 +249,8 @@
+ 
+ td.logo a {
+     font-size: 1.4em;
+-    font-weight: 900;
+-    font-family: Lato,sans;
++    font-weight: 400;
++    font-family: Finger Paint,sans;
+     /* font-weight: 700; */
+     /* font-family: Vollkorn,Times,serif; */
+     /* line-height: 26px; */
+@@ -279,8 +280,8 @@
+     margin-bottom: 1em;
+     /* font-family: Vollkorn,Times,serif; */
+     /* font-weight: 700; */
+-    font-family: Lato,sans;
+-    font-weight: 900;
++    font-family: Finger Paint,sans;
++    font-weight: 400;
+ }
+ 
+ div.toc { 
+@@ -345,8 +346,8 @@
+     border-right:1px solid #a0a0a0;
+     /* font-family: Vollkorn,Times,serif; */
+     /* font-weight: 700; */
+-    font-family: Lato,sans;
+-    font-weight: 900;
++    font-family: Finger Paint,sans;
++    font-weight: 400;
+ }
+ 
+ div.nav-buttons a.menu-first {
+@@ -380,8 +381,8 @@
+ }
+ 
+ p.footer-bold {
+-    font-family: Lato,sans; 
+-    font-weight: 900;
++    font-family: Finger Paint,sans; 
++    font-weight: 400;
+     text-align: center;
+     font-size: 1em;
+ }
+@@ -411,8 +412,8 @@
+     margin-bottom: 0.4em;
+     font-size: 1em;
+     color: #000000;
+-    font-family: Lato,sans; 
+-    font-weight: 900;
++    font-family: Finger Paint,sans; 
++    font-weight: 400;
+     font-size:smaller;
+ }
+ 
+@@ -540,7 +541,7 @@
+ li.directory-listing { list-style-image: url('/image/gtk-directory.png'); }
+ 
+ /* a.directory-heading { font-family: Vollkorn,Times,serif; font-weight: 700; } */
+-a.directory-heading { font-family: Lato,sans; font-weight: 900; }
++a.directory-heading { font-family: Finger Paint,sans; font-weight: 400; }
+ 
+ li.directory-listing-remote { list-style-image: url('/image/folder-publicshare.png'); }
+ li.download-listing { list-style-image: url('/image/gtk-download.png'); }
+@@ -563,8 +564,8 @@
+     font-style: normal;
+     font-size: larger;
+     color: black;
+-    font-family: Lato,sans;
+-    font-weight: 900;
++    font-family: Finger Paint,sans;
++    font-weight: 400;
+     text-align: center;
+     margin-bottom: 1em;
+ }
+Index: src/docroot/docroot/inc/indexpage-pagecontent.css
+===================================================================
+--- src/docroot/docroot/inc/indexpage-pagecontent.css	(revision 2005)
++++ src/docroot/docroot/inc/indexpage-pagecontent.css	(working copy)
+@@ -12,8 +12,8 @@
+     padding-top: 1.35em;
+     /* font-family: Vollkorn,Times,serif; */
+     /* font-weight: 700; */
+-    font-family: Lato,Times,serif;
+-    font-weight: 900;
++    font-family: Finger Paint,Times,serif;
++    font-weight: 400;
+ }
+ 
+ 
+@@ -38,8 +38,8 @@
+     width: 437px;
+     /* font-family: Vollkorn,Times,serif; */
+     /* font-weight: 700; */
+-    font-family: Lato,sans;
+-    font-weight: 900;
++    font-family: Finger Paint,sans;
++    font-weight: 400;
+ }
+ 
+ div.toc {
+Index: src/docroot/docroot/inc/popup.css
+===================================================================
+--- src/docroot/docroot/inc/popup.css	(revision 2005)
++++ src/docroot/docroot/inc/popup.css	(working copy)
+@@ -18,8 +18,8 @@
+ div.profile-link a {
+     border-bottom: none;
+     color: #ffffff;
+-    font-family: Lato,sans;
+-    font-weight: 900;
++    font-family: Finger Paint,sans;
++    font-weight: 400;
+     font-weight: bold;
+     padding: 0.4em 0.4em 0.4em 0.4em;
+     border-left: 1px solid #a0a0a0;
+Index: src/docroot/docroot/inc/sitemap.css
+===================================================================
+--- src/docroot/docroot/inc/sitemap.css	(revision 2005)
++++ src/docroot/docroot/inc/sitemap.css	(working copy)
+@@ -6,8 +6,8 @@
+     padding-top: 0.6em;
+     padding-bottom: 0.3em;
+     font-size: 0.83em;
+-    font-family: Lato,Times,serif;
+-    font-weight: 900;
++    font-family: Finger Paint,Times,serif;
++    font-weight: 400;
+ }
+ 
+ li.tab-label-listing {
+Index: src/docroot/docroot/inc/toppage.css
+===================================================================
+--- src/docroot/docroot/inc/toppage.css	(revision 2005)
++++ src/docroot/docroot/inc/toppage.css	(working copy)
+@@ -50,8 +50,8 @@
+ 
+ div.dean a {
+     color:#ffffff;
+-    font-family: Lato,sans;
+-    font-weight: 900;
++    font-family: Finger Paint,sans;
++    font-weight: 400;
+     /* border-left: 1px solid #a0a0a0; */
+     /* border-right: 1px solid #a0a0a0; */
+     padding: 0.5em 0.5em 0.5em 0.5em;

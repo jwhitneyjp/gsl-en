@@ -1,0 +1,2 @@
+title: Curriculum
+link: /curriculum

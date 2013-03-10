@@ -1,0 +1,684 @@
+#!/usr/bin/env ruby
+# Copyright 2006-2007 by Starling Software, K.K.
+# This is part of QAM from http://www.starling-software.com.
+# For license terms, see the LICENSE.QAM file included with this distribution.
+
+require File.expand_path(__FILE__ + '/../../release/qam')
+
+###################################################################
+# Classes and Functions
+
+def error_exit(message)
+    $stderr.puts(message)
+    exit(1)
+end
+
+module Build
+
+    module Lib; end
+    module Bin; end
+    module Mod; end
+    module Ruby; end
+
+    def self.get_constants(build_module)
+	build_module.constants.collect { |name| build_module.const_get(name) }
+    end
+
+    class GenericBuild
+
+	def self.require_packages(*packages)
+	    module_eval <<-"end_eval"
+		def require_packages;
+		    [#{packages.join(", ")}]
+		end
+	    end_eval
+	end
+
+	def self.skip_if_exists(file)
+	    module_eval <<-"end_eval"
+		def skip_if_exists;
+		    #{file.inspect}
+		end
+	    end_eval
+	end
+
+	def self.copy_source_to_build
+	    module_eval <<-"end_eval"
+		def copy_source_to_build
+		    QAM::Install.i.install_tree(
+			package_source_dir, package_build_dir)
+		end
+	    end_eval
+	end
+
+	def self.so(name)
+	    case
+	    when QAM.platform(:win):	raise("Don't know so name for windows.")
+	    when QAM.platform(:mac):	name + '.bundle'
+	    else			name + '.so'
+	    end
+	end
+	def so(name); self.class.so(name); end
+
+	def self.rubylib(*pcs); QAM.dirs.rubylib(*pcs); end
+	def rubylib(*pcs); GenericBuild.rubylib(*pcs); end
+
+	def self.rubylib_arch(*pcs); QAM.dirs.rubylib_arch(*pcs); end
+	def rubylib_arch(*pcs); GenericBuild.rubylib_arch(*pcs); end
+
+	def self.rubylib_site(*pcs); QAM.dirs.rubylib_site(*pcs); end
+	def rubylib_site(*pcs); GenericBuild.rubylib_site(*pcs); end
+
+	def extsrcdir(*pcs); QAM::Install.new.dirs.base('extsrc', *pcs); end
+
+	def initialize
+	    name_parts = self.class.name.split('::')
+	    @category = name_parts[1].downcase
+	    @package_name = name_parts[-1].downcase
+	    @qam_install = QAM::Install.new
+	    @package_source_dir = @qam_install.dirs.base(
+		'extsrc', category, package_name)
+	    @package_build_dir = @qam_install.dirs.build(
+		'extsrc', category, package_name)
+	end
+
+	attr_reader :category, :package_name
+	attr_reader :qam_install
+
+	def package_source_dir(path = '')
+	    @package_source_dir + '/' + path
+	end
+
+	def package_build_dir(path = '')
+	    @package_build_dir + '/' + path
+	end
+
+	def releasedir(*pcs)
+	    @qam_install.dirs.release(*pcs)
+	end
+
+	def needs_build
+	    if methods.include?('skip_if_exists')
+		path = skip_if_exists
+		path = releasedir(path) unless path.match(/^\//)
+		if File.exists?(path)
+		    quiet_puts "***** Skipping #{package_name} " +
+			"(found #{skip_if_exists.gsub(releasedir, '')})"
+		    return(false)
+		end
+	    end
+	    File.exists?(package_source_dir)
+	end
+
+	def build
+	    require_packages.each { |package|
+		builder = package.new
+		builder.build if builder.needs_build
+	    }
+	    setup_build
+	    copy_source_to_build
+	    configure_build
+	    compile_build
+	    install_build
+	end
+
+	def setup_build
+	    quiet_puts("***** Installing #{package_name}")
+	    FileUtils.mkdir_p(package_build_dir)
+	    setup_standard_install_dirs
+	end
+
+	def setup_standard_install_dirs
+	    FileUtils.mkdir_p(releasedir('man/man1'))
+	    FileUtils.mkdir_p(releasedir('include'))
+	    FileUtils.mkdir_p(releasedir('bin'))
+	end
+
+	def require_packages
+	    []
+	end
+
+	def copy_source_to_build
+	end
+
+	def run_or_fail(command, message = nil)
+	    puts(" ---- #{message}") if message
+	    system(command) || fail("Command failed.\n" +
+		"command: #{command}\nin directory: #{Dir.pwd}\n")
+	end
+
+	def quiet_puts(s)
+	    @qam_install.quiet_puts(s)
+	end
+
+    end
+
+    class GnuConfigure < GenericBuild
+
+	def default_gnu_configure_options
+	    [ "-q", "--prefix=#{releasedir}" ].freeze
+	end
+
+	def gnu_configure_options
+	    []
+	end
+
+	def gnu_configure_path
+	    package_source_dir + '/configure'
+	end
+
+	def configure_build
+	    FileUtils.cd(package_build_dir)
+	    unless File.exists?(gnu_configure_path)
+		$stderr.puts "ERROR: Cannot locate #{gnu_configure_path}."
+		exit 1
+	    end
+
+	    unless QAM.platform(:mac)
+		ENV['CPPFLAGS'] =	'-I' + releasedir('include')
+		libdir = releasedir('lib')
+		ENV['LDFLAGS'] =	"-L#{libdir} -Wl,-R#{libdir}"
+	    end
+	    config_args =
+		(default_gnu_configure_options + gnu_configure_options).
+		join(' ')
+
+	    run_or_fail("#{gnu_configure_path} #{config_args}",
+		"configuring #{package_name}")
+	end
+
+	def compile_build
+	    run_or_fail('make', "making #{package_name}")
+	end
+
+	def install_build
+	    run_or_fail('make install', "installing #{package_name}")
+	end
+
+    end
+
+    class CopySourceGnuConfigure < GnuConfigure
+	copy_source_to_build
+	def gnu_configure_path; "./configure"; end
+    end
+
+end
+
+
+###################################################################
+# Build definitions
+
+module Build
+
+class Lib::Check < GnuConfigure
+    skip_if_exists	'lib/libcheck.la'
+end
+
+class Lib::PCRE < GnuConfigure
+    skip_if_exists	'lib/libpcre.la'
+end
+
+class Lib::JPEG < GnuConfigure
+    skip_if_exists	'lib/libjpeg.la'
+    def gnu_configure_options
+	%w[ --enable-shared --enable-static ]
+    end
+    def install_build
+	return unless super
+	FileUtils.ln_sf('libjpeg.so.62.0', releasedir('lib/libjpeg.so')) unless
+	    File.exists?(releasedir('lib/libjpeg.so'))
+    end
+end
+
+class Lib::LibPNG < GnuConfigure
+    skip_if_exists	so('lib/libpng')
+end
+
+class Lib::LibXML2 < GnuConfigure
+    skip_if_exists	'bin/xml2-config'
+end
+
+class Lib::Curl < GnuConfigure
+    skip_if_exists	'bin/curl'
+end
+
+class Lib::ImageMagick < GnuConfigure
+    require_packages	Lib::JPEG, Lib::LibPNG
+    skip_if_exists	'bin/convert'
+    def gnu_configure_options
+	%w[ --with-quantum-depth=8 --with-modules
+	    --without-magick-plus-plus --without-perl
+	    --without-x --without-freetype
+	    --without-dps --without-gvc --without-lcms
+	    --without-ttf --without-wmf --without-xml
+	]
+    end
+end
+
+class Bin::AutoConf < CopySourceGnuConfigure
+    skip_if_exists	'bin/autoconf'
+end
+
+class Bin::AutoMake < CopySourceGnuConfigure
+    skip_if_exists	'bin/automake'
+end
+
+class Bin::Lighttpd < CopySourceGnuConfigure
+    skip_if_exists	'sbin/lighttpd'
+    def gnu_configure_options; %w[ --with-openssl ]; end
+end
+
+class Bin::ApacheHttpd < GnuConfigure
+    skip_if_exists	'bin/httpd'
+    def gnu_configure_options
+	%w[ --enable-so --enable-rewrite --disable-ssl ]
+    end
+    def install_build
+	return unless super
+	FileUtils.rm_f(
+	    extsrcdir('bin', 'apachehttpd', 'srclib', 'pcre', 'chartables.c'))
+    end
+end
+
+class Bin::PHP < GnuConfigure
+    require_packages	Lib::LibXML2, Lib::Curl
+
+    skip_if_exists	'bin/php'
+
+    def needs_build
+	os = Config::CONFIG['host_os']
+	if os.match(/^linux/) && super
+	    quiet_puts("***** Skipping #{package_name} (#{os} not supported)")
+	    return false
+	end
+	super
+    end
+
+    def gnu_configure_options
+	[ '--enable-fastcgi',
+	    "--with-curl=#{releasedir}", "--with-libxml-dir=#{releasedir}", ]
+    end
+
+    def configure_build
+	return false unless super
+	Dir[extsrcdir('bin', 'php', 'Zend') + '/*.[ch]'].each {
+	    |file| FileUtils.cp(file, package_build_dir('Zend/'))
+	}
+    end
+
+    def install_build
+	return unless super
+	FileUtils.rm_f(extsrcdir('bin/php/ext/pdo_sqlite/sqlite/src/config.h'))
+	FileUtils.rm_f(extsrcdir('bin/php/ext/pdo_sqlite/sqlite/src/sqlite3.h'))
+    end
+end
+
+class Bin::FFMpeg < CopySourceGnuConfigure
+
+    skip_if_exists	'bin/ffmpeg'
+
+    def needs_build
+	os = Config::CONFIG['host_os']
+	if os.match(/^netbsd/) && super
+	    quiet_puts("***** Skipping #{package_name} (#{os} not supported)")
+	    return false
+	end
+	super
+    end
+
+    def gnu_configure_options
+	[ "--extra-cflags=\"-I #{releasedir('include')}\"",
+	  "--enable-amr_wb --enable-amr_nb"]
+    end
+
+    def default_gnu_configure_options
+	super - %w[ -q ]
+    end
+
+    def configure_build
+	%w[ amr_float amrwb_float ].each {
+	    |dir| QAM::Install.i.install_tree(extsrcdir('mod', dir),
+		package_build_dir("libavcodec/#{dir}"))
+	}
+	super
+    end
+
+    def install_build
+	system("cd #{package_build_dir} && gmake install")
+    end
+
+end
+
+class Bin::Flex < GnuConfigure
+    skip_if_exists	'bin/flex'
+    def setup_build
+	return unless super
+	FileUtils.cp(package_source_dir('MISC/parse.c'), package_build_dir)
+	FileUtils.cp(package_source_dir('MISC/parse.h'), package_build_dir)
+    end
+end
+
+class Bin::Bison < GnuConfigure
+    skip_if_exists	'bin/bison'
+end
+
+class Bin::Httperf < GnuConfigure
+    skip_if_exists	'bin/httperf'
+end
+
+class Bin::Mplayer < CopySourceGnuConfigure
+    skip_if_exists	'bin/mplayer'
+
+    def configure_build
+	codec_dir = package_build_dir('/libavcodec/')
+	FileUtils.mkdir_p(codec_dir)
+	QAM::Install.i.install_tree(extsrcdir('mod/amr_float'), codec_dir)
+	QAM::Install.i.install_tree(extsrcdir('mod/amrwb_float'), codec_dir)
+	super
+    end
+
+    def default_gnu_configure_options
+	super - %w[ -q ]
+    end
+
+    def gnu_configure_options
+	[
+	    "--with-extraincdir=#{releasedir('include')}",
+	    "--with-extralibdir=#{releasedir('lib')}",
+	    "--enable-jpeg",
+	]
+    end
+
+    def compile_build
+	run_or_fail('gmake', "making #{package_name}")
+    end
+
+    def install_build
+	run_or_fail('gmake install', "installing #{package_name}")
+	FileUtils.cp(package_build_dir('/TOOLS/midentify'), releasedir('bin'))
+    end
+
+end
+
+class Bin::Nagios < CopySourceGnuConfigure
+
+    skip_if_exists	'bin/nagios'
+
+    def compile_build
+	run_or_fail('make all', "making #{package_name}")
+    end
+
+    def install_build
+	%w[ base/nagios base/nagiostats ].each { |file|
+	    FileUtils.install(file, releasedir('bin'), :mode => 0755) }
+    end
+
+end
+
+class Mod::NagiosPlugins < GnuConfigure
+
+    def package_name; 'nagios-plugins'; end
+
+    skip_if_exists	'libexec/nagios/check_ping'
+
+    def gnu_configure_options
+	    [ '--libexecdir=' + releasedir('libexec/nagios') ]
+    end
+
+    def compile_build
+	run_or_fail('cd lib && gmake')
+	run_or_fail('cd gl && gmake')
+	run_or_fail('cd plugins && gmake')
+    end
+
+    def install_build
+	run_or_fail('cd lib && gmake install')
+	run_or_fail('cd gl && gmake install')
+	run_or_fail('cd plugins && gmake install')
+    end
+
+end
+
+class Bin::NSC < GenericBuild
+
+    skip_if_exists	'bin/nsc.pl'
+
+    def configure_build; end
+    def compile_build; end
+
+    def install_build
+	%w[ nsc.pl nsc_nagios.pm ].each { |binfile|
+	    FileUtils.install(package_source_dir(binfile), releasedir('bin'),
+		:mode => 0755)
+	}
+	# XXX really should go in releasedir('lib/perl5/site_perl/5.8.0')
+	QAM::Install.i.install_tree(
+	    package_source_dir('gothix'), releasedir('bin', 'gothix'))
+	# XXX also requires curses.pm.
+    end
+
+end
+
+class Mod::Fcgid < GenericBuild
+    skip_if_exists	'modules/mod_fcgid.so'
+
+    copy_source_to_build
+
+    def configure_build
+	FileUtils.cp_r(extsrcdir('mod/fcgid/.deps'), package_build_dir) 
+    end
+    def compile_build
+	run_or_fail("cd #{package_build_dir} && make top_dir=#{releasedir}")
+    end
+    def install_build
+	run_or_fail(
+	    "cd #{package_build_dir} && make top_dir=#{releasedir} install")
+    end
+
+end
+
+
+class Ruby::FCGI < GenericBuild
+    def configure_build
+	fail("Use qam ruby FCGI module instead.")
+    end
+end
+
+class Ruby::Postgres < GenericBuild
+
+    skip_if_exists	rubylib_arch(so('postgres'))
+
+    copy_source_to_build
+
+    def setup_build
+	return unless super
+	FileUtils.rm_f(rubylib_arch(so('postgres'))) # To make sure date gets updated
+	FileUtils.rm_rf(package_build_dir)
+	FileUtils.mkdir_p(rubylib_arch)
+    end
+
+    def configure_build
+	config_args = "--prefix=#{releasedir}"
+	config_args += "--with-pgsql-dir=/usr/pkg" if
+	    File.directory?('/usr/pkg')
+	run_or_fail("cd #{package_build_dir} && ruby extconf.rb #{config_args}")
+    end
+
+    def compile_build
+	run_or_fail("cd #{package_build_dir} && make")
+    end
+
+    def install_build
+	run_or_fail("cd #{package_build_dir} \
+	    && ruby -run -e install -- -vpm 0755 #{so('postgres')} #{rubylib_arch}/")
+    end
+
+end
+
+class Ruby::MySQL < GenericBuild
+
+    skip_if_exists	rubylib_arch(so('mysql'))
+
+    def needs_build
+	return false unless super
+	potential_mysql_dirs = %w[ /usr/pkg /usr/local/mysql /home/mysql ]
+	@mysql_dir = potential_mysql_dirs.inject(nil) { |memo, dir|
+	    File.exists?("#{dir}/include/mysql/mysql.h") ? dir : memo
+	}
+	unless @mysql_dir
+	    $stderr.puts("WARNING: Not building ruby-mysql because " +
+		"include/mysql/mysql.h not found under any of " +
+		"#{potential_mysql_dirs}")
+	    return false
+	end
+	true
+    end
+
+    copy_source_to_build
+
+    def setup_build
+	return unless super
+	FileUtils.rm_f(rubylib_arch(so('mysql'))) # To make sure date gets updated
+	FileUtils.rm_rf(package_build_dir)
+	FileUtils.mkdir_p(rubylib_arch)
+    end
+
+    def configure_build
+	puts("Using MySQL libraries in #{@mysql_dir}")
+	config_args = "--prefix=#{releasedir}"
+	config_args += " --with-mysql-dir=#{@mysql_dir}"
+	run_or_fail("cd #{package_build_dir} && ruby extconf.rb #{config_args}") 
+    end
+
+    def compile_build
+	run_or_fail("cd #{package_build_dir} && make") 
+    end
+
+    def install_build
+	FileUtils.cp(package_build_dir(so('mysql')), rubylib_arch)
+    end
+
+end
+
+class Ruby::Maruku < GenericBuild
+    skip_if_exists	rubylib('maruku.rb')
+
+    def setup_build
+	return unless super
+	%w[ maruku maruku.rb sort_prof.rb ].each {
+	    |f| FileUtils.rm_rf(rubylib(f)) }
+    end
+
+    def configure_build;  end
+    def compile_build;  end
+
+    def install_build
+	FileUtils.mkdir_p(rubylib)
+	Dir[package_source_dir('lib/*')].each { |dir_or_file|
+	    FileUtils.cp_r(dir_or_file, rubylib)
+	}
+     end
+
+end
+
+class Ruby::LibPNG < GenericBuild
+    skip_if_exists	rubylib_arch(so('libpng'))
+    copy_source_to_build
+
+    def setup_build
+	return unless super
+	FileUtils.mkdir_p(rubylib_arch)
+    end
+
+    def configure_build
+	$stderr.puts package_source_dir
+	system("
+	    cd #{package_build_dir};
+	    ruby extconf.rb --with-libpng-dir=#{releasedir}
+	")
+    end
+
+    def compile_build
+	system("
+	    cd #{package_build_dir}; make
+	")
+    end
+
+    def install_build
+	system("
+	    cp #{package_build_dir(so('libpng'))} #{rubylib_arch}
+	")
+    end
+
+end
+
+class Ruby::RMagick < CopySourceGnuConfigure
+
+    skip_if_exists	rubylib_arch(so('RMagick'))
+
+    def gnu_configure_options
+	[ 
+	    "--with-std-ruby=#{rubylib}",
+	    "--with-site-ruby=#{QAM.dirs.rubylib_site}",
+	    "--with-so-dir=#{rubylib_arch}",
+	    "--disable-htmldoc",
+	]
+    end
+
+    def setup_build
+	return unless super
+	FileUtils.rm_f(rubylib_arch(so('RMagick'))) # To make sure date gets updated.
+	FileUtils.rm_rf(package_build_dir)
+    end
+
+end
+
+end # module Build
+
+###################################################################
+# Copy from vendor branch
+
+def copy_vendor_to_extsrc(package_path, version = 'current')
+    destination = QAM::Install.new.dirs.base('extsrc', package_path)
+    raise("extsrc/#{package_path} already exists") if File.exists?(destination)
+
+    puts("Copying #{package_path} version #{version} to extsrc/#{package_path}")
+
+    repo = `svn info | sed -n -e 's,Repository Root: ,,p'`
+    error_exit("Cannot find repo for this checkout") if $? != 0 || repo.empty?
+    repo.chomp!
+
+    vendor_root = "#{repo}/vendor/#{package_path}/#{version}"
+    extsrc_subdir = File.dirname(destination)
+    system("svn mkdir #{extsrc_subdir}") unless File.exists?(extsrc_subdir)
+    system("svn cp #{vendor_root} #{destination}") || fail("error running svn")
+end
+
+ARGV.delete('-q')
+while ARGV[0]
+    copy_vendor_to_extsrc(ARGV.shift)
+end
+
+
+###################################################################
+# Build
+
+things_to_build =
+    Build.get_constants(Build::Lib) +
+    Build.get_constants(Build::Bin) +
+    Build.get_constants(Build::Mod) +
+    Build.get_constants(Build::Ruby)
+things_to_build.each {
+    |builder_class| 
+    builder = builder_class.new
+    builder.build if builder.needs_build
+}
+
+###################################################################
+# Run legacy build scripts.
+
+SUBDIRS = %w[ other gnu-configure ruby python ]
+SUBDIRS.each { |dir|
+    QAM::Install.new.run_install("extsrc/#{dir}") if
+	File.exists?(QAM::Install.new.dirs.base('extsrc', dir, 'Install'))
+}

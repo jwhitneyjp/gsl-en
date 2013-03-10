@@ -1,0 +1,579 @@
+/* 
+* screen.css
+*
+*   Style common to all pages.
+*/
+
+@import "headings-format.css";
+@import "doctoc-format.css";
+@import "blocklist.css";
+
+.bdtext {
+    white-space: nowrap;
+}
+
+.bdtext a {
+    background-color: transparent;
+    display: block;
+    float: left;
+    text-align: right;
+    height: 24px;
+    width: 24px;
+    background-repeat: no-repeat;
+    white-space: nowrap;
+}
+
+.bdtext a span {
+    display: none;
+    white-space: nowrap;
+}
+
+.bdtext a.size-s {
+    background-image: url("/icon/1_ic_bdtext3_s.png");
+}
+
+.bdtext a.size-m {
+    background-image: url("/icon/1_ic_bdtext3_m.png");
+}
+
+.bdtext a.size-l {
+    background-image: url("/icon/1_ic_bdtext3_l.png");
+}
+
+.bdtext a.size-s:hover {
+    background-image: url("/icon/1_ic_bdtext3_s_ov.png");
+}
+
+.bdtext a.size-m:hover {
+    background-image: url("/icon/1_ic_bdtext3_m_ov.png");
+}
+
+.bdtext a.size-l:hover {
+    background-image: url("/icon/1_ic_bdtext3_l_ov.png");
+}
+
+img.ical {
+    float: none;
+}
+
+tr.required td {
+    font-weight: bold;
+}
+
+img.icon {
+   float: none;
+}
+
+h1 {
+    clear: none;
+    font-family:	Lato,sans;
+    font-weight: 900;
+}
+h2 { font-family: Lato,sans; font-weight: 900; }
+h3 { font-family: Lato,sans; font-weight: 900; }
+h4 { font-family: Lato,sans; font-weight: 900; }
+h5 { font-family: Lato,sans; font-weight: 900; }
+b { font-family: Lato,sans; font-weight: 900;}
+strong { font-family: Lato,sans; font-weight: 900;}
+
+/*
+h1 {
+    clear: none;
+    font-family:	Vollkorn,Times,serif;
+}
+h2 { font-family: Vollkorn,Times,serif; font-weight: 700; }
+h3 { font-family: Vollkorn,Times,serif; font-weight: 700; }
+h4 { font-family: Vollkorn,Times,serif; font-weight: 700; }
+h5 { font-family: Vollkorn,Times,serif; font-weight: 700; }
+b { font-family: Vollkorn,Times,serif; font-weight: 700;}
+strong { font-family: Vollkorn,Times,serif; font-weight: 700;}
+*/
+
+dl.sidenote {
+    padding: 0.5em 8px 1.1em 8px;
+    border: 2px solid #999999;
+}
+
+dl.sidenote dd {
+    line-height: 1.5em;
+}
+
+dl.sidenote dd a {
+    border-bottom-width: 2px;
+}
+
+ul.sidenote {
+    clear:left;
+    list-style: none;
+    border: 2px solid #999999;
+    margin: 0px;
+    padding: 0px;
+}
+
+ul.sidenote li {
+    margin: 0.5em 1em;
+}
+
+div.toc-wrapper {
+    padding: 0px;
+    margin: 0px;
+}
+
+
+table.tuition {
+    margin-left: 40px;
+}
+
+
+table.tuition td {padding: 5px; border: 2px solid #000;}
+
+table.tuition col.label { text-align: left;}
+table.tuition col.number { text-align: right;}
+
+table.tuition thead tr>td, table.tuition tbody tr>td {text-align: left;}
+table.tuition thead td + td, table.tutition tbody td+td {text-align: right;}
+
+table.tuition thead tr td { font-weight: bold; }
+
+hr.clear-left {
+    clear: left;
+    border-width: 0px;
+}
+
+hr.clear {
+    border-width: 0px;
+    clear: both;
+}
+
+p.right150 {
+    font-size: smaller;
+    padding-left: 1em;
+    width: 150px;
+    float: right;
+}
+
+p.right200 {
+    font-size: smaller;
+    padding-left: 1em;
+    width: 200px;
+    float: right;
+}
+
+p.right250 {
+    font-size: smaller;
+    padding-left: 1em;
+    width: 250px;
+    float: right;
+}
+
+p.right300 {
+    font-size: smaller;
+    padding-left: 1em;
+    width: 300px;
+    float: right;
+}
+
+p.right400 {
+    font-size: smaller;
+    padding-left: 1em;
+    width: 400px;
+    float: right;
+}
+
+.fragment {
+  background-color: yellow;
+  color: black;
+}
+
+dd + dt {
+    margin-top: 0.5em;
+}
+
+td {
+    vertical-align: top;
+    padding-bottom: 0.9em;
+}
+
+div.news-links div + a {
+    display: block;
+}
+
+
+div.footnotes {
+    clear: both;
+}
+
+dl {
+    padding-left: 0em;
+}
+
+dt {
+    padding-top: 0px;
+    font-size: larger;
+}
+
+dd {
+    margin-left: 1em;
+}
+
+body {
+    font-size: 11pt;
+    color: #262626;
+    /* font-family:	Cardo,Times,serif; */
+    font-family:	Noticia+Text,sans;
+    font-weight: 400;
+}
+
+/*div.primary-content {
+*    clear: left;
+*    padding-top: 0.5em;
+*}
+*/
+
+/*
+ * XXXX
+ * Needs work below to pull the inline style params
+ * set in the big table at the top of pagestyle-template.html
+ * into CSS, and to strip out old bits of CSS here that are
+ * no longer used.
+ */ 
+
+div.topstrip {
+    vertical-align: middle;
+}
+
+div.logo {
+    vertical-align: middle;
+}
+
+td.logo a {
+    font-size: 1.4em;
+    font-weight: 900;
+    font-family: Lato,sans;
+    /* font-weight: 700; */
+    /* font-family: Vollkorn,Times,serif; */
+    /* line-height: 26px; */
+    /* vertical-align: text-top; */
+    color: #252525;
+    /* float: left; */
+}
+
+td.logo a img {
+    padding-left: 0px;
+    padding-right: 7px;
+    /* float: none; */
+}
+
+td.logo a:hover {
+    color: black;
+}
+
+div.page-title:before {
+   content: url("/icon/redspot.png")
+}
+
+div.page-title {
+    float: left;
+    font-size: 1.17em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    /* font-family: Vollkorn,Times,serif; */
+    /* font-weight: 700; */
+    font-family: Lato,sans;
+    font-weight: 900;
+}
+
+div.toc { 
+    clear: left;
+}
+
+div.toc > ul {
+    padding-top: !important;
+}
+
+div.sitemap div.toc:before {
+    display: none;
+}
+
+div.toc a { border-bottom-width: 1px !important; }
+div.toc img { float: none; }
+
+div.header { 
+    width: 766px;
+    padding-top: 0.6em;
+}
+
+div.goodies {
+    float: right;
+    padding-left: 0.5em;
+    margin-left: 1em;
+    border-left: 2px solid #bbb;
+    line-height: 1.4em;
+}
+
+img { 
+    border: none;
+    float: right;
+}
+
+img.static {
+    float: none;
+}
+
+a:link { color: #262626; text-decoration: none; } 
+a:visited { color: #262626; text-decoration: none; }
+a:active { color: #262626; text-decoration: none; }
+a:hover { color: #a30826; text-decoration: none; }
+
+div.menu {
+    margin: 0px;
+    background:#800000;
+    /* background:#0000a0; */
+    padding:1em 0em 3em 0em;
+    color:#FFFFFF;
+    margin-top:0.2em;
+    text-align: center;
+    border-top-right-radius: 3em 3em;
+    border-top-left-radius: 3em 3em;
+}
+
+div.nav-buttons a {
+    color:#FFFFFF;
+    padding:1em 1em 1em 1em;
+    font-size: 1em;
+    text-decoration: none;
+    border-right:1px solid #a0a0a0;
+    /* font-family: Vollkorn,Times,serif; */
+    /* font-weight: 700; */
+    font-family: Lato,sans;
+    font-weight: 900;
+}
+
+div.nav-buttons a.menu-first {
+    border-left:1px solid #a0a0a0;
+}
+
+div.nav-buttons a:hover {
+    background: url('/image/2_menuh_b_bg_on.gif') repeat scroll 0% 0% rgb(0,0,0);
+}
+
+div.nav-buttons a:active {
+    background: url('/image/2_menuh_b_bg_cr.gif') repeat scroll 0% 0% rgb(79,79,79);
+}
+
+a.menu-button-selected {
+    background: url('/image/2_menuh_b_bg_cr.gif') repeat scroll 0% 0% rgb(79,79,79);
+}
+
+div.footer {
+    font-size: smaller;
+    text-align: center;
+    padding: 1em 0 0.5em 0;
+    border-bottom-left-radius: 3em 3em;
+    border-bottom-right-radius: 3em 3em;
+    background: #800000;
+    color: #ffffff;
+}
+
+div.footer p {
+    font-size: 0.83em;
+}
+
+p.footer-bold {
+    font-family: Lato,sans; 
+    font-weight: 900;
+    text-align: center;
+    font-size: 1em;
+}
+
+div.footer p {
+    padding-top: 1.5em;
+}
+
+div.nav-buttons a.commentlink {
+    border: none;
+    background: transparent;
+}
+div.nav-buttons a.commentlink:hover {
+    color: #ff8080;
+}
+
+div.banner {
+    padding: 8px 0px 5px;
+}
+
+div.banner img {
+    float: none;
+}
+
+div.breadcrumbs {
+    margin-top: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 1em;
+    color: #000000;
+    font-family: Lato,sans; 
+    font-weight: 900;
+    font-size:smaller;
+}
+
+div.breadcrumbs span.breadcrumb {
+    background: #802b2b;
+    padding: 0.1em 0.6em 0.2em 0.6em;
+    border-bottom-right-radius: 0.7em 0.7em;
+    border-bottom-left-radius: 0.7em 0.7em;
+}
+
+div.breadcrumbs a {
+    padding: 0.1em 0.5em 0.2em 0.5em;
+    color: #ffffff;
+    /* background: #dcabab; */
+    /* border-top-right-radius: 0.5em 0.5em; */
+    /* border-top-left-radius: 0.5em 0.5em; */
+}
+
+div.breadcrumbs a:hover {
+    background: url('/image/2_menuh_b_bg_on.gif') repeat scroll 0% 0% rgb(0,0,0);
+}
+
+div.breadcrumbs a:active {
+    background: url('/image/2_menuh_b_bg_cr.gif') repeat scroll 0% 0% rgb(79,79,79);
+}
+
+div.content {
+    width: 766px;
+    clear: both;
+}
+
+div.content-popup {}
+
+div#content {
+    clear: left;
+}
+
+div.content-pane-left {
+    border-top: solid 1px black;
+    /* border-bottom: solid 1px black; */
+    padding-right: 15px;
+    padding-bottom: 1.9em;
+    background: url('/image/content-pane-bg-image.gif') repeat-y;
+}
+
+div.content-pane-left:after {
+    content: ".";
+    height: 0px;
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+div.content-pane-left p { clear: left; }
+
+div.content-pane-left a { border-bottom: dotted 2px #aaa; }
+
+a.commentlink { 
+    border-bottom: dotted 1px #aaa; 
+    font-weight: normal;
+    color: #ffffff;
+}
+span.tt { font-family: Courier, monospace; }
+
+div.news-links { padding-bottom: 6px; }
+
+div.news-links a { border-bottom-style: none; }
+
+div.news-links ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+div.news-links li {
+    display: block;
+    float: left;
+    margin: 0px;
+}
+
+div.news-links div {
+    width: 320px;
+    padding-left: 2em;
+}
+
+div.news-link { 
+    padding: 4px; 
+    text-indent: -1em;
+}
+
+div.news-content-item {
+    border-top: 2px solid #666;
+    margin-top: 20px;
+}
+
+div.news-content-item h2 {
+    padding: 0px;
+    margin: 2px 0px 0px 0xp;
+}
+
+div.clear-both {
+    visibility: hidden;
+    font-size: 1px;
+    height: 1px;
+    clear: both;
+}
+
+div.clear-left {
+    clear: left;
+    visibility: hidden;
+    font-size: 1px;
+    height: 1px;
+}
+
+div.content-pane-left ul {
+    padding-top: 0px;
+    margin-top: 0px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+div.content-pane-left li { 
+    padding: 0px 0px;
+    
+}
+li.directory-listing { list-style-image: url('/image/gtk-directory.png'); }
+
+/* a.directory-heading { font-family: Vollkorn,Times,serif; font-weight: 700; } */
+a.directory-heading { font-family: Lato,sans; font-weight: 900; }
+
+li.directory-listing-remote { list-style-image: url('/image/folder-publicshare.png'); }
+li.directory-listing-local { list-style-image: url('/icon/redspot-24.png'); }
+li.download-listing { list-style-image: url('/image/gtk-download.png'); }
+li.file-listing { list-style-image: url('/image/gtk-file.png'); }
+
+ul.ical {
+    margin-left: 20px;
+}
+
+ul.ical li { 
+    list-style-image: url('/image/calendar.png');
+}
+
+ul.ical a {
+    border-bottom: dotted 1px #aaa; 
+}
+
+
+p.error-404-label {
+    font-style: normal;
+    font-size: larger;
+    color: black;
+    font-family: Lato,sans;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+p.error-404-text {
+    font-style: italic;
+    font-size: larger;
+    color: black;
+    text-align: center;
+    margin-bottom: 1em;
+}

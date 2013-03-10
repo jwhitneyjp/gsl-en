@@ -1,0 +1,34 @@
+Title: Earthquake preparation
+
+Japan witnesses many earthquakes. The 1995 Kansai Earthquake and the
+2004 Niigata Earthquake caused immeasurable damage to these regions. It
+is predicted that an earthquake of equivalent scale will also hit the
+Tokai area in the foreseeable future.
+There are things you can do to prepare for the possibility
+of a major earthquake or other natural disaster.
+
+A straightforward
+list of "27 Things to Do" is available from the
+[American Red Cross][redcross] in several languages.
+Students are encouraged to download a copy of this 
+guide and to follow its simple advice.
+
+[redcross]: index.html#american_red_cross_disaster_services
+
+An emergency communication service, through which persons in
+the area of a major disaster can leave messages for friends,
+colleagues and loved ones, telling them of their condition
+and whereabouts.  The service, which can be used on a
+trial basis on the first day of every month, is called
+the [Disaster Emergency Dengon Dial][dengon] service.
+
+[dengon]: index.html#disaster_emergency_messaging_service
+
+The [Nagoya University Disaster Management Office][nudisaster]
+is responsible for preparing the University for the possibility
+of a large-scale earthquake.  The Office provides a flier
+for English speakers, which is available for download from
+the Office website.
+
+[nudisaster]: index.html#disaster_management_office
+

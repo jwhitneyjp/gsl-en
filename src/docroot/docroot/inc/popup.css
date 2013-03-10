@@ -1,0 +1,74 @@
+a {
+    border-bottom: dotted 1px #aaa;
+}
+
+div.profile-link {
+    height: 2.5em;
+}
+
+div.profile-link span {
+    font-family: Lato,sans;
+    border-top-right-radius: 1em 1em;
+    border-top-left-radius: 1em 1em;
+    /* border-bottom-right-radius: 1em 1em; */
+    /* border-bottom-left-radius: 1em 1em; */
+    background: #800000;
+    padding: 0.5em 1em 1em 1em;
+}
+
+div.profile-link a {
+    border-bottom: none;
+    color: #ffffff;
+    font-weight: 900;
+    font-weight: bold;
+    padding: 0.4em 0.4em 0.4em 0.4em;
+    border-left: 1px solid #a0a0a0;
+    border-right: 1px solid #a0a0a0;
+}
+
+div.profile-link a:hover {
+    background: url('/image/2_menuh_b_bg_on.gif') repeat scroll 0% 0% rgb(0,0,0);
+}
+
+div.profile-link a:active {
+    background: url('/image/2_menuh_b_bg_cr.gif') repeat scroll 0% 0% rgb(79,79,79);
+}
+
+td.pop-label {
+  font-size: smaller;
+  font-weight: bold;
+  background: #efefef;
+  border: solid 2px #c2c2c2;
+  text-align: center;
+}
+
+td.pop-data {
+  text-align: left;
+  background: #f6f6f6;
+  border-top:1px solid #c6c6c6;
+  border-bottom:1px solid #c6c6c6;
+}
+
+div a img {
+  border-width: 0px;
+  border-style: none;
+}
+
+div.classes {
+  padding-bottom:0.4em;
+  line-height:1.2em;
+  font-size:90%;
+  padding-left:2em;
+  text-indent:-2em;
+}
+a {
+  cursor: pointer;
+}
+a >div:link { text-decoration: none }
+a >div:visited { text-decoration: none }
+a >div:active { text-decoration: underline }
+a >div:focus { text-decoration: underline }
+a >div:hover { text-decoration: underline }
+
+a >div {cursor: pointer }
+

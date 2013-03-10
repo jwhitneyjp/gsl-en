@@ -1,0 +1,13 @@
+title: Campus Asia Curriculum
+javascript: popup.js
+
+* Note that the full content of all courses is available
+  via the faculty's online Syllabus System:
+
+  > [Visit the online Campus Asia Syllabus System][ss] (English)  
+  > *(Password required)*{: style='color: red;'}
+{: class='sidenote'}
+
+[ss]: http://infosv.nomolog.nagoya-u.ac.jp/english/syllabus/as/v/gs13
+
+%%content%%

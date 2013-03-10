@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+
+require File.expand_path(__FILE__ + '/../../../release/qam')
+i = QAM::Install.new; d = i.dirs
+
+i.install_tree(d.mine('docroot'), d.release('docroot'))
+
+i.run_install('src/ruby')
+
+i.run_install('src/docroot/install-info')
+
+python_encoding = begin
+    `python2.7 -c "import sys; print(sys.getdefaultencoding())"`.chomp
+    rescue
+	# XXX Windows throws an exception if it cannot find python.
+	$stderr.puts("'python' not found"); ""
+    end
+
+case python_encoding
+    when 'utf8':
+	if ENV['SKIP_PYTHON']
+	    $stderr.puts("Warning: SKIP_PYTHON set; not installing python code")
+	else
+	    %w[ src/docroot/install-img
+		src/docroot/install-csv
+		src/docroot/install-sitemap
+		src/docroot/install-robots
+	    ].each { |installer| i.run_install(installer) }
+	end
+	#	src/docroot/install-cal
+    when '':
+	nil
+    else
+	$stderr.puts("WARNING: Python has incorrect encoding: '" +
+	    python_encoding + "' instead of 'utf8'.\n" +
+	    "Not installing some content.")
+end

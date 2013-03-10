@@ -1,0 +1,12 @@
+title: Computer Guides
+
+The links to the right provide guidance
+on the use of information technology systems
+in the Graduate School of Law.  If there are
+tips, tricks or howto documents that you
+would like to see included here, please
+send mail to the site administrator via the 
+link at the bottom of this page.  We are always
+open to suggestions for improving the coverage
+of this documentation.
+

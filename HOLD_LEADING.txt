@@ -1,0 +1,30 @@
+
+FOR EVENTUAL PUBLICATION VIA SVN
+
+WE NEED TO CHANGE VERSION CONTROL SYSTEMS
+
+THIS LEAKAGE WAS UNACCEPTABLE
+
+pagetitle: Leading Graduate School application forms
+
+Ten places are available on the program each year. Applications
+for the second selection will be accepted only in the event that
+places remain unfilled.
+  
+* Application deadline for early selection
+  :*January 11, 2013*{: style='color:red'}  
+* Application deadline for second selection
+  : *June 28, 2013*{: style='color:red'}
+{: class='sidenote'}
+
+**Word/Excel:** Applications may be prepared from the Word/Excel
+files provided to the right. When submitting applications in this
+format, send the completed forms by email to
+[kyomu@law.nagoya-u.ac.jp](mailto:okuda@law.nagoya-u.ac.jp), and send a
+printed and signed copy of the forms to to School of Law as
+provided in the instructions.
+
+**PDF:** Alternatively, applications may be prepared from PDF
+files. When submitting in this format, complete the forms after
+printing, and send a signed copy, together with the Certificate of
+Health, to the address given in the instructions.

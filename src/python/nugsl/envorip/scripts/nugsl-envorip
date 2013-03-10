@@ -1,0 +1,32 @@
+#!/usr/bin/python
+
+from nugsl.envorip import envoRip
+import sys
+import csv
+
+nr = envoRip()
+
+items = nr.get_size()
+
+page_limit = items / 20
+
+if items % 20:
+    page_limit += 1
+
+print "Creating file EnvironmentalNGOs.csv"
+
+datafile = open('EnvironmentalNGOs.csv', 'w+')
+csv_out = csv.writer(datafile)
+csv_out.writerow( nr.get_labels() )
+    
+for page in range(0,page_limit,1):
+    orgos = nr.get_list(page=page)
+    for orgo_id in orgos:
+        row = nr.get_detail(page,orgo_id)
+        csv_out.writerow( row )
+        sys.stdout.write('.')
+        sys.stdout.flush()
+
+print ''
+    
+print '\ndone!'

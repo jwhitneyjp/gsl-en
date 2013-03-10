@@ -1,0 +1,3 @@
+svn: Unable to open an ra_local session to URL
+svn: Unable to open repository 'file:///tmp'
+Repository not found: file:///tmp

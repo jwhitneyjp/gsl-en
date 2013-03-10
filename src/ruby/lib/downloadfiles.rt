@@ -1,0 +1,52 @@
+require 'downloadfiles'
+
+class TC_DownloadFiles < Test::Unit::TestCase
+
+    def test_entry_extension_parsing
+	abc = DownloadFiles::Entry.new("abc.xyz", nil, nil)
+	assert_equal('abc', abc.name)
+	assert_equal('xyz', abc.extension)
+
+	abcd = DownloadFiles::Entry.new("ab.cd.123", nil, nil)
+	assert_equal('ab.cd', abcd.name)
+	assert_equal('123', abcd.extension)
+    end
+
+    class TestDownloadFiles < DownloadFiles
+
+	def read_download_files_lines(path)
+	    [
+		"abc.doc: A list of letters in the alphabet",
+		"g*.xls: Spreadsheet starting with 'g'.",
+		"xyz*: Not present",
+	    ]
+	end
+
+    end
+
+    def setup
+	@df = TestDownloadFiles.new
+    end
+
+    attr_reader :df
+
+    def add(files)
+	full_path = '/foo/gsl-en/src/docroot/info/'
+	files.each { |file| df.add(full_path + file) }
+	df.scan_files
+    end
+
+    def test_no_downloads
+	add(%w[ abc def ghi ])
+	assert_equal([], df.entries)
+	assert(!df.has_files)
+    end
+
+    def test_read_download_files
+	add(%w[ abc.doc def.doc gha.xls ghi.xls jkl download.files ])
+	assert_equal(%w[ abc.doc gha.xls ghi.xls ],
+	    df.entries.collect { |entry| entry.name + '.' + entry.extension }) 
+	assert(df.has_files)
+    end
+
+end

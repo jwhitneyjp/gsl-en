@@ -1,0 +1,6 @@
+title: Software offerings
+
+In this area we offer a few simple utilities
+built for local administration, on the off chance
+that someone in the audience might find them
+useful.

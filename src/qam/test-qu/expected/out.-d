@@ -1,0 +1,20 @@
+--- PROJECT_DIR/project/src/2_a_projdiff
++++ PROJECT_DIR/template_a/src/2_a_projdiff
+@@ -1 +1 @@
+-Different second file.
++Second file.
+--- PROJECT_DIR/project/src/d2_a_projdiff/3_a_projdiff
++++ PROJECT_DIR/template_a/src/d2_a_projdiff/3_a_projdiff
+@@ -1 +1 @@
+-Different second file.
++Second file.
+--- PROJECT_DIR/project/top_a_projdiff
++++ PROJECT_DIR/template_a/top_a_projdiff
+@@ -1 +1 @@
+-Different second file.
++Second file.
+--- PROJECT_DIR/project/top_b_projdiff
++++ PROJECT_DIR/template_b/top_b_projdiff
+@@ -1 +1 @@
+-Different second file.
++Second file.

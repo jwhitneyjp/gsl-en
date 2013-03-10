@@ -1,0 +1,36 @@
+div.maruku_toc {
+    counter-reset: xchapter;
+}
+
+div.maruku_toc > ul > li:before {
+    content: counter(xchapter, decimal) ". ";
+    counter-increment: xchapter;
+}
+
+div.maruku_toc > ul > li {
+    counter-reset: xsubchapter;
+}
+
+div.maruku_toc > ul > li > ul > li:before {
+    content: counter(xsubchapter, upper-alpha) ". ";
+    counter-increment: xsubchapter;
+}
+
+div.maruku_toc > ul > li > ul > li {
+    counter-reset: xsection;
+}
+
+div.maruku_toc > ul > li > ul > li > ul > li:before {
+    content: counter(xsection, upper-alpha) ". ";
+    counter-increment: xsection;
+}
+
+div.maruku_toc > ul > li > ul > li > ul > li {
+    counter-reset: xsubsection;
+}
+
+div.maruku_toc > ul > li > ul > li > ul > li > ul > li:before {
+    content: counter(xsubsection, upper-alpha) ". ";
+    counter-increment: xsubsection;
+}
+

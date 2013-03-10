@@ -1,0 +1,144 @@
+#!/usr/bin/env python2.7
+ 
+import os,sys, re
+#import libxml2
+from xml.etree import ElementTree as etree
+
+from os.path import walk, isdir, realpath
+
+base = '%s/../../' % (os.path.dirname(sys.argv[0]),)
+sys.path.append(base + '/release/lib/python')
+
+from pathtool import gslpath
+p = gslpath()
+
+tabs = ['programs','admissions','curriculum','faculty','support','alumni','appendix']
+labels = ['Programs','Admissions','Curriculum','Faculty','Directory','Alumni','Appendices']
+startdir = p.docroot.release("")
+startdirList = startdir.split(os.path.sep)
+bundles = []
+
+class SiteMap:
+    def __init__(self):
+        self.data = []
+        # Slurp generates a nested, ordered list of type/label/url tuples in self.data
+        self.slurp(startdir)
+        
+        page = "<div class='sitemap'><div class='toc'>" + self.spit() + "</div></div>"
+
+        template = open( p.info.release('sitemap.html') ).read()
+        sitemappage = template.replace('%%content%%', page)
+        open( p.docroot.release('sitemap.html'), 'w').write( sitemappage )
+        
+        template = open( p.info.release('sitemap404.html') ).read()
+        sitemap404page = template.replace('%%content%%', page)
+        open( p.docroot.release('sitemap404.html'), 'w').write( sitemap404page )
+        
+    def slurp(self, dir):
+        for tab in tabs:
+            data = self.slurp_action(os.path.join(dir, tab, "index.html"))
+            bundles.append(data)
+    
+    def slurp_action(self, pagepath):
+        # fetch the page
+        page = open(pagepath).read()
+        doc = etree.parse(pagepath)
+        titlesXml = doc.findall(".//div[@class='toc-wrapper']/div/div")
+        #
+        # Okay. So we have heading and list object at the same level. We'll
+        # need to harvest separately and knit the results together.
+        #
+        sets = []
+        titles = []
+        if titlesXml:
+           # Holder for titles
+           titles = [{'type':elem.attrib['class'], 'label':elem.text, 'url':None, 'children':[]} for elem in titlesXml]
+           # Holder for list item blocks
+           listsXml = doc.findall(".//div[@class='toc-wrapper']/div/ul")
+           lists = []
+           for i in range(1, len(listsXml) + 1, 1):
+               itemsXml = doc.findall(".//div[@class='toc-wrapper']/div/ul[%d]/li" % (i,))
+               items = []
+               for j in range(1, len(itemsXml) + 1, 1):
+                   itemXml = doc.findall(".//div[@class='toc-wrapper']/div/ul[%d]/li[%d]" % (i,j))
+                   item = itemXml[0]
+                   linkXml = doc.findall(".//div[@class='toc-wrapper']/div/ul[%d]/li[%d]/a" % (i,j))
+                   link = linkXml[0]
+                   children = []
+                   if item.attrib['class'] == 'directory-listing':
+                      mypathList = startdirList[:]
+                      mystub = link.attrib['href']
+                      mystubList = mystub.split('/')
+                      mypathList.extend(mystubList)
+                      for k in range(len(mypathList) - 1, -1, -1):
+                          if not mypathList[k]:
+                             mypathList.pop(k)
+                      mypath = "%s%s" % (os.path.sep, os.path.sep.join(mypathList))
+                      children.extend(self.slurp_action(os.path.join(mypath, 'index.html')))
+                   items.append({'type':item.attrib['class'], 'label':link.text, 'url':link.attrib['href'], 'children':children})
+               lists.append(items)
+        # add each link and type and label to self.data
+        for i in range(0, len(titles), 1):
+            sets.append(titles[i])
+            sets[i]['children'].extend(lists[i])
+        
+        return sets
+
+    def spit(self):
+        self.page = incr_html
+        for tab_pos in range(0,len(tabs),1):
+            self.page += li_dir_top % (tabs[tab_pos], labels[tab_pos],)
+            self.spit_action(bundles[tab_pos])
+        self.page += decr_html
+        return self.page
+
+    def spit_action(self, list):
+        nowrap = False
+        if list and list[0]['label'] == "Folder contents":
+           self.spit_action(list[0]['children'])
+           return
+        if list and list[0]['type'] == 'toc-title':
+           nowrap = True
+        else:
+           nowrap = False
+        if not nowrap:
+           self.page += incr_html
+        for item in list:
+            if item['type'] == 'toc-title':
+                self.page += '<li class="toc-title"><div>%s</div></li>\n' % (item['label'],)
+            else:
+                self.page += '<li class="%s"><a href="%s">%s</a></li>\n' % (item['type'], item['url'], item['label'],)
+            if item['children']:
+                self.spit_action(item['children'])
+        if not nowrap:
+           self.page += decr_html
+incr_html = '''
+<ul>
+'''
+
+decr_html = '''
+</ul>
+'''
+
+li_dir = '''
+<li class="directory-listing"><a href="%s">%s</a></li>
+'''
+
+li_dir_remote = '''
+<li class="directory-listing-remote"><a href="%s">%s</a></li>
+'''
+
+li_dir_top = '''
+<li class="tab-label-listing"><a href="%s" class="directory-heading">%s</a></li>
+'''
+
+li_dir_download = '''
+<li class="download-listing"><a href="%s">%s</a></li>
+'''
+
+li_file = '''
+<li class="file-listing"><a href="%s">%s</a></li>
+'''
+
+if __name__ == "__main__":
+    SiteMap()

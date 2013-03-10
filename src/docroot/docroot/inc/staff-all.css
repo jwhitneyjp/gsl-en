@@ -1,0 +1,110 @@
+/*
+* Cookbook recipe drawn from here:
+*
+*  http://www.ruzee.com/blog/2007/05/align-list-items-horizontally-with-css/
+*/
+
+ul.blocklist {
+    padding-left: 0px;
+}
+
+ul.blocklist li {
+    display:-moz-inline-box; 
+    -moz-box-orient:vertical;
+    display: inline-block;
+    vertical-align: top;
+    word-wrap: break-word;
+}
+* html ul.blocklist li { display: inline; }  /* for IE 6 */
+* + html ul.blocklist li { display: inline; }  /* for IE 7 */
+* html ul.blocklist li { width: 225px; }
+
+ul.blocklist li > * {
+    display: table; 
+    table-layout: fixed;
+    width: 225px;
+    overflow: hidden; 
+}
+
+ul.blocklist li {
+    margin: 0px;
+    padding: 0px;
+}
+
+ul.blocklist {
+  margin: 0px;
+  padding: 0px;
+}
+
+/* end */
+
+div.toc {
+    margin-right: 15px;
+    margin-left: -5px;
+}
+
+* html ul.blocklist li { width: 255px; }
+html ul.blocklist li { width: 255px; }
+ul.blocklist li > * { width: 255px; }
+
+div.content-pane-left {
+    padding-right: 0px;
+}
+
+/*div.primary-content {
+*    padding-right: 0px;
+*}
+*/
+
+/* div.maincontent {
+*    padding-right: 0px;
+*}
+*/
+
+div.sbox1 {
+    padding: 0px;
+    margin: 0px;
+}
+
+a.fullname {
+  font-size: 90%;
+}
+
+a.staffphoto {
+  display:block;
+  float:left;
+  border:none !important;
+}
+
+img.staffphoto {
+  border-style:none;
+}
+
+div.status, div.affiliation {
+  line-height:1.2em;
+  padding-left:1em;
+  padding-right: 4px;
+}
+
+div.status {
+  padding-top: 8px;
+  font-size:smaller;
+  font-style:italic;
+}
+
+div.affiliation {
+  padding-top: 2px;
+  font-size:smaller;
+  font-variant: small-caps;
+}
+
+div.interests {
+  padding-right:1em;
+  padding-top:0em;
+  padding-bottom:2em;
+  line-height:1.25em;
+  font-size:90%;
+  clear: both;
+}
+
+

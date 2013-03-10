@@ -1,0 +1,8 @@
+title: Appendices
+
+This is an area for extra documents and files that supplement
+the main body of the website. You can either explore this
+area by descending through the links to the right, or use
+the "All contents" link in the upper right corner of the
+page to get a table of contents for the entire site, including
+the Appendices.

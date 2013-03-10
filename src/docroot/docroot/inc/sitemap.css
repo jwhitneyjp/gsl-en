@@ -1,0 +1,16 @@
+li.toc-title {
+    list-style: none;
+}
+
+li.toc-title div {
+    padding-top: 0.6em;
+    padding-bottom: 0.3em;
+    font-size: 0.83em;
+    font-family: Lato,Times,serif;
+    font-weight: 900;
+}
+
+li.tab-label-listing {
+    list-style: none;
+    margin-left: -1.5em;    
+}

@@ -1,0 +1,15 @@
+[0]
+name: Mundy
+
+[1]
+name: Toosdy
+
+[2]
+name: Hump day
+
+[3]
+name: Tursday
+
+[4]
+name: TGIF!
+

@@ -1,0 +1,7 @@
+internship-ann-1*.doc: Announcement 1, @@version@@
+internship-ann-2*.doc: Announcement 2, @@version@@
+internship-app-f1-*.doc: Application (Form 1)
+internship-app-f2-*.doc: Application (Form 2)
+internship-app-f3-*.doc: Application (Form 3)
+internship-app-f4-*.doc: Application (Form 4)
+

@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+# Copyright 2006-2007 by Starling Software, K.K.
+# This is part of QAM from http://www.starling-software.com.
+# For license terms, see the LICENSE.QAM file included with this distribution.
+
+require File.expand_path(__FILE__ + "/../../../release/qam")
+QAM::Install.install_lib_and_bin

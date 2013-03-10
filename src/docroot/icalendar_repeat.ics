@@ -1,0 +1,11 @@
+BEGIN:VEVENT 
+UID:@@obj_name@@@gsl-nagoya-u.net
+ORGANIZER;CN=@@organizer@@:MAILTO:@@email@@
+DTSTAMP:@@timestamp@@
+DTSTART:@@start@@
+DTEND:@@end@@
+SEQUENCE:0 
+SUMMARY:@@title@@
+RRULE:FREQ=WEEKLY;UNTIL=@@stop-date@@;INTERVAL=@@interval@@;BYDAY=@@days@@;WKST=SU
+LOCATION:@@place@@@@description@@
+END:VEVENT 

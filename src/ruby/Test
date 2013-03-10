@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require File.expand_path(__FILE__ + '/../../../release/qam')
+require 'qam/testsuite'
+
+i = QAM::Install.new; d = i.dirs
+
+i.run_quiet_install(d.mine)
+QAM::TestSuite.new(d.mine('lib')).run

@@ -1,0 +1,1313 @@
+# Apache configuration file for localhost
+
+# This is the main Apache server configuration file.  It contains the
+# configuration directives that give the server its instructions.
+# See <URL:http://www.apache.org/docs/> for detailed information about
+# the directives.
+
+### Section 1: Global Environment
+#
+# The directives in this section affect the overall operation of Apache,
+# such as the number of concurrent requests it can handle or where it
+# can find its configuration files.
+#
+
+#
+# ServerType is either inetd, or standalone.  Inetd mode is only supported on
+# Unix platforms.
+#
+ServerType standalone
+
+#
+# ServerRoot: The top of the directory tree under which the server's
+# configuration, error, and log files are kept.
+#
+# NOTE!  If you intend to place this on an NFS (or otherwise network)
+# mounted filesystem then please read the LockFile documentation
+# (available at <URL:http://www.apache.org/docs/mod/core.html#lockfile>);
+# you will save yourself a lot of trouble.
+#
+ServerRoot "/etc/apache"
+
+#
+# The LockFile directive sets the path to the lockfile used when Apache
+# is compiled with either USE_FCNTL_SERIALIZED_ACCEPT or
+# USE_FLOCK_SERIALIZED_ACCEPT. This directive should normally be left at
+# its default value. The main reason for changing it is if the logs
+# directory is NFS mounted, since the lockfile MUST BE STORED ON A LOCAL
+# DISK. The PID of the main server process is automatically appended to
+# the filename. 
+#
+LockFile /var/log/apache/httpsd.lock
+
+#
+# PidFile: The file in which the server should record its process
+# identification number when it starts.
+#
+PidFile /var/log/apache/httpsd.pid
+
+#
+# ScoreBoardFile: File used to store internal server process information.
+# Not all architectures require this.  But if yours does (you'll know because
+# this file will be  created when you run Apache) then you *must* ensure that
+# no two invocations of Apache share the same scoreboard file.
+#
+ScoreBoardFile /var/log/apache/httpsd.scoreboard
+
+#
+# In the standard configuration, the server will process httpd.conf (this 
+# file, specified by the -f command line option), srm.conf, and access.conf 
+# in that order.  The latter two files are now distributed empty, as it is 
+# recommended that all directives be kept in a single file for simplicity.  
+# The commented-out values below are the built-in defaults.  You can have the 
+# server ignore these files altogether by using "/dev/null" (for Unix) or
+# "nul" (for Win32) for the arguments to the directives.
+#
+ResourceConfig	/dev/null
+AccessConfig 	/dev/null
+
+#
+# Timeout: The number of seconds before receives and sends time out.
+#
+Timeout 300
+
+#
+# KeepAlive: Whether or not to allow persistent connections (more than
+# one request per connection). Set to "Off" to deactivate.
+#
+KeepAlive On
+
+#
+# MaxKeepAliveRequests: The maximum number of requests to allow
+# during a persistent connection. Set to 0 to allow an unlimited amount.
+# We recommend you leave this number high, for maximum performance.
+#
+MaxKeepAliveRequests 100
+
+#
+# KeepAliveTimeout: Number of seconds to wait for the next request from the
+# same client on the same connection.
+#
+KeepAliveTimeout 15
+
+#
+# Server-pool size regulation.  Rather than making you guess how many
+# server processes you need, Apache dynamically adapts to the load it
+# sees --- that is, it tries to maintain enough server processes to
+# handle the current load, plus a few spare servers to handle transient
+# load spikes (e.g., multiple simultaneous requests from a single
+# Netscape browser).
+#
+# It does this by periodically checking how many servers are waiting
+# for a request.  If there are fewer than MinSpareServers, it creates
+# a new spare.  If there are more than MaxSpareServers, some of the
+# spares die off.  The default values are probably OK for most sites.
+#
+MinSpareServers 3
+MaxSpareServers 5
+
+#
+# Number of servers to start initially --- should be a reasonable ballpark
+# figure.
+#
+StartServers 5
+
+#
+# Limit on total number of servers running, i.e., limit on the number
+# of clients who can simultaneously connect --- if this limit is ever
+# reached, clients will be LOCKED OUT, so it should NOT BE SET TOO LOW.
+# It is intended mainly as a brake to keep a runaway server from taking
+# the system with it as it spirals down...
+#
+MaxClients 39
+
+#
+# MaxRequestsPerChild: the number of requests each child process is
+# allowed to process before the child dies.  The child will exit so
+# as to avoid problems after prolonged use when Apache (and maybe the
+# libraries it uses) leak memory or other resources.  On most systems, this
+# isn't really needed, but a few (such as Solaris) do have notable leaks
+# in the libraries. For these platforms, set to something like 10000
+# or so; a setting of 0 means unlimited.
+#
+# NOTE: This value does not include keepalive requests after the initial
+#       request per connection. For example, if a child process handles
+#       an initial request and 10 subsequent "keptalive" requests, it
+#       would only count as 1 request towards this limit.
+#
+MaxRequestsPerChild 0
+
+#
+# Listen: Allows you to bind Apache to specific IP addresses and/or
+# ports, in addition to the default. See also the <VirtualHost>
+# directive.
+#
+#Listen 3000
+#Listen 12.34.56.78:80
+Listen 80
+Listen 443
+
+#
+# BindAddress: You can support virtual hosts with this option. This directive
+# is used to tell the server which IP address to listen to. It can either
+# contain "*", an IP address, or a fully qualified Internet domain name.
+# See also the <VirtualHost> and Listen directives.
+#
+#BindAddress *
+
+#
+# Dynamic Shared Object (DSO) Support
+#
+# To be able to use the functionality of a module which was built as a DSO you
+# have to place corresponding `LoadModule' lines at this location so the
+# directives contained in it are actually available _before_ they are used.
+# Please read the file http://httpd.apache.org/docs/dso.html for more
+# details about the DSO mechanism and run `httpsd -l' for the list of already
+# built-in (statically linked and thus always available) modules in your httpd
+# binary.
+#
+# Note: The order in which modules are loaded is important.  Don't change
+# the order below without expert advice.
+#
+# Example:
+# LoadModule foo_module libexec/mod_foo.so
+
+Include /etc/apache/modules.conf
+
+#LoadModule rewrite_module     modules/mod_rewrite.so
+#LoadModule expires_module     libexec/mod_expires.so
+#LoadModule headers_module     libexec/mod_headers.so
+#LoadModule gzip_module        libexec/mod_gzip.so
+
+#
+# ExtendedStatus controls whether Apache will generate "full" status
+# information (ExtendedStatus On) or just basic information (ExtendedStatus
+# Off) when the "server-status" handler is called. The default is Off.
+#
+#ExtendedStatus On
+
+### Section 2: 'Main' server configuration
+#
+# The directives in this section set up the values used by the 'main'
+# server, which responds to any requests that aren't handled by a
+# <VirtualHost> definition.  These values also provide defaults for
+# any <VirtualHost> containers you may define later in the file.
+#
+# All of these directives may appear inside <VirtualHost> containers,
+# in which case these default settings will be overridden for the
+# virtual host being defined.
+#
+
+#
+# If your ServerType directive (set earlier in the 'Global Environment'
+# section) is set to "inetd", the next few directives don't have any
+# effect since their settings are defined by the inetd configuration.
+# Skip ahead to the ServerAdmin directive.
+#
+
+#
+# Port: The port to which the standalone server listens. For
+# ports < 1023, you will need httpd to be run as root initially.
+#
+Port 80
+
+#
+# If you wish httpd to run as a different user or group, you must run
+# httpd as root initially and it will switch.  
+#
+# User/Group: The name (or #number) of the user/group to run httpd as.
+#  . On SCO (ODT 3) use "User nouser" and "Group nogroup".
+#  . On HPUX you may not be able to use shared memory as nobody, and the
+#    suggested workaround is to create a user www and use that user.
+#  NOTE that some kernels refuse to setgid(Group) or semctl(IPC_SET)
+#  when the value of (unsigned)Group is above 60000; 
+#  don't use Group nobody on these systems!
+#
+User www-data
+Group www-data
+
+#
+# ServerAdmin: Your address, where problems with the server should be
+# e-mailed.  This address appears on some server-generated pages, such
+# as error documents.
+#
+ServerAdmin webmaster@gsl-nagoya-u.net
+
+#
+# ServerName allows you to set a host name which is sent back to clients for
+# your server if it's different than the one the program would get (i.e., use
+# "www" instead of the host's real name).
+#
+# Note: You cannot just invent host names and hope they work. The name you 
+# define here must be a valid DNS name for your host. If you don't understand
+# this, ask your network administrator.
+# If your host doesn't have a registered DNS name, enter its IP address here.
+# You will have to access it by its address (e.g., http://123.45.67.89/)
+# anyway, and this will make redirections work in a sensible way.
+#
+# 127.0.0.1 is the TCP/IP local loop-back address, often named localhost. Your 
+# machine always knows itself by this address. If you use Apache strictly for 
+# local testing and development, you may use 127.0.0.1 as the server name.
+#
+ServerName 127.0.0.1
+
+#
+# DocumentRoot: The directory out of which you will serve your
+# documents. By default, all requests are taken from this directory, but
+# symbolic links and aliases may be used to point to other locations.
+#
+DocumentRoot "/home/bennett/Desktop/Web/release/docroot"
+
+#
+# Disable SSL for default port
+#
+#SSLDisable
+
+#
+# Disallow SSLv2 ciphers for security reasons
+#
+#SSLNoV2
+
+#
+# Each directory to which Apache has access, can be configured with respect
+# to which services and features are allowed and/or disabled in that
+# directory (and its subdirectories). 
+#
+# First, we configure the "default" to be a very restrictive set of 
+# permissions.  
+#
+<Directory />
+    Options FollowSymLinks
+    AllowOverride None
+</Directory>
+
+#
+# Note that from this point forward you must specifically allow
+# particular features to be enabled - so if something's not working as
+# you might expect, make sure that you have specifically enabled it
+# below.
+#
+
+#
+# This should be changed to whatever you set DocumentRoot to.
+#
+<Directory "/usr/local/apache/oldsite">
+
+#
+# This may also be "None", "All", or any combination of "Indexes",
+# "Includes", "FollowSymLinks", "ExecCGI", or "MultiViews".
+#
+# Note that "MultiViews" must be named *explicitly* --- "Options All"
+# doesn't give it to you.
+#
+    Options Indexes FollowSymLinks MultiViews
+
+#
+# This controls which options the .htaccess files in directories can
+# override. Can also be "All", or any combination of "Options", "FileInfo", 
+# "AuthConfig", and "Limit"
+#
+    AllowOverride All
+
+#
+# Controls who can get stuff from this server.
+#
+    Order allow,deny
+    Allow from all
+</Directory>
+
+#
+# UserDir: The name of the directory which is appended onto a user's home
+# directory if a ~user request is received.
+#
+<IfModule mod_userdir.c>
+    UserDir www/htdocs
+
+    # Allow CGI's for a UserDir user
+    #ScriptAliasMatch /~(.*)/cgi-bin(.*)  "/home/$1/www/cgi-bin$2"
+
+    # Disable a set of users
+    #UserDir enabled
+    #UserDir disabled user1 user2 user3
+</IfModule>
+
+#
+# Control access to UserDir directories.  The following is an example
+# for a site where these directories are restricted to read-only.
+#
+#<Directory /home/*/www>
+#    AllowOverride FileInfo AuthConfig Limit
+#    Options MultiViews Indexes SymLinksIfOwnerMatch IncludesNoExec
+#    <Limit GET POST OPTIONS PROPFIND>
+#        Order allow,deny
+#        Allow from all
+#    </Limit>
+#    <LimitExcept GET POST OPTIONS PROPFIND>
+#        Order deny,allow
+#        Deny from all
+#    </LimitExcept>
+#</Directory>
+
+<Directory /home/*/www>
+    AllowOverride All
+    Options Indexes MultiViews SymLinksIfOwnerMatch IncludesNoExec
+</Directory>
+
+#
+# DirectoryIndex: Name of the file or files to use as a pre-written HTML
+# directory index.  Separate multiple entries with spaces.
+#
+<IfModule mod_dir.c>
+    DirectoryIndex index.html index.htm index.cgi index.php index.shtml
+</IfModule>
+
+#
+# AccessFileName: The name of the file to look for in each directory
+# for access control information.
+#
+AccessFileName .htaccess
+
+#
+# The following lines prevent .htaccess files from being viewed by
+# Web clients.  Since .htaccess files often contain authorization
+# information, access is disallowed for security reasons.  Comment
+# these lines out if you want Web visitors to see the contents of
+# .htaccess files.  If you change the AccessFileName directive above,
+# be sure to make the corresponding changes here.
+#
+# Also, folks tend to use names such as .htpasswd for password
+# files, so this will protect those as well.
+#
+# Note: FrontPage needs to be able to read the .htaccess file
+#
+#<Files ~ "^\.ht">
+#    Order allow,deny
+#    Deny from all
+#    Satisfy All
+#</Files>
+
+#
+# CacheNegotiatedDocs: By default, Apache sends "Pragma: no-cache" with each
+# document that was negotiated on the basis of content. This asks proxy
+# servers not to cache the document. Uncommenting the following line disables
+# this behavior, and proxies will be allowed to cache the documents.
+#
+#CacheNegotiatedDocs
+
+#
+# UseCanonicalName:  (new for 1.3)  With this setting turned on, whenever
+# Apache needs to construct a self-referencing URL (a URL that refers back
+# to the server the response is coming from) it will use ServerName and
+# Port to form a "canonical" name.  With this setting off, Apache will
+# use the hostname:port that the client supplied, when possible.  This
+# also affects SERVER_NAME and SERVER_PORT in CGI scripts.
+#
+UseCanonicalName On
+
+#
+# TypesConfig describes where the mime.types file (or equivalent) is
+# to be found.
+#
+<IfModule mod_mime.c>
+    TypesConfig /etc/apache/mime.types
+</IfModule>
+
+#
+# DefaultType is the default MIME type the server will use for a document
+# if it cannot otherwise determine one, such as from filename extensions.
+# If your server contains mostly text or HTML documents, "text/plain" is
+# a good value.  If most of your content is binary, such as applications
+# or images, you may want to use "application/octet-stream" instead to
+# keep browsers from trying to display binary files as though they are
+# text.
+#
+DefaultType text/plain
+
+#
+# The mod_mime_magic module allows the server to use various hints from the
+# contents of the file itself to determine its type.  The MIMEMagicFile
+# directive tells the module where the hint definitions are located.
+# mod_mime_magic is not part of the default server (you have to add
+# it yourself with a LoadModule [see the DSO paragraph in the 'Global
+# Environment' section], or recompile the server and include mod_mime_magic
+# as part of the configuration), so it's enclosed in an <IfModule> container.
+# This means that the MIMEMagicFile directive will only be processed if the
+# module is part of the server.
+#
+<IfModule mod_mime_magic.c>
+    MIMEMagicFile /usr/local/apache/conf/magic
+</IfModule>
+
+#
+# HostnameLookups: Log the names of clients or just their IP addresses
+# e.g., www.apache.org (on) or 204.62.129.132 (off).
+# The default is off because it'd be overall better for the net if people
+# had to knowingly turn this feature on, since enabling it means that
+# each client request will result in AT LEAST one lookup request to the
+# nameserver.
+#
+HostnameLookups Off
+
+#
+# ErrorLog: The location of the error log file.
+# If you do not specify an ErrorLog directive within a <VirtualHost>
+# container, error messages relating to that virtual host will be
+# logged here.  If you *do* define an error logfile for a <VirtualHost>
+# container, that host's errors will be logged there and not here.
+#
+ErrorLog /var/log/apache/error_log
+
+#
+# LogLevel: Control the number of messages logged to the error_log.
+# Possible values include: debug, info, notice, warn, error, crit,
+# alert, emerg.
+#
+LogLevel warn
+
+#
+# The following directives define some format nicknames for use with
+# a CustomLog directive (see below).
+#
+LogFormat "%h %v %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" extended
+LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
+LogFormat "%h %l %u %t \"%r\" %>s %b" common
+LogFormat "%{Referer}i -> %U" referer
+LogFormat "%{User-agent}i" agent
+
+#
+# The location and format of the access logfile (Common Logfile Format).
+# If you do not define any access logfiles within a <VirtualHost>
+# container, they will be logged here.  Contrariwise, if you *do*
+# define per-<VirtualHost> access logfiles, transactions will be
+# logged therein and *not* in this file.
+#
+CustomLog /var/log/apache/access_log combined
+
+#
+# If you would like to have agent and referer logfiles, uncomment the
+# following directives.
+#
+#CustomLog /var/log/apache/referer_log referer
+#CustomLog /var/log/apache/agent_log agent
+
+#
+# If you prefer a single logfile with access, agent, and referer information
+# (Combined Logfile Format) you can use the following directive.
+#
+#CustomLog /var/log/apache/access_log combined
+
+#
+# Optionally add a line containing the server version and virtual host
+# name to server-generated pages (error documents, FTP directory listings,
+# mod_status and mod_info output etc., but not CGI generated documents).
+# Set to "EMail" to also include a mailto: link to the ServerAdmin.
+# Set to one of:  On | Off | EMail
+#
+ServerSignature On
+
+# EBCDIC configuration:
+# (only for mainframes using the EBCDIC codeset, currently one of:
+# Fujitsu-Siemens' BS2000/OSD, IBM's OS/390 and IBM's TPF)!!
+# The following default configuration assumes that "text files"
+# are stored in EBCDIC (so that you can operate on them using the
+# normal POSIX tools like grep and sort) while "binary files" are
+# stored with identical octets as on an ASCII machine.
+#
+# The directives are evaluated in configuration file order, with
+# the EBCDICConvert directives applied before EBCDICConvertByType.
+#
+# If you want to have ASCII HTML documents and EBCDIC HTML documents
+# at the same time, you can use the file extension to force
+# conversion off for the ASCII documents:
+# > AddType       text/html .ahtml
+# > EBCDICConvert Off=InOut .ahtml
+#
+# EBCDICConvertByType  On=InOut text/* message/* multipart/*
+# EBCDICConvertByType  On=In    application/x-www-form-urlencoded
+# EBCDICConvertByType  On=InOut application/postscript model/vrml
+# EBCDICConvertByType Off=InOut */*
+
+#
+# Aliases: Add here as many aliases as you need (with no limit). The format is 
+# Alias fakename realname
+#
+<IfModule mod_alias.c>
+
+    #
+    # Note that if you include a trailing / on fakename then the server will
+    # require it to be present in the URL.  So "/icons" isn't aliased in this
+    # example, only "/icons/".  If the fakename is slash-terminated, then the 
+    # realname must also be slash terminated, and if the fakename omits the 
+    # trailing slash, the realname must also omit it.
+    #
+    Alias /icons/ "/usr/local/apache/icons/"
+
+    <Directory "/usr/local/apache/icons">
+        Options Indexes MultiViews
+        AllowOverride None
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+    # This Alias will project the on-line documentation tree under /BBmanual/
+    # even if you change the DocumentRoot. Comment it if you don't want to 
+    # provide access to the on-line documentation.
+    #
+    Alias /apachemanual/ "/usr/local/apache/htdocs/manual/"
+
+    <Directory "/usr/local/apache/htdocs/manual">
+        Options Indexes FollowSymlinks MultiViews
+        AllowOverride None
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+    #
+    # ScriptAlias: This controls which directories contain server scripts.
+    # ScriptAliases are essentially the same as Aliases, except that
+    # documents in the realname directory are treated as applications and
+    # run by the server when requested rather than as documents sent to the client.
+    # The same rules about trailing "/" apply to ScriptAlias directives as to
+    # Alias.
+    #
+    ScriptAlias /cgi-bin/ "/usr/local/apache/cgi-bin/"
+
+    #
+    # "/usr/local/apache/cgi-bin" should be changed to whatever your ScriptAliased
+    # CGI directory exists, if you have that configured.
+    #
+    <Directory "/usr/local/apache/cgi-bin">
+        AllowOverride None
+        Options None
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+</IfModule>
+# End of aliases.
+
+#
+# Redirect allows you to tell clients about documents which used to exist in
+# your server's namespace, but do not anymore. This allows you to tell the
+# clients where to look for the relocated document.
+# Format: Redirect old-URI new-URL
+#
+
+#
+# Directives controlling the display of server-generated directory listings.
+#
+<IfModule mod_autoindex.c>
+
+    #
+    # FancyIndexing is whether you want fancy directory indexing or standard
+    #
+    IndexOptions FancyIndexing
+
+    #
+    # AddIcon* directives tell the server which icon to show for different
+    # files or filename extensions.  These are only displayed for
+    # FancyIndexed directories.
+    #
+    AddIconByEncoding (CMP,/icons/compressed.gif) x-compress x-gzip
+
+    AddIconByType (TXT,/icons/text.gif) text/*
+    AddIconByType (IMG,/icons/image2.gif) image/*
+    AddIconByType (SND,/icons/sound2.gif) audio/*
+    AddIconByType (VID,/icons/movie.gif) video/*
+
+    AddIcon /icons/binary.gif .bin .exe
+    AddIcon /icons/binhex.gif .hqx
+    AddIcon /icons/tar.gif .tar
+    AddIcon /icons/world2.gif .wrl .wrl.gz .vrml .vrm .iv
+    AddIcon /icons/compressed.gif .Z .z .tgz .gz .zip
+    AddIcon /icons/a.gif .ps .ai .eps
+    AddIcon /icons/layout.gif .html .shtml .htm .pdf
+    AddIcon /icons/text.gif .txt
+    AddIcon /icons/c.gif .c
+    AddIcon /icons/p.gif .pl .py
+    AddIcon /icons/f.gif .for
+    AddIcon /icons/dvi.gif .dvi
+    AddIcon /icons/uuencoded.gif .uu
+    AddIcon /icons/script.gif .conf .sh .shar .csh .ksh .tcl
+    AddIcon /icons/tex.gif .tex
+    AddIcon /icons/bomb.gif core
+
+    AddIcon /icons/back.gif ..
+    AddIcon /icons/hand.right.gif README
+    AddIcon /icons/folder.gif ^^DIRECTORY^^
+    AddIcon /icons/blank.gif ^^BLANKICON^^
+
+    #
+    # DefaultIcon is which icon to show for files which do not have an icon
+    # explicitly set.
+    #
+    DefaultIcon /icons/unknown.gif
+
+    #
+    # AddDescription allows you to place a short description after a file in
+    # server-generated indexes.  These are only displayed for FancyIndexed
+    # directories.
+    # Format: AddDescription "description" filename
+    #
+    #AddDescription "GZIP compressed document" .gz
+    #AddDescription "tar archive" .tar
+    #AddDescription "GZIP compressed tar archive" .tgz
+
+    #
+    # ReadmeName is the name of the README file the server will look for by
+    # default, and append to directory listings.
+    #
+    # HeaderName is the name of a file which should be prepended to
+    # directory indexes. 
+    #
+    # If MultiViews are amongst the Options in effect, the server will
+    # first look for name.html and include it if found.  If name.html
+    # doesn't exist, the server will then look for name.txt and include
+    # it as plaintext if found.
+    #
+    ReadmeName README
+    HeaderName HEADER
+
+    #
+    # IndexIgnore is a set of filenames which directory indexing should ignore
+    # and not include in the listing.  Shell-style wildcarding is permitted.
+    #
+    IndexIgnore .??* *~ *# HEADER* README* RCS CVS *,v *,t
+
+</IfModule>
+# End of indexing directives.
+
+#
+# Document types.
+#
+<IfModule mod_mime.c>
+
+    #
+    # AddEncoding allows you to have certain browsers (Mosaic/X 2.1+) uncompress
+    # information on the fly. Note: Not all browsers support this.
+    # Despite the name similarity, the following Add* directives have nothing
+    # to do with the FancyIndexing customization directives above.
+    #
+    AddEncoding x-compress Z
+    AddEncoding x-gzip gz tgz
+
+    #
+    # AddLanguage allows you to specify the language of a document. You can
+    # then use content negotiation to give a browser a file in a language
+    # it can understand.  
+    #
+    # Note 1: The suffix does not have to be the same as the language 
+    # keyword --- those with documents in Polish (whose net-standard 
+    # language code is pl) may wish to use "AddLanguage pl .po" to 
+    # avoid the ambiguity with the common suffix for perl scripts.
+    #
+    # Note 2: The example entries below illustrate that in quite
+    # some cases the two character 'Language' abbreviation is not
+    # identical to the two character 'Country' code for its country,
+    # E.g. 'Danmark/dk' versus 'Danish/da'.
+    #
+    # Note 3: In the case of 'ltz' we violate the RFC by using a three char 
+    # specifier. But there is 'work in progress' to fix this and get 
+    # the reference data for rfc1766 cleaned up.
+    #
+    # Danish (da) - Dutch (nl) - English (en) - Estonian (ee)
+    # French (fr) - German (de) - Greek-Modern (el)
+    # Italian (it) - Korean (kr) - Norwegian (no) - Norwegian Nynorsk (nn)
+    # Portugese (pt) - Luxembourgeois* (ltz)
+    # Spanish (es) - Swedish (sv) - Catalan (ca) - Czech(cz)
+    # Polish (pl) - Brazilian Portuguese (pt-br) - Japanese (ja)
+    # Russian (ru)
+    #
+    AddLanguage da .dk
+    AddLanguage nl .nl
+    AddLanguage en .en
+    AddLanguage et .ee
+    AddLanguage fr .fr
+    AddLanguage de .de
+    AddLanguage el .el
+    AddLanguage he .he
+    AddCharset ISO-8859-8 .iso8859-8
+    AddLanguage it .it
+    AddLanguage ja .ja
+    AddCharset ISO-2022-JP .jis
+    AddLanguage kr .kr
+    AddCharset ISO-2022-KR .iso-kr
+    AddLanguage nn .nn
+    AddLanguage no .no
+    AddLanguage pl .po
+    AddCharset ISO-8859-2 .iso-pl
+    AddLanguage pt .pt
+    AddLanguage pt-br .pt-br
+    AddLanguage ltz .lu
+    AddLanguage ca .ca
+    AddLanguage es .es
+    AddLanguage sv .sv
+    AddLanguage cz .cz
+    AddLanguage ru .ru
+    AddLanguage zh-tw .tw
+    AddLanguage tw .tw
+    AddCharset Big5         .Big5    .big5
+    AddCharset WINDOWS-1251 .cp-1251
+    AddCharset CP866        .cp866
+    AddCharset ISO-8859-5   .iso-ru
+    AddCharset KOI8-R       .koi8-r
+    AddCharset UCS-2        .ucs2
+    AddCharset UCS-4        .ucs4
+    AddCharset UTF-8        .utf8
+
+    # LanguagePriority allows you to give precedence to some languages
+    # in case of a tie during content negotiation.
+    #
+    # Just list the languages in decreasing order of preference. We have
+    # more or less alphabetized them here. You probably want to change this.
+    #
+    <IfModule mod_negotiation.c>
+        LanguagePriority en da nl et fr de el it ja kr no pl pt pt-br ru ltz ca es sv tw
+    </IfModule>
+
+    #
+    # AddType allows you to tweak mime.types without actually editing it, or to
+    # make certain files to be certain types.
+    #
+    AddType application/x-tar .tgz
+    AddType image/x-icon .ico
+
+    #
+    # AddHandler allows you to map certain file extensions to "handlers",
+    # actions unrelated to filetype. These can be either built into the server
+    # or added with the Action command (see below)
+    #
+    # If you want to use server side includes, or CGI outside
+    # ScriptAliased directories, uncomment the following lines.
+    #
+    # To use CGI scripts:
+    #
+    #AddHandler cgi-script .cgi
+
+    #
+    # To use server-parsed HTML files
+    #
+    #AddType text/html .shtml
+    #AddHandler server-parsed .shtml
+
+    #
+    # Uncomment the following line to enable Apache's send-asis HTTP file
+    # feature
+    #
+    #AddHandler send-as-is asis
+
+    #
+    # If you wish to use server-parsed imagemap files, use
+    #
+    #AddHandler imap-file map
+
+    #
+    # To enable type maps, you might want to use
+    #
+    #AddHandler type-map var
+
+</IfModule>
+# End of document types.
+
+#
+# Action lets you define media types that will execute a script whenever
+# a matching file is called. This eliminates the need for repeated URL
+# pathnames for oft-used CGI file processors.
+# Format: Action media/type /cgi-script/location
+# Format: Action handler-name /cgi-script/location
+#
+
+#
+# MetaDir: specifies the name of the directory in which Apache can find
+# meta information files. These files contain additional HTTP headers
+# to include when sending the document
+#
+#MetaDir .web
+
+#
+# MetaSuffix: specifies the file name suffix for the file containing the
+# meta information.
+#
+#MetaSuffix .meta
+
+#
+# Customizable error response (Apache style)
+#  these come in three flavors
+#
+#    1) plain text
+#ErrorDocument 500 "The server made a boo boo.
+#  n.b.  the single leading (") marks it as text, it does not get output
+#
+#    2) local redirects
+#ErrorDocument 404 /missing.html
+#  to redirect to local URL /missing.html
+#ErrorDocument 404 /cgi-bin/missing_handler.pl
+#  N.B.: You can redirect to a script or a document using server-side-includes.
+#
+#    3) external redirects
+#ErrorDocument 402 http://some.other-server.com/subscription_info.html
+#  N.B.: Many of the environment variables associated with the original
+#  request will *not* be available to such a script.
+
+#
+# Customize behaviour based on the browser
+#
+<IfModule mod_setenvif.c>
+
+    #
+    # The following directives modify normal HTTP response behavior.
+    # The first directive disables keepalive for Netscape 2.x and browsers that
+    # spoof it. There are known problems with these browser implementations.
+    # The second directive is for Microsoft Internet Explorer 4.0b2
+    # which has a broken HTTP/1.1 implementation and does not properly
+    # support keepalive when it is used on 301 or 302 (redirect) responses.
+    #
+    BrowserMatch "Mozilla/2" nokeepalive
+    BrowserMatch "MSIE 4\.0b2;" nokeepalive downgrade-1.0 force-response-1.0
+
+    #
+    # The following directive disables HTTP/1.1 responses to browsers which
+    # are in violation of the HTTP/1.0 spec by not being able to grok a
+    # basic 1.1 response.
+    #
+    BrowserMatch "RealPlayer 4\.0" force-response-1.0
+    BrowserMatch "Java/1\.0" force-response-1.0
+    BrowserMatch "JDK/1\.0" force-response-1.0
+
+    # Avoid log-file pollution
+    SetEnvIf Request_URI "cmd\.exe" dontlog
+    SetEnvIf Request_URI "root\.exe" dontlog
+    SetEnvIf Request_URI "default\.ida" dontlog
+    SetEnvIf Request_URI "nsiislog\.dll" dontlog
+
+</IfModule>
+# End of browser customization directives
+
+#
+# Allow server status reports, with the URL of http://servername/server-status
+# Change the ".your-domain.com" to match your domain to enable.
+#
+#<Location /server-status>
+#    SetHandler server-status
+#    Order deny,allow
+#    Deny from all
+#    Allow from .your-domain.com
+#</Location>
+
+#
+# Allow remote server configuration reports, with the URL of
+# http://servername/server-info (requires that mod_info.c be loaded).
+# Change the ".your-domain.com" to match your domain to enable.
+#
+#<Location /server-info>
+#    SetHandler server-info
+#    Order deny,allow
+#    Deny from all
+#    Allow from .your-domain.com
+#</Location>
+
+#
+# There have been reports of people trying to abuse an old bug from pre-1.1
+# days.  This bug involved a CGI script distributed as a part of Apache.
+# By uncommenting these lines you can redirect these attacks to a logging 
+# script on phf.apache.org.  Or, you can record them yourself, using the script
+# support/phf_abuse_log.cgi.
+#
+<Location /cgi-bin/phf*>
+    Deny from all
+    ErrorDocument 403 http://phf.apache.org/phf_abuse_log.cgi
+</Location>
+
+#
+# Proxy Server directives. Uncomment the following lines to
+# enable the proxy server:
+#
+#<IfModule mod_proxy.c>
+#    ProxyRequests On
+
+#    <Directory proxy:*>
+#        Order deny,allow
+#        Deny from all
+#        Allow from .your-domain.com
+#    </Directory>
+
+    #
+    # Enable/disable the handling of HTTP/1.1 "Via:" headers.
+    # ("Full" adds the server version; "Block" removes all outgoing Via: headers)
+    # Set to one of: Off | On | Full | Block
+    #
+#    ProxyVia On
+
+    #
+    # To enable the cache as well, edit and uncomment the following lines:
+    # (no cacheing without CacheRoot)
+    #
+#    CacheRoot "/usr/local/apache/proxy"
+#    CacheSize 5
+#    CacheGcInterval 4
+#    CacheMaxExpire 24
+#    CacheLastModifiedFactor 0.1
+#    CacheDefaultExpire 1
+#    NoCache a-domain.com another-domain.edu joes.garage-sale.com
+
+#</IfModule>
+# End of proxy directives.
+
+#<IfModule mod_perl.c>
+   # mod_perl directives
+#</IfModule>
+
+#<IfModule mod_gzip.c>
+   # MOD_GZIP Configuration Directives
+   #
+   # The special mod_gzip log formats are, of course, optional.
+   #
+   # LogFormat "%h %l %u %t "%r" %>s %b mod_gzip: %{mod_gzip_compression_ratio}npct." common_with_mod_gzip_info1
+   # LogFormat "%h %l %u %t "%r" %>s %b mod_gzip: %{mod_gzip_result}n In:%{mod_gzip_input_size}n Out:%{mod_gzip_output_size}n:%{mod_gzip_compression_ratio}npct." common_with_mod_gzip_info2
+
+   # NOTE: This 'CustomLog' directive shows how to set your access.log file
+   # to use the mod_gzip format but please remember that for every 'CustomLog'
+   # directive that Apache finds in httpd.conf there will be corresponding
+   # line of output in the access.log file. If you only want ONE line of
+   # results in access.log for each transaction then be sure to comment out
+   # any other 'CustomLog' directives so that this is the only one.
+   
+   # CustomLog logs/access.log common_with_mod_gzip_info2
+   
+   # Runtime control directives...
+   
+   #mod_gzip_on                 Yes
+   #mod_gzip_dechunk            Yes
+
+   #mod_gzip_minimum_file_size  300
+   #mod_gzip_maximum_file_size  0
+   #mod_gzip_maximum_inmem_size 100000
+   #mod_gzip_keep_workfiles     No
+   #mod_gzip_temp_dir           "/tmp"
+   #mod_gzip_item_include       file .htm$
+   #mod_gzip_item_include       file .html$
+   #mod_gzip_item_include       file .jsp$
+   #mod_gzip_item_include       file .php$
+   #mod_gzip_item_include       file .pl$
+   #mod_gzip_item_include       mime ^text/.*
+   #mod_gzip_item_include       mime ^application/x-httpd-php
+   #mod_gzip_item_include       mime ^httpd/unix-directory$
+   #mod_gzip_item_include       handler ^perl-script$
+   #mod_gzip_item_include       handler ^server-status$
+   #mod_gzip_item_include       handler ^server-info$
+   #mod_gzip_item_exclude       file .css$
+   #mod_gzip_item_exclude       file .js$
+   #mod_gzip_item_exclude       mime ^image/.*
+   
+   # Exclusions... HTTP support levels...
+   #
+   # By specifying a certain minimum level of HTTP support
+   # certain older user agents ( browsers ) can be
+   # automatically excluded from receiving compressed data.
+   #
+   # The item value should be in the same HTTP numeric format
+   # that Apache uses to designate HTTP version levels.
+   #
+   # 1001 = HTTP/1.1
+   #
+   # So 'mod_gzip_min_http 1001' means that a requesting
+   # user agent ( browser ) must report a minimum HTTP support
+   # level of 1.1 or it will not receive any compressed data.
+   #
+   #mod_gzip_min_http 1001
+
+   # Debugging...
+   #
+   # If your Apache 'LogLevel' is set to 'debug' then
+   # mod_gzip will add some diagnostic and compression
+   # information to your error.log file for each request
+   # that is processed by mod_gzip.
+   #
+   #LogLevel debug
+#</IfModule>
+
+#<IfModule mod_dav.c>
+   #<Location /whatever>
+   #    DAV On
+   #    AllowOverride None
+   #    Options None
+   #    <Limit PUT POST DELETE PROPFIND PROPPATCH MKCOL COPY MOVE LOCK UNLOCK>
+   #        require valid-user
+   #    </Limit>
+   #</Location>
+#</IfModule>
+
+#<IfModule mod_fastcgi.c>
+    # URIs that begin with /fcgi-bin/, are found in /usr/local/apache/fcgi-bin/
+    #Alias /fcgi-bin/ /usr/local/apache/fcgi-bin/
+
+    # Anything in here is handled as a "dynamic" server if not defined as
+    # "static" or "external"
+    #<Directory /usr/local/apache/fcgi-bin/>
+    #    SetHandler fastcgi-script
+    #    Options +ExecCGI
+    #</Directory>
+
+    # Anything with one of these extensions is handled as a "dynamic" server
+    # if not defined as "static" or "external". Note: "dynamic" servers
+    # require ExecCGI to be on in their directory.
+    #AddHandler fastcgi-script .fcgi .fpl
+
+    # Start a "static" server at httpd initialization inside the
+    # scope of the SetHandler
+    #FastCgiServer /usr/local/apache/fcgi-bin/echo -processes 5
+
+    # Start a "static" server at httpd initialization inside the
+    # scope of the AddHandler
+    #FastCgiServer /usr/local/apache/htdocs/some/path/echo.fcgi
+
+    # Start a "static" server at httpd initialization outside the scope of the
+    # Set/AddHandler
+    #FastCgiServer /usr/local/apache/htdocs/some/path/coolapp
+    #<Directory /usr/local/apache/htdocs/some/path/coolapp>
+    #    SetHandler fastcgi-script
+    #</Directory>
+#</IfModule>
+
+#<IfModule mod_auth_mysql.c>
+    #Auth_MySQL_Info localhost username passwd
+    #Auth_MySQL_General_DB auth_db
+    #<Directory /whatever>
+    #    Auth_MySQL_Username username
+    #    Auth_MySQL_Password passwd
+    #    Auth_MySQL_DB auth_db
+    #    Auth_MySQL_Password_Table mysql_auth
+    #    Auth_MySQL_Group_Table mysql_auth
+    #    Auth_MySQL_Password_Field passwd
+    #    Auth_MySQL_Username_Field username
+    #    Auth_MySQL_Group_Field groups
+    #    Auth_MySQL_Empty_Passwords Off
+    #    Auth_MySQL_Authoritative On
+    #    Auth_MySQL_Encrypted_Passwords On
+    #    Auth_MySQL_Scrambled_Passwords Off
+    #    Auth_MySQL On
+    #    Auth_MySQL_Encryption_Types Plaintext Crypt_DES
+    #    Auth_MySQL_Non_Persistent Off
+    #</Directory>
+#</IfModule>
+
+#<IfModule mod_auth_pgsql.c>
+    #<Directory /whatever>
+    #    Auth_PG_host localhost
+    #    Auth_PG_port 5432
+    #    Auth_PG_database userdb
+    #    Auth_PG_user username
+    #    Auth_PG_pwd passwd
+    #    Auth_PG_pwd_table authdata
+    #    Auth_PG_grp_table authdata
+    #    Auth_PG_uid_field username
+    #    Auth_PG_pwd_field passwd
+    #    Auth_PG_gid_field groups
+    #    Auth_PG_encrypted On
+    #</Directory>
+#</IfModule>
+
+# PHP directives
+<IfModule mod_php4.c>
+    AddType application/x-httpd-php .php
+    AddType application/x-httpd-php-source .phps
+</IfModule>
+
+### Section 3: Virtual Hosts
+#
+# VirtualHost: If you want to maintain multiple domains/hostnames on your
+# machine you can setup VirtualHost containers for them. Most configurations
+# use only name-based virtual hosts so the server doesn't need to worry about
+# IP addresses. This is indicated by the asterisks in the directives below.
+#
+# Please see the documentation at <URL:http://www.apache.org/docs/vhosts/>
+# for further details before you try to setup virtual hosts.
+#
+# You may use the command line option '-S' to verify your virtual host
+# configuration.
+
+#
+# Use name-based virtual hosting.
+#
+NameVirtualHost 127.0.0.1:80
+
+<VirtualHost 127.0.0.1:80>
+    ServerName localhost
+
+    DocumentRoot /home/bennett/Desktop/Web/release/docroot
+
+    ErrorDocument 404 /sitemap404.html
+    
+    Redirect permanent /index.php http://gsl-nagoya-u.net/
+    Redirect permanent /programs/index.php http://gsl-nagoya-u.net/
+    Redirect permanent /faculty/allstaff.html http://gsl-nagoya-u.net/faculty/index.html
+    Redirect permanent /faculty/supervision4.html http://gsl-nagoya-u.net/faculty/supervision.html
+    Redirect permanent /faculty/supervision10.html http://gsl-nagoya-u.net/faculty/supervision.html
+    Redirect permanent /admission/index.php http://gsl-nagoya-u.net/admissions/index.html
+    Redirect permanent /overviews/index.php http://gsl-nagoya-u.net/index.html
+    Redirect permanent /alumni/index.php http://gsl-nagoya-u.net/alumni/index.html
+    Redirect permanent /exchange/index.php http://gsl-nagoya-u.net/programs/ancillary/index.html
+        
+    Redirect permanent /upfiles/gslc220.html http://gsl-nagoya-u.net/programs/academic/syllabus/gslc220.html
+    Redirect permanent /upfiles/gslc227.html http://gsl-nagoya-u.net/programs/academic/syllabus/gslc227.html
+    Redirect permanent /upfiles/gslc229.html http://gsl-nagoya-u.net/programs/academic/syllabus/gslc229.html
+
+    RewriteEngine On
+    RewriteOptions inherit
+
+    ExpiresActive On
+    ExpiresDefault "access plus 300 seconds"
+    
+    <IfModule mod_gzip.c>
+       mod_gzip_on  Yes
+    </IfModule>
+
+      ## Redirect any URL ending in *.zip to /*.zip
+      ## Perform the rewrite only if not at top level (to be idempotent)
+      RewriteCond $1 !^$
+      RewriteRule ^(.*)/([^/]+\.zip)$ /$2 [R]
+
+      ## If zip file exists under /materials/doc, latch onto
+      ## that file, and end rewriting.
+      RewriteCond %{DOCUMENT_ROOT}/zip/cur/$1  -f
+      RewriteRule ^/(.*\.zip)$ /zip/cur/$1 [L]
+
+      ## If zip filename contains a year, construct a URL path to the filename
+      ## in the appropriate directory, and end rewriting.
+      RewriteRule ^.*/([^/]+)([-_])([0-9][0-9][0-9][0-9])\.zip$ /zip/arc/$1.zip/$1$2$3.zip [L]
+
+      ## If zip filename contains no year, construct a URL to 
+      ## its index file, and end rewriting.
+      RewriteRule ^/(.*)\.zip$ /zip/arc/$1.zip/index.html [L]
+
+      ## Redirects from a link from (say) /zip/arc to top
+      RewriteCond $1 ^(/|/[^/]+|/[^/]+/)$
+      RewriteRule ^/zip(/.+)  / [L,R]
+
+      ## Redirect to external version if staff profile called from, say, Google
+      RewriteCond %{HTTP_REFERER} !^http://localhost/ [OR]
+      RewriteCond %{HTTP_REFERER} /cache/
+      RewriteRule ^/faculty/member/(.*\.html)(\?.*)*$ /faculty/cache/$1 [R,L]
+
+      ## Redirect to external version if course description called from, say, Google
+      RewriteCond %{HTTP_REFERER} !^http://localhost/ [OR]
+      RewriteCond %{HTTP_REFERER} /cache/
+      RewriteRule ^/programs/academic/syllabus/(.*\.html)(\?.*)*$ /programs/academic/cache/$1 [R,L]
+
+    <Directory /home/bennett/Desktop/Web/release/docroot>
+      AllowOverride None
+      Order allow,deny
+      Allow from all
+      ExpiresByType text/html "access plus 1 day"
+      ExpiresByType text/css "access plus 1 day"
+      ExpiresByType text/javascript "access plus 1 day"
+      ExpiresByType application/zip "access plus 1 day"
+      ExpiresByType image/gif "access plus 1 month"
+      ExpiresByType image/jpg "access plus 1 month"
+      ExpiresByType image/jpeg "access plus 1 month"
+      ExpiresByType image/png "access plus 1 month"
+            
+      <IfModule mod_gzip.c>
+        mod_gzip_can_negotiate  Yes
+        mod_gzip_static_suffix  .gz
+        AddEncoding  gzip .gz
+        #mod_gzip_update_static  No
+        mod_gzip_command_version      '/mod_gzip_status'
+        mod_gzip_keep_workfiles       No
+        mod_gzip_minimum_file_size    500
+        mod_gzip_maximum_file_size    500000
+        mod_gzip_maximum_inmem_size   60000
+        mod_gzip_min_http             1000
+        mod_gzip_handle_methods        GET POST
+    
+        mod_gzip_item_include         file       \.html$
+        mod_gzip_item_include         file       \.zip$
+        mod_gzip_item_include         mime       ^text/html$
+
+        mod_gzip_dechunk              Yes
+        mod_gzip_send_vary            On
+      </IfModule>      
+    </Directory>
+    <Directory /home/bennett/Desktop/Web/release/docroot/faculty/member>
+        Header set Cache-Control "no-cache"
+        Header set Pragma "no-cache"
+    </Directory>
+    <Directory /home/bennett/Desktop/Web/release/docroot/programs/academic/syllabus>
+        Header set Cache-Control "no-cache"
+        Header set Pragma "no-cache"
+    </Directory>
+    ErrorLog /var/log/apache/error_log
+    CustomLog /var/log/apache/access.final combined
+</VirtualHost>
+
+#
+# VirtualHost example:
+# Almost any Apache directive may go into a VirtualHost container.
+# The first VirtualHost section is used for requests without a known
+# server name.
+#
+#<VirtualHost your.ip.add.res:80>
+#    User username
+#    Group groupname
+#    ServerAlias www.domain.ext
+#    ServerName domain.ext
+#    ServerAdmin username@domain.ext
+#    DocumentRoot /home/username/www/domain.ext
+#    ScriptAlias /cgi-bin/ "/home/username/www/cgi-bin/"
+#    <Directory /home/username/www/cgi-bin>
+#      AllowOverride None
+#      Options ExecCGI
+#      Order allow,deny
+#      Allow from all
+#    </Directory>
+#    ErrorLog /usr/local/apache/logs/username/domain.ext-error_log
+#    CustomLog /usr/local/apache/logs/username/domain.ext-access_log combined   
+#</VirtualHost>
+
+## <===CPX:CPX start===>
+## User changes (other than commenting out lines within this block)
+## should be placed before or after this block. Any user changes made
+## within this block may be lost when CPX is removed or upgraded.
+
+<IfModule mod_perl.c>
+
+    ## begin cpx section
+    ## this set of directives is automatically managed by the cpx vinstall.
+    ## If you break this seal, your warranty is void.
+    Alias /cpimages /usr/local/cp/images
+    Alias /ControlPanelHelp /usr/local/cp/help/
+    <Perl>
+         unshift(@INC, "/usr/local/cp/lib");
+         require ControlPanel;
+    </Perl>
+    <Location /ControlPanel>
+        SetHandler perl-script
+        PerlHandler ControlPanel
+         ErrorDocument 403 /ControlPanel/error/403.xsl
+         ErrorDocument 404 /ControlPanel/error/404.xsl
+         ErrorDocument 413 /ControlPanel/error/413.xsl
+    </Location>
+    <IfModule mod_rewrite.c>
+        RewriteRule ^/webmail/?$ /ControlPanel/mail/wm_messages.xsl?folder=INBOX [R]
+    </IfModule>
+    ## end cpx section
+</IfModule>
+
+## <===CPX:CPX end===>
+## <===URCHIN 3.404 CR1D:Urchin 3.404 cr1d start===>
+## User changes (other than commenting out lines within this block)
+## should be placed before or after this block. Any user changes made
+## within this block may be lost when Urchin 3.404 cr1d is removed or upgraded.
+
+<Directory /usr/local/apache/htdocs/urchin/system>
+  AddHandler cgi-script .cgi
+  DirectoryIndex index.html index.cgi
+  Options FollowSymLinks ExecCGI
+</Directory>
+<Directory /usr/local/apache/htdocs/urchin/gsl-nagoya-u.net>
+  AddHandler cgi-script .cgi
+  DirectoryIndex index.html index.cgi
+  Options FollowSymLinks ExecCGI
+</Directory>
+
+## <===URCHIN 3.404 CR1D:Urchin 3.404 cr1d end===>

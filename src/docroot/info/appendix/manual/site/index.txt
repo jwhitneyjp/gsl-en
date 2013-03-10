@@ -1,0 +1,106 @@
+title: Manual for GSL Site Editors
+
+The GSL site is designed to make maintenance
+convenient and risk-free.  We manage the site
+using standard development tools from the software
+industry, which have been carefully designed
+and widely tested.  While it does require a little
+study and preparation to begin editing work,
+once learned, the system is exceptionally
+straightforward and reliable.
+
+Please refer to the individual chapters listed
+to the right for illustrated guides on individual
+operations.
+Some specialized vocabulary is needed to
+explain the system.  The main terms and concepts
+are explained here for convenience and clarity:
+
+Metadata
+: *Metadata* is extra information *about* a document
+that is attached to it in some way, outside of its
+content.  For text documents on our
+website, metadata includes the document title, 
+the document nickname, and a flag showing whether 
+the document should be shown with a table of contents.
+This information is written at the very top of all
+`*.txt` documents in the **Text archive**.
+
+Markdown
+: [*Markdown*][markdownEn] is a simple plain text
+markup language that is used in all of the content
+files.  The syntax is very simple, and a [Japanese
+manual][markdownJa] is available.  The version of
+Markdown used on our system has
+a few extra features, which
+are explained in separate manuals. See
+the documentation of the [PHP Markdown Extra][phpmarkdown]
+and [Maruku metadata Syntax][marukuextended] projects for details.
+
+Repository
+: See the entry for **Subversion**.
+
+Rollout
+: A *site rollout* is the final step in publishing
+the website, when the changes committed to the 
+Subversion repository from working copies are
+exported as pages on the `gsl-nagoya-u.net`
+webserver.
+
+Server
+: In this guide, "the server" refers to the remote
+machine where our real site is stored.  The server
+offers two services: Subversion and Apache.  Subversion
+is a versioning database that keeps a record of all of
+our content.  Apache is a webserver the serves the
+finished website to the Internet.
+
+
+Subversion
+: The core of the maintenance system is the "Subversion
+repository", or simply "the respository" for short.
+Subversion is a database that preserves a record of
+all changes made to the website contents and software,
+with a note of who made each change.  The repository
+cannot be edited directly; all editing is done on a
+**Working copy** (also known as a **Checkout**)
+of the website contents, and changes are added to
+the repository with with a **Commit** command.
+Under Windows, the software used to do Subversion
+checkouts and commits is **Turtle SVN**.  Subversion
+is free software.  The complete manual is available
+online, both [in English][svnEn] and [in Japanese][svnJa].
+
+Text archive
+: This is the area of the **Working copy** that contains
+the text (`*.txt`) files that make up most of the
+pages of the website.  Inside the working copy, the
+path is `src/docroot/info/`.  Since this is where
+almost all of the editing work on the site happens,
+it maybe convenient to put
+a link to the `info` folder of your working copy
+on your desktop.
+
+TurtleSVN
+: *TurtleSVN* is a program for sending and receiving
+changes between a local **Working copy** of a Subversion
+project and the Subversion repository.  There is no
+fee for using Turtle SVN.
+
+
+
+[phpmarkdown]: http://michelf.ca/projects/php-markdown/extra/
+
+[marukuextended]: https://github.com/bhollis/maruku/blob/master/docs/website/src/proposal.md
+
+[marukuEn]: http://maruku.rubyforge.org/maruku.html
+
+[markdownEn]: http://daringfireball.net/projects/markdown/syntax.php
+
+[markdownJa]: http://blog.2310.net/archives/6
+
+[svnEn]: http://svnbook.red-bean.com/en/1.4/index.html
+
+[svnJa]: http://svnbook.red-bean.com/index.ja.html
+
+

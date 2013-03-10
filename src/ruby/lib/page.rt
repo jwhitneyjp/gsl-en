@@ -1,0 +1,22 @@
+require 'page'
+
+class TC_Page < Test::Unit::TestCase
+
+    def title(s)
+	{ 'title' => s }
+    end
+
+    def test_spaceship
+	a = [
+	    InfoPage.new(nil, title('jkl'), '', ''),
+	    IndexPage.new(nil, title('def'), '', ''),
+	    IndexPage.new(nil, title('abc'), '', ''),
+	    IndexPage.new(nil, {}, '', ''),
+	    InfoPage.new(nil, title('ghi'), '', ''),
+	    ]
+	assert_equal(
+	    [ "ghi", "jkl", "NO DEFAULT TITLE AVAILABLE", "abc", "def", ],
+	    a.sort.collect { |page| page.title || 'nil' })
+    end
+
+end

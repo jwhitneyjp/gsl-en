@@ -1,0 +1,12 @@
+#!/bin/sh -e
+# Copyright 2006-2007 by Starling Software, K.K.
+# This is part of QAM from http://www.starling-software.com.
+# For license terms, see the LICENSE.QAM file included with this distribution.
+
+cd $(dirname $0)
+echo "===== Installing"
+if !  ./Install -q "$@"; then
+    echo 1>&2 "***** INSTALL FAILED"
+    exit 1
+fi
+echo "===== Testing src"; ./src/Test

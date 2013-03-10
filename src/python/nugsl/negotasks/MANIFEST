@@ -1,0 +1,5 @@
+setup.py
+negotasks/OutputAllocations.py
+negotasks/__init__.py
+scripts/nugsl-negotasks
+templates/negotasks.tjp

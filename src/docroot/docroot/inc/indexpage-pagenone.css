@@ -1,0 +1,6 @@
+/* Override folder index
+*/
+
+div.toc-wrapper {
+    display: none;
+}

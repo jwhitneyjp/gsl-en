@@ -1,0 +1,8 @@
+require 'infopage'
+
+class TC_InfoPage < Test::Unit::TestCase
+
+    def test_nothing
+    end
+
+end

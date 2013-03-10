@@ -1,0 +1,10 @@
+title: Leading Graduate School
+css: staff-all.css
+javascript: popup.js
+
+<!-- 
+     This page is automatically generated.
+     Do not remove the following line.     
+-->
+
+%%content%%

@@ -1,0 +1,37 @@
+/*
+* Cookbook recipe drawn from here:
+*
+*  http://www.ruzee.com/blog/2007/05/align-list-items-horizontally-with-css/
+*/
+
+ul.blocklist {
+    padding-left: 0px;
+}
+
+ul.blocklist li {
+    display:-moz-inline-box; 
+    -moz-box-orient:vertical;
+    display: inline-block;
+    vertical-align: top;
+    word-wrap: break-word;
+}
+* html ul.blocklist li { display: inline; }  /* for IE 6 */
+* + html ul.blocklist li { display: inline; }  /* for IE 7 */
+* html ul.blocklist li { width: 225px; }
+
+ul.blocklist li > * {
+    display: table; 
+    table-layout: fixed;
+    width: 225px;
+    overflow: hidden; 
+}
+
+ul.blocklist li {
+    margin: 0px;
+    padding: 0px;
+}
+
+ul.blocklist {
+  margin: 0px;
+  padding: 0px;
+}

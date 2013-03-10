@@ -1,0 +1,125 @@
+title: Network overview
+
+* Table of Contents
+{: toc}
+
+# IT Help Desk of the GSL
+Ms Tomizaki, in room 316 of the Law building, 
+is in charge of IT support for staff
+and students (of the Law faculty only).
+The office is open for consultations
+concerning IT issues Monday through Friday, 9:00 to 17:00.
+
+# Nagoya University ID and password
+Your Nagoya University ID can be used to access the following services:
+
+- [Signing up for University email][uniemail];
+- [Forwarding University email to another address][uniemailforward]; and
+- [Signing up for University-wide wireless network access][uniwireless].
+
+[uniemail]: http://www.law.nagoya-u.ac.jp/icenter/mail/zengakuwebmail_e.html
+[uniemailforward]: http://www.law.nagoya-u.ac.jp/icenter/mail/forwardeng.html
+[uniwireless]: http://www.law.nagoya-u.ac.jp/icenter/nuwnet/nuwneteng.html
+
+See the links above for information on how to use University
+email services and wireless network points.
+
+
+If you forget or lose your Nagoya University ID or password,
+please contact Ms Tomizaki for information on how to recover it.
+
+# Legal databases
+## Lexis-Nexis
+
+The Lexis-Nexis service is available for use by all students
+of the Graduate School of Law in their research.
+This is a commercial service to which the GSL holds
+a subscription.  It is an important source of primary legal
+information, and should be treated as an extension of the
+library collection.  A personal ID and password are required
+to use the service.  For the details of how to apply, please
+visit the link below.
+
+> [Visit the Research facilities page of this
+>  website][research-facilities]
+  
+  [research-facilities]: /support/research-facilities.html
+
+## Japanese Law database
+
+Several Japanese-language database services and other
+online study tools are available in the faculty,
+including Lexis-NexisJP and the Lex/DB Internet service.
+If you would like to use any of these services,
+please contact Ms Tomizaki.
+
+# Graduate School of Law computer room
+
+## Room and facilities
+
+The Computer Room is room 104,
+on the first floor of the prefab annex to the Law building.
+PCs in the room have the following software installed:
+Internet Explorer, Outlook Express, and Microsoft Office
+(Word, Excel, PowerPoint, Access).
+
+## Key card
+
+Use your student ID card as a swipe card to enter 
+the Computer Room. 
+If you have been issued a paper student ID card, you can
+obtain a magnetic card by submitting the 
+Application Form for a magnetic ID card to the [Student Affairs
+Section][kyoumu] of the Graduate School of Law.
+
+[kyoumu]: /support/index.html#student_affairs_section
+
+## Rules
+
+Please comply with the following rules when using the
+computer room:
+
+1. Do not eat, drink or bring open food containers into the room.  This
+   can be distracting to other users, and spills can damage the
+   equipment.
+2. Refrain from using cell phones in the room.  When entering the
+   room, set your phone to manner mode or turn off its power.
+   Ringing phones and conversations
+   are a distraction to others.  If you need to 
+   answer the phone, take the call outside of the room.
+3. Restore manuals and other materials to their proper place
+   after use. Don’t remove materials or equipment from the room.
+4. Students of other faculties may use the room if they
+   need the facilities for their studies, but should do so
+   in the normal way, by requesting a personal
+   key card for full access.  Please direct such queries
+   to Ms Tomizaki.
+5. For your own security and for the security of the University
+   network as a whole, Do not share your user ID and password 
+   with other people.
+6. To protect your personal information, be sure to fully log out
+   from PCs or turn the power off cleanly when your session
+   is finished.
+7. The PCs in the room have been configured to protect personal
+   information, to maximize stability, and to be convenient to
+   most users.  Do not permanently 
+   change settings that may affect other
+   users.
+8. About printing.  In the computer room, you will find
+   a personal computer connected to the copy machine.
+   The copy machine will also work as a printer;
+   you can print files by connecting a USB memory to 
+   the personal computer, 
+   and printing in the normal way.
+   A copy card, which can be purchased at the University
+   Co-op, is required for printing. 
+   The printing cost for one black-and-white page is
+   10 yen, and one page printed in color costs 50 yen.
+   For most print jobs, you may find it more economical
+   to purchase a printer for use in your study room.
+
+These rules are important to maximize the benefit of the
+computer room for all students.  Those who do not comply
+with them may be denied access to this facility.
+
+

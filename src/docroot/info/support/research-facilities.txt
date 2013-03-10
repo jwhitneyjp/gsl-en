@@ -1,0 +1,133 @@
+Title: Research facilities
+
+* Table of Contents
+{: toc}
+
+
+# Law Library
+
+The Law Library contains approximately 200,000 volumes, including some
+82,000 in foreign languages.
+It
+also houses the Takigawa Collection, consisting of books and materials
+donated by the family of the late Dr. Yukitoki Takigawa, a,
+distinguished scholar of modern criminal law and leading pre-war
+advocate of university autonomy.
+
+An additional 940 titles of Japanese periodicals and 100 foreign
+periodicals are available from the Central Library.
+
+The Law Library, along with other satellite collections within the
+university, is covered by the university-wide OPAC system 
+and, for older
+books, the comprehensive card catalog housed in the Central Library.
+The OPAC system can be accessed from the [Central Library][central] website.
+
+
+# Central Library
+
+The Nagoya University Central Library provides circulation and
+reference services, including inter-library loan, photocopying
+and computer-based retrieval.
+In the Library building there are approximately 2,770,000
+volumes of books, 5,580 titles of journals and 8,400 titles of
+electronic journals which are accessible via the Internet
+from within the University's network domain.
+Central Library staff maintain 
+the union catalog of all books in Nagoya University.
+
+All library materials are accessible on open shelving except for special
+collections and microform materials. Circulation is managed by an ID card
+and book detection system. For language education and other
+educational and research purposes the Library has access to satellite TV
+channels, including CNN news, CCTVa, and KBSa.
+There are 1,000 reading desks in the open-stack area, supplemented
+by group
+study rooms, a seminar room, an information corner, and an audio-visual
+room.
+
+The Central Library website is the central access point for
+electronic materials, which are a a particularly important resource
+for students working with non-Japanese materials.
+
+> [Go to the Central Library][central]
+
+[central]: index.html#central_library
+
+
+# Peer tutoring
+
+All international students are eligible to receive tutoring by a
+Japanese graduate or undergraduate student in the Japanese language or
+in their field of study for a total of 100 hours, for the first year from
+the time of enrolment in our School. Home students  who support
+an overseas classmate as a tutor receive a modest allowance from the
+University in recognition of their contribution.  Information
+about tutoring arrangements will be made to supervising
+professors, who in turn should inform their supervisees.
+
+
+
+# University network
+
+Internet access is available to students of the University
+through a University-wide wireless network, which extends
+to student study carrels in the Graduate School of Law.  
+Elsewhere on campus, Open-access
+terminals for limited use are available in the Law Library and the
+Central Library, and PC terminals are available in a Computer
+Room in the Graduate School of Law, where printing facilities
+are also available with the use of rechargeable copy cards
+that can be purchased on campus.  For more information,
+see the Network Overview on this website.
+
+> [Visit the Network Overview][netguide]
+
+[netguide]: /appendix/documents/netguide.html
+
+# Lexis/Nexis legal database
+
+The faculty carries an institutional subscription to
+the Lexis/Nexis online legal database service, under which
+both undergraduate and postgraduate students may apply for
+access.  No fee is charged to the student.  Lexis training
+is provided in the first year through the required subject
+Academic Writing I.  Students are encouraged to apply for an
+ID early.  To apply, send email requesting access
+to the [Network Advisor][netadmin], giving your name,
+program, and student number.  ID requests are normally
+processed within one week of receipt.
+
+[netadmin]: index.html#network_and_computing_support
+
+
+# Japanese study
+
+The [Education Center for International Students][ecis]
+offers language courses in Japanese for overseas students.
+Those wishing to improve their language skills are encouraged
+to take advantage of this opportunity.
+
+[ecis]: index.html#education_center_for_international_students_ecis
+
+
+# Learning Other Languages
+
+Foreign languages, other than Japanese (English, German, Korean, French,
+Indonesian, Russian, Chinese, Spanish, Greek, Latin, Esperanto, Italian,
+Ainu and Portuguese) are taught through the Graduate School of
+Languages and Cultures of Nagoya University.
+Students wishing to enroll in these courses should register by the given
+deadline, generally, the 1st week of spring term and autumn term.  In
+some cases, applicants may be required to take a placement test
+(auditing students are not eligible to register).
+
+Information on foreign language courses and registration procedures can
+be found in the [Graduate School of Languages and Cultures][gslc] webpage or its
+leaflet, published in April and October or contact the offices of this
+School.
+
+[gslc]: index.html#graduate_school_of_languages_and_cultures
+
+
+

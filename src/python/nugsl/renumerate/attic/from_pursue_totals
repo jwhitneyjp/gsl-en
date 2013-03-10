@@ -1,0 +1,44 @@
+    def penalize(self, assumption ):
+        ''' Mark the number with the highest penalty value as cruft
+        
+            After OCR, regular expression extraction, and
+	    post-processing at the cluster and line level, extraneous
+	    numbers will remain in the input stream that do not
+	    represent income.  This method masks one number from the
+	    totals calculations by marking it as CRUFT in the spec
+	    object.  The choice of character to mask is controlled
+            by positioning hints stamped on ambiguousNumber objects
+            when they are created, and a formula applied in this
+            function.
+            
+            The proper weighting of the penalty is something that will
+	    need to be tuned over time in the light of experience and
+	    experimentation.  In the prototype of this utility,
+	    discarding of numbers in an assumption began from the
+	    smallest value. An anonymous reviewer for JURISIN 2008
+	    thought that numbers should be deleted from the top of the
+	    sequence, which is clear evidence of the inadequacy of the
+	    explanation in my hastily written paper (see the doc
+	    directory of the distribution archive), since it would
+	    just break everything.
+            
+            Here, we apply a penalty of 10000 to one, two and four
+	    digit numbers that are in the first two lines and have a
+	    category of Unknown, because these are likely to relate to
+	    dates. Non-zero numbers of one digit at the start of a
+	    line containing two or more numbers also receive a penalty
+	    of 10000.  To catch notes like "2 members x 5,000 yen" at
+	    the end of a line, we apply a penalty of 10000 to numbers
+	    in the last and second to last position of a line, when
+	    the line contains at least three numbers, and multiplication
+            of the two values produces a value equal to the number at
+            third-from-last position.
+            
+            Numbers for deletion are selected first from those with
+	    the highest penalty value.  When multiple values are in
+            that set, numbers are deleted beginning with that with
+            the smallest value.  When multiple numbers match this
+            condition, the first in sequence is deleted.
+        '''
+        pass
+

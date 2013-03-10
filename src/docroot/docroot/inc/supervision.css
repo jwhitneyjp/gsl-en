@@ -1,0 +1,49 @@
+
+.headclear {    
+    line-height: 0px;
+    font-size: 0px;
+    clear: left;
+}
+
+h1.headclear {
+    padding-top: 20px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.cell1, .headcell1 {
+    clear: left;
+    float: left;
+    width: 162px;
+    padding: 5px 5px 5px 5px;
+}
+.cell2, .headcell2 {
+    float: left;
+    width: 197px;
+    padding: 5px 5px 5px 5px;
+}
+.cell, .headcell {
+    float: left;
+    width: 92px;
+    padding: 5px 5px 5px 5px;
+}
+.cell3, .headcell3 {
+    float: left;
+    width: 50px;
+    padding: 5px 5px 5px 5px;
+}
+
+.headcell1, .headcell2, .headcell, .headcell0, .headcell3 {
+    font-weight: bold;
+}
+
+.headcell1, .headcell2, .headcell0, .headcell3, .cell3 {
+    text-align: center;
+}
+
+.headcell0 {
+    font-size: smaller;
+    margin-left: 369px;
+    padding: 0px 5px 5px 5px;
+}
+

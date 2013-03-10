@@ -1,0 +1,14 @@
+__init__.py
+setup.py
+tests-unit.py
+brazil/DocumentConverter.py
+brazil/FixHtml.py
+brazil/FixOO.py
+brazil/TableRepair.py
+brazil/TidyHtml.py
+brazil/UnZip.py
+brazil/Utils.py
+brazil/__init__.py
+scripts/nugsl-brazil-convert
+scripts/nugsl-brazil-grab
+scripts/nugsl-brazil-import

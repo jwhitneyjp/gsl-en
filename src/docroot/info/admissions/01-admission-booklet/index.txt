@@ -1,0 +1,4 @@
+title: Admission Booklet
+
+The Admission booklet provides basic information on programs offered
+by the Graduate School of Law.

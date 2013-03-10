@@ -1,0 +1,28 @@
+[Too early]
+row: 1
+column: 0
+
+[Too hungry]
+row: 2
+column: 0
+
+[Lunch only]
+row: 3
+column: 0
+
+[Too sleepy]
+row: 1
+column: 1
+
+[Too busy]
+row: 2
+column: 1
+
+[Too tired]
+row: 3
+column: 1
+
+[Too late]
+row: 4
+column: 0
+columnspan: 2

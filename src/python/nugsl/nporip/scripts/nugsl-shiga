@@ -1,0 +1,192 @@
+#!/usr/bin/python
+#-*- encoding: utf8 -*-
+
+from nugsl.nporip import npoRip
+import libxml2
+import os,sys
+import csv
+import re
+from cPickle import Pickler,Unpickler
+
+def filt( arg ):
+    r = re.match('.*?([0-9]+).*',arg)
+    return r.group(1)
+
+target = os.path.splitext( os.path.split( sys.argv[0] )[1][6:] )[0]
+
+cwd = os.getcwd()
+
+csvdir = cwd + '/financials/csv/'
+tmpdir = cwd + '/financials/tmp/' + target + '/'
+pdfdir = cwd + '/financials/pdf/' + target + '/'
+statedir = cwd + '/financials/state/' + target + '/'
+ppmdir = cwd + '/financials/ppm/' + target + '/'
+stoplistdir = cwd + '/financials/stoplist/'
+
+stoplist = stoplistdir + target + '.txt'
+
+for item in [csvdir, tmpdir, pdfdir, statedir, ppmdir, stoplistdir]:
+    try:
+        os.makedirs( item )
+    except:
+        pass
+
+# Get list of orgs already processed
+state = []
+        
+# Get the manually maintained stoplist, if available
+if os.path.exists( stoplist ):
+    stoplist = open( stoplist ).read().strip()
+    stoplist = stoplist.split('\n')
+
+# Read CSV, and pop orgs with failed reads from list
+killme = False
+if os.path.exists( csvdir + target + '.csv'):
+    ifhcr = open( csvdir + target + '.csv')
+    csvreader = csv.reader( ifhcr )
+    ifhcw = open( csvdir + target + '.csv.new', 'w+')
+    csvwriter = csv.writer( ifhcw )
+    seen = []
+    for line in csvreader:
+        if ' ' in line[0]:
+            continue
+        if int( line[1] ) == -1:
+            print 'Failed OCR: %s' % line[0]
+            if not line[0] in stoplist:
+                killme = True
+            if len( sys.argv) > 1 and sys.argv[1] == '--force':
+                try:
+                    state.remove( line[0] )
+                except:
+                    pass
+                killme = False
+            else:
+                state.append( line[0] )
+                csvwriter.writerow( line )
+        else:
+            state.append( line[0] )
+            csvwriter.writerow( line )
+    ifhcr.close()
+    ifhcw.close()
+    os.unlink( csvdir + target + '.csv')
+    os.rename( csvdir + target + '.csv.new',csvdir + target + '.csv')
+
+if killme:
+    sys.exit()
+
+# Open CSV file for writing
+ofhc = open( csvdir + target + '.csv', 'a')
+csv = csv.writer( ofhc )
+
+### Site-specific code
+    
+np = npoRip()
+
+orgs = []
+
+PARAMS = 'NPOID=@@npoid@@&FILENAME=@@filename@@&ACTION=download&FORM%5BNAME%5D=Frank+Bennett&FORM%5BADDRESS%5D=biercenator%40gmail.com&Submit=%C1%F7%A1%A1%BF%AE'
+
+if os.path.exists( statedir  + 'index.pickle'):
+    ifhp = open( statedir + 'index.pickle' )
+    unpickler = Unpickler( ifhp )
+    orgs = unpickler.load()
+    ifhp.close()
+else:
+    webdoc = np.fetch(urlbase='http://www.npo-shiga.net',
+                    stub='/hojin/ichiran.php?FORM%5BKEYWORD%5D=&Submit=%B8%A1%A1%A1%BA%F7',
+                    encoding='euc-jp',
+                    useget=True)
+    res = webdoc.xpathEval('//a[contains(@href,"ichiran.php?PAGE=")]')
+    pages = [x.prop('href') for x in res]
+
+    for page in pages:
+    
+        webdoc = np.fetch(urlbase='http://www.npo-shiga.net',
+                          stub='/hojin/' + page,
+                          encoding='euc-jp',
+                          useget=True)
+        res = webdoc.xpathEval('//a[contains(@href,"syousai.php")]')
+        docstubs = [x.prop('href') for x in res]
+    
+        for docstub in docstubs:
+            webdoc = np.fetch(urlbase='http://www.npo-shiga.net',
+                          stub='/hojin/' + docstub,
+                          useget=True,
+                          encoding='euc-jp')
+            res = webdoc.xpathEval('//th[contains(.,"名称")]/following::td')
+            name = [x.content for x in res][1]
+            res = webdoc.xpathEval('//th[contains(.,"事業報告")]/following::td/a[contains(@href,"download.php")]')
+            # From here, snag the parameters.  We can skip the registration
+            # screen and grab the doc directly.
+            if not res:
+                continue
+            idstring = [x.prop('href') for x in res][0]
+            r = re.match('.*NPOID=([^&]*)&.*FILENAME=([^&]*)&.*',idstring)
+            npoid = r.group(1)
+            filename = r.group(2)
+            orgs.append( (name, npoid, filename) )
+            sys.stdout.write('.')
+            sys.stdout.flush()
+
+    ofhp = open( statedir + 'index.pickle', 'w+')
+    pickler = Pickler( ofhp )
+    pickler.dump( orgs )
+    ofhp.close()
+        
+count = 0
+            
+for org in orgs:
+    orgname,npoid,filename = org
+    orgname = np.sanitize( orgname )
+
+    count += 1
+    
+    # Don't want to be bothered with shit we've put in the stoplist
+    if orgname in stoplist:
+        print '%d: STOP!  STOP!  %s' % (count, orgname)
+        continue
+    
+    if orgname in state:
+        print '%d: Done: %s' % (count, orgname)
+        continue
+    
+    ### Standard code below
+        
+    # Clear out working directory
+    for f in os.listdir(tmpdir):
+        os.unlink(tmpdir + f)
+        
+    ### Standard code above
+        
+    # Fetch one PDF file
+    print '%d: %s' % (count, orgname)
+    sys.stdout.write('v')
+    sys.stdout.flush()
+    params = PARAMS.replace('@@npoid@@',npoid)
+    params = params.replace('@@filename@@',filename)
+    pdf = np.fetch(urlbase='http://www.npo-shiga.net',
+                       stub='/hojin/download.php',
+                       raw=True,
+                       params=params)
+        
+    ofhp = open(tmpdir + orgname + '.pdf','w+')
+    ofhp.write( pdf )
+    ofhp.close()
+    sys.stdout.write('_')
+    sys.stdout.flush()
+
+    ### Standard code below
+    
+    # OCR magic
+    expenditure,ppms = np.pdf2gocr( tmpdir + orgname + '.pdf')    
+    csv.writerow( [orgname, expenditure] )
+
+    ofh = open( ppmdir + target + '.txt', 'a')
+    for ppm in ppms:
+        ofh.write( ppm + '\n' )
+        os.unlink( tmpdir + ppm )
+    ofh.close()
+
+    # Tidy up
+    os.rename(tmpdir + orgname + '.pdf', pdfdir + orgname + '.pdf')
+    

@@ -1,0 +1,603 @@
+#!/usr/bin/python
+
+from Tkinter import Tk, Label, Listbox, END, SINGLE, Button, Frame, Canvas, ALL, LEFT, FLAT
+from Tkinter import E, W, NW,SE, N
+import ImageTk
+from PIL import Image, ImageChops
+import sys,os
+from nugsl.renumerate.CategoryHint import categoryHinter
+import tempfile
+import dbm
+import atexit
+import csv
+import re
+from nugsl.renumerate.Config import renumerateConfig
+
+class DDList(Listbox):
+    """ A Tkinter listbox with drag'n'drop reordering of entries. """
+
+    def __init__(self, master, box, **kw):
+        self.box = box
+        kw['selectmode'] = SINGLE
+        Listbox.__init__(self, master, kw)
+        
+        self.bind('<Button-1>', None)
+        self.bind('<B1-Motion>', None)
+        self.bind('<Down>', self.arrowDown)
+        self.bind('<Up>', self.arrowUp)
+        self.bind('<Shift-Down>', self.moveDown)
+        self.bind('<Shift-Up>', self.moveUp)
+        self.bind('<Control-Down>', self.jumpDown)
+        self.bind('<Control-Up>', self.jumpUp)
+        self.bind('<Delete>', self.delete_entry)
+        
+        self.curIndex = None
+        self.hidden = 0
+
+    def delete_entry(self, event):
+        pos = int( self.curselection()[0] )
+        self.selection_clear( pos )
+        self.delete( pos )
+        self.config( height=self.size() )
+        
+    def fixcursor(self):
+        if self.curselection() and self.cat < self.hidden:
+            next = self.box[ self.hidden ]
+            self.selection_clear( self.curselection()[0] )
+            next.focus_set()
+            next.selection_set( first=0 )
+
+    def setcursor(self, old, new):
+        if -1 < new < self.size():
+            self.selection_set( first=new )
+            self.selection_clear( old )
+        elif new <= -1 and self.cat > self.hidden:
+            prev = self.box[self.cat-1]
+            prev.focus_set()
+            prev.selection_set( first=prev.size()-1 )
+            self.selection_clear( old )
+        elif new >= self.size() and self.cat < self.cats-1:
+            next = self.box[self.cat+1]
+            next.focus_set()
+            next.selection_set( first=0 )
+            self.selection_clear( old )
+
+    def adjust(self, old, new):
+        if old > new:
+            old += 1
+        else:
+            new += 1
+        return (old,new)
+            
+    def jump(self, old, new):
+        content = self.get( old )
+        if not content:
+            return
+        if new < old and self.cat > 0 - self.hidden:
+            prev = self.box[self.cat-1]
+            #old,new = self.adjust(old,new)
+            prev.insert(prev.size(), content)
+            #prev.insert(0, content)
+            prev.config( height=prev.size() )
+            self.delete( old )
+            prev.focus_set()
+            prev.selection_set( first=prev.size()-1 )
+            #prev.selection_set( first=0 )
+            self.selection_clear( old )
+        elif new > old and self.cat < self.cats-1:
+            next = self.box[self.cat+1]
+            old,new = self.adjust(old,new)
+            #next.insert(0, content)
+            next.insert(next.size(), content)
+            next.config( height=next.size() )
+            self.delete( old )
+            next.focus_set()
+            #next.selection_set( first=0 )
+            next.selection_set( first=next.size()-1 )
+            self.selection_clear( old )
+        self.config( height=self.size() )
+
+    def move(self, old, new):
+        content = self.get( old )
+        if -1 < new < self.size():
+            old,new = self.adjust(old,new)
+            self.insert(new, content )
+            self.delete( old )
+        elif new <= -1 and self.cat > self.hidden:
+            prev = self.box[self.cat-1]
+            old,new = self.adjust(old,new)
+            prev.insert(prev.size(), content)
+            prev.config( height=prev.size() )
+            self.delete( 0 )
+        elif new >= self.size() and self.cat < self.cats-1:
+            next = self.box[self.cat+1]
+            old,new = self.adjust(old,new)
+            next.insert(0, content)
+            next.config( height=next.size() )
+            self.delete( old )
+        self.config( height=self.size() )
+        
+    def getNext(self):
+        try:
+            old = int( self.curselection()[0] )
+        except:
+            old = 0
+        new = old + 1
+        return (old,new)
+
+    def getPrev(self):
+        try:
+            old = int( self.curselection()[0] )
+        except:
+            old = 0
+        new = old - 1
+        return (old,new)
+
+    def moveDown(self, event):
+        old,new = self.getNext()
+        self.move(old,new)
+        self.setcursor(old,new)
+
+    def moveUp(self, event):
+        old,new = self.getPrev()
+        self.move(old,new)
+        self.setcursor(old,new)
+
+    def jumpDown(self, event):
+        old,new = self.getNext()
+        self.jump(old,new)
+        #self.setcursor(old,new)
+
+    def jumpUp(self, event):
+        old,new = self.getPrev()
+        self.jump(old,new)
+        #self.setcursor(old,new)
+
+    def arrowDown(self, event):
+        old,new = self.getNext()
+        self.setcursor(old, new)
+    
+    def arrowUp(self, event):
+        old,new = self.getPrev()
+        self.setcursor(old, new)
+
+class Report(Canvas):
+    
+    def __init__(self, master, **kw):
+        Canvas.__init__(self, master, kw)
+
+class Constructor(Tk):
+
+    def __init__(self):
+        Tk.__init__(self)
+        self.configuration = renumerateConfig( sys.argv )
+        self.default_bg = self.cget('bg')
+        self.c = None
+        self.done = False
+        self.fileroot = None
+        self.data_length = 0
+        self.data_pos = 0
+        self.page_total = '0'
+        self.canvas_width = 700
+        self.canvas_height = 630
+        self.hidden = 0
+        ch = categoryHinter( self.configuration.category_config )
+        self.ordered_sections = ch.ordered_sections()
+        self.makeWorkspace()
+        self.setTitle()
+        self.setSidebar()
+        self.setCanvas()
+        self.getNextDocument()
+        self.updateSidebar()
+        self.updateImage(new=True)
+        self.bind('<Page_Down>', self.canvasBottom)
+        self.bind('<Page_Up>', self.canvasTop)
+        self.bind('<z>', self.validate)
+        self.bind('<Z>', self.validate)
+        self.bind('<D>', self.discard )
+        self.bind('<q>', self.exit )
+        self.bind('<Q>', self.exit )
+        #self.bind('<Delete>', self.delete_entry )
+        self.bind('<Escape>', self.reset_form )
+        self.bind('<Key-minus>', self.hide_one_category )
+        self.bind('<Key-plus>', self.reveal_one_category )
+
+    def hide_one_category(self, event):
+        if self.hidden < len(self.box_objects) - 2:
+            self.hidden += 1
+        # XXX need work to do the hide gracefully
+        for pos in range(0,len(self.box_objects),1):
+            self.box_objects[pos].hidden = self.hidden
+            self.box_objects[pos].fixcursor()
+            if pos < self.hidden:
+                self.box_objects[pos].grid_remove()
+            else:
+                self.box_objects[pos].grid()
+
+    def reveal_one_category(self, event):
+        if self.hidden > 0:
+            self.hidden -= 1
+        # XXX need work to do the reveal gracefully
+        for pos in range(0,len(self.box_objects),1):
+            self.box_objects[pos].hidden = self.hidden
+            if pos < self.hidden:
+                self.box_objects[pos].grid_remove()
+            else:
+                self.box_objects[pos].grid()
+        
+    def reset_form(self, event):
+        self.clearTemp()
+        self.closeCsv()
+        self.openCsv()
+        self.updateSidebar()
+
+    def closeCsv(self):
+        self.cfh.close()
+
+    #def delete_entry(self, event):
+    #    self.line = []
+    #    for box in self.box_objects:
+    #        subline = []
+    #        for entry in box.get(0,END):
+    #            subline.append( entry.replace(',','').strip() )
+    #        self.line.append( subline )
+    #    self.updateSidebar()
+
+    def exit(self, event):
+        sys.exit()
+
+    def discard(self, event):
+        self.process_output('discarded')
+        
+    def validate(self, event):
+        self.process_output('validated')
+        
+    def process_output(self, destination):
+
+        temp_dir = os.path.join( self.tempdir, destination )
+        temp_filename = os.path.join( self.tempdir, destination, 'data.csv' )
+
+        discarded_dir = os.path.join( self.configuration.discarded_path, self.fileroot )
+        discarded_filename = os.path.join( discarded_dir, 'data.csv' )
+
+        validated_dir = os.path.join( self.configuration.validated_path, self.fileroot )
+        validated_filename = os.path.join( validated_dir, 'data.csv' )
+        
+        validated_TEMP = os.path.join( self.tempdir, 'validated', 'data.csv' )
+        discarded_TEMP = os.path.join( self.tempdir, 'discarded', 'data.csv' )
+        
+        data = []
+        for box in self.box_objects:
+            box_content = [re.sub(',','',x.strip()) for x in box.get(0,END)]
+            data.append( box_content )
+        data = [','.join(x) for x in data]
+        
+        if not os.path.exists( temp_dir ):
+                os.makedirs( temp_dir )            
+        cfh = open( temp_filename, 'a+')
+        c = csv.writer( cfh )
+        c.writerow( data )
+        cfh.close()
+        if self.getNextDocument():
+            if os.path.exists( validated_TEMP ):
+                csv_data = open( validated_TEMP ).read()
+                os.unlink( validated_TEMP )
+                if not os.path.exists( validated_dir ):
+                    os.makedirs( validated_dir )
+                open( validated_filename, 'w+' ).write( csv_data )
+            if os.path.exists( discarded_TEMP ):
+                csv_data = open( discarded_TEMP ).read()
+                os.unlink( discarded_TEMP )
+                if not os.path.exists( discarded_dir ):
+                    os.makedirs( discarded_dir )
+                open( discarded_filename, 'w+' ).write( csv_data )
+        self.updateSidebar()
+        self.updateImage()
+
+    def updateSidebar(self):
+        #
+        # Always reveal everything upon sidebar update
+        self.hidden = 0
+        #
+        # Update page position
+        if self.data_pos == self.data_length:
+            fg = 'white'
+            bg='red'
+        else:
+            fg = 'black'
+            bg=self.default_bg
+        self.pagecounter.config( fg=fg, bg=bg, font=('Courier', 10, 'bold'), text='( %d / %d ) ' % (self.data_pos,self.data_length))
+        #
+        # XXX Delete contents of boxes and start over
+        for box in self.box_objects:
+            box.delete(0,END)
+        for pos in range(0,len(self.box_objects),1):
+            self.box_objects[pos].hidden = 0
+            for ppos in range(len(self.line[pos])-1,-1,-1):
+                if self.line[pos][ppos] == '0' or not self.line[pos][ppos]:
+                    self.line[pos].pop(ppos)
+            length = len(self.line[pos])
+            for ppos in range(0,length,1):
+                disp = self.addCommas( self.line[pos][ppos] )
+                self.box_objects[pos].insert(END, '%19s ' % disp)
+            self.box_objects[pos].config( height=self.box_objects[pos].size() )
+        #
+        # Update total
+        total = 0
+        for box in self.box_objects:            
+            for entry in box.get(0,END):
+                total += int( entry.replace(',','') )
+        self.page_total = self.addCommas( total )
+        self.page_total_label.config( text=self.page_total )
+
+        self.box_objects[0 + self.hidden].selection_set(0)
+        self.box_objects[0 + self.hidden].focus_set()
+
+
+    def addCommas(self, disp):
+        disp = list( str( disp ) )
+        disp.reverse()
+        disp = ''.join( disp )
+        disp = list ( re.sub('([0-9]{3})','\\1,',disp) )
+        disp.reverse()
+        disp = ''.join( disp )
+        disp = ''.join(disp).strip(',')
+        return disp
+        
+    def getNextDocument(self):
+        if self.fileroot:
+            self.db[ self.fileroot ] = '1'
+        if self.nextForm():
+            return False
+        else:
+            self.nextOrgo()
+            return True
+
+    def nextForm(self):
+        #
+        # XXX This tries to load data from the next page
+        if self.c:
+            try:
+                line = self.c.next()
+                self.data_pos += 1
+            except StopIteration:
+                self.cfh.close()
+                return None
+            self.line = [x.split(',') for x in line]
+            return True
+        else:
+            return None
+
+    def nextOrgo(self):
+        #
+        # This moves on to the next report
+        #
+        # Move to  directory
+        self.images = []
+        self.image_pos = None
+        self.fileroot = None
+        while 1:
+            fileroot = self.files.readline()
+            if not fileroot:
+                fileroot = None
+                break
+            elif self.db.has_key( fileroot.strip() ):
+                continue
+            else:
+                self.fileroot = fileroot.strip()
+                break
+        if self.fileroot == None:
+            self.line = [[] for x in self.ordered_sections]
+            self.images = [ os.path.join( self.configuration.config_path, 'finish.png' ) ]
+            self.image_pos = 0
+            self.done = True
+        else:
+            images = os.listdir( os.path.join( self.configuration.raw_path, self.fileroot ) )
+            images.sort()
+            for pos in range(len(images)-1,-1,-1):
+                if not images[pos].endswith('.png'): images.pop(pos)
+            self.images = [os.path.join( self.configuration.raw_path, self.fileroot, x) for x in images]
+            self.image_pos = 0
+            self.openCsv()
+        return True
+
+    def openCsv(self):
+        # This reads the first line from a csv file and leaves the file
+        # descriptor open
+        self.cfh = open( os.path.join( self.configuration.raw_path, self.fileroot, 'data.csv' ) )
+        self.data_length = len(self.cfh.readlines())
+        self.data_pos = 1
+        self.cfh.seek(0)
+        self.c = csv.reader( self.cfh )
+        try:
+            line = self.c.next()
+        except StopIteration:
+            print 'Empty data file under %s' % self.fileroot
+            print 'Remove this directory to continue'
+            sys.exit()
+        self.line = [x.split(',') for x in line]
+
+    def setCanvas(self):
+        self.canvas_position = 'top'
+        canvas = Report(self, width=self.canvas_width, height=self.canvas_height)
+        canvas.grid( row=1, column=1, rowspan=self.boxes, columnspan=2, sticky=N )
+        self.canvas = canvas
+
+    def updateImage(self, new=False):
+        if new:
+            self.canvas_position = 'top'
+        self.canvas.delete(ALL)
+        image_filename = self.images[ self.image_pos ]
+        img = Image.open( image_filename )
+        img_width,img_height = img.size
+        if img_width > self.canvas_width + 1:
+            img = self.autocrop(img, 'white')
+            factor = float(self.canvas_width)/img_width
+            if self.done:
+                yfactor = float(self.canvas_height)/img_height
+                if yfactor < factor:
+                    factor = yfactor
+            width = int( img_width*factor )
+            height = int( img_height*factor )
+            img = img.convert(mode="RGB")
+            img = img.resize((width,height),resample=1)
+            ofh = open( image_filename, 'w+')
+            img.save( ofh, format='PNG' )
+            ofh.close()
+        self.tkimg = ImageTk.PhotoImage( img )
+        if self.done:
+            self.canvas.create_image( (self.canvas_width/2,self.canvas_height/2), \
+                                      anchor='center', image=self.tkimg)
+        elif self.canvas_position == 'top':
+            self.canvas.create_image( (0,0), \
+                                  anchor='nw', image=self.tkimg)
+        elif self.canvas_position == 'bottom':
+            self.canvas.create_image( (self.canvas_width,self.canvas_height), \
+                                  anchor='se', image=self.tkimg)
+        
+
+    def makeWorkspace(self):
+        if not os.path.exists( self.configuration.validated_path ):
+            os.makedirs( self.configuration.validated_path )
+        if not os.path.exists( self.configuration.discarded_path ):
+            os.makedirs( self.configuration.discarded_path )
+        if not os.path.exists( self.configuration.raw_path ):
+            os.makedirs( self.configuration.raw_path )
+        #
+        # Temporary directory for progress info
+        self.tempdir = tempfile.mkdtemp()
+        #
+        # Hash of completed document names
+        self.dbfile = os.path.join( self.tempdir, 'filehash' )
+        self.db = dbm.open( self.dbfile, 'n')
+        for file in os.listdir( self.configuration.validated_path ):
+            self.db[file] = '1'
+        for file in os.listdir( self.configuration.discarded_path ):
+            self.db[file] = '1'
+        #
+        # List of files to process
+        self.listfile = os.path.join( self.tempdir, 'listfile' )
+        listfilesh = open( self.listfile, 'w+' )
+        files = os.listdir( os.path.join( self.configuration.raw_path ) )
+        files.sort()
+        for file in files:
+            listfilesh.write( file + '\n')
+        listfilesh.close()
+        self.files = open( self.listfile )
+        #
+        # Delete temporary directory and contents on exit
+        atexit.register( self.cleanup )
+
+    def cleanup(self):
+        self.clearTemp()
+        os.rmdir( self.tempdir )
+        
+    def clearTemp(self):
+        subdirs = []
+        subdirs.append( os.path.join( self.tempdir, 'validated') )
+        subdirs.append( os.path.join( self.tempdir, 'discarded') )
+        for subdir in subdirs:
+            if os.path.exists( subdir ):
+                for file in os.listdir( subdir ):
+                    os.unlink( os.path.join( subdir, file ) )
+                os.rmdir( subdir )        
+        for file in os.listdir( self.tempdir ):
+            os.unlink( os.path.join( self.tempdir, file ) )
+
+    def canvasTop(self, event):
+        if self.canvas_position == 'top' and self.image_pos > 0:
+            self.image_pos -= 1
+            self.canvas_position = 'bottom'
+            self.updateImage()
+        elif self.canvas_position == 'bottom':
+            self.canvas_position = 'top'
+            self.updateImage()
+    def canvasBottom(self, event):
+        if self.canvas_position == 'bottom' and self.image_pos < len(self.images)-1:
+            self.image_pos += 1
+            self.canvas_position = 'top'
+            self.updateImage()
+        elif self.canvas_position == 'top':
+            self.canvas_position = 'bottom'
+            self.updateImage()
+
+    def setTitle(self):
+        title=Label(self, fg='#aaaaaa', pady=5, font=('Arial', 13,('underline','bold')), text='Income by category')
+        title.grid( row=0, column=0, sticky=W )
+
+        pagecounter=Label(self, text='( %d / %d ) ' % (self.data_pos,self.data_length))
+        pagecounter.grid(row=0, column=2, sticky=E )
+        self.pagecounter = pagecounter
+        
+        page_total_label=Label(self, font=('Arial', 11, 'bold'), text=self.page_total )
+        page_total_label.grid( row=0, column=1, sticky=E)
+        self.page_total_label = page_total_label
+        
+        self.grid_columnconfigure(0, weight=1 )
+    
+    def setSidebar(self):
+        sections = self.ordered_sections
+        categories = len( sections )
+        box = []
+        self.box_objects = box
+        lab = []
+        
+        self.line = [[] for x in sections]
+
+        for pos in range(0,len(sections),1):
+            section = sections[pos]
+
+            length = len(self.line[pos])
+
+            lab.append( Label(self, text=section, bg='#cccccc', font=('Arial', 11, 'bold') ) )
+            lab[pos].grid( row=(pos*2)+1, column=0, pady=5, sticky='w' )
+
+            box.append( DDList(self, box, \
+                    width=20, \
+                    font=('Courier',12,'bold'), \
+                    relief=FLAT, \
+                    bg='white', \
+                    fg='black', \
+                    activestyle='none', \
+                    height=length)
+                  )
+            box[pos].grid( padx=5, row=(pos*2)+2, column=0 )
+            box[pos].cat = pos
+            box[pos].cats = categories
+
+        self.boxes = len(sections)*2+2
+
+        glue = Label(self, text='')
+        glue.grid( row=self.boxes, column=0)
+
+        self.grid_rowconfigure(self.boxes, weight=1 )
+
+        help = Frame(self)
+
+        help1 = Label(help, bg='yellow', text='Move entries with Shift+<arrow>')
+        help1.grid( row=1, column=0, pady=5)
+
+        help2 = Label(help, bg='green', text='Press "z" to save')
+        help2.grid( row=2, column=0, pady=5)
+
+        help3 = Label(help, bg='red', text='Press "D" to discard')
+        help3.grid( row=3, column=0, pady=5)
+
+        help.grid(row=self.boxes-1, column=0)
+
+    def autocrop(self, im, bgcolor):
+        bbox = None
+        if im.mode != "RGB":
+            im = im.convert("RGB")
+            bg = Image.new("RGB", im.size, bgcolor)
+            diff = ImageChops.difference(im, bg)
+            bbox = diff.getbbox()
+        if bbox:
+            return im.crop(bbox)
+        return im
+    
+if __name__ == '__main__':
+
+    tk = Constructor()
+
+    tk.mainloop()

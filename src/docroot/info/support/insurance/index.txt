@@ -1,0 +1,99 @@
+title: Insurance
+
+
+* The minimal information below is provided for 
+  convenient reference.
+  For further details on financial
+  and other matters relating to student life in the
+  University, please refer to the [Handbook for International 
+  Students][handbook], prepared by the [International
+  Student Advising Office][isa].
+{: class='sidenote'}
+
+
+[handbook]: /support/index.html#handbook_for_international_students
+
+[isa]: /support/index.html#international_student_advising_office_isa
+
+* Table of contents
+{: toc}
+
+# Required insurance
+
+
+## Personal Accident Insurance
+
+Nagoya University is a member of the scheme for "Personal
+Accident Insurance for Students pursuing Education and Research",
+a group insurance policy open to all students enrolled in
+University programs.
+Please note the following with respect
+to this insurance scheme:
+
+* Membership is mandatory for all undergraduate students;
+* Membership is encouraged for all graduate students and
+  research students (application forms should be provided
+  during University registration);
+* Membership is open to those auditing classes in the
+  University.
+
+Details on this scheme, including its (modest) premiums
+and terms of coverage, are available both in English
+and in Japanese, via the links at the top right of
+this page.  Further information is available from the [Student Affairs
+Section][sas].
+
+[sas]: /support/index.html#student_affairs_section
+
+## Insurance for Automobiles and Motorcycles
+
+International students are strongly advised against driving automobiles,
+including motorcycles, in Japan. (JDS and JICA fellows are prohibited
+from driving such vehicles.)
+
+Traffic accidents commonly result in obligations that 
+exceed the individual's ability to pay the costs,
+unless covered by both compulsory automobile liability insurance,
+(*jibaiseki-hoken* in Japanese) 
+and voluntary automobile insurance (*nin'i-hoken*).
+
+Under
+the Automobile Liability Security Law, 
+every operator of a motor vehicle or motorcycle is required
+to take out a compulsory automobile liability insurance (CALI)
+policy.  Failure to do so will result in punishment under
+this law.  The CALI policy attaches to the vehicle.
+Because motorcycles and light automobiles 
+are exempted from periodic vehicle inspections,
+the owner or the user may be unaware whether the CALI policy
+has been taken out for that vehicle.  *It is the operator's
+responsibility to be certain that the CALI policy is up to date.*
+
+The [Nagoya University Co-op][coopins] provides some options for this form of insurance.
+
+[coopins]: /support/index.html#university_coop
+
+
+# Recommended insurance
+
+
+## Supplemental accident insurance
+
+In addition, we strongly recommend that students purchase supplementary
+private insurance
+for personal accidents and sickness, including compensation for damage
+to others. This insurance can be purchased at a reasonable premium
+through the [University Co-op][coop].
+
+[coop]: /support/index.html#university_coop
+
+
+
+# Health care services
+
+Information on medical care and National Health Insurance coverage
+is available from the [ECIS website][ecis] by navigating
+to "Information for International Students" &rarr; "Daily Life" &rarr; 
+"Medical and Health Care".
+
+[ecis]: /support/index.html#education_center_for_international_students_ecis

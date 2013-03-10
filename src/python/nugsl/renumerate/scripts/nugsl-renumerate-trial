@@ -1,0 +1,113 @@
+#!/usr/bin/python
+#-*- encoding: utf8 -*-
+
+import os,sys,re,csv,dbm
+##sys.path.append( os.getcwd() )
+from nugsl.renumerate.IncomeStatement import incomeStatement
+from nugsl.renumerate.CategoryHint import categoryHinter
+from nugsl.renumerate.PenaltyEngine import penaltyEngine
+from nugsl.renumerate.Report import Report
+
+ch = categoryHinter( 'config/test-jcategories.conf' )
+pe = penaltyEngine
+
+path='/home/bennett//Desktop/Work/Research/NPO-financials/financials/pdf/naikakufu/'
+
+unpaper='unpaper -bn h -bs 1 -bd 70 -bp 1 -bt 0.9 -bi 1 -li 0.01 --overwrite --deskew-scan-step 0.05 --no-noisefilter --grayfilter-size 5 --grayfilter-step 1 --grayfilter-threshold 0.1'
+
+#path = '/home/bennett//Desktop/Work/Research/NPO-financials/financials/pdf/naikakufu/'
+#unpaper='unpaper -bn h -bs 1 -bd 70 -bp 1 -bt 0.9 -bi 1 -li 0.01 --overwrite --deskew-scan-step 0.05 --no-noisefilter --grayfilter-size 5 --grayfilter-step 1 --grayfilter-threshold 0.1'
+
+def analyze():
+    text = open('DATA.txt').read().decode('utf8')
+    incomer = incomeStatement( ch, pe )
+    incomer.read( text )
+    incomer.analyze()
+    print '\n%s' % incomer
+    return incomer
+
+if False and os.path.exists('DATA.txt'):
+    results = analyze()
+    report = Report(ch, 'attempt.csv')
+    report.generate_report('SAMPLE', results)
+    sys.exit()
+
+if os.path.exists('./filenames.db'):
+    os.unlink('./filenames.db')
+
+donefiles = dbm.open('./filenames','c')
+
+ifh = open('attempt.csv')
+c = csv.reader(ifh)
+for row in c:
+    donefiles[ row[0] ] = '1'
+ifh.close()
+
+files = os.listdir( path )
+files.sort()
+
+count = len(donefiles.keys())-1
+
+for filename in files:
+    if donefiles.has_key(filename):
+        continue
+    skip = False
+    count += 1
+    name = filename
+    print '%d: %s' % (count,name)
+
+    shfilename = filename.replace('(','\(')
+    shfilename = shfilename.replace(')','\)')
+    
+    info = os.popen('pdfinfo "%s"' % path + shfilename)
+
+    r = re.match('(?i)(?m)(?s).*pages: *([0-9])+.*',info.read())
+    pages = int(r.group(1))
+
+    for file in os.listdir('tmp'):
+        os.unlink('tmp/' + file)
+
+    found_page = False
+    not_found_count = 0
+    text = ''
+    for page in range(pages,0,-1):
+        print 'Page %d' % page
+        os.system("pdfimages -f %d -l %d '%s' tmp/DATA" % (page,page,path+filename))
+        os.system('pnmcat -tb tmp/DATA-* | pnminvert | pgmtopbm > tmp/DATA.pbm')
+        os.system('%s tmp/DATA.pbm tmp/DATA-CLEAN.pbm' % unpaper)
+        os.system('pnmtotiff tmp/DATA-CLEAN.pbm > tmp/DATA.tif')
+        os.system('tesseract tmp/DATA.tif tmp/DATA -l npx config/tess.conf')
+        try:
+            newtext = open('tmp/DATA.txt').read().decode('utf8')
+        except:
+            pdf = open(path+filename).read()
+            open('run_error/' + filename,'w+').write(pdf)
+            skip = True
+            print 'Script ERROR!'
+            break
+        
+        for file in os.listdir('tmp'):
+            os.unlink('tmp/' + file)
+
+        r = re.match('(?s)(?m).*%s.*' % ch.re_start,newtext)
+        if r:
+            found_page = True
+        if found_page and not r:
+            if not_found_count > 0:
+                break
+            else:
+                not_found_count += 1
+        text = newtext + text
+    
+    if skip:
+        continue
+        
+    open('DATA.txt','w+').write(text)
+    results = analyze()
+    if not results:
+        open('run_txt/' + filename[:-4] + '.txt','w+').write( open('DATA.txt').read() )
+        open('run_pdf/' + filename,'w+').write( open(path+filename).read() )
+    report = Report(ch, 'attempt.csv')
+    report.generate_report(filename, results)
+    
+    #sys.exit()

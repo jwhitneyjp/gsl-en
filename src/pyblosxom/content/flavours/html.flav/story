@@ -1,0 +1,12 @@
+<div class="content">
+    <div class="breadcrumbs">
+	<span class="breadcrumb"><a href='/en/'>Top</a></span> <span style='font-size:larger;'>&#8678;</span>
+    </div>
+    <a name="newstoc"></a>
+    <div class="content-pane-left">
+    $(calendar_link)
+    <div class="date">$(date)</div>
+<h2>$(title)</h2>
+$(body)
+    </div>
+</div>

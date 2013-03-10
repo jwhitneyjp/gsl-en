@@ -1,0 +1,53 @@
+title: 3. Updating from Subversion
+css: manual.css
+
+Every editor working on the site has their own
+working copy of the website.  Each editor
+commits their changes to Subversion separately,
+at different times.  Your own working copy
+shows *your* changes, of course, including changes
+that you have not yet committed.  But whenever you
+begin doing editing work, it is a good idea to
+update your working copy, to be sure that it
+reflects any changes that have been committed
+by other editors since your last update.
+
+###### Step 1
+
+![](/materials/graphic/update01_gsl-en_new.png)
+
+# Update in the top folder
+TurtleSVN will update all folders *below* the current
+folder.  To get a complete update of all files on the
+site, you will want to do your update in the top
+folder of your working copy.  In our example, this
+folder is called `gsl-en`, and is located immediately
+below `C:\\`.  The illustration to the right shows this
+folder.
+
+###### Step 2
+
+![](/materials/graphic/update02_menu_new.png)
+
+# Running an update
+To run an update, just click the right-hand mouse
+button, and select the `SVN Update` item from the
+menu.
+
+###### Step 2
+
+![](/materials/graphic/update03_gsl-en_report_new.png)
+
+# Update report
+TurtleSVN will
+pop up a window and display the listing as the
+updates are made to your working copy, ending in
+a line telling the version number in the
+repository.  If there
+are no files to update, the display will look
+like the illustration shown to the right.
+
+Note that an update may take a little time,
+depending on how many files need to be changed.
+
+

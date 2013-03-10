@@ -1,0 +1,8 @@
+title: Tagtool: regular expression editing of XML
+
+This module provides a rough and ready means of manipulating
+XML-tagged text.  It may come in handy if you know exactly what you 
+need to do to fix or transform a file, if only you could extract the
+balanced tag spans from it to work on.
+
+Enjoy.

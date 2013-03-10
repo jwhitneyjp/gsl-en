@@ -1,0 +1,11 @@
+Unknown option: -h
+usage: qu [options] [filename]"
+    -b        bootstrap qam, i.e. begin a project in the current directory
+    -d        diff qam file against local project copy
+    -e        edit mode
+    -l        list source and destination files
+    -m        process missing files
+    -q        fewer notification messages
+    -r        reverse arguments
+    -s TS,PS  map server.TS in template to server.PS in project
+    -u        update qam file in local project

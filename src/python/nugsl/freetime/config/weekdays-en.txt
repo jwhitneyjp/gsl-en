@@ -1,0 +1,15 @@
+[0]
+name: Mon
+
+[1]
+name: Tues
+
+[2]
+name: Weds
+
+[3]
+name: Thur
+
+[4]
+name: Fri
+

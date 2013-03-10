@@ -1,0 +1,35 @@
+#!/usr/bin/python
+#-*- encoding: utf8 -*-
+
+from optparse import OptionParser
+from nugsl.negotasks import outputAllocations
+import sys
+
+if __name__ == '__main__':
+    
+    parser = OptionParser()
+    parser.add_option("-i", "--input-file", dest="file", default=None,
+                      help="Excel file to use as input.")
+    # -i Team data file (autoselect Excel or plain text?)
+    # -o Output file
+    # -s Save template file (defaults to internal)
+    # -t Template file
+                      
+    (options, args) = parser.parse_args()
+    
+    if not options.file:
+        print "Must provide an Excel file to use as input"
+        parser.print_help()
+        sys.exit()
+
+    oa = outputAllocations( options.file, variexpr='.*語.*チーム.*')
+
+    oa.create_teams()
+
+    oa.allocate_to_workgroups('lawyer',['point1','point2','point3'])
+    oa.allocate_to_workgroups('lawyer',['reds','blues'])
+    oa.allocate_to_workgroups('strategist',['issue1','issue2','issue3'])
+    oa.allocate_to_workgroups('techie',['ppt','proj','pc'])
+    oa.allocate_to_workgroups('None',['reds','blues'])
+
+    oa.merge()

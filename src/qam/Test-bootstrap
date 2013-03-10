@@ -1,0 +1,33 @@
+#!/bin/sh -e
+# Copyright 2007 by Starling Software, K.K.
+# This is part of QAM from http://www.starling-software.com.
+# For license terms, see the LICENSE.QAM file included with this distribution.
+
+BASEDIR=$(cd $(dirname $0)/../..; /bin/pwd)
+project_dir=/tmp/qam-test-project.$$
+project_template=$BASEDIR
+
+if [ _"$1" = _-k ]; then
+    echo 1>&2 "Keeping $project_dir"
+else
+    trap "rm -rf $project_dir" 0
+fi
+
+expected_lighttpd_version=lighttpd-1.4.18
+actual_lighttpd_version=$(lighttpd -v | sed -n -e '/^lighttpd/s/ .*//p')
+if ! [ "$expected_lighttpd_version" = "$actual_lighttpd_version" ]; then
+    echo "Wrong version of lighttpd."
+    echo "expected $expected_lighttpd_version but was: $actual_lighttpd_version"
+    exit 1
+fi
+
+export QAM_TEMPLATE_PROJECTS=$project_template
+$BASEDIR/Install -q
+mkdir $project_dir
+cd $project_dir
+$BASEDIR/release/bin/qu -q -b -m -s template,web -u
+if [ -e release -o -e build ]; then
+    echo 1>&2 "FAILED: copied release or build"
+    exit 1
+fi
+./Test

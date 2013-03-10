@@ -1,0 +1,33 @@
+        <div class="footer nav-buttons">
+	        <a class="footer-first" style="border-left:1px solid #a0a0a0;" href="/en/programs/">Programs</a><a href="/en/admissions/">Admissions</a><a href="/en/curriculum/">Curriculum</a><a href="/en/faculty/">Staff</a><a href="/en/support/">Directory</a><a href="/en/alumni/">Alumni</a>
+          <p>
+	        <a class="commentlink" href="mailto:bennett@nagoya-u.jp">Comments on this website: <span class="tt">bennett@nagoya-u.jp</span></a>
+          </p>
+        </div>
+        <p class="footer-bold">&#169; 2007-2013 Nagoya University Graduate School of Law</p>
+      </div>
+    </div>
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ?
+      "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost +
+      "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    
+      var _gaq = _gaq || [];
+      var pluginUrl =
+       '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+      _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+      _gaq.push(['_setAccount', 'UA-4224714-1');
+      _gaq.push(['_trackPageview']);
+    
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    
+    </script>
+  </body>
+</html>

@@ -1,0 +1,78 @@
+#!/bin/sh -e
+# Copyright 2006-2007 by Starling Software, K.K.
+# This is part of QAM from http://www.starling-software.com.
+# For license terms, see the LICENSE.QAM file included with this distribution.
+
+cd $(dirname $0)
+
+THISDIR=`/bin/pwd`
+RELEASEDIR=$(cd ../../../release && /bin/pwd)
+vendor_import=$RELEASEDIR/bin/vendor-import
+
+EXPECTEDDIR=$THISDIR/expected
+TMPDIR=/tmp/test-$(basename $0).$$
+TESTREPOPATH=$TMPDIR/repo
+TESTREPO=file://$TESTREPOPATH
+CHECKOUT=$TMPDIR/checkout
+
+if [ -d $TMPDIR ]; then
+    echo 1>&2 "$TMPDIR already exists--aborting"
+    exit 1
+fi
+
+cleanup() {
+    rm -rf $TMPDIR
+    if [ -z "$PASSED" ]; then
+	echo '***** FAILED'
+	exit 1
+    fi
+}
+trap 'cleanup' EXIT
+
+mkdir $TMPDIR
+
+echo "*** Testing $(basename $0)"
+
+echo " - noargs"
+$vendor_import 2>&1 1>/dev/null \
+    | diff -u $EXPECTEDDIR/noargs - || false
+
+
+TESTAPPDIR=$THISDIR/application
+
+assert_import_equal() {
+    expected_version=$1
+    exported_version=$2
+
+    echo " - export $expected_version $exported_version"
+    svn export -q $TESTREPO/vendor/extapp/$exported_version $CHECKOUT
+    diff -ur -x .svn $TESTAPPDIR/$expected_version $CHECKOUT
+    rm -rf $CHECKOUT
+}
+
+echo " - no-repository"
+$vendor_import 2>&1 1>/dev/null file:///tmp x x \
+    | diff -u $EXPECTEDDIR/no-repository - || false
+
+svnadmin create $TESTREPOPATH
+
+echo " - invalid URL"
+$vendor_import 2>&1 1>/dev/null $TESTREPO x x \
+    file:///this-does-not-exist \
+    | diff -u $EXPECTEDDIR/invalid-url - || false
+
+echo " - import v1"
+$vendor_import $TESTREPO extapp v1 $TESTAPPDIR/v1
+assert_import_equal v1 current
+assert_import_equal v1 v1
+
+echo " - import v2"
+(cd $TESTAPPDIR/v2; $vendor_import $TESTREPO extapp v2)
+assert_import_equal v2 current
+assert_import_equal v2 v2
+
+echo " - import v3 via URL"
+$vendor_import $TESTREPO extapp v3 file://$TESTAPPDIR/v3.tar.gz
+assert_import_equal v3 current
+
+PASSED=true

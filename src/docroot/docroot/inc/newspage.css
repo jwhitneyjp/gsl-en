@@ -1,0 +1,21 @@
+/* 
+* newspage.css
+*
+*   Style specific to ordinary content pages.
+*
+* { border: 1px solid red; }
+*/
+
+h3 {
+    padding: 0px;
+    margin: 0px;
+}
+
+div.news-link { 
+    padding: 0px 4px 0px 4px; 
+    text-indent: -1em;
+}
+
+div.page-title {
+    display: none;
+}

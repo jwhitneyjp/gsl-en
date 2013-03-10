@@ -1,0 +1,200 @@
+title: Admissions
+banner-image: /image/banner-admissions.jpg
+
+* This page provides an outline of scholarships and admissions
+  for overseas applicants to the Comparative Law and
+  undergraduate programs of our faculty.
+* For scholarship and admissions information on
+  the Leading Graduate School initiative and
+  the Global 30 Program, please follow the links to the right.
+* For year-abroad or semester-abroad
+  study, please refer to the [NUPACE website][nupace] and the
+  [Campus Asia][campusasia] pages.
+{: class='sidenote'}
+
+[campusasia]: http://www.law.nagoya-u.ac.jp/project/en/Asia/index.html
+[nupace]: /support/index.html#nagoya_university_program_for_academic_exchange_nupace
+
+
+* TOC
+{: toc}
+
+# University Admissions in Japan
+
+Admission to Japanese university programs is
+ordinarily by written examination, administered either once or twice
+each year depending on the program, *in Japan*, *at the target
+university*.  An interview may also
+be required, depending on the regulations of the program and of the
+university concerned.  This admissions process is tailored to Japanese
+residents schooled within the Japanese education system, the core
+curriculum of which has a degree of national uniformity at both the
+secondary and undergraduate levels.  It is not appropriate to most
+overseas applicants.
+
+Overseas admissions are treated specially, in connection with certain
+scholarship programs or exchange agreements.  The relevant paths for
+admission to programs within the School of Law are outlined below.
+
+# Postgraduate Comparative Law Program
+
+## Country-based integrated scholarship (JDS)
+
+The JDS scholarship for participating Master's programs is coordinated
+by the [Japan International Cooperation Center (JICE)][jice], and is
+open to candidates from selected jurisdictions. The Nagoya University
+Graduate School of Law accepts candidates under this program from the
+following jurisdictions:
+
+[jice]: /support/index.html#japan_international_cooperation_center_jice
+
+
+* Cambodia
+* Mongolia
+* Myanmar
+* Uzbekistan
+* Vietnam
+
+The selection of JDS fellows is a joint project of the government of
+the target jurisdiction, the academic staff of the receiving Japanese
+university, and JICE itself. Successful applicants to the JDS program
+who specify "Law" at "Nagoya University" as a Desired Study Course
+must successfully complete the application process for the [LL.M.
+(Comparative Law) for April entry][llm-cl].  An expedited application
+review is the basis for admission. The program in this instance is two
+and a half years in length.
+
+[llm-cl]: /admissions/llm-applications/#englishtaught_aprilentry
+
+## Exchange-based integrated scholarship (Special Program)
+
+The Japan Ministry of Education, Culture, Sports, Science and
+Technology has set aside a limited number of Japanese Government
+(Mongukagakusho) Scholarships for use by universities participating in
+an initiative entitled *Government-sponsored Special Programs for the
+Preferential Placement of Foreign Students (Foreign Students for
+Research)*.  The Nagoya University Graduate School of Law has obtained
+approval under this scheme for its *Human Resources Development 
+Program to Contribute to Asian Technical Legal Assistance Projects*.
+To save space, we will refer to this initiative here as "the Special
+Program".
+
+Under the Special Program, certain academic institutions that are
+party to academic exchange agreements with the GSL or the University
+may recommend candidates for admission to the [LL.M. (Comparative Law)
+for October entry][llm-cl-oct] or the [LL.D. (Comparative Law)][lld-cl]
+programs.  The relevant institutions are the following:
+
+[llm-cl-oct]: /admissions/llm-applications#englishtaught_octoberentry
+
+
+* [Royal University of Law and Economics, Phnom Penh][rule]
+* [School of Law, National University of Laos][nuol]
+* [School of Law, Mongolian National University][mnu] (page in Mongolian)
+* [School of Law, Samarkand State University][ssu]
+* [Tashkent State Institute of Law][tsil]
+* [University of World Economy and Diplomacy, Tashkent][uwed] *(site may time out)*{: style='color:red'}
+* [Hanoi Law University][hlu] *(site may be down)*{: style='color:red'}
+* [Ho Chi Minh City University of Law][hcmcul]
+
+[ssu]: http://www.samdu.uz/?page_name=Huquqshunoslik
+[nuol]: http://nuol.edu.la/index.php/en.html
+[tsil]: http://www.tsil.uz/
+[uwed]: http://www.uwed.uz/
+[hcmcul]: http://www.hcmulaw.edu.vn/
+[hlu]: http://www.hlu.edu.vn/
+[rule]: http://www.rule.edu.kh/About_Rule.htm
+[mnu]: http://www.num.edu.mn/
+
+Selection is based on the submitted application materials, together
+with an interview in the candidate's country, where feasible.  The
+number of places for this category of preferred admission is
+coextensive with the number of scholarships available.  Successful
+applicants are not required to sit a separate entrance examination.
+The program in this instance is two years in length.
+
+[lld-cl]: /admissions/lld-applications/index.html
+
+
+## Embassy recommendation (postgraduate)
+
+The Ministry of Foreign Affairs (MOFA) administers a scholarship
+screening process each year between March and May (a [list of
+embassies and consulates general][mofa] is available).  Successful
+applicants are *recommended* to the Japan Ministry of Education,
+Culture, Sports, Science and Technology (MEXT) for the award of a
+Japanese Government (Monbukagakusho) Scholarship. This recommendation
+does *not* guarantee a place in an academic program in Japan;
+recommendees must separately secure admission on the basis of the
+study program laid out in their scholarship application.  Admission
+requires both the consent of a supervising professor, and formal
+admission by the University concerned.
+
+[mofa]: /support/index.html#japan_ministry_of_foreign_affairs_mofa
+
+Because the notification of results is often made during summer break,
+when academic staff are either on holiday or immersed in research
+work, it is generally difficult to secure the agreement of a
+supervising professor without significant advance groundwork.  We
+strongly urge candidates who believe they may be successful in the
+Embassy Recommendation screening process, and who hope to apply to the
+Graduate School of Law, to carefully study the research profiles of
+our faculty, and to make preliminary contact before the announcement
+of results, where possible. *Leaving this step to the last minute may
+result in disappointment.*
+
+In the Nagoya University Graduate School of Law, candidates entering
+with Embassy Recommendation are initially admitted as Research
+Students, and must pass an entrance examination, in principle within
+one year of arrival, in order to enter the LL.M. (Comparative Law)
+program.
+
+## Other scholarships (postgraduate)
+
+Postgraduate applicants other than
+JDS and Special Program scholars are subject to the same
+conditions as Embassy Recommendation candidates,
+entering as Research Students upon arrival in Japan,
+with admission to a degree program being subject to 
+passing the relevant entrance examination.
+
+For information on other scholarships, 
+see the website of the [Japan Student Services Organization
+(JASSO)][jasso].
+
+# Undergraduate Program
+
+## Embassy recommendation (undergraduate)
+
+The Embassy Recommendation screening process [described
+above][embassy-recommendation] is also open to undergraduate
+applicants.  The conditions of admission to the School of Law
+are similar, requiring that applicants pass the relevant
+entrance examination administered at Nagoya University,
+after arrival in Japan.  However, undergraduate students
+spend the initial year of non-degree study at the Tokyo 
+or the Osaka University of Foreign Studies for an intensive 
+period of language training.
+
+[embassy-recommendation]: #embassy_recommendation_postgraduate
+
+## Other scholarships (undergraduate)
+
+Unfortunately, there is no provision for waiver of the
+entrance examination requirement for overseas applicants
+to the undergraduate program.  The Japan Student
+Services Organization (JASSO) does administer an [Examination for
+Japanese University Admission for International Students
+(the EJU)][jasso], at a number of overseas examination sites.
+This examination is 
+recognized by some Japanese university programs as grounds 
+for direct admission, without a separate entrance examination,
+in advance of arrival in Japan.  While international
+applicants to the Nagoya University School of Law
+are required to sit this examination, it is
+not by itself sufficient for admission.  In practice,
+therefore, the Embassy Recommendation process
+described above is the sole path of admission for
+foreign applicants to the undergraduate program.
+
+[jasso]: /support/index.html#japan_student_services_organization_jasso

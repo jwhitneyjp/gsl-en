@@ -1,0 +1,24 @@
+title: Staff
+banner-image: /image/banner-faculty.jpg
+css: staff-all.css
+javascript: popup.js
+
+* This page provides a list of our faculty
+  members across all programs. For instructors
+  on individual course-taught programs, visit
+  the links to the right.
+* Note that faculty appointed specifically
+  to the Law School are able to provide supervision on
+  the Comparative Law program on a limited basis
+  only.
+{: class='sidenote'}
+
+
+<!-- 
+     This page is automatically generated.
+     Do not remove the following line.     
+-->
+
+<div style="clear:both;">&#160;</div>
+
+%%content%%

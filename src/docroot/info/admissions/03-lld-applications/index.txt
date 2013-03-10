@@ -1,0 +1,46 @@
+title: Applications (LL.D.)
+pagetitle: Applications for LL.D. Comparative Law program
+
+This program is aimed at overseas
+students who have completed a Master's program and have
+demonstrated ability in the academic study of law or politics. 
+The degree is research-based requiring the submission
+of a thesis within three years.
+The thesis, which may be written in English or Japanese,
+should contribute to the resolution of
+theoretical and practical issues faced by
+legal and political systems in transition.
+
+* # April entry
+  
+  *Please consult the application form for details
+  of the application process.*
+
+  Final application deadline
+  : *January 8, 2013*{: style='color:red'}
+
+  Download application form
+  : [April-entry LL.D.][lld-enja-apr]
+  
+  {: class='sidenote'}
+
+  [lld-enja-apr]: app-lld-cl-enja-apr
+
+
+* # October entry
+  
+  *Please consult the application form for details
+  of the application process.*
+
+  Final application deadline
+  : *January 8, 2013*{: style='color:red'}
+
+  Download application form
+  : [October-entry LL.D.][lld-enja-oct]
+  
+  {: class='sidenote'}
+
+  [lld-enja-oct]: app-lld-cl-enja-oct
+
+{: class='blocklist'}
+

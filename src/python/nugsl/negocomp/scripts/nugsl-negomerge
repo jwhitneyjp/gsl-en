@@ -1,0 +1,62 @@
+#!/usr/bin/python
+#-*- encoding: utf8 -*-
+
+if __name__ == '__main__':
+
+    import os,os.path,sys,re
+
+    from nugsl.mergetool import mergeTool
+    from nugsl.negocomp import parseOneSheetGroups as dataparser
+    from optparse import OptionParser
+
+    parser = OptionParser()
+
+    parser.add_option("-c", "--copies", dest="copies", default='0',
+                      help="Number of card copies, as a single integer or as a comma-delimited list.  In the latter case, there must be exactly one number listed for each group in the spreadsheet.")
+    parser.add_option("-f", "--file", dest="file", default='',
+                      help="NegoComp team registration file (Excel)")
+    parser.add_option("-C", "--controlcol", dest="controlcol", default='-1',
+                      help="Control column (must also set controlexpr")
+    parser.add_option("-E", "--controlexpr", dest="controlexpr", default=None,
+                      help="Print only rows that fit this regexp in controlcol")
+    (options, args) = parser.parse_args()
+
+    if not options.file:
+        parser.print_help()
+        sys.exit()
+        
+    ts = dataparser( options.file,
+      controlexpr=options.controlexpr,
+      controlcol=int(options.controlcol),
+      variexpr='.*語.*チーム.*',
+      varisub='Role',
+      varilabel='Team')
+
+    groupcount = ts.count_groups()
+    
+    if re.match('^[0-9]+$',options.copies):
+        cardcopies = [int(x) for x in [options.copies] * groupcount]
+    elif re.match('^[0-9,]+$',options.copies):
+        cardcopies = [int(x) for x in options.copies.split(',')]
+    else:
+        parser.print_help()
+        sys.exit()
+    
+    platecopies = [1] * groupcount
+
+    if len(cardcopies) != groupcount or options.copies == '0':
+        parser.print_help()
+        sys.exit()
+    
+    mf = mergeTool('cards')
+    data = ts.get_maps(copies=cardcopies,perpage=10)
+    mf.merge(data)
+
+    mf = mergeTool('arbplates')
+    data = ts.get_maps(copies=platecopies,perpage=1)
+    mf.merge(data)
+
+    mf = mergeTool('negoplates')
+    data = ts.get_maps(copies=platecopies,perpage=1)
+    mf.merge(data)
+

@@ -1,0 +1,349 @@
+#!/usr/bin/env ruby
+# Copyright 2007 by Starling Software, K.K.
+# This is part of QAM from http://www.starling-software.com.
+# For license terms, see the LICENSE.QAM file included with this distribution.
+
+require File.expand_path(__FILE__ + "/../../qam")
+
+require 'tempfile'
+
+include FileTest
+include FileUtils
+
+def error_exit(message)
+    puts(message)
+    exit(1)
+end
+
+def usage(message)
+    puts(message)
+    puts <<__EOD__
+usage: #{File.basename($0)} [options] [filename]"
+    -b        bootstrap qam, i.e. begin a project in the current directory
+    -d        diff qam file against local project copy
+    -e        edit mode
+    -l        list source and destination files
+    -m        process missing files
+    -q        fewer notification messages
+    -r        reverse arguments
+    -s TS,PS  map server.TS in template to server.PS in project
+    -u        update qam file in local project
+__EOD__
+    exit(2)
+end
+
+def quiet_puts(s)
+    puts(s) unless $quiet
+end
+
+#################################################################
+# Compare functions
+
+def list_file(file)
+    puts("#{file.source}\n    #{file.dest}")
+end
+
+def print_missing(file)
+    if file.missing?
+	puts("MISSING: #{to_s}") unless file.parent && file.parent.missing?
+	true
+    else
+	false
+    end
+end
+
+def print_filename_if_different(file)
+    return if print_missing(file)
+    return if file.directory?
+    puts(file) unless identical?(file.source, file.dest)
+end
+
+def diff_file(file)
+    return if print_missing(file)
+    return if file.directory?
+    system("diff -u #{file.dest} #{file.source}")
+end
+
+def update_file(file)
+    quiet_puts("Creating #{file}") if file.missing?
+    file.directory? ?
+	mkdir_p(file.dest) :
+	copy_file(file.source, file.dest)
+end
+
+def edit_file(file)
+    return if print_missing(file)
+    return if file.directory?
+    diff = Tempfile.new("qam:#{File.basename(file)}.diff")
+    diff.open; diff.write(`diff -u #{file.dest} #{file.source}`); diff.close
+    editor = ENV['VISUAL'] || ENV['EDITOR'] || 'vi'
+    system("#{editor} #{diff.path} #{file.dest} #{file.source}")
+ensure
+    diff.unlink if diff
+end
+
+
+#################################################################
+# Classes
+
+class FilePair
+
+    def initialize(path, parent = nil)
+	@path_components = path.split(File::SEPARATOR)
+	@parent = parent
+    end
+
+    attr_reader :path_components, :parent
+
+    def path; File.join(path_components); end
+
+    def to_s; path; end
+
+    def template_dirs
+	env_var = ENV['QAM_TEMPLATE_PROJECTS'] ||
+	    fail("QAM_TEMPLATE_PROJECTS not set in environment")
+	env_var.split(File::PATH_SEPARATOR) - [Dir.pwd]
+    end
+
+    def project_dir
+	cwd = Dir.pwd
+	raise("XXX project_dir: #{cwd} exists in QAM_TEMPLATE_PROJECTS: " + 
+	    "#{template_dirs.inspect}") if template_dirs.include?(cwd)
+	cwd
+    end
+
+    def source_dirs;	template_dirs;		end
+
+    def source
+	return template_dirs[0] if path_components.empty? 
+	found_template_dir = template_dirs.detect { |template_dir|
+	    FileTest.exists?(File.join([template_dir] + path_components))
+	}
+	found_template_dir.nil? ? found_template_dir :
+	    File.join([found_template_dir] + path_components)
+    end
+
+    def dest
+	return project_dir if path_components.empty?
+	retval = File.join([project_dir] + path_components)
+	if $server_names && retval.match("/server.#{$server_names[0]}/")
+	    retval = retval.gsub("/server.#{$server_names[0]}/",
+		"/server.#{$server_names[1]}/")
+	end
+	retval
+    end
+
+    def directory?
+	FileTest.directory?(source)
+    end
+
+    def missing?
+	!(dest && FileTest.exist?(dest))
+    end
+
+    def process(compare_function)
+	if !source
+	    puts("WARNING: not in template: #{path}")
+	else
+	    process_file(compare_function)
+	    subfiles.each { |fp| fp.process(compare_function) } if directory?
+	end
+    end
+
+    def process_file(compare_function)
+	return if missing? unless $process_missing_files
+	method(compare_function).call(self)
+    end
+
+    # XXX this is ugly code; make it nicer and more clever
+    def subfiles
+	project_paths = if path_components.length < 2
+	    source_dirs.inject([]) { |memo, template_dir|
+		    p = Dir[File.join([template_dir] + path_components + ['/*'])]
+		    memo + p.collect { |p| p.gsub(template_dir + '/', '') }
+		}.
+		uniq.
+		reject { |path| path.match(%r"^(build|instance|release)/") }.
+		sort
+	else
+	    dir = source_dirs.detect { |source_dir| 
+		FileTest.exist?(File.join([source_dir] + path_components[0..1]))
+	    }
+	    if dir.nil?
+		[]
+	    else
+		p = Dir[File.join([dir] + path_components + ['/*'])]
+		p.collect { |p| p.gsub(dir + '/', '') }.sort
+	    end
+	end
+	project_paths.collect { |path| self.class.new(path, self) }
+    end
+
+    def inspect
+	"#<FilePair:#{to_s}>"
+    end
+
+end
+
+class ReverseFilePair < FilePair
+    def source_dirs;	[project_dir];		end
+
+    alias super_source		source
+    alias super_dest		dest
+    def	 source;	super_dest;		end
+    def	 dest;		super_source;		end
+
+end
+
+
+#################################################################
+# Argument Processing and Setup
+
+$bootstrap_qam = false
+$process_missing_files = false
+$quiet = false
+compare_function = :print_filename_if_different
+
+while true; case ARGV[0]
+    when '-b':  $bootstrap_qam = true;				ARGV.shift
+    when '-d':	compare_function = :diff_file;			ARGV.shift
+    when '-e':	compare_function = :edit_file;			ARGV.shift
+    when '-l':	compare_function = :list_file;			ARGV.shift
+    when '-m':	$process_missing_files = true;			ARGV.shift
+    when '-q':  $quiet = true;					ARGV.shift
+    when '-r':	reverse_mode = true;				ARGV.shift
+    when '-s':  ARGV.shift
+		$server_names = ARGV[0].split(',')
+		usage("-s requires 'tmpl_name,proj_name'") unless 
+		    $server_names.length == 2
+								ARGV.shift
+    when '-u':	compare_function = :update_file;		ARGV.shift
+    when /^-/:	usage("Unknown option: #{ARGV[0]}")
+    else	break
+end; end
+
+args = ARGV.empty? ? [''] : ARGV
+
+#################################################################
+# Main
+
+if $bootstrap_qam
+    if File.directory?('.svn')
+	ignores = %w[ build instance release tmp ].join("\n") + "\n"
+	system('svn', 'propset', 'svn:ignore', ignores, '.')
+    end
+    %w[ src extsrc ].each { |dir| mkdir_p(dir) }
+    %w[ Install Test src/Install src/Test src/qam extsrc/Install ].each { |f|
+	fp = FilePair.new(f)
+	FileTest.file?(fp.source) ?
+	    FileUtils.cp(fp.source, fp.dest) :
+	    QAM::Install.new.install_tree(fp.source, fp.dest)
+    }
+end
+
+missing_dirs = %w[ src extsrc ].select { |d| !directory?(d) }
+unless missing_dirs.empty?
+    error_exit("The current directory, #{Dir.pwd},\n" +
+	"does not appear to be the base directory of a QAM project.\n" +
+	"Missing dirs: #{missing_dirs.join(' ')}")
+end
+
+args.each { |path|
+    fp = (reverse_mode ? ReverseFilePair : FilePair).new(path) 
+    fp.process(compare_function)
+}
+
+%w[
+    src/qam/lib/qam/applicationconf.rb
+    src/qam/lib/qam/applicationconf.rt
+    src/qam/lib/web/dispatcher.rt
+    src/server/lib/qam/applicationconf.rb
+    src/server/lib/qam/applicationconf.rt
+    src/server/server
+    src/server/fcgips
+    extsrc/gnu-configure
+    extsrc/gnu-configure/Install
+    extsrc/ruby/Install
+    extsrc/other
+    extsrc/other/Install
+    qam
+
+    # QAM rename
+    src/qam/docroot-test-data
+    src/qam/docroot-test-data/en
+    src/qam/docroot-test-data/en/test
+    src/qam/docroot-test-data/en/test/file.with.dots.html
+    src/qam/docroot-test-data/en/test/hello.html
+    src/qam/docroot-test-data/en/test/hello.txt
+    src/qam/docroot-test-data/en/test/index.html
+    src/qam/docroot-test-data/ja
+    src/qam/docroot-test-data/ja/test
+    src/qam/docroot-test-data/ja/test/file.with.dots.html
+    src/qam/docroot-test-data/ja/test/hello.html
+    src/qam/docroot-test-data/ja/test/hello.txt
+    src/qam/docroot-test-data/ja/test/index.txt
+    src/qam/docroot-test-data/test
+    src/qam/docroot-test-data/test/rweb
+    src/qam/docroot-test-data/test/rweb/docroot-static-content-redirect
+    src/qam/docroot-test-data/test/rweb/docroot-static-content-redirect/file.html
+    src/qam/docroot-test-data/test/rweb/docroot-static-content-redirect/file.txt
+    src/qam/lib/multisub.rb
+    src/qam/lib/multisub.rt
+    src/qam/lib/qam/cachedfileparser.rb
+    src/qam/lib/qam/cachedfileparser.rt
+    src/qam/lib/qam/db.rb
+    src/qam/lib/qam/db.rt
+    src/qam/lib/qam/web
+    src/qam/lib/qam/web/form.rb
+    src/qam/lib/qam/web/form.rt
+    src/qam/lib/qam/web/formtestcase.rb
+    src/qam/lib/web
+    src/qam/lib/web/browserdb.rb
+    src/qam/lib/web/dispatch.rb
+    src/qam/lib/web/dispatcher.rb
+    src/qam/lib/web/fcgi.rb
+    src/qam/lib/web/httprange.rb
+    src/qam/lib/web/httprange.rt
+    src/qam/lib/web/keitaiauthentication.rb
+    src/qam/lib/web/keitaiauthentication.rt
+    src/qam/lib/web/servlet
+    src/qam/lib/web/servlet.rb
+    src/qam/lib/web/servlet.rt
+    src/qam/lib/web/servlet/docroot.rb
+    src/qam/lib/web/servlet/docroot.rt
+    src/qam/lib/web/servlet/status.rb
+    src/qam/lib/web/servlet/test.rb
+    src/qam/lib/web/servlet/testform.rb
+    src/qam/lib/web/servlet_i18n.rb
+    src/qam/lib/web/useragent-lookup
+    src/qam/lib/web/useragent-lookup/au-device-to-model.rb
+    src/qam/lib/web/useragent-test-data
+    src/qam/lib/web/useragent.rb
+    src/qam/lib/web/useragent.rt
+    src/qam/template-test-data
+    src/qam/template-test-data/testform.html
+    src/qam/webtest
+    src/qam/webtest/error-log.web.expected
+    src/qam/webtest/error-log.web.expected.sed
+    src/qam/webtest/pretest.rt
+    src/qam/webtest/run-tests
+    src/qam/webtest/setup-servers.rb
+    src/qam/webtest/test
+    src/qam/webtest/test/docomo.rt
+    src/qam/webtest/test/docroot.rt
+    src/qam/webtest/test/form.rt
+    src/qam/webtest/test/i18n.rt
+    src/qam/webtest/test/params.rt
+    src/qam/webtest/test/softbank.rt
+
+    src/miniqam
+
+    LICENSE
+    README
+
+    src/qam/test-qu/expected/out.-?
+
+].each { |path|
+    fp = FilePair.new(path)
+    puts("OBSOLETE: #{path}") unless fp.missing?
+}

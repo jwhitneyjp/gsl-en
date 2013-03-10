@@ -1,0 +1,688 @@
+project negocomp "Negotiation Competition" "1.0" 2008-09-01 - 2008-12-01 {
+  # Pick a day during the project that will be reported as 'today' in
+  # the project reports. If not specified, the current day will be
+  # used, but this will likely be outside of the project range, so it
+  # can't be seen in the reports.
+  now 2007-12-03-12:00
+
+  # Hide the clock time. Only show the date.
+  timeformat "%Y-%m-%d"
+  
+  # Use US format for numbers
+  numberformat "-" "" "," "." 1
+  
+  # Use US financial format for currency values. Don't show pence.
+  currencyformat "(" ")" "," "." 0
+  
+  # The currency for all money values is the Euro.
+  currency "YEN"
+
+  # We want to compare the baseline scenario to one with a slightly
+  # delayed start.
+  scenario plan "Plan" {
+    # Mark all paths as critical that have less than 10% slack time.
+    projection
+    scenario delayed "Delayed"
+  }
+}
+
+# This is not a real copyright for this file. It's just used as an example.
+copyright "© 2002 Red, Inc."
+
+# The daily default rate of all resources. This can be overridden for each
+# resource. We specify this, so that we can do a good calculation of
+# the costs of the project.
+rate 1000
+
+# Register Good Friday as a global holiday for all resources.
+vacation "Christmas" 2008-12-25
+
+##
+## This requires careful thought.  Students work
+## in pairs on all tasks, to maximize participation
+## and to provide inspiration and discipline.
+##
+## Pairs are not persistent; pairings will cut
+## across groups in some cases, be within groups
+## in others.
+##
+## 
+##
+
+
+## Allocations start ##
+resource team1 "Team 1" {
+  resource t1m1 "Natsumi Ichikawa" { limits { dailymax 2h weeklymax 8h } }
+  resource t1m2 "Mai Yamanaka" { limits { dailymax 2h weeklymax 8h } }
+  resource t1m3 "Satoko Kimura" { limits { dailymax 2h weeklymax 8h } }
+  resource t1m4 "Saho Kamiya" { limits { dailymax 2h weeklymax 8h } }
+  resource t1m5 "Lisa Sudo" { limits { dailymax 2h weeklymax 8h } }
+  resource t1m6 "Mayu Takehashi" { limits { dailymax 2h weeklymax 8h } }
+}
+resource team2 "Team 2" {
+  resource t2m1 "Marina Shin" { limits { dailymax 2h weeklymax 8h } }
+  resource t2m2 "Felippe Araujo" { limits { dailymax 2h weeklymax 8h } }
+  resource t2m3 "Pei-Yi Wang" { limits { dailymax 2h weeklymax 8h } }
+  resource t2m4 "Joo Young Kim" { limits { dailymax 2h weeklymax 8h } }
+}
+resource team3 "Team 3" {
+  resource t3m1 "Victoria Kemendy" { limits { dailymax 2h weeklymax 8h } }
+  resource t3m2 "Soohyun Lee" { limits { dailymax 2h weeklymax 8h } }
+  resource t3m3 "Diliana Stoyanova" { limits { dailymax 2h weeklymax 8h } }
+  resource t3m4 "Wei Yao" { limits { dailymax 2h weeklymax 8h } }
+}
+resource team4 "Team 4" {
+  resource t4m1 "Gabriela Dumitru" { limits { dailymax 2h weeklymax 8h } }
+  resource t4m2 "Alexander Schindler" { limits { dailymax 2h weeklymax 8h } }
+  resource t4m3 "Y Samphy" { limits { dailymax 2h weeklymax 8h } }
+  resource t4m4 "Kalbunur Kayum" { limits { dailymax 2h weeklymax 8h } }
+}
+macro allocate_teams [
+    allocate team1
+    allocate team2
+    allocate team3
+    allocate team4
+]
+macro allocate_nonlawyers [
+    allocate t1m2
+    allocate t1m5
+    allocate t1m3
+    allocate t1m6
+    allocate t1m4
+    allocate t2m2
+    allocate t2m3
+    allocate t2m4
+    allocate t3m1
+    allocate t3m2
+    allocate t3m4
+    allocate t4m1
+    allocate t4m3
+    allocate t4m4
+]
+macro allocate_nonlawyer_point1 [
+    allocate t1m2
+    allocate t1m5
+    allocate t2m2
+    allocate t3m1
+    allocate t4m1
+]
+macro allocate_nonlawyer_point2 [
+    allocate t1m3
+    allocate t1m6
+    allocate t2m3
+    allocate t3m2
+    allocate t4m3
+]
+macro allocate_nonlawyer_point3 [
+    allocate t1m4
+    allocate t2m4
+    allocate t3m4
+    allocate t4m4
+]
+macro allocate_lawyer_point1_point2_point3_briefing [
+    allocate t1m1, t1m2 { alternative t1m5 select minallocated persistent }, t1m3 { alternative t1m6 select minallocated persistent }, t1m4
+    allocate t2m1, t2m2, t2m3, t2m4
+    allocate t3m3, t3m1, t3m2, t3m4
+    allocate t4m2, t4m1, t4m3, t4m4
+]
+macro allocate_lawyers [
+    allocate t1m1
+    allocate t2m1
+    allocate t3m3
+    allocate t4m2
+]
+macro allocate_nonlawyer_reds [
+    allocate t1m2
+    allocate t1m4
+    allocate t1m6
+    allocate t2m2
+    allocate t2m4
+    allocate t3m1
+    allocate t3m4
+    allocate t4m1
+    allocate t4m4
+]
+macro allocate_nonlawyer_blues [
+    allocate t1m3
+    allocate t1m5
+    allocate t2m3
+    allocate t3m2
+    allocate t4m3
+]
+macro allocate_lawyer_reds_blues_briefing [
+    allocate t1m1, t1m2 { alternative t1m4, t1m6 select minallocated persistent }, t1m3 { alternative t1m5 select minallocated persistent }
+    allocate t2m1, t2m2 { alternative t2m4 select minallocated persistent }, t2m3
+    allocate t3m3, t3m1 { alternative t3m4 select minallocated persistent }, t3m2
+    allocate t4m2, t4m1 { alternative t4m4 select minallocated persistent }, t4m3
+]
+macro allocate_nonstrategists [
+    allocate t1m1
+    allocate t1m5
+    allocate t1m3
+    allocate t1m6
+    allocate t1m4
+    allocate t2m1
+    allocate t2m3
+    allocate t2m4
+    allocate t3m1
+    allocate t3m2
+    allocate t3m3
+    allocate t4m2
+    allocate t4m3
+    allocate t4m4
+]
+macro allocate_nonstrategist_issue1 [
+    allocate t1m1
+    allocate t1m5
+    allocate t2m1
+    allocate t3m1
+    allocate t4m2
+]
+macro allocate_nonstrategist_issue2 [
+    allocate t1m3
+    allocate t1m6
+    allocate t2m3
+    allocate t3m2
+    allocate t4m3
+]
+macro allocate_nonstrategist_issue3 [
+    allocate t1m4
+    allocate t2m4
+    allocate t3m3
+    allocate t4m4
+]
+macro allocate_strategist_issue1_issue2_issue3_briefing [
+    allocate t1m2, t1m1 { alternative t1m5 select minallocated persistent }, t1m3 { alternative t1m6 select minallocated persistent }, t1m4
+    allocate t2m2, t2m1, t2m3, t2m4
+    allocate t3m4, t3m1, t3m2, t3m3
+    allocate t4m1, t4m2, t4m3, t4m4
+]
+macro allocate_strategists [
+    allocate t1m2
+    allocate t2m2
+    allocate t3m4
+    allocate t4m1
+]
+macro allocate_nontechies [
+    allocate t1m1
+    allocate t1m4
+    allocate t1m2
+    allocate t1m5
+    allocate t1m3
+    allocate t2m1
+    allocate t2m2
+    allocate t2m3
+    allocate t3m1
+    allocate t3m3
+    allocate t3m4
+    allocate t4m1
+    allocate t4m2
+    allocate t4m4
+]
+macro allocate_nontechie_ppt [
+    allocate t1m1
+    allocate t1m4
+    allocate t2m1
+    allocate t3m1
+    allocate t4m1
+]
+macro allocate_nontechie_proj [
+    allocate t1m2
+    allocate t1m5
+    allocate t2m2
+    allocate t3m3
+    allocate t4m2
+]
+macro allocate_nontechie_pc [
+    allocate t1m3
+    allocate t2m3
+    allocate t3m4
+    allocate t4m4
+]
+macro allocate_techie_ppt_proj_pc_briefing [
+    allocate t1m6, t1m1 { alternative t1m4 select minallocated persistent }, t1m2 { alternative t1m5 select minallocated persistent }, t1m3
+    allocate t2m4, t2m1, t2m2, t2m3
+    allocate t3m2, t3m1, t3m3, t3m4
+    allocate t4m3, t4m1, t4m2, t4m4
+]
+macro allocate_techies [
+    allocate t1m6
+    allocate t2m4
+    allocate t3m2
+    allocate t4m3
+]
+macro allocate_reds [
+    allocate t1m1
+    allocate t1m3
+    allocate t1m5
+    allocate t2m1
+    allocate t2m3
+    allocate t3m1
+    allocate t3m3
+    allocate t4m1
+    allocate t4m3
+]
+macro allocate_blues [
+    allocate t1m2
+    allocate t1m4
+    allocate t1m6
+    allocate t2m2
+    allocate t2m4
+    allocate t3m2
+    allocate t3m4
+    allocate t4m2
+    allocate t4m4
+]
+## Allocations end ##
+
+# In order to do a simple profit and loss analysis of the project we
+# specify accounts. One for the development costs, one for the
+# documentation costs, and one account to credit the customer payments
+# to.
+account cost "Project Cost" {
+  account drafting "Drafting"
+  account research "Legal Research"
+  account technical "Technical Research"
+  account training "Training"
+  account admin "Administrative"
+}
+
+account rev "Payments"
+
+# The Profit&Loss analysis should be rev - cost accounts.
+balance cost rev
+
+# Now we specify the work packages. The whole project is described as
+# a task that contains subtasks. These subtasks are then broken down
+# into smaller tasks and so on. The innermost tasks describe the real
+# work and have resources allocated to them. Many attributes of tasks
+# are inherited from the enclosing task. This saves you a lot of typing.
+task NegoComp "Negotiation Competition" {
+
+  # All work-related costs will be booked to this account unless the
+  # subtasks specify something different.
+  chargeset admin
+  # For the duration of the project we have running cost that are not
+  # included in the labor cost.
+  charge 0 perday
+  priority 500
+
+  # All tasks should have an observable result visible to Nego Central
+
+  task register "Registration" {
+    milestone
+    start 2008-10-15
+    start 2008-10-20
+  }
+  
+  task secretinfo "Secret info and matches" {
+    milestone
+    start 2008-10-19
+  }
+  
+  task questions "Questions to organizers" {
+    milestone
+    start 2008-11-05
+  }
+
+  task arbmemo "Exchange of briefs" {
+    milestone
+    start 2008-11-23
+  }
+  
+  task negomemo "Exchange of memos" {
+    milestone
+    start 2008-11-28
+  }
+
+  task reading "Read facts" {
+      # 6h
+      effort 72h
+      ${allocate_teams}
+      start 2008-10-01
+  }
+    
+  task arbprep "Prepare for Arbitration" {
+
+    depends !reading
+    
+    task arbbase "Arbitration foundation prep" {
+    
+      task arbmatch "Match facts to legal issues" {
+          # 4h
+          effort 48h
+          ${allocate_nonlawyers}
+      }
+      
+      task arbmeeting1 "Case prep meeting 1" {
+          # 1.5h
+          effort 8h
+	  ${allocate_lawyer_point1_point2_point3_briefing}
+	  depends !arbmatch
+      }
+      
+      task arbpresentation1 "Case presentation 1" {
+          # 1.5h
+          effort 1.5h
+	  ${allocate_lawyers}
+	  depends !arbmeeting1
+	  start 2008-10-08
+      }
+      
+      task arbmodelargs "Counter arguments" {
+      
+        depends !arbpresentation1
+	    
+        task arbred "Model arguments for Red" {
+	    # 5h
+            effort 40h
+            ${allocate_reds}
+        }
+      
+        task arbblue "Model arguments for Blue" {
+	    # 5h
+            effort 40h
+            ${allocate_blues}
+        }
+      }
+      
+      task arbcomp "Compare arguments" {
+          # 3h
+          effort 36h
+          ${allocate_lawyers}
+	  depends !arbmodelargs
+      }
+    }
+    
+    task arbfinalize "Finalize arbitration prep" {
+    
+      depends !arbbase
+      
+        task arbrefine "Refine arguments for Red" {
+	    # 2h
+            effort 24h
+            ${allocate_teams}
+        }
+      
+        task arbdraft "Rough draft" {
+	    effort 36h
+            ${allocate_teams}
+	    depends !arbrefine
+	}
+	
+	task arbformat "Formatting review" {
+	    effort 3h
+            ${allocate_teams}
+	    depends !arbdraft
+	}
+	
+	task arbsubmit "Finalize and submit brief" {
+	    effort 3h
+            ${allocate_teams}
+	    depends !arbformat
+	}
+    }
+    
+    task arbrehearsal "Arbitration rehearsal" {
+    
+      depends !arbfinalize
+      
+      task arbpractice1 "Practice arbitration 1" {
+          effort 24h
+          ${allocate_teams}
+      }
+
+      task arbfeedback "Self-appraisal and comments" {
+          effort 12h
+          ${allocate_teams}
+	  depends !arbpractice1
+      }
+      
+      task arbread "Receive and read Blue brief" {
+          effort 24h
+          ${allocate_teams}
+	  depends !!!arbmemo
+      }
+      
+      task arbanalysis "Identify novel arguments in Blue brief" {
+          effort 24h
+          ${allocate_teams}
+	  depends !arbread
+      }
+
+      task arbpractice2 "Practice arbitration 2" {
+          effort 24h
+          ${allocate_teams}
+	  depends !arbanalysis
+      }
+    }
+  }
+  
+  task arblogistics "Arbitration logistics" {
+        effort 12h
+	depends !arbprep
+        ${allocate_teams}
+  }
+    
+  task negoprep "Negotiation preparation" {  
+  
+    depends !reading
+    
+    task negobasic "Negotiation foundation" {
+    
+      task negoreading "Analyze negotiation facts" {
+      
+        task eval "Evaluate critical dates and docs" {
+          effort 48h
+	  ${allocate_nontechies}
+        }
+    
+        task tech "Technical research" {
+          effort 24h
+	  ${allocate_techies}
+        }
+      }
+    
+      task negoroles "Team and role assignments" {
+        effort 12h
+	${allocate_teams}
+	depends !negoreading
+      }
+    
+      task roles "Register roles" {
+        milestone
+        start 2008-10-29
+        depends !negoroles
+      }
+  
+      task negopoints "Identify points for negotiation" {
+        effort 12h
+	${allocate_teams}
+	depends !negoreading
+      }
+    }
+    
+    task negostrategy "Negotiation strategizing" {
+    
+      depends !negobasic
+    
+      task negolegal "Legal research" {
+        effort 72h
+	${allocate_teams}
+      }
+    
+      task negobatna "BATNA analysis" {
+        effort 48h            
+	${allocate_teams}
+	depends !negolegal
+      }
+    
+      task negorisk "Rank risks" {
+        effort 60h
+	${allocate_teams}
+	depends !negobatna
+      }
+    
+      task negoredint "Identify Red interests" {
+        effort 36h            
+	${allocate_reds}
+	depends !negorisk
+      }
+    
+      task negoblueint "Model Blue interests" {
+        effort 36h            
+	${allocate_blues}
+	depends !negorisk
+      }
+    }
+    
+    task negorehearsal "Negotiation rehearsal" {
+      depends !negostrategy
+    
+      task negopractice1 "Practice negotiation 1" {
+        effort 24h
+	${allocate_teams}
+      }
+    
+      task negofeedback "Self-appraisal and comments" {
+        effort 18h            
+	${allocate_teams}
+	depends !negopractice1
+      }
+    
+      task negodocs "Document preparation" {
+        effort 72h            
+	${allocate_teams}
+	depends !negofeedback
+      }
+    
+      task negodraft "Draft negotiation memorandum" {
+        effort 24h            
+	${allocate_teams}
+	depends !negofeedback
+      }
+    
+      task negopractice2 "Practice negotiation 2" {
+        effort 24h
+	${allocate_teams}
+	depends !negodocs
+      }
+    }
+    
+    task negofinalization "Negotiation finalization" {
+      depends !negorehearsal
+      task negopresent "Set presentation strategy" {
+        effort 48h
+	${allocate_teams}
+      }
+    }
+    
+  }
+  
+  task negologistics "Negotiation logistics" {
+        effort 6h
+	depends !negoprep
+        ${allocate_teams}
+  }
+    
+  task logistics "Tokyo trip logistics" {
+      effort 6h
+      ${allocate_teams}
+      depends !arbprep
+      depends !negoprep
+  }
+}
+
+# Now the project has been specified completely. Stopping here would
+# result in a valid TaskJuggler file that could be processed and
+# scheduled. But no reports would be generated to visualize the
+# results.
+
+# A traditional Gantt chart with a project overview.
+htmltaskreport "ProjectPlanOverview.html" {
+  prolog '
+== Negotiation Competition ==
+'
+
+  headline "Project Plan Overview"
+  #columns hierarchindex, name, start, end, effort, duration, cost,
+  #        revenue, chart
+  columns name, chart { scale day width 750 }
+  # For this report we like to have the abbreviated weekday in front
+  # of the date. %a is the tag for this.
+  start 2008-10-01
+  end 2008-12-02
+  timeformat "%a %Y-%m-%d"
+  loadunit hours
+  hideresource 1
+  balance cost rev
+  caption '
+All effort values are in man days.
+'
+
+  epilog '
+=== More Details ===
+
+* [[ResourceGraph]]
+* [[ResourceUsage]]
+* [[TaskUsage]]
+'
+
+}
+
+# A graph showing resource allocation. It identifies whether each
+# resource is under- or over-allocated for.
+htmlresourcereport "ResourceGraph.html" {
+  headline "Resource Allocation Graph"
+  columns no, name, effort, rate, daily #, utilization, freeload, chart
+  loadunit hours
+  hidetask ~isLeaf()
+  sorttasks plan.start.up
+  epilog '
+=== More Details ===
+
+* [[ProjectPlanOverview]]
+* [[ResourceUsage]]
+* [[TaskUsage]]
+'
+
+}
+
+
+
+# A list of resources and each task associated with each resource.
+htmlresourcereport "ResourceUsage.html" {
+  headline "Resource Usage Report"
+  columns no, name, chart { scale day } #, utilization, freeload, cost, chart
+  loadunit days
+  sorttasks plan.start.up
+  hidetask ~isLeaf()
+  end 2008-12-02
+  epilog '
+=== More Details ===
+
+* [[ProjectPlanOverview]]
+* [[ResourceGraph]]
+* [[TaskUsage]]
+'
+}
+
+
+# A list of tasks showing the resources assigned to each task.
+htmltaskreport "TaskUsage.html" {
+  headline "Task Allocation Report"
+  columns hierarchindex, name, start, end, effort { title "Work" },
+          duration, chart { scale day }
+  timeformat "%Y-%m-%d"
+  loadunit days
+  hideresource ~isLeaf()
+  sortresources name.up
+  epilog '
+=== More Details ===
+
+* [[ProjectPlanOverview]]
+* [[ResourceGraph]]
+* [[ResourceUsage]]
+'
+}
+

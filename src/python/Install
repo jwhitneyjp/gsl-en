@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require File.expand_path(__FILE__ + '/../../../release/qam')
+i = QAM::Install.new; d = i.dirs
+
+i.install_tree(d.mine('lib'), d.release('lib', 'python'))

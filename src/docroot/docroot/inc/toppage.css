@@ -1,0 +1,111 @@
+/* 
+* toppage.css
+*
+*   Style specific to ordinary content pages.
+*
+* { border: 1px solid red; }
+*/
+
+a.calendar-link {
+    display: block;
+    border-radius: 10px 10px 0 0;
+    margin-top: 0.5em;
+    float: right;
+    text-align: center;
+    font-family: Lato,sans;
+    font-weight: 900;
+    cursor: pointer; 
+    font-size: 70%;
+    border-bottom: 1px solid #800000 !important;
+    border-left: 1px solid #800000;
+    border-right: 1px solid #800000;
+    color: #000000;
+    -moz-box-shadow: 3px 3px 4px #000;
+    -webkit-box-shadow: 3px 3px 4px #000;
+    box-shadow: 3px 3px 4px #000;
+    /* For IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+    /* For IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+    width: 6em;
+}
+
+a.calendar-link div.month {
+   background: #800000;
+   border-radius: 10px 10px 0 0;
+   padding: 0.25em 0.5em 0.25em 0.5em;
+   color: #ffffff;
+}
+
+a.calendar-link div.day {
+    font-size: 200%;
+}
+
+a.calendar-link + div.date {
+  display: none;
+}
+
+div.news-link i {
+    font-size: smaller;
+}
+
+blockquote p {
+  padding: 0px;
+  margin: 0.2em;
+}
+
+div.date {
+  float: right;
+  font-size: larger;
+  font-style: italic;
+}
+
+h2 {
+  clear:left;
+  padding-top: 0.5em;
+}
+
+h2:before {
+   content: url("/icon/redspot.png")
+}
+
+a.icon img {
+    margin: 0 0 -4px 0;
+    float: none;
+}
+
+div.page-title {
+    display: none;
+}
+
+div.dean {
+    margin-top:2em;
+    text-align:left;
+    margin-bottom: 2em;
+}
+
+div.dean span {
+    background:#800000;
+    padding: 0.5em 1.5em 0.5em 1.5em;
+    border-radius: 1em;
+    border-top: 1px solid #800000;
+}
+
+div.dean a {
+    color:#ffffff;
+    font-family: Lato,sans;
+    font-weight: 900;
+    /* border-left: 1px solid #a0a0a0; */
+    /* border-right: 1px solid #a0a0a0; */
+    padding: 0.5em 0.5em 0.5em 0.5em;
+    border-top: none;
+    border-bottom: none;
+}
+
+div.dean a:hover {
+    background: url('/image/2_menuh_b_bg_on.gif') repeat scroll 0% 0% rgb(0,0,0);
+}
+
+div.dean a:active {
+    background: url('/image/2_menuh_b_bg_cr.gif') repeat scroll 0% 0% rgb(79,79,79);
+}

@@ -1,0 +1,800 @@
+#!/usr/bin/python
+#-*- encoding: utf8 -*-
+
+#
+# Soron kakuron
+# Comparison: mechanics of meaningful comparisons
+# Possibly step through revamps of a recent research work of my own,
+# with full disclosure of weaknesses.
+#
+
+import os,sys
+from datetime import date
+from nugsl.datetool import dateDelta
+from Tkinter import Tk, Label, END, SINGLE, Button, Frame, ALL, LEFT, FLAT, RIGHT, CENTER, DISABLED, ACTIVE
+from Tkinter import E, W, NW,SE, N, Entry, Toplevel, Canvas, Listbox, Scrollbar, S, BOTTOM, MULTIPLE, Message, NORMAL
+from Tkinter import Text
+from nugsl.freetime import freetimeConfig, keyEngine, FreetimeKeyError
+from cPickle import Pickler, Unpickler
+from paramiko import SSHClient
+import atexit
+from nugsl.freetime import tkSimpleDialog
+
+class MessagePopup(tkSimpleDialog.Dialog):
+
+    def body(self, master):
+
+        height = len(self.userinfo) + 1
+        self.t = Text(master, height=height, background='#ffffff')
+        self.t.tag_config('name', font=('Helvetica', 10, 'normal'), justify=LEFT, background='#ffffff')
+        self.t.tag_config('mail', font=('Courier', 11, 'normal'), justify=LEFT, background='#dddddd')
+        self.t.tag_config('telephone', font=('Courier', 11, 'normal'), justify=LEFT, background='#ffffff')
+        self.t.tag_config('punctuation', font=('Helvetica', 10, 'normal'), justify=LEFT, background='#ffffff')
+        for user in self.userinfo:
+            self.t.insert( END, '%s' % user[1], ('name',) )
+            self.t.insert( END, ' ', ('punctuation',) )
+            self.t.insert( END, '%s' % user[2], ('mail',) )
+            self.t.insert( END, ' ', ('punctuation',) )
+            self.t.insert( END, '%s' % user[3], ('telephone',) )
+            self.t.insert( END, '\n', ('punctuation',) )
+        self.t.grid(row=0, column=0)
+        self.t.config(selectborderwidth=0, selectforeground='#000000', selectbackground='#3333ff', state=DISABLED)
+
+    def buttonbox(self):
+        box = Frame(self)
+        w = Button(box, text="OK", command=self.ok, default=ACTIVE)
+        w.pack(side=LEFT, padx=5, pady=5)
+        w = Button(box, text="Addresses to clipboard", command=self.clip, default=ACTIVE)
+        w.pack(side=RIGHT, padx=5, pady=5)
+        self.bind("<Return>", self.ok)
+        self.bind("<s>", self.clip)
+
+        box.pack()
+        return box
+    
+    def clip(self, *event):
+        names = self.t.tag_ranges('name')
+        addresses = self.t.tag_ranges('mail')
+        mailstring = ''
+        for i in range(0, len(names), 2):
+            name_start = names[i]
+            name_stop = names[i+1]
+            name = repr(self.t.get(name_start, name_stop))
+            mail_start = addresses[i]
+            mail_stop = addresses[i+1]
+            mail = repr(self.t.get(mail_start, mail_stop))
+            mailstring += '"%s" <%s>,\n' % (name[1:-1],mail[1:-1])
+        self.t.clipboard_clear()
+        self.t.clipboard_append( mailstring )
+        self.ok(None)
+
+class GroupPopup(tkSimpleDialog.Dialog):
+
+    def body(self, master):
+
+        self.title('Group/Committee')
+
+        self.listbox = Listbox(master, activestyle='none')
+        self.listbox.grid(row=0, column=0)
+
+        for group in self.parent.setup.groups:
+            self.listbox.insert(END, group)
+
+        self.listbox.selection_set( self.select, last=self.select )
+
+        scrollbar = Scrollbar(master)
+        scrollbar.grid(row=0, column=1, sticky=N+S)
+
+        self.listbox.config(yscrollcommand=scrollbar.set)
+        scrollbar.config(command=self.listbox.yview)
+
+        return self.listbox
+
+    def apply(self):
+        self.parent.setup.groups_pos = int( self.listbox.curselection()[0] )
+        self.parent.refresh_groups()
+
+    def buttonbox(self):
+        box = Frame(self)
+        w = Button(box, text="OK", width=10, command=self.ok, default=ACTIVE)
+        w.pack(side=BOTTOM, padx=5, pady=5)
+        self.bind("<Return>", self.ok)
+
+        box.pack()
+        return box
+
+class StaffStudentPopup(tkSimpleDialog.Dialog):
+
+    def body(self, master):
+
+        self.listbox = Listbox(master, activestyle='none', selectmode=MULTIPLE, width=35)
+        self.listbox.grid(row=0, column=0)
+        self.groupkey = self.parent.setup.groups[ self.parent.setup.groups_pos ]
+
+        self.update()
+
+        scrollbar = Scrollbar(master)
+        scrollbar.grid(row=0, column=1, sticky=N+S)
+
+        self.listbox.config(yscrollcommand=scrollbar.set)
+        scrollbar.config(command=self.listbox.yview)
+
+        return self.listbox
+
+    def apply(self):
+        keys = []
+        for selection in [int(x) for x in self.listbox.curselection() ]:
+            #
+            # When building the lists of persons occupied in each
+            # time slot, feed in the unified key.
+            keys.append( self.category + '::' + self.parent.setup.users[ self.category ][ selection ][ 0 ])
+        for pos in range(len(self.parent.setup.groups_data[ self.groupkey ])-1,-1,-1):
+            if self.parent.setup.groups_data[ self.groupkey ][pos].split('::')[0] == self.category:
+                self.parent.setup.groups_data[ self.groupkey ].pop(pos)
+        self.parent.setup.groups_data[ self.groupkey ].extend( keys )
+        self.parent.redisplay()
+
+    def buttonbox(self):
+        box = Frame(self)
+        w = Button(box, text="Set members", width=15, command=self.ok, default=ACTIVE, state=NORMAL)
+        w.grid(row=0, column=0, padx=5, pady=5)
+        x = Button(box, text="Download", width=8, command=self.network_update, state=NORMAL)
+        x.grid(row=0, column=1, padx=5, pady=5)
+        self.bind("<Return>", self.ok)
+
+        box.pack()
+        return box
+
+    def update(self):
+        #
+        # List all members and set selections
+        for userinfo in self.parent.setup.users[ self.category ]:
+            self.listbox.insert(END, '%-25s (%d days)' % (userinfo[1], userinfo[4]))
+            #
+            # Home stretch now.  Figger out how to select stuff.
+            #
+            # Yawn.  This makes my head hurt.
+            #
+            # Get the user key from the reverse array.  Then check to see if
+            # the unified key is contained in groups_data under this group.
+            key = self.category + '::' + userinfo[0]
+            if key in self.parent.setup.groups_data[ self.groupkey ]:
+                self.listbox.selection_set( END, last=END )
+
+    def network_update(self):
+        self.apply()
+        self.parent.setup.network_update_others( self.category )
+        self.listbox.delete(0, END)
+        self.update()
+
+class Weekday(Button):
+
+    def __init__(self, master, wkeyinfo, weekdayboxes, setup, text=None):
+        Button.__init__(self, master, text=text, command=self.clone)
+        self.setup = setup
+        self.wkeyinfo = wkeyinfo
+        self.weekdayboxes = weekdayboxes
+
+    def clone(self):
+        #
+        # If any repeat entries exist for only one day in the previous month,
+        # carry in forward to the same week numberi the current month
+        #
+        # If any repeat entries exist for every other week in the previous
+        # month, carry them forward
+        #
+        # If any repeat entries exist for all days in the last month, carry
+        # them forward.
+        #
+        # If repeat entries exist for the first day of this month,
+        # carry them forward.
+        updateme = False
+        weekly_keys,prev_month_mask = self.get_last_month_weekly()
+        biweekly_keys,prev_month_mask = self.get_last_month_biweekly( prev_month_mask )
+        solo_keys,prev_month_mask = self.get_last_month_solo( prev_month_mask )
+        update_keys = self.get_this_month_updates( weekly_keys + biweekly_keys + solo_keys )
+        if self.updates_intact( solo_keys ) == -1:
+            updateme = True
+        if self.updates_intact( biweekly_keys ) == -1:
+            updateme = True
+        if self.updates_intact( weekly_keys ) == -1:
+            updateme = True
+        if self.updates_intact( update_keys ) == -1:
+            updateme = True
+
+        if updateme:
+            self.setup.freetime.clone_write( solo_keys, 1 )
+            self.setup.freetime.clone_write( biweekly_keys, 1 )
+            self.setup.freetime.clone_write( weekly_keys, 1 )
+            self.setup.freetime.clone_write( update_keys, 1 )
+        else:
+            self.setup.freetime.clone_unwrite( self.wkeyinfo.this_month_wkey, solo_keys )
+            self.setup.freetime.clone_unwrite( self.wkeyinfo.this_month_wkey, weekly_keys )
+            self.setup.freetime.clone_unwrite( self.wkeyinfo.this_month_wkey, biweekly_keys )
+            self.setup.freetime.clone_unwrite( self.wkeyinfo.this_month_wkey, update_keys )
+        #
+        # Tie off by refreshing the display
+        #for i in  self.setup.freetime.keys():
+        #    print '%s: %s' % (i,self.setup.freetime[i])
+        for day in self.weekdayboxes:
+            day.refresh()
+
+    def updates_intact(self, update_keys):
+        if not update_keys:
+            return 0
+        for key in update_keys:
+            if not self.setup.freetime.has_key( key ):
+                return -1
+            elif not self.setup.freetime[key] == 1:
+                return -1
+        return 1
+
+    def get_last_month_solo(self, prev_month_mask):
+        last_month_wkey = self.wkeyinfo.last_month_wkey
+        last_month_entries = self.setup.freetime[ last_month_wkey ][1][:]
+        weeks_and_times = [[],[],[],[]]
+        for key in last_month_entries:
+            if key in prev_month_mask:
+                continue
+            daynum = int(key[10:12])
+            weeknum = daynum / 7
+            if weeknum > 3:
+                continue
+            weeks_and_times[weeknum].append( int(key[-1]) )
+        update_keys = []
+        pos = 0
+        for day in self.weekdayboxes:
+            if pos > 3:
+                break
+            if day.hideme:
+                continue
+            for week_and_time in weeks_and_times[pos]:
+                key = self.wkeyinfo.current_time_key(day.daynum, week_and_time)
+                update_keys.append( key )
+                prev_month_mask.append( key )
+            pos += 1
+        return (update_keys,prev_month_mask)
+
+    def get_last_month_biweekly(self, prev_month_mask ):
+        """ Check for every-other-week entries in the preceding month
+        """
+        last_month_wkey = self.wkeyinfo.last_month_wkey
+        last_month_entries = self.setup.freetime[ last_month_wkey ][1][:]
+        #
+        # Go through this twice, once for first week starts, once for second
+        # week starts.
+        biweeklies1 = []
+        biweeklies2 = []
+        
+        start_day = 32
+        for key in last_month_entries:
+            if key in prev_month_mask:
+                continue
+            if int(key[10:12]) < 7:
+                start_day = int(key[10:12])
+                biweeklies1.append(int(key[13:14]))
+        for daynum in range(start_day, self.setup.month.last_day_previous_month, 14):
+            for pos in range(len(biweeklies1)-1,-1,-1):
+                key = self.wkeyinfo.prev_time_key(daynum,biweeklies1[pos])
+                if not key in last_month_entries:
+                    biweeklies1.pop(pos)
+        for daynum in range(start_day, self.setup.month.last_day_previous_month, 14):
+            for pos in range(len(biweeklies1)-1,-1,-1):
+                key = self.wkeyinfo.prev_time_key(daynum,biweeklies1[pos])
+                prev_month_mask.append(key)
+
+        start_day = 32
+        for key in last_month_entries:
+            if key in prev_month_mask:
+                continue
+            if 6 < int(key[10:12]) < 14:
+                start_day = int(key[10:12])
+                biweeklies2.append(int(key[13:14]))
+        for daynum in range(start_day, self.setup.month.last_day_previous_month, 14):
+            for pos in range(len(biweeklies2)-1,-1,-1):
+                key = self.wkeyinfo.prev_time_key(daynum,biweeklies2[pos])
+                if not key in last_month_entries:
+                    biweeklies2.pop(pos)
+        for daynum in range(start_day, self.setup.month.last_day_previous_month, 14):
+            for pos in range(len(biweeklies2)-1,-1,-1):
+                key = self.wkeyinfo.prev_time_key(daynum,biweeklies2[pos])
+                prev_month_mask.append(key)
+
+        weeks_with_this_weekday = len(range(self.wkeyinfo.last_month_first_weekday(), self.setup.month.last_day_previous_month, 7))
+
+        print 'first week start: %s' % biweeklies1
+        print 'second week start: %s' % biweeklies2
+        print weeks_with_this_weekday
+        
+        if weeks_with_this_weekday % 2:
+            biweeklyset = [biweeklies2, biweeklies1]
+        else:
+            biweeklyset = [biweeklies1, biweeklies2]
+        
+        update_keys = []
+        for startpos in [0,1]:
+            biweeklies = biweeklyset[startpos]
+            modulafix = startpos
+            for pos in range(0,len(self.weekdayboxes),1):
+                day = self.weekdayboxes[pos]
+                #
+                # XXX This is wrongly placed!  We need to get this skip into the mix
+                # before, or examine every box and decide whether to display with a
+                # modula.  Hope this is the last bug.  This code is a real mess.
+                if day.hideme:
+                    modulafix += 1
+                    continue
+                if ( pos + modulafix ) % 2:
+                    continue
+                for biweekly in biweeklies:
+                    update_keys.append( self.wkeyinfo.current_time_key(day.daynum, biweekly))
+        return (update_keys, prev_month_mask)
+
+    def get_last_month_weekly(self):
+        ''' Return time blocks of appointments that occured *every* week last month
+        '''
+        last_month_wkey = self.wkeyinfo.last_month_wkey
+        last_month_entries = self.setup.freetime[ last_month_wkey ][1][:]
+        weeklies = []
+        prev_month_mask = []
+        start_day = 32
+        for key in last_month_entries:
+            if int(key[10:12]) < 7:
+                start_day = int(key[10:12])
+                weeklies.append(int(key[13:14]))
+        for daynum in range(start_day, self.setup.month.last_day_previous_month, 7):
+            for pos in range(len(weeklies)-1,-1,-1):
+                #print range(start_day, self.setup.month.last_day_previous_month, 7)
+                key = self.wkeyinfo.prev_time_key(daynum,weeklies[pos])
+                if not key in last_month_entries:
+                    weeklies.pop(pos)
+        for daynum in range(start_day, self.setup.month.last_day_previous_month, 7):
+            for pos in range(len(weeklies)-1,-1,-1):
+                key = self.wkeyinfo.prev_time_key(daynum,weeklies[pos])
+                prev_month_mask.append(key)
+        update_keys = []
+        for day in self.weekdayboxes:
+            if day.hideme:
+                continue
+            for weekly in weeklies:
+                update_keys.append( self.wkeyinfo.current_time_key(day.daynum, weekly) )
+        return (update_keys, prev_month_mask)
+
+    def get_this_month_updates(self, prev_month_mask ):
+        repeats = self.setup.freetime[ self.wkeyinfo.this_month_wkey ][1][:]
+        start_day = 32
+        for pos in range(len(repeats)-1,-1,-1):
+            if int(repeats[pos][10:12]) > 6:
+                repeats.pop(pos)
+            elif repeats[pos] in prev_month_mask:
+                repeats.pop(pos)
+            else:
+                start_day = int(repeats[pos][10:12])
+        times = [int(x[13:14]) for x in repeats]
+        update_keys = []
+        for pos in range(start_day+7,self.setup.month.last_day+1,7):
+            for time in times:
+                new_key = self.wkeyinfo.this_month_wkey + '-%0.2d-%d' % (pos, time)
+                update_keys.append(new_key)
+        return update_keys
+
+    def redisplay(self, wkeyinfo):
+        self.wkeyinfo = wkeyinfo
+
+class Day(Frame):
+
+    def __init__(self, master, keyinfo, setup, **kw):
+        Frame.__init__(self)
+        self.hideme = False
+        self.daynum = keyinfo.day
+        self.mytitle = Label(self, text=keyinfo.day+1, **kw)
+        self.mytitle.grid(row=0, column=0, columnspan=2)
+        self.times = []
+        dow = keyinfo.weekday
+        pos = 0
+        for tconf in setup.times:
+            row = int(tconf[1])
+            column = int(tconf[2])
+            columnspan = int(tconf[3])
+            key = keyinfo.get_time_key(pos)
+            self.times.append( Time(self, key, setup, groupies=kw['groupies'], width=75, height=14, text=tconf[0], pady=0, font=('Helvetica',10,'bold')) )
+            self.times[-1].grid(row=row, column=column, columnspan=columnspan, sticky=E+W)
+            self.times[-1].config( command=self.times[-1].toggle )
+            pos += 1
+
+    def refresh(self):
+        for time in self.times:
+            time.refresh()
+
+    def redisplay(self, keyinfo, hideme=False, groupies=None):
+        self.mytitle.config( text=keyinfo.day+1)
+        self.daynum = keyinfo.day
+        for pos in range(0,len(self.times),1):
+            self.times[pos].redisplay( keyinfo.get_time_key(pos), groupies=groupies)
+        self.hideme = hideme
+        if hideme:
+            #pass
+            self.grid_remove()
+        else:
+            self.grid()
+
+class Time(Button):
+
+    def __init__(self, master, key, setup, **kw):
+        #
+        # Set color of button depending on the presence of a key in the freetime array
+        self.setup = setup
+        self.key = key
+        self.groupies = []
+        Button.__init__(self, master, **kw)
+        self.mytext = kw.get('text','oops')
+        self.refresh()
+
+    def toggle(self):
+        #print self.key
+        if self.setup.freetime.has_key( self.key ):
+            if self.setup.freetime[ self.key ] == 0:
+                self.setup.freetime.pop( self.key )
+            elif self.setup.freetime[ self.key ] == 1:
+                self.setup.freetime[ self.key ] = 0
+        else:
+            try:
+                self.setup.freetime[ self.key ] = 1
+            except FreetimeKeyError, e:
+                print e.msg
+        self.refresh()
+
+    def redisplay(self, key, groupies=None):
+        self.key = key
+        self.refresh( groupies=groupies )
+
+    def refresh(self, groupies=None):
+        if groupies == None:
+            self.personal_refresh()
+        else:
+            self.group_refresh( groupies )
+
+    def personal_refresh(self):
+        text = self.mytext
+        if self.setup.freetime.has_key( self.key ):
+            if self.setup.freetime[ self.key ] == 0:
+                icon = self.setup.empty_icon
+                bg = '#ff0000'
+                activebackground = '#ff7777'
+                padx = 4
+            else:
+                icon = self.setup.repeat_icon
+                bg = '#ff0000'
+                activebackground = '#ff7777'
+                padx = 0
+        else:
+            icon = self.setup.empty_icon
+            bg = '#00ff00'
+            activebackground = '#88ff88'
+            padx = 4
+        self.config( command=self.toggle, text=text, compound=RIGHT, bg=bg, activebackground=activebackground, image=icon, padx=padx)
+
+    def group_refresh(self, groupies ):
+        padx = 4
+        icon = self.setup.empty_icon
+        try:
+            self.groupies = groupies[ self.key ]
+        except:
+            self.groupies = []
+        if groupies.has_key( self.key ):
+            bg = '#ffff00'
+            activebackground = '#ffff77'
+            text = '(%d)' % len(groupies[ self.key ] )
+            command = self.showfolks
+        else:
+            text = self.mytext
+            bg = '#00ff00'
+            activebackground = '#88ff88'
+            command = self.noop
+        self.config( command=command, text=text, compound=RIGHT, bg=bg, activebackground=activebackground, image=icon, padx=padx)
+
+    def noop(self):
+        pass
+
+    def showfolks(self):
+        userinfo = []
+        for key in self.groupies:
+            category,groupie = key.split('::')
+            userinfo.append( self.setup.users[category][ self.setup.user_index[ key ] ] )
+        MessagePopup(self, userinfo=userinfo)
+
+class Calendar(Tk):
+
+    def __init__(self):
+        #
+        # The building and display of the calendar at top level is in desperate
+        # need of attention.  The right way to do this is to lay out a grid of
+        # the maximum possible size (5 rows x 7 cells), each consisting of a
+        # Day object, and to display of each monthly calendar by
+        # hiding the unused cells and applying a set of config updates to the remainder.
+        #
+        Tk.__init__(self)
+        self.dosave = True
+        self.groupies = None
+        self.mydate = date.today()
+        self.setup = freetimeConfig()
+        self.title( 'Freetime Calendar' )
+        self.error_message_head = 'Freetime Calendar\n\n'
+        self.error_message_top = '''Welcome to Freetime Calendar, a simple tool for sharing calendar information.
+You have installed the software successfully.  To use the calendar, you must 
+install two small files, following instructions from the system manager.  Here
+is what the program says about your current setup:
+
+'''
+        self.error_message_bottom = '''
+If you need help getting started, feel free to contact bennett@law.nagoya-u.ac.jp 
+for assistance.
+'''
+        if self.setup.error:
+            m = Text(self, height=15, background='#ffffff')
+            m.tag_config('b', font=('Helvetica', 14, 'bold'), justify=CENTER, background='#ffffff')
+            m.tag_config('n', font=('Helvetica', 10, 'normal'), justify=LEFT, background='#ffffff')
+            m.tag_config('m', background='#ffff00', justify=CENTER )
+            m.insert( END, self.error_message_head, ('b',) )
+            m.insert( END, self.error_message_top, ('n',) )
+            m.insert( END, self.setup.error + '\n', ('m',) )
+            m.insert( END, self.error_message_bottom, ('n',))
+            m.grid(row=0, column=0)
+        else:
+            self.title( 'Calendar: %s' % self.setup.name )
+            self.build_calendar()
+            self.update()
+            self.bind('<s>', self.save)
+            self.bind('<S>', self.save)
+            self.bind('<q>', self.quit)
+            self.bind('<Q>', self.quit)
+            self.bind('<Prior>', self.previous_month)
+            self.bind('<Next>', self.next_month)
+            self.bind('<Left>', self.previous_month)
+            self.bind('<Right>', self.next_month)
+            self.protocol("WM_DELETE_WINDOW", self.cleanup_destroy)
+            atexit.register(self.cleanup_final)
+            self.finish_setup()
+
+    def finish_setup(self):
+        self.setup.network_setup()
+        if self.setup.sshclient:
+            self.progressBar.config( background='#0000ff', foreground='#ffffff', text='Network OK' )
+        else:
+            self.progressBar.config( text='Warning: network failed, entries will be merged when network is next accessed' )
+        self.redisplay( date=self.mydate )
+
+    def save(self, event):
+        self.cleanup()
+
+    def quit(self, event):
+        self.cleanup( final=True )
+        sys.exit()
+
+    def cleanup_final(self):
+        self.cleanup( final=True )
+
+    def cleanup_destroy(self):
+        self.cleanup_final()
+        self.destroy()
+
+    def cleanup(self, final=False):
+        if not self.dosave:
+            return None
+        #
+        # Prepare data for save (this happens in Config)
+        new_data = self.setup.bundle_data()
+        #
+        # Get old data if poss
+        old_data = None
+        local_mtime = 0
+        if os.path.exists( self.setup.user_data_file ):
+            local_mtime = int(os.stat( self.setup.user_data_file ).st_mtime)
+            ph = open( self.setup.user_data_file )
+            old_data = Unpickler( ph ).load()
+            ph.close()
+        #
+        # Compare old data with new data
+        if old_data != new_data:
+            ph = open( self.setup.user_data_file, 'w+' )
+            Pickler( ph ).dump( new_data )
+            ph.close()
+            if local_mtime == 0:
+                os.utime( self.setup.user_data_file, (0,0) )
+            self.setup.network_upload()
+        if final:
+            #print 'Boom'
+            self.setup.groups_save()
+            self.setup.network_close()
+            self.dosave = False
+
+    def previous_month(self, *arg):
+        self.cleanup()
+        date = dateDelta( self.mydate ).get_last_month()
+        self.redisplay( date=date )
+
+    def next_month(self, *arg):
+        self.cleanup()
+        date = dateDelta( self.mydate ).get_next_month()
+        self.redisplay( date=date )
+
+    def build_calendar(self):
+        title_bar = Frame(self)
+
+        self.mytitle = Label(title_bar, background='#ffffff', foreground='#000000', text='%s %s' % (self.mydate.strftime('%B'), self.mydate.year), font=('Helvetica',14,'bold'))
+        self.mytitle.grid(row=0, column=2, pady=6)
+
+        right = Button(title_bar, image=self.setup.right, command=self.next_month)
+        right.grid(row=0, column=4, sticky=E)
+
+        left = Button(title_bar, image=self.setup.left, command=self.previous_month)
+        left.grid(row=0, column=0, sticky=W)
+
+        title_bar.grid(row=0,column=0, columnspan=len(self.setup.weekdays.keys()), sticky=E+W)
+        title_bar.grid_columnconfigure(1, weight=1)
+        title_bar.grid_columnconfigure(2, weight=1)
+        title_bar.grid_columnconfigure(3, weight=1)
+
+        self.progressBar = Label(self, text='Connecting to server.  Please wait.', background='#ffff33')
+        self.progressBar.grid(row=1,column=0, columnspan=len(self.setup.weekdays.keys()), sticky=E+W)
+
+        if self.setup.groups:
+            #
+            # Purge any members that have gone away from the groups
+            # groups_data is an array of unified key lists
+            for groupkey in self.setup.groups_data.keys():
+                groupies = self.setup.groups_data[ groupkey ]
+                for pos in range(len(groupies)-1,-1,-1):
+                    category,groupie = groupies[pos].split('::')
+                    if not groupie in os.listdir( self.setup.category_path[ category ] ):
+                           groupies.pop( pos )
+
+            category_buttons = Frame(title_bar)
+
+            self.staff_button = Button(category_buttons, text='Staff', command=None, state=DISABLED)
+            self.staff_button.grid(row=0, column=0)
+
+            self.students_button = Button(category_buttons, text='Student', command=None, state=DISABLED)
+            self.students_button.grid(row=0, column=1)
+            category_buttons.grid(row=0, column=1)
+
+            self.setup.groups_pos = 0
+            self.group_button = Button(title_bar, text=self.setup.groups[0], command=self.group_listbox)
+            self.group_button.grid(row=0, column=3)
+
+        #
+        # Arbitrary Day boxes
+        self.setup.month.set_month( self.mydate )
+        self.dayboxes = []
+        for pos in range(0,42,1):
+            keyinfo = self.setup.month.get_keyinfo( pos )
+            hideme = self.setup.month.get_hideme( pos, keyinfo )
+            self.dayboxes.append( Day(self, keyinfo, self.setup, font=('Helvetica',12,'bold'), groupies=None) )
+            column = pos % 7
+            row = ( pos / 7 ) + 4
+            self.dayboxes[-1].grid( row=row, column=column, padx=2, pady=4)
+            if hideme:
+                self.dayboxes[-1].hideme = True
+                self.dayboxes[-1].grid_remove()
+        #
+        # Weekday names
+        self.daybuttons = []
+        for pos in range(0,7,1):
+            wkeyinfo = self.setup.month.get_wkeyinfo( pos )
+            name = self.setup.weekdays.get(pos,'Empty')
+            weekday_list = []
+            for ppos in range(0,len(self.dayboxes),1):
+                if ( ppos - pos ) % 7 == 0:
+                    weekday_list.append( self.dayboxes[ppos] )
+            self.daybuttons.append( Weekday(self, wkeyinfo, weekday_list, self.setup, text=name ) )
+            self.daybuttons[-1].grid(row=3, column=pos)
+            if name == 'Empty':
+                pass
+                self.daybuttons[-1].grid_remove()
+
+    def refresh_groups(self):
+        self.group_button.config( text=self.setup.groups[ self.setup.groups_pos ] )
+        if self.setup.groups_pos == 0:
+            self.staff_button.config( state=DISABLED, command=None )
+            self.students_button.config( state=DISABLED, command=None )
+            self.groupies = None
+            self.redisplay()
+        else:
+            mtime = os.stat( os.path.join( self.setup.data_path, self.setup.category, self.setup.userkey) ).st_mtime
+            ph = open( self.setup.user_data_file, 'w+')
+            self.setup.user_data = Pickler( ph ).dump( self.setup.bundle_data() )
+            ph.close()
+            os.utime( self.setup.user_data_file, (mtime,mtime))
+            self.staff_button.config( state=NORMAL, command=self.staff_listbox )
+            self.students_button.config( state=NORMAL, command=self.students_listbox )
+            #self.get_groupie_schedules( groupies )
+            self.redisplay()
+
+    def staff_listbox(self):
+        StaffStudentPopup(self, select=self.setup.groups_pos, category='Staff', title='Staff')
+
+    def students_listbox(self):
+        StaffStudentPopup(self, select=self.setup.groups_pos, category='Student', title='Students')
+
+    def get_groupie_schedules(self, groupies ):
+        """ Currently disabled.  I don't think we need this method is necessary.
+        """
+        for key in groupies:
+            category,groupie = key.split('::')
+            if groupie in os.listdir( os.path.join( self.setup.data_path, category ) ):
+                ph = open( os.path.join( self.setup.data_path, category, groupie ) )
+                groupie_data = Unpickler( ph ).load()
+
+    def get_group_times(self, keys):
+        group_times = {}
+        for key in keys:
+            category, userid = key.split('::')
+            ph = open( os.path.join( self.setup.category_path[category], userid ) )
+            userinfo = Unpickler( ph ).load()
+            #
+            # get the keys for this month (all five day columns)
+            # get the busy times for this month
+            # compose an array with busy times as keys, and unified
+            # user ids as a list under each key
+            for pos in range(0,7,1):
+                wkey = self.setup.month.key_engine.wkey( pos ).this_month_wkey
+                single,recurring = userinfo[-1].get(wkey, ([],[]) )
+                for time in single + recurring:
+                    if not group_times.has_key( time ):
+                        group_times[ time ] = []
+                    if not key in group_times[ time ]:
+                        group_times[ time].append( key )
+        # return the array
+        #print 'From get_groupie_times'
+        #print group_times
+        return group_times
+
+    def groups_update_for_display(self):
+        #
+        #
+        # Magical redisplay code block.  Should be a separate method
+        if self.setup.groups_pos > 0:
+            times = self.get_group_times( self.setup.groups_data[ self.setup.groups[ self.setup.groups_pos ] ] )
+            self.groupies = times
+
+    def group_listbox(self):
+        GroupPopup(self, select=self.setup.groups_pos)
+
+    def redisplay(self, date=None):
+        """ Update the entire calendar or an individual day
+
+            Set the entire calendar to display dates from the month
+            in which DATE occurs.
+        """
+        if date:
+            self.mydate = date
+        #
+        # Reset the text in the current date object and the header text.
+        self.mytitle.config( text='%s %s' % (self.mydate.strftime('%B'), self.mydate.year) )
+        #
+        # Setup
+        self.setup.month.set_month( self.mydate )
+        self.groups_update_for_display()
+        #
+        # Step through the day boxes with an update
+        for pos in range(0, len(self.dayboxes), 1):
+            keyinfo = self.setup.month.get_keyinfo( pos )
+            hideme = self.setup.month.get_hideme( pos, keyinfo )
+            self.dayboxes[pos].redisplay( keyinfo, hideme=hideme, groupies=self.groupies)
+        #
+        # Step through the weekday labels with an update
+        for pos in range(0,len(self.daybuttons),1):
+            daybutton = self.daybuttons[pos]
+            weekday_list = []
+            for ppos in range(0,len(self.dayboxes),1):
+                if ( ppos - pos ) % 7 == 0:
+                    weekday_list.append( self.dayboxes[ppos] )
+            wkeyinfo = self.setup.month.get_wkeyinfo( pos )
+            daybutton.redisplay( wkeyinfo )
+
+
+if __name__ == '__main__':
+
+    tk = Calendar()
+    tk.mainloop()
+

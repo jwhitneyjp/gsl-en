@@ -1,0 +1,67 @@
+#!/bin/ksh -e
+# Copyright 2006-2007 by Starling Software, K.K.
+# This is part of QAM from http://www.starling-software.com.
+# For license terms, see the LICENSE.QAM file included with this distribution.
+
+if [ -z "$3" ]; then
+    echo 1>&2 "Usage: $(basename $0) svn-repo-url package-name version [path]"
+    exit 1
+fi
+
+BINDIR=$(cd $(dirname $0); /bin/pwd)
+
+REPO="$1"
+PACKAGE_NAME="$2"
+VERSION="$3"
+IMPORT_PATH="$4"
+TMPDIR=/tmp/qam-import.$$
+OUTPUT=$TMPDIR/log
+
+if [ -z "$IMPORT_PATH" ]; then
+    IMPORT_PATH="."
+fi
+if [ -d $IMPORT_PATH ]; then
+    IMPORT_PATH=$(cd $IMPORT_PATH; /bin/pwd)
+fi
+
+if ! svn list "$REPO" >/dev/null; then
+    echo 1>&2 "Repository not found: $REPO"
+    exit 1
+fi
+
+mkdir $TMPDIR
+cd $TMPDIR
+
+if echo "$IMPORT_PATH" | egrep '^(http|ftp|file):' >/dev/null 2>&1; then
+    IMPORT_FILE=$TMPDIR/download.tgz
+    ftp -o $IMPORT_FILE $IMPORT_PATH > $OUTPUT 2>&1 || true
+    if [ ! -r $IMPORT_FILE ]; then
+	echo "Can't find file to import."
+	cat 1>&2 $OUTPUT
+	rm -rf $TMPDIR
+	exit 1
+    fi
+    mkdir extract
+    (cd extract; tar xzf $IMPORT_FILE)
+    IMPORT_PATH=$TMPDIR/$(echo extract/*)
+fi
+
+if [ ! -d "$IMPORT_PATH" ]; then
+    echo 1>&2 "Import path not found: $IMPORT_PATH"
+    rm -rf $TMPDIR
+    exit 1
+fi
+
+IMPORT_COPY=$(basename $IMPORT_PATH)
+cp -rp $IMPORT_PATH $IMPORT_COPY
+find $IMPORT_COPY \( -name .svn -o -name CVS \) -a -type d | xargs rm -rf
+perl $BINDIR/svn_load_dirs.pl \
+    -no_user_input \
+    -t vendor/$PACKAGE_NAME/$VERSION \
+    $REPO vendor/$PACKAGE_NAME/current $IMPORT_COPY >$OUTPUT 2>&1
+
+if [ $? -eq 0 ]; then 
+    rm -rf $TMPDIR
+else
+    echo 1>&2 "Failed to import.  Check $OUTPUT for details"
+fi

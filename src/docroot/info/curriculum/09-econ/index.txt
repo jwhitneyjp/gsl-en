@@ -1,0 +1,21 @@
+title: Economics courses
+pagetitle: Supplementary Courses: Economics
+css: wide-sidenote.css
+javascript: popup.js
+
+The full content of courses is available
+via the faculty's online Syllabus System:
+
+> [Visit the online Syllabus System][ss] (English)  
+> *(Password required)*{: style='color: red;'}
+
+
+Note that the subjects listed below are treated as external subjects
+for purposes of the LL.M. Comparative Law program. Please refer to the
+[Overseas Postgraduate Student Handbook](/curriculum/gslhandbook/) for
+details.
+
+[ss]: http://infosv.nomolog.nagoya-u.ac.jp/english/syllabus/as/v/gs13
+
+
+%%content%%

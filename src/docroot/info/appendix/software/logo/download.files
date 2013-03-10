@@ -1,0 +1,4 @@
+*.rtf: Application form
+NUlogo-*.svg: NU logo v.@@version@@
+NUlogo_square-*.svg: NU logo (square) v.@@version@@
+

@@ -38,7 +38,7 @@ and  Nagoya University.
 
 > [Visit the JASMIN seminar website][jasmin-wiki]
 
-[jasso]: /support/index.html#japan_student_services_organization_jasso
+[jasso]: /en/support/index.html#japan_student_services_organization_jasso
 [jasmin-wiki]: http://jasmin.pbwiki.com
 
 

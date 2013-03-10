@@ -3,7 +3,7 @@ css: manual.css
 
 ###### Step 2
 
-![](/materials/graphic/help01_tortoisesvn_new.png)
+![](/en/materials/graphic/help01_tortoisesvn_new.png)
 
 # TortoiseSVN online help
 Tortoise SVN comes with an online help system that

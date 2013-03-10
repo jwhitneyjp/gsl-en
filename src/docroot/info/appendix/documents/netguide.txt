@@ -43,7 +43,7 @@ visit the link below.
 > [Visit the Research facilities page of this
 >  website][research-facilities]
   
-  [research-facilities]: /support/research-facilities.html
+  [research-facilities]: /en/support/research-facilities.html
 
 ## Japanese Law database
 
@@ -72,7 +72,7 @@ obtain a magnetic card by submitting the
 Application Form for a magnetic ID card to the [Student Affairs
 Section][kyoumu] of the Graduate School of Law.
 
-[kyoumu]: /support/index.html#student_affairs_section
+[kyoumu]: /en/support/index.html#student_affairs_section
 
 ## Rules
 

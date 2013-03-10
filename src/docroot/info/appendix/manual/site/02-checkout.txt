@@ -15,7 +15,7 @@ to the site made by other people.
 
 ###### Step 1
 
-![](/materials/graphic/man001_mycomputer_new.png)
+![](/en/materials/graphic/man001_mycomputer_new.png)
 
 # My Computer
 Spaces in pathnames can cause some of the
@@ -28,7 +28,7 @@ Windows start menu.
 
 ###### Step 2
 
-![](/materials/graphic/man002_mycomputer_dir_new.png)
+![](/en/materials/graphic/man002_mycomputer_dir_new.png)
 
 # The `C:\\` drive icon
 Open the `C:\\` drive by clicking on it in the `My Computer` 
@@ -36,7 +36,7 @@ folder listing.
 
 ###### Step 3
 
-![](/materials/graphic/man005_emptyC_new.png)
+![](/en/materials/graphic/man005_emptyC_new.png)
 
 # The `C:\\` drive top folder
 The illustration to the right shows the
@@ -47,7 +47,7 @@ copy on this computer.
 
 ###### Step 3
 
-![](/materials/graphic/man006_checkout_menu_new.png)
+![](/en/materials/graphic/man006_checkout_menu_new.png)
 
 # Requesting a checkout
 To request a checkout, click on the right mouse
@@ -57,7 +57,7 @@ or clicking on this item will start the checkout.
 
 ###### Step 3
 
-![](/materials/graphic/man007_checkout_pathmenu_new.png)
+![](/en/materials/graphic/man007_checkout_pathmenu_new.png)
 
 # Repository path
 TurtleSVN will ask you where the Subversion
@@ -74,7 +74,7 @@ field (so it should read: `C:\\gsl-en`).
 
 ###### Step 3
 
-![](/materials/graphic/man008_checkout_confirmcreate_new.png)
+![](/en/materials/graphic/man008_checkout_confirmcreate_new.png)
 
 # Confirm directory creation
 If the folder you entered into the bottom box
@@ -85,7 +85,7 @@ the new folder.
 
 ###### Step 3
 
-![](/materials/graphic/man009_checkout_complete_new.png)
+![](/en/materials/graphic/man009_checkout_complete_new.png)
 
 # Checkout!
 During checkout, TurtleSVN will show a scrolling list of the
@@ -100,7 +100,7 @@ window.
 
 ###### Step 3
 
-![](/materials/graphic/man010_checkout_in_c_new.png)
+![](/en/materials/graphic/man010_checkout_in_c_new.png)
 
 # The working copy folder
 Your new working copy will now be available in

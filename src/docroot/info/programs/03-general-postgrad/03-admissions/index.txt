@@ -1,2 +1,2 @@
 title: Admissions
-link: /admissions
+link: /en/admissions

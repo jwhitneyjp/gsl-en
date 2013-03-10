@@ -11,7 +11,7 @@ steps.
 
 ###### Step 2
 
-![](/materials/graphic/preview01_rubyinstallicon_new.png)
+![](/en/materials/graphic/preview01_rubyinstallicon_new.png)
 
 # Ruby Install icon
 Find the Ruby `Install` icon in the top-level
@@ -20,7 +20,7 @@ folder of your working copy.
 
 ###### Step 2
 
-![](/materials/graphic/preview02_rubyinterpretermenu_new.png)
+![](/en/materials/graphic/preview02_rubyinterpretermenu_new.png)
 
 # Run Ruby
 With the mouse pointer over this icon, run
@@ -29,7 +29,7 @@ menu as shown in the illustration to the right.
 
 ###### Step 2
 
-![](/materials/graphic/preview03_rubysiterunning_new.png)
+![](/en/materials/graphic/preview03_rubysiterunning_new.png)
 
 # Build the website
 Ruby will build the website for you.  While
@@ -42,7 +42,7 @@ you can preview the site using a web browser.
 
 ###### Step 2
 
-![](/materials/graphic/preview04_sitepreviewtoppage_new.png)
+![](/en/materials/graphic/preview04_sitepreviewtoppage_new.png)
 
 # Start a browser
 Start a web browser and enter the following into the
@@ -55,7 +55,7 @@ as shown in the illustration to the right.
 
 ###### Step 2
 
-![](/materials/graphic/preview05_sitepreviewadmission_new.png)
+![](/en/materials/graphic/preview05_sitepreviewadmission_new.png)
 
 # Explore your pages
 You can navigate in the preview of the website

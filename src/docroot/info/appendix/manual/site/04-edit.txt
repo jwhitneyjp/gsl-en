@@ -3,7 +3,7 @@ css: manual.css
 
 ###### Step 3
 
-![](/materials/graphic/man011_checkout_showing_info_smaller_new.png)
+![](/en/materials/graphic/man011_checkout_showing_info_smaller_new.png)
 
 # Editable pages folder
 The editable pages of the site are located
@@ -24,7 +24,7 @@ In this example, we will navigate into the
 
 ###### Step 3
 
-![](/materials/graphic/man012_admissions_new.png)
+![](/en/materials/graphic/man012_admissions_new.png)
 
 # Admissions folder
 The illustration to the right shows a view of
@@ -51,7 +51,7 @@ computers, we will use Wordpad for this purpose.
 
 ###### Step 3
 
-![](/materials/graphic/man013_admissions_menu_wordpad_new.png)
+![](/en/materials/graphic/man013_admissions_menu_wordpad_new.png)
 
 # Editing with Wordpad
 To open a file with Wordpad, hold the cursor over the file
@@ -61,7 +61,7 @@ the right.
 
 ###### Step 3
 
-![](/materials/graphic/man014_admissions_index_edit_new.png)
+![](/en/materials/graphic/man014_admissions_index_edit_new.png)
 
 # Editing a file
 You can open the file and edit it in the normal way.
@@ -72,13 +72,13 @@ at the first blank line.  The `title:` item is
 required in every page.  Other items, such as the
 `toc:` item shown in the illustration to the right,
 are optional.  See the chapter on 
-[Metadata fields](/appendix/manual/site/metadata.html) for more details 
+[Metadata fields](/en/appendix/manual/site/metadata.html) for more details 
 on the fields that can
 be entered in the metadata header.
 
 ###### Step 3
 
-![](/materials/graphic/man015_admissions_index_edit_done_new.png)
+![](/en/materials/graphic/man015_admissions_index_edit_done_new.png)
 
 # Make a change
 In this example, we change the title of the
@@ -87,7 +87,7 @@ overview`.
 
 ###### Step 3
 
-![](/materials/graphic/man016_admissions_index_edit_exclam_new.png)
+![](/en/materials/graphic/man016_admissions_index_edit_exclam_new.png)
 
 # Save the file
 After saving the file, notice the red exclamation

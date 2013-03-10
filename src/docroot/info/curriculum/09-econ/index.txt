@@ -12,7 +12,7 @@ via the faculty's online Syllabus System:
 
 Note that the subjects listed below are treated as external subjects
 for purposes of the LL.M. Comparative Law program. Please refer to the
-[Overseas Postgraduate Student Handbook](/curriculum/gslhandbook/) for
+[Overseas Postgraduate Student Handbook](/en/curriculum/gslhandbook/) for
 details.
 
 [ss]: http://infosv.nomolog.nagoya-u.ac.jp/english/syllabus/as/v/gs13

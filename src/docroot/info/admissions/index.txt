@@ -1,5 +1,5 @@
 title: Admissions
-banner-image: /image/banner-admissions.jpg
+banner-image: /en/image/banner-admissions.jpg
 
 * This page provides an outline of scholarships and admissions
   for overseas applicants to the Comparative Law and
@@ -13,7 +13,7 @@ banner-image: /image/banner-admissions.jpg
 {: class='sidenote'}
 
 [campusasia]: http://www.law.nagoya-u.ac.jp/project/en/Asia/index.html
-[nupace]: /support/index.html#nagoya_university_program_for_academic_exchange_nupace
+[nupace]: /en/support/index.html#nagoya_university_program_for_academic_exchange_nupace
 
 
 * TOC
@@ -46,7 +46,7 @@ open to candidates from selected jurisdictions. The Nagoya University
 Graduate School of Law accepts candidates under this program from the
 following jurisdictions:
 
-[jice]: /support/index.html#japan_international_cooperation_center_jice
+[jice]: /en/support/index.html#japan_international_cooperation_center_jice
 
 
 * Cambodia
@@ -64,7 +64,7 @@ must successfully complete the application process for the [LL.M.
 review is the basis for admission. The program in this instance is two
 and a half years in length.
 
-[llm-cl]: /admissions/llm-applications/#englishtaught_aprilentry
+[llm-cl]: /en/admissions/llm-applications/#englishtaught_aprilentry
 
 ## Exchange-based integrated scholarship (Special Program)
 
@@ -85,7 +85,7 @@ may recommend candidates for admission to the [LL.M. (Comparative Law)
 for October entry][llm-cl-oct] or the [LL.D. (Comparative Law)][lld-cl]
 programs.  The relevant institutions are the following:
 
-[llm-cl-oct]: /admissions/llm-applications#englishtaught_octoberentry
+[llm-cl-oct]: /en/admissions/llm-applications#englishtaught_octoberentry
 
 
 * [Royal University of Law and Economics, Phnom Penh][rule]
@@ -113,7 +113,7 @@ coextensive with the number of scholarships available.  Successful
 applicants are not required to sit a separate entrance examination.
 The program in this instance is two years in length.
 
-[lld-cl]: /admissions/lld-applications/index.html
+[lld-cl]: /en/admissions/lld-applications/index.html
 
 
 ## Embassy recommendation (postgraduate)
@@ -130,7 +130,7 @@ study program laid out in their scholarship application.  Admission
 requires both the consent of a supervising professor, and formal
 admission by the University concerned.
 
-[mofa]: /support/index.html#japan_ministry_of_foreign_affairs_mofa
+[mofa]: /en/support/index.html#japan_ministry_of_foreign_affairs_mofa
 
 Because the notification of results is often made during summer break,
 when academic staff are either on holiday or immersed in research
@@ -197,4 +197,4 @@ therefore, the Embassy Recommendation process
 described above is the sole path of admission for
 foreign applicants to the undergraduate program.
 
-[jasso]: /support/index.html#japan_student_services_organization_jasso
+[jasso]: /en/support/index.html#japan_student_services_organization_jasso

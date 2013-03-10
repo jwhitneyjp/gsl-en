@@ -11,9 +11,9 @@ title: Insurance
 {: class='sidenote'}
 
 
-[handbook]: /support/index.html#handbook_for_international_students
+[handbook]: /en/support/index.html#handbook_for_international_students
 
-[isa]: /support/index.html#international_student_advising_office_isa
+[isa]: /en/support/index.html#international_student_advising_office_isa
 
 * Table of contents
 {: toc}
@@ -43,7 +43,7 @@ and in Japanese, via the links at the top right of
 this page.  Further information is available from the [Student Affairs
 Section][sas].
 
-[sas]: /support/index.html#student_affairs_section
+[sas]: /en/support/index.html#student_affairs_section
 
 ## Insurance for Automobiles and Motorcycles
 
@@ -71,7 +71,7 @@ responsibility to be certain that the CALI policy is up to date.*
 
 The [Nagoya University Co-op][coopins] provides some options for this form of insurance.
 
-[coopins]: /support/index.html#university_coop
+[coopins]: /en/support/index.html#university_coop
 
 
 # Recommended insurance
@@ -85,7 +85,7 @@ for personal accidents and sickness, including compensation for damage
 to others. This insurance can be purchased at a reasonable premium
 through the [University Co-op][coop].
 
-[coop]: /support/index.html#university_coop
+[coop]: /en/support/index.html#university_coop
 
 
 
@@ -96,4 +96,4 @@ is available from the [ECIS website][ecis] by navigating
 to "Information for International Students" &rarr; "Daily Life" &rarr; 
 "Medical and Health Care".
 
-[ecis]: /support/index.html#education_center_for_international_students_ecis
+[ecis]: /en/support/index.html#education_center_for_international_students_ecis

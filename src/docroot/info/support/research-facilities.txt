@@ -83,7 +83,7 @@ see the Network Overview on this website.
 
 > [Visit the Network Overview][netguide]
 
-[netguide]: /appendix/documents/netguide.html
+[netguide]: /en/appendix/documents/netguide.html
 
 # Lexis/Nexis legal database
 

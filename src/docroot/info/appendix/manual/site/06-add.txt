@@ -16,7 +16,7 @@ commit your changes.
 
 ###### Step 2
 
-![](/materials/graphic/man012_admissions_new.png)
+![](/en/materials/graphic/man012_admissions_new.png)
 
 # Select a folder
 In this example, we will add a file to the `admissions`
@@ -24,7 +24,7 @@ folder.
 
 ###### Step 2
 
-![](/materials/graphic/newfile02_menu_new.png)
+![](/en/materials/graphic/newfile02_menu_new.png)
 
 # Create a new text file
 All of the `*.txt` files for our website pages are
@@ -34,7 +34,7 @@ menu, as show in the illustration to the right.
 
 ###### Step 2
 
-![](/materials/graphic/newfile03_rename_new.png)
+![](/en/materials/graphic/newfile03_rename_new.png)
 
 # Name the file
 Give your new file a name.  To keep things simple
@@ -47,7 +47,7 @@ illustration to the right.
 
 ###### Step 2
 
-![](/materials/graphic/newfile04_svnaddmenu_new.png)
+![](/en/materials/graphic/newfile04_svnaddmenu_new.png)
 
 # Add the file to Subversion
 After the file has been created, tell the working
@@ -59,7 +59,7 @@ in the illustration.
 
 ###### Step 2
 
-![](/materials/graphic/newfile05_add_file1_new.png)
+![](/en/materials/graphic/newfile05_add_file1_new.png)
 
 # Confirm the addition
 TurtleSVN will ask you to confirm additions to
@@ -70,7 +70,7 @@ this file, so we click on the `OK` button.
 
 ###### Step 2
 
-![](/materials/graphic/newfile06_add_file2_new.png)
+![](/en/materials/graphic/newfile06_add_file2_new.png)
 
 # Additions reported
 TurtleSVN will report on the files it has added
@@ -79,7 +79,7 @@ tell you about them.
 
 ###### Step 2
 
-![](/materials/graphic/newfile07_added_file_new.png)
+![](/en/materials/graphic/newfile07_added_file_new.png)
 
 # File has been added
 The icon of the file will change, to show that
@@ -87,12 +87,12 @@ it has been added to Subversion in your working
 copy, but is not yet up-to-date in the
 Subversion repository on the server.  Remember
 that you may need to [refresh the file browser
-display](/appendix/manual/site/refresh.html) before the icon will
+display](/en/appendix/manual/site/refresh.html) before the icon will
 show correctly.
 
 ###### Step
 
-![](/materials/graphic/newfile08_edit_new.png)
+![](/en/materials/graphic/newfile08_edit_new.png)
 
 # Edit as usual
 The newly added file can be opened, edited and

@@ -4,7 +4,7 @@ nickname: svn-refresh
 
 ###### Step 2
 
-![](/materials/graphic/refresh01_new.png)
+![](/en/materials/graphic/refresh01_new.png)
 
 # Refresh the file browser
 After an update or commit operation, the icons

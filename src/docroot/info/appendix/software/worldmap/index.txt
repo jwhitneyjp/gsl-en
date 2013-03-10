@@ -88,9 +88,9 @@ displaying SVG files locally.  This has been addressed in [security
 bulletin MS07-045][bulletin] for Internet Explorer, issued by
 Microsoft.  Separate [instructions][instructions] are also available.
 
-[bulletin]: http://support.microsoft.com/kb/937143
+[bulletin]: http://en/support.microsoft.com/kb/937143
 
-[instructions]: http://support.microsoft.com/kb/935575
+[instructions]: http://en/support.microsoft.com/kb/935575
 
 
 # Installation

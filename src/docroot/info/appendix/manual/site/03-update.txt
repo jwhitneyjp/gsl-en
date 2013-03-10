@@ -14,7 +14,7 @@ by other editors since your last update.
 
 ###### Step 1
 
-![](/materials/graphic/update01_gsl-en_new.png)
+![](/en/materials/graphic/update01_gsl-en_new.png)
 
 # Update in the top folder
 TurtleSVN will update all folders *below* the current
@@ -27,7 +27,7 @@ folder.
 
 ###### Step 2
 
-![](/materials/graphic/update02_menu_new.png)
+![](/en/materials/graphic/update02_menu_new.png)
 
 # Running an update
 To run an update, just click the right-hand mouse
@@ -36,7 +36,7 @@ menu.
 
 ###### Step 2
 
-![](/materials/graphic/update03_gsl-en_report_new.png)
+![](/en/materials/graphic/update03_gsl-en_report_new.png)
 
 # Update report
 TurtleSVN will

@@ -16,7 +16,7 @@ application by post, send a letter requesting, as appropriate, the
 Section][kyomu], enclosing a self-addressed envelope (size 33 cm x 24
 cm) addressed to yourself, and affixed with a 390 yen-stamp.
 
-[admissions]: /admissions
+[admissions]: /en/admissions
 
 
 ## Submission of applications
@@ -204,7 +204,7 @@ See the [Admissions][admissions] page of this website
 for information about how individual scholarship
 programs affect the admissions process.
 
-[admissions]: /admissions
+[admissions]: /en/admissions
 
 ### Undergraduate study
 
@@ -215,7 +215,7 @@ applicants.  For information on the admissions process,
 please refer to the [Admissions][admissions] page of this
 website.
 
-[mofa]: /support/index.html#japan_ministry_of_foreign_affairs_mofa
+[mofa]: /en/support/index.html#japan_ministry_of_foreign_affairs_mofa
 
 Students applying from inside Japan may wish to explore
 other scholarship option through the website of the
@@ -231,7 +231,7 @@ offered in connection with the Nagoya University Graduate
 School of Law Human Resources Development Program to
 Contribute to Asian Technical Legal Assistance Projects.
 
-[jds]: /support/index.html#japan_international_cooperation_center_jice
+[jds]: /en/support/index.html#japan_international_cooperation_center_jice
 
 In addition to these two schemes, overseas applicants
 may wish to explore the Embassy Recommendation screening

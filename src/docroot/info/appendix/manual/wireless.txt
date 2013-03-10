@@ -51,7 +51,7 @@ a solution.
 
 ###### Step 0
 
-![](/materials/graphic/wl_000.png)
+![](/en/materials/graphic/wl_000.png)
 
 # Wireless network device
 In Windows XP, begin by opening the network
@@ -67,7 +67,7 @@ computer.
 
 ###### Step 1
 
-![](/materials/graphic/wl_001.png)
+![](/en/materials/graphic/wl_001.png)
 
 # Display wireless networks
 The wireless device menu is shown to the right.
@@ -77,7 +77,7 @@ circled in red in the illustration to the right.
 
 ###### Step 2
 
-![](/materials/graphic/wl_002.png)
+![](/en/materials/graphic/wl_002.png)
 
 # Request connection
 Windows XP should display a window similar to
@@ -92,7 +92,7 @@ selecting a router, click on the connection button
 
 ###### Step 3
 
-![](/materials/graphic/wl_003.png)
+![](/en/materials/graphic/wl_003.png)
 
 # Wait for connection
 It may take a few seconds for your computer
@@ -104,7 +104,7 @@ complete.
 
 ###### Step 4
 
-![](/materials/graphic/wl_004.png)
+![](/en/materials/graphic/wl_004.png)
 
 # Start a browser
 When the connection has been established,
@@ -121,7 +121,7 @@ to open the account creation/login menus.)
 
 ###### Step 5
 
-![](/materials/graphic/wl_005.png)
+![](/en/materials/graphic/wl_005.png)
 
 # Permit the connection
 When your browser attempts to connect to the network,
@@ -133,7 +133,7 @@ by clicking on the OK button　「はい(Y)」.
 
 ###### Step 6
 
-![](/materials/graphic/wl_006.png)
+![](/en/materials/graphic/wl_006.png)
 
 # Create your account
 The login menu is shown to the right.
@@ -144,7 +144,7 @@ red in the illustration to the right.
 
 ###### Step 7
 
-![](/materials/graphic/wl_007.png)
+![](/en/materials/graphic/wl_007.png)
 
 # Accept terms and conditions
 Before you can create a network account, you
@@ -161,7 +161,7 @@ form 「登録フォームへ」.
 
 ###### Step 8
 
-![](/materials/graphic/wl_008.png)
+![](/en/materials/graphic/wl_008.png)
 
 # Enter account details
 In the registration form, shown to the right, enter
@@ -201,7 +201,7 @@ button 「登録」.
 
 ###### Step 9
 
-![](/materials/graphic/wl_009.png)
+![](/en/materials/graphic/wl_009.png)
 
 # Enter ID and password
 After your account is registered, you will
@@ -212,7 +212,7 @@ in item 10 of the registration form.
 
 ###### Step 10
 
-![](/materials/graphic/wl_010.png)
+![](/en/materials/graphic/wl_010.png)
 
 # Accept connection (again)
 Windows XP will again find the unknown
@@ -223,7 +223,7 @@ by clicking on the OK button 「はい(Y)」.
 
 ###### Step 11
 
-![](/materials/graphic/wl_011.png)
+![](/en/materials/graphic/wl_011.png)
 
 # Wait for login
 The system should display a screen similar to that
@@ -233,7 +233,7 @@ can click on the `click here` link.
 
 ###### Step 12
 
-![](/materials/graphic/wl_012.png)
+![](/en/materials/graphic/wl_012.png)
 
 # Click to the Internet!
 If you reach a screen like that shown to the right,

@@ -3,7 +3,7 @@ css: manual.css
 
 ###### Step 2
 
-![](/materials/graphic/commit00_src_exclam_new.png)
+![](/en/materials/graphic/commit00_src_exclam_new.png)
 
 # Commit from above your changes
 It is possible to commit changes from the folders
@@ -26,7 +26,7 @@ accessible to other users and to the website.
 
 ###### Step 2
 
-![](/materials/graphic/commit01_commitmenu_new.png)
+![](/en/materials/graphic/commit01_commitmenu_new.png)
 
 # Select the commit menu item
 A TurtleSVN commit operation is performed, like
@@ -36,7 +36,7 @@ shown in the illustration to the right.
 
 ###### Step 2
 
-![](/materials/graphic/commit02_notemenu_new.png)
+![](/en/materials/graphic/commit02_notemenu_new.png)
 
 # Commit memo
 TurtleSVN will invite you to enter a note
@@ -48,7 +48,7 @@ language, including Japanese.
 
 ###### Step 2
 
-![](/materials/graphic/commit03_commitreport_new.png)
+![](/en/materials/graphic/commit03_commitreport_new.png)
 
 # Commit report
 TurtleSVN will report the files and folders for
@@ -61,10 +61,10 @@ in the repository, in the usual way.
 
 ###### Step 2
 
-![](/materials/graphic/commit05_cleandir_new.png)
+![](/en/materials/graphic/commit05_cleandir_new.png)
 
 # Icon update
-You may need to [refresh the file browser](/appendix/manual/site/refresh.html)
+You may need to [refresh the file browser](/en/appendix/manual/site/refresh.html)
 to get the correct icon display, but after a successful
 commit operation, the files and directories for
 committing should show a green check-mark, as shown

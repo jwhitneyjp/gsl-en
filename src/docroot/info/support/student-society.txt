@@ -6,7 +6,7 @@ Title: Community and social life
 
 # The School of Law Volunteers (SOLV)
 
-![SOLV photo](/materials/photo/solv-jasmin-2005.jpg)  
+![SOLV photo](/en/materials/photo/solv-jasmin-2005.jpg)  
 SOLV members at JASMIN seminar September 17 to 30 2005
 {: class='right200'}
 
@@ -53,7 +53,7 @@ hours of the pool.
 
 # Excursions
 
-![Ski Norikura 2007](/materials/photo/ski-norikura-2007-03-8-10.jpg)
+![Ski Norikura 2007](/en/materials/photo/ski-norikura-2007-03-8-10.jpg)
 Ski trip to Norikura, March 8-10, 2007
 {: class='right150'}
 
@@ -71,7 +71,7 @@ for the first time.
 ---
 {: class='clear'}
 
-![Diet](/materials/photo/diet-2007-03.jpg)
+![Diet](/en/materials/photo/diet-2007-03.jpg)
 Students at the National Diet of Japan, March 2007
 {: class='right250'}
 

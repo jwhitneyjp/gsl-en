@@ -1,5 +1,5 @@
 title: Programs
-banner-image: /image/banner-programs.jpg
+banner-image: /en/image/banner-programs.jpg
 
 The Graduate School of Law offers several full postgraduate degree
 programs in both English and in Japanese, at both the Masters and the

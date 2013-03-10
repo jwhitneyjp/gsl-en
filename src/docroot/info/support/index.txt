@@ -1,5 +1,5 @@
 title: Directory
-banner-image: /image/banner-support.jpg
+banner-image: /en/image/banner-support.jpg
 javascript: hi.js
 
 
@@ -25,8 +25,8 @@ javascript: hi.js
 # Graduate School of Law contacts
 
 * # Accounting Section
-  ![](/image/nagoya-university-logo.gif)
-  ![](/image/gsl-logo.png)
+  ![](/en/image/nagoya-university-logo.gif)
+  ![](/en/image/gsl-logo.png)
   The Accounting Section, or *kaikei kakari*, is the office
   to which payments to the University must be made.
 
@@ -37,8 +37,8 @@ javascript: hi.js
 
 * # Alumni Association
 
-  ![](/image/nagoya-university-logo.gif)
-  ![](/image/gsl-logo.png)
+  ![](/en/image/nagoya-university-logo.gif)
+  ![](/en/image/gsl-logo.png)
   The Alumni Association of the Graduate School of Law
   can be contacted by email.  The address is
   `dosokai@nomolog.nagoya-u.ac.jp`.
@@ -50,8 +50,8 @@ javascript: hi.js
 
 
 * # Career Service Office
-  ![](/image/nagoya-university-logo.gif)
-  ![](/image/gsl-logo.png)
+  ![](/en/image/nagoya-university-logo.gif)
+  ![](/en/image/gsl-logo.png)
   Associate Professor Tomio Nakano is the GSL Career Advisor.
   He is available for consultation concerning internship
   and career matters.
@@ -59,8 +59,8 @@ javascript: hi.js
   > Tel: 052-789-4538
 
 * # The Dean's Secretary
-  ![](/image/nagoya-university-logo.gif)
-  ![](/image/gsl-logo.png)
+  ![](/en/image/nagoya-university-logo.gif)
+  ![](/en/image/gsl-logo.png)
   The secretary to the Dean coordinates the Dean's
   schedule, and handles correspondence
   between the Graduate School of Law and
@@ -69,8 +69,8 @@ javascript: hi.js
   > Tel: 052-789-2312
 
 * # General Affairs Section
-  ![](/image/nagoya-university-logo.gif)
-  ![](/image/gsl-logo.png)
+  ![](/en/image/nagoya-university-logo.gif)
+  ![](/en/image/gsl-logo.png)
   The General Affairs Section, or *shomu kakari*, is
   where the records of staff,
   including students employed as teaching and
@@ -83,8 +83,8 @@ javascript: hi.js
 
 
 * # International Student Advisor
-  ![](/image/nagoya-university-logo.gif)
-  ![](/image/gsl-logo.png)
+  ![](/en/image/nagoya-university-logo.gif)
+  ![](/en/image/gsl-logo.png)
   The International Student Advisor in the Graduate
   School of Law can be consulted regarding any matters relating to
   overseas students.
@@ -96,8 +96,8 @@ javascript: hi.js
   [advisor]: mailto:okuda@nomolog.nagoya-u.ac.jp
 
 * # Law School
-  ![](/image/nagoya-university-logo.gif)
-  ![](/image/ls-logo.png)
+  ![](/en/image/nagoya-university-logo.gif)
+  ![](/en/image/ls-logo.png)
   The Law School within the Graduate School of Law is
   a postgraduate training program for law,
   with the purpose of preparing students for the Japanese
@@ -108,8 +108,8 @@ javascript: hi.js
   [ls]: http://www.nomolog.nagoya-u.ac.jp/ls/
 
 * # Network and Computing Support
-  ![](/image/nagoya-university-logo.gif)
-  ![](/image/gsl-logo.png)
+  ![](/en/image/nagoya-university-logo.gif)
+  ![](/en/image/gsl-logo.png)
   The Network Advisor is Ms. Tomizaki, her office 
   is in room 316 of the Law building.  The Network
   Advisor is reponsible for the support
@@ -129,8 +129,8 @@ javascript: hi.js
   
 
 * # School of Law
-  ![](/image/nagoya-university-logo.gif)
-  ![](/image/sl-logo.png)
+  ![](/en/image/nagoya-university-logo.gif)
+  ![](/en/image/sl-logo.png)
   The Japanese-taught undergraduate programs of the faculty
   are provided by the School of Law, the faculty of which
   is coextensive with the Graduate School of Law.
@@ -154,8 +154,8 @@ javascript: hi.js
   [solv]: http://www.law.nagoya-u.ac.jp/~solv/
 
 * # Student Affairs Section
-  ![](/image/nagoya-university-logo.gif)
-  ![](/image/gsl-logo.png)
+  ![](/en/image/nagoya-university-logo.gif)
+  ![](/en/image/gsl-logo.png)
   Contact the Student Affairs Section concerning
   applications, transcripts, and required
   student filings.  The office was recently
@@ -189,8 +189,8 @@ javascript: hi.js
 # Nagoya University contacts
 
 * # Center for Asian Legal Exchange (CALE)
-  ![](/image/nagoya-university-logo.gif)
-  ![](/image/cale-logo.png)
+  ![](/en/image/nagoya-university-logo.gif)
+  ![](/en/image/cale-logo.png)
   The Center for Asian Legal Exchange sponsors
   symposia and conferences on topics related
   to Asian legal cooperation and assistance.
@@ -203,8 +203,8 @@ javascript: hi.js
   [cale]: http://cale.law.nagoya-u.ac.jp/
 
 * # Center for Student Counseling (NUCSC)
-  ![](/image/nagoya-university-logo.gif)
-  ![](/image/nucsc-logo.png)
+  ![](/en/image/nagoya-university-logo.gif)
+  ![](/en/image/nucsc-logo.png)
   Staff at the Center for Student counseling are available
   for consultations concerning the problems and pressures
   students face from schoolwork, career worries, and
@@ -220,8 +220,8 @@ javascript: hi.js
 
 * # Central Library
 
-  ![](/image/nagoya-university-logo.gif)
-  ![](/image/nul-logo.png)
+  ![](/en/image/nagoya-university-logo.gif)
+  ![](/en/image/nul-logo.png)
   The Nagoya University Central Library provides circulation and
   reference service, including inter-library load, photocopying
   and computer-based retrieval.  Central Library staff maintain 
@@ -232,8 +232,8 @@ javascript: hi.js
   [nul]: http://www.nul.nagoya-u.ac.jp/index_e.html
 
 * # Directory Service
-  ![](/image/nagoya-university-logo.gif)
-  ![](/image/contact-new.png)
+  ![](/en/image/nagoya-university-logo.gif)
+  ![](/en/image/contact-new.png)
   The Nagoya University online directory service
   provides basic staff contact details.  The service
   is available only from within the University
@@ -246,8 +246,8 @@ javascript: hi.js
   
 
 * # Disaster Management Office
-  ![](/image/nagoya-university-logo.gif)
-  ![](/image/anshin-logo.png)
+  ![](/en/image/nagoya-university-logo.gif)
+  ![](/en/image/anshin-logo.png)
   The Nagoya University Disaster Management Office
   coordinates disaster preparation, and publishes
   materials for staff and students on disaster
@@ -262,8 +262,8 @@ javascript: hi.js
   [anshin-leaflet]: http://www.seis.nagoya-u.ac.jp/taisaku/material/material/bousaiguide11e.pdf
 
 * # Education Center for International Students (ECIS)
-  ![](/image/nagoya-university-logo.gif)
-  ![](/image/ecis-logo.png)
+  ![](/en/image/nagoya-university-logo.gif)
+  ![](/en/image/ecis-logo.png)
   The ECIS office should be consulted regarding visa,
   work permit and other matters requiring official
   action by the University.
@@ -275,7 +275,7 @@ javascript: hi.js
 
 
 * # Graduate School of Languages and Cultures
-  ![](/image/nagoya-university-logo.gif)
+  ![](/en/image/nagoya-university-logo.gif)
   The Graduate School of Languages and Cultures (GSLC) offers
   opportunities for graduate study in a wide variety of languages and
   cultures, with emphasis on critical and theoretical as well as
@@ -288,8 +288,8 @@ javascript: hi.js
 
 
 * # Handbook for International Students
-  ![](/image/nagoya-university-logo.gif)
-  ![](/image/handbook-for-international-students-logo.png)
+  ![](/en/image/nagoya-university-logo.gif)
+  ![](/en/image/handbook-for-international-students-logo.png)
   The Nagoya University Handbook for International Students is a valuable
   source of information on topics ranging from
   visa requirements to the cost of living.
@@ -303,8 +303,8 @@ javascript: hi.js
   [handbookpdf]: http://www.ecis.nagoya-u.ac.jp/admission/ryugaku-hb.pdf
 
 * # International Student Exchange Division
-  ![](/image/nagoya-university-logo.gif)
-  ![](/image/iad-logo.png)
+  ![](/en/image/nagoya-university-logo.gif)
+  ![](/en/image/iad-logo.png)
   The International Student Exchange Division is the top-level
   administrative office in charge of international student matters
   in the University.  The offices of the [ISA][isa_local],
@@ -318,7 +318,7 @@ javascript: hi.js
   [iad_local]: #international_affairs_division
 
 * # International Housing Section 1
-  ![](/image/nagoya-university-logo.gif)
+  ![](/en/image/nagoya-university-logo.gif)
   Section 1 of the International Housing Section under the
   [International Student Exchange Division][iad] of the University administers
   the Ryugakusei Kaikan (Foreign Students House), the
@@ -331,7 +331,7 @@ javascript: hi.js
   [ihs1_local]: #international_housing_section_1
 
 * # International Housing Section 2
-  ![](/image/nagoya-university-logo.gif)
+  ![](/en/image/nagoya-university-logo.gif)
   Section 2 of the International Housing Section under the
   [International Student Exchange Division][iad] of the University administers
   the Ryugakusei Kaikan.
@@ -339,8 +339,8 @@ javascript: hi.js
   > Tel & Fax: 052-853-2901
 
 * # International Student Advising Office (ISA)
-  ![](/image/nagoya-university-logo.gif)
-  ![](/image/isa-logo.png)
+  ![](/en/image/nagoya-university-logo.gif)
+  ![](/en/image/isa-logo.png)
   In addition to maintaining the University's
   Handbook for International Students, the International 
   Student Advising Office
@@ -363,8 +363,8 @@ javascript: hi.js
   [handbookentry]: #handbook_for_international_students
 
 * # MyNU Portal
-  ![](/image/nagoya-university-logo.gif)
-  ![](/image/mynu-logo.png)
+  ![](/en/image/nagoya-university-logo.gif)
+  ![](/en/image/mynu-logo.png)
   The MyNU portal site is one of the central websites
   of the University, currently used principally to
   manage undergraduate classes.  Login is possible
@@ -375,7 +375,7 @@ javascript: hi.js
   [mynu]: https://mynu.jp/uPortal/render.userLayoutRootNode.uP
 
 * # Nagoya University website
-  ![](/image/nagoya-university-logo.gif)
+  ![](/en/image/nagoya-university-logo.gif)
   The main Nagoya University website is a useful
   source of information, including contact
   details for University-level inquiries,
@@ -390,8 +390,8 @@ javascript: hi.js
   > (English)
 
 * # Nagoya University Program for Academic Exchange (NUPACE)
-  ![](/image/nagoya-university-logo.gif)
-  ![](/image/nupace-logo2.png)
+  ![](/en/image/nagoya-university-logo.gif)
+  ![](/en/image/nupace-logo2.png)
   The NUPACE office handles all matters relating to
   students enrolled for year-abroad or semester-abroad
   study.  
@@ -402,8 +402,8 @@ javascript: hi.js
   [nupace_local]: #nagoya_university_program_for_academic_exchange_nupace
 
 * # Research Center of Health, Physical Fitness, and Sports
-  ![](/image/nagoya-university-logo.gif)
-  ![](/image/sports-logo.png)
+  ![](/en/image/nagoya-university-logo.gif)
+  ![](/en/image/sports-logo.png)
   The Research Center of Health, Physical Fitness, and 
   Sports manages the University sports facilities, including
   the swimming pool.  Their website is the official source
@@ -416,8 +416,8 @@ javascript: hi.js
   [sports]: http://www.htc.nagoya-u.ac.jp/
 
 * # Sexual Harassment Help Desk
-  ![](/image/nagoya-university-logo.gif)
-  ![](/image/shhd-logo.png)
+  ![](/en/image/nagoya-university-logo.gif)
+  ![](/en/image/shhd-logo.png)
   To address issues of sexual harassment,
   Nagoya University has set up a Sexual Harassment Help Desk
   staffed by professional counselors. Consultations
@@ -435,8 +435,8 @@ javascript: hi.js
   [shhdweb]: http://www.sh-help.provost.nagoya-u.ac.jp/
 
 * # Travel Office
-  ![](/image/nagoya-university-logo.gif)
-  ![](/image/ryohi-shitsu.png)
+  ![](/en/image/nagoya-university-logo.gif)
+  ![](/en/image/ryohi-shitsu.png)
   To simplify the processing of requests for travel expenses,
   a system of seven Excel spreadsheets was introduced with
   supporting documentation and amendments to University regulations
@@ -453,7 +453,7 @@ javascript: hi.js
   [ryohi]: http://web-honbu.jimu.nagoya-u.ac.jp/zaimu/ryohi/index.html
 
 * # University Co-op
-  ![](/image/nagoya-university-logo.gif)
+  ![](/en/image/nagoya-university-logo.gif)
   The University Co-op operates cafeterias and concessions on
   campus.
   
@@ -471,7 +471,7 @@ javascript: hi.js
 # Outside contacts
 
 * # American Red Cross Disaster Services
-  ![](/image/american-red-cross-logo.png)
+  ![](/en/image/american-red-cross-logo.png)
   The American Red Cross offers simple guides on steps you can
   take to prepare your home for possible disasters such
   as earthquakes and floods.  Guides are available
@@ -483,7 +483,7 @@ javascript: hi.js
   [redcross]: http://www.redcross.org/services/disaster/0,1082,0_504_,00.html
 
 * # Automobile Insurance Claims Consulting Center
-  ![](/image/aiccc-logo.png)
+  ![](/en/image/aiccc-logo.png)
   The Automobile Insurance Claims Consulting Center is a free
   automobile accident dispute resolution service sponsored by
   the insurance industry.
@@ -498,7 +498,7 @@ javascript: hi.js
   > (9:00-12:00, 13:00-17:00 Mon-Fri)
 
 * # Disaster Emergency messaging service
-  ![](/image/ntt-communications-logo.gif)
+  ![](/en/image/ntt-communications-logo.gif)
   On the first day of every month, the Dial 171 Diaster
   Emergency messaging service is open for trial use.
   The service can be used to leave messages giving
@@ -513,7 +513,7 @@ javascript: hi.js
   [ntt-disaster]: http://506506.ntt.com/english/service/saigai/
 
 * # Japan International Cooperation Center (JICE)
-  ![](/image/jice-logo.png)
+  ![](/en/image/jice-logo.png)
   The Japan International Cooperation Center coordinates
   and monitors the Japanese Grant Aid for Human Resource 
   Development Scholarship (JDS) program.
@@ -528,7 +528,7 @@ javascript: hi.js
   
 
 * # Japan Ministry of Foreign Affairs (MOFA)
-  ![](/image/japan-flag.png)
+  ![](/en/image/japan-flag.png)
   The Japan Ministry of Foreign Affairs administers
   examinations for the Embassy Recommendation 
   scholarship award at its
@@ -540,7 +540,7 @@ javascript: hi.js
   [embassies]: http://www.mofa.go.jp/about/emb_cons/mofaserv.html
 
 * # Japan Student Services Organization (JASSO)
-  ![](/image/jasso-logo.png)
+  ![](/en/image/jasso-logo.png)
   The JASSO website is a comprehensive portal for
   information on study in Japan, including links to universities
   and scholarship programs.  JASSO also administers the
@@ -561,7 +561,7 @@ javascript: hi.js
   [jasso-scholarships]: http://www.jasso.go.jp/study_j/scholarships_e.html
   [jasso-eju]: http://www.jasso.go.jp/eju/index_e.html
 * # Lexis-Nexis information service
-  ![](/image/lexis-nexis.png)
+  ![](/en/image/lexis-nexis.png)
   The Graduate School of Law has an institutional subscription
   to the Lexis-Nexis law and current events information service.
   Students may apply for the service by sending an application
@@ -576,7 +576,7 @@ javascript: hi.js
   [netadminentry]: #network_and_computing_support
 
 * # Study in Japan website
-  ![](/image/mof-study-japan.gif)
+  ![](/en/image/mof-study-japan.gif)
   The Japan Ministry of Foreign Affairs maintains a 
   multilingual website
   with general information for applicants,

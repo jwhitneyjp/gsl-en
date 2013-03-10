@@ -3,7 +3,7 @@ css: manual.css
 
 ###### Step 1
 
-![](/materials/graphic/man003_key_new.png)
+![](/en/materials/graphic/man003_key_new.png)
 
 # The SSH Key
 To access Subversion on the server, you
@@ -16,7 +16,7 @@ your key.
 
 ###### Step 2
 
-![](/materials/graphic/man004_passphrase_new.png)
+![](/en/materials/graphic/man004_passphrase_new.png)
 
 # Entering a password
 If your key is protected by a password (it

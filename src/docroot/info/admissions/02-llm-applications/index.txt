@@ -13,7 +13,7 @@ cohort.  The October-entry cohort is specially
 offered for students enrolling through the Special Program
 scheme described in the [Admissions][admissions] page.
 
-[admissions]: /admissions
+[admissions]: /en/admissions
 
 * # English-taught, April-entry
 
@@ -28,7 +28,7 @@ scheme described in the [Admissions][admissions] page.
   scholarship recipients, the program runs for
   two years after passing the entrance examination.
   
-  [jds]: /support/index.html#japan_international_cooperation_center_jice
+  [jds]: /en/support/index.html#japan_international_cooperation_center_jice
   
   *Please consult the application form for details
   of the application process.*

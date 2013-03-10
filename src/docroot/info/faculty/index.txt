@@ -1,5 +1,5 @@
 title: Staff
-banner-image: /en/image/banner-faculty.jpg
+banner-image: /image/banner-faculty.jpg
 css: staff-all.css
 javascript: popup.js
 

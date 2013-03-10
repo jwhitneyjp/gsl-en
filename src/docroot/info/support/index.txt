@@ -1,5 +1,5 @@
 title: Directory
-banner-image: /en/image/banner-support.jpg
+banner-image: /image/banner-support.jpg
 javascript: hi.js
 
 

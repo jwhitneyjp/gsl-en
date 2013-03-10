@@ -40,7 +40,7 @@ class DownloadFiles
 	end
 
 	def link_html(extension, size)
-	    "<a href='/en#{name}.#{extension}' title='#{extension}'>" +
+	    "<a href='#{name}.#{extension}' title='#{extension}'>" +
 	    "<img style='padding-top:2px;' src='#{Icon.uri_for(extension)}' alt='#{extension}' />" + 
 		"</a> <span style='font-size:smaller;'>(#{size})</span>"
 	end

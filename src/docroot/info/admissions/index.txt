@@ -1,5 +1,5 @@
 title: Admissions
-banner-image: /en/image/banner-admissions.jpg
+banner-image: /image/banner-admissions.jpg
 
 * This page provides an outline of scholarships and admissions
   for overseas applicants to the Comparative Law and

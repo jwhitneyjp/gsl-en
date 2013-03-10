@@ -1,5 +1,5 @@
 title: Alumni
-banner-image: /en/image/banner-alumni.jpg
+banner-image: /image/banner-alumni.jpg
 css: indexpage-pagenone.css
 
 There is a single alumni association for all GSL

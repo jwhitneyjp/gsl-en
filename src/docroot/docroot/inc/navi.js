@@ -2,7 +2,7 @@
       var menus = document.getElementsByClassName('nav-buttons');
       if (menus && menus.length) {
         var href = '' + document.location.href;
-        var m = href.match(/https?:\/\/[^\/]*\/([a-z]+).*/);
+        var m = href.match(/https?:\/\/[^\/]*\/en\/([a-z]+).*/);
         if (m) {
           for (var i = 0, ilen = menus.length; i < ilen; i += 1) {
             var menu = menus[i];

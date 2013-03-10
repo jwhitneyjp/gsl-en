@@ -1,5 +1,5 @@
 title: Test Page Zero
-banner-image: /en/image/banner-test-image.jpg
+banner-image: /image/banner-test-image.jpg
 
 This page is used by the automated tests. Do not remove it, or you will
 see a lot of error messages.

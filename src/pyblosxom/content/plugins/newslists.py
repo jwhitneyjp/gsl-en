@@ -129,9 +129,9 @@ filerex = re.compile("^([0-9]{4})-([0-9]{2})-([0-9]{2})")
 templates = {}
 templates["date"] = {}
 templates["nodate"] = {}
-templates["date"]["link"] = "<div class='news-link'><i>@@date@@</i> - <a href='en/@@url@@'>@@title@@</a></div>"
+templates["date"]["link"] = "<div class='news-link'><i>@@date@@</i> - <a href='@@url@@'>@@title@@</a></div>"
 templates["date"]["nolink"] = "<div style='background:yellow;text-align:center;'><b>Notice:</b> @@title@@ [@@date@@]</div>"
-templates["nodate"]["link"] = "<div class='news-link'><a href='en/@@url@@'>@@title@@</a></div>"
+templates["nodate"]["link"] = "<div class='news-link'><a href='@@url@@'>@@title@@</a></div>"
 templates["nodate"]["nolink"] = "<div style='background:yellow;text-align:center;'><b>Notice:</b> @@title@@</div>"
 
 # Placeholder name lists for each template

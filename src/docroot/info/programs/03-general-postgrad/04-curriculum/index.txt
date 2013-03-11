@@ -1,2 +1,2 @@
 title: Curriculum
-link: /en/curriculum
+link: /curriculum

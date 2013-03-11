@@ -1,2 +1,2 @@
 title: Student Handbook
-link: /en/curriculum/gslhandbook
+link: /curriculum/gslhandbook

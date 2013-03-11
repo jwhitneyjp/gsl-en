@@ -1,4 +1,4 @@
 #!/bin/bash
-find ./docroot -type d -exec chmod uog+x {} \;
-find ./docroot -exec chmod uog+r {} \;
-rsync -av ./docroot/ en@law.nagoya-u.ac.jp:/var/www/html/en
+find ./release/docroot -type d -exec chmod uog+x {} \;
+find ./release/docroot -exec chmod uog+r {} \;
+rsync -av ./release/docroot/ en@law.nagoya-u.ac.jp:/var/www/html/en

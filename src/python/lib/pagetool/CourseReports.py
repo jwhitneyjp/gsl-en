@@ -91,10 +91,10 @@ class CourseReports:
 
     def save(self):
         filename_html = 'rpt%s.html' % self.data['course_number']
-        filename_doc = 'rpt%s.doc' % self.data['course_number']
+        filename_doc = 'rpt%s.docx' % self.data['course_number']
         print "Saving: %s" % filename_html
         open(gp.reports.src(filename_html), 'w+').write(self.report)
-        ofh = os.popen('lowriter --headless -convert-to doc -outdir %s %s' % (gp.reports.src(''),gp.reports.src(filename_html)))
+        ofh = os.popen('lowriter --headless -convert-to docx -outdir %s %s' % (gp.reports.src(''),gp.reports.src(filename_html)))
         ofh.close()
         os.unlink(gp.reports.src(filename_html))
         os.chmod(gp.reports.src(filename_doc),0777)
@@ -102,7 +102,7 @@ class CourseReports:
     def aggregate(self):
         zf = ZipFile(gp.reports.src('course-reports-%s.zip' % year), 'a')
         for filename in os.listdir(gp.reports.src('')):
-            if filename.endswith('.doc'):
+            if filename.endswith('.docx'):
                 print "Moving %s to zip archive" % filename
                 zf.writestr(filename,open(gp.reports.src(filename)).read())
                 os.unlink(gp.reports.src(filename))

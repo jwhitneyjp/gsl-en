@@ -3,11 +3,6 @@ pagetitle: Supplementary Courses: Economics
 css: wide-sidenote.css
 javascript: popup.js
 
-Course listings for the academic year beginning in April 2013
-will be available soon.
-
-<!--
-
 The full content of courses is available
 via the faculty's online Syllabus System:
 
@@ -24,5 +19,3 @@ details.
 
 
 %%content%%
-
--->

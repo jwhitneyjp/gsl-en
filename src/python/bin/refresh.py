@@ -46,7 +46,15 @@ currentdir = os.getcwd()
 #staffinfodir = '%s/StaffInfo' % (currentdir,)
 
 files = os.listdir( gp.staffinfo.src('') )
-files.remove('.svn')
+try:
+    files.remove('.svn')
+except:
+    pass
+
+try:
+    files.remove('.git')
+except:
+    pass
 
 if len(files) > 0 or web_update:
     
@@ -233,7 +241,7 @@ if syllabus_update:
             session_html = ''
             session_count = 1
             for session_text in sessions:
-                session_html += '<tr><td>%d</td><td>%s</td></tr>' % (session_count,session_text)
+                session_html += '<tr><td><div>%d</div></td><td><div>%s</div></td></tr>' % (session_count,session_text)
                 session_count += 1
             pdat['sessions'] = session_html
 

@@ -105,7 +105,7 @@ class CourseReports:
             if filename.endswith('.docx'):
                 print "Moving %s to zip archive" % filename
                 zf.writestr(filename,open(gp.reports.src(filename)).read())
-                os.unlink(gp.reports.src(filename))
+                os.rename(gp.reports.src(filename),gp.coursescache.src(filename))
         for fileobj in zf.infolist():
             fileobj.external_attr = 0777 << 16L
         zf.close()

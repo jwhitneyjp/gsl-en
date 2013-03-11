@@ -3,6 +3,11 @@ pagetitle: Leading Graduate School Curriculum
 css: wide-sidenote.css
 javascript: popup.js
 
+Course listings for the academic year beginning in April 2013 will be
+available soon.
+
+<!-- 
+
 The full content of courses is available
 via the faculty's online Syllabus System:
 
@@ -14,3 +19,5 @@ Entries in **bold** in the list below are compulsory subjects.
 [ss]: http://infosv.nomolog.nagoya-u.ac.jp/english/syllabus/as/v/gs13
 
 %%content%%
+
+-->

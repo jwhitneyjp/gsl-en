@@ -27,11 +27,11 @@ div.profile-link a {
 }
 
 div.profile-link a:hover {
-    background: url('/image/2_menuh_b_bg_on.gif') repeat scroll 0% 0% rgb(0,0,0);
+    background: url('/en/image/2_menuh_b_bg_on.gif') repeat scroll 0% 0% rgb(0,0,0);
 }
 
 div.profile-link a:active {
-    background: url('/image/2_menuh_b_bg_cr.gif') repeat scroll 0% 0% rgb(79,79,79);
+    background: url('/en/image/2_menuh_b_bg_cr.gif') repeat scroll 0% 0% rgb(79,79,79);
 }
 
 td.pop-label {

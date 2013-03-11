@@ -29,27 +29,27 @@
 }
 
 .bdtext a.size-s {
-    background-image: url("/icon/1_ic_bdtext3_s.png");
+    background-image: url("/en/icon/1_ic_bdtext3_s.png");
 }
 
 .bdtext a.size-m {
-    background-image: url("/icon/1_ic_bdtext3_m.png");
+    background-image: url("/en/icon/1_ic_bdtext3_m.png");
 }
 
 .bdtext a.size-l {
-    background-image: url("/icon/1_ic_bdtext3_l.png");
+    background-image: url("/en/icon/1_ic_bdtext3_l.png");
 }
 
 .bdtext a.size-s:hover {
-    background-image: url("/icon/1_ic_bdtext3_s_ov.png");
+    background-image: url("/en/icon/1_ic_bdtext3_s_ov.png");
 }
 
 .bdtext a.size-m:hover {
-    background-image: url("/icon/1_ic_bdtext3_m_ov.png");
+    background-image: url("/en/icon/1_ic_bdtext3_m_ov.png");
 }
 
 .bdtext a.size-l:hover {
-    background-image: url("/icon/1_ic_bdtext3_l_ov.png");
+    background-image: url("/en/icon/1_ic_bdtext3_l_ov.png");
 }
 
 img.ical {
@@ -269,7 +269,7 @@ td.logo a:hover {
 }
 
 div.page-title:before {
-   content: url("/icon/redspot.png")
+   content: url("/en/icon/redspot.png")
 }
 
 div.page-title {
@@ -354,15 +354,15 @@ div.nav-buttons a.menu-first {
 }
 
 div.nav-buttons a:hover {
-    background: url('/image/2_menuh_b_bg_on.gif') repeat scroll 0% 0% rgb(0,0,0);
+    background: url('/en/image/2_menuh_b_bg_on.gif') repeat scroll 0% 0% rgb(0,0,0);
 }
 
 div.nav-buttons a:active {
-    background: url('/image/2_menuh_b_bg_cr.gif') repeat scroll 0% 0% rgb(79,79,79);
+    background: url('/en/image/2_menuh_b_bg_cr.gif') repeat scroll 0% 0% rgb(79,79,79);
 }
 
 a.menu-button-selected {
-    background: url('/image/2_menuh_b_bg_cr.gif') repeat scroll 0% 0% rgb(79,79,79);
+    background: url('/en/image/2_menuh_b_bg_cr.gif') repeat scroll 0% 0% rgb(79,79,79);
 }
 
 div.footer {
@@ -432,11 +432,11 @@ div.breadcrumbs a {
 }
 
 div.breadcrumbs a:hover {
-    background: url('/image/2_menuh_b_bg_on.gif') repeat scroll 0% 0% rgb(0,0,0);
+    background: url('/en/image/2_menuh_b_bg_on.gif') repeat scroll 0% 0% rgb(0,0,0);
 }
 
 div.breadcrumbs a:active {
-    background: url('/image/2_menuh_b_bg_cr.gif') repeat scroll 0% 0% rgb(79,79,79);
+    background: url('/en/image/2_menuh_b_bg_cr.gif') repeat scroll 0% 0% rgb(79,79,79);
 }
 
 div.content {
@@ -455,7 +455,7 @@ div.content-pane-left {
     /* border-bottom: solid 1px black; */
     padding-right: 15px;
     padding-bottom: 1.9em;
-    background: url('/image/content-pane-bg-image.gif') repeat-y;
+    background: url('/en/image/content-pane-bg-image.gif') repeat-y;
 }
 
 div.content-pane-left:after {
@@ -537,22 +537,22 @@ div.content-pane-left li {
     padding: 0px 0px;
     
 }
-li.directory-listing { list-style-image: url('/image/gtk-directory.png'); }
+li.directory-listing { list-style-image: url('/en/image/gtk-directory.png'); }
 
 /* a.directory-heading { font-family: Vollkorn,Times,serif; font-weight: 700; } */
 a.directory-heading { font-family: Lato,sans; font-weight: 900; }
 
-li.directory-listing-remote { list-style-image: url('/image/folder-publicshare.png'); }
-li.directory-listing-local { list-style-image: url('/icon/redspot-24.png'); }
-li.download-listing { list-style-image: url('/image/gtk-download.png'); }
-li.file-listing { list-style-image: url('/image/gtk-file.png'); }
+li.directory-listing-remote { list-style-image: url('/en/image/folder-publicshare.png'); }
+li.directory-listing-local { list-style-image: url('/en/icon/redspot-24.png'); }
+li.download-listing { list-style-image: url('/en/image/gtk-download.png'); }
+li.file-listing { list-style-image: url('/en/image/gtk-file.png'); }
 
 ul.ical {
     margin-left: 20px;
 }
 
 ul.ical li { 
-    list-style-image: url('/image/calendar.png');
+    list-style-image: url('/en/image/calendar.png');
 }
 
 ul.ical a {

@@ -66,7 +66,7 @@ h2 {
 }
 
 h2:before {
-   content: url("/icon/redspot.png")
+   content: url("/en/icon/redspot.png")
 }
 
 a.icon img {
@@ -103,9 +103,9 @@ div.dean a {
 }
 
 div.dean a:hover {
-    background: url('/image/2_menuh_b_bg_on.gif') repeat scroll 0% 0% rgb(0,0,0);
+    background: url('/en/image/2_menuh_b_bg_on.gif') repeat scroll 0% 0% rgb(0,0,0);
 }
 
 div.dean a:active {
-    background: url('/image/2_menuh_b_bg_cr.gif') repeat scroll 0% 0% rgb(79,79,79);
+    background: url('/en/image/2_menuh_b_bg_cr.gif') repeat scroll 0% 0% rgb(79,79,79);
 }

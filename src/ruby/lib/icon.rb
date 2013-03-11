@@ -5,7 +5,7 @@ module Icon
 	    'src', 'docroot', 'docroot', 'icon', '*.png')].
 	    collect { |path| File.basename(path, '.png') }
 	name = @@icons.include?(extension) ? extension : 'unknown'
-	return "/icon/#{name}.png"
+	return "/en/icon/#{name}.png"
     end
 
 end

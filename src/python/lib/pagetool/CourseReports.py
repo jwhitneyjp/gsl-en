@@ -23,9 +23,9 @@ report_template = open(gp.docroot.src('course-report.html')).read()
 
 class CourseReports:
     def __init__(self):
-        for filename in os.listdir(gp.reports.src('')):
-            if filename.endswith('.doc') or filename.endswith('.zip'):
-                os.unlink(gp.reports.src(filename))
+        for filename in os.listdir(gp.doc.src('')):
+            if filename.endswith('.rtf'):
+                os.unlink(gp.doc.src(filename))
 
     def set(self,data,instructors):
         self.data = data
@@ -90,23 +90,12 @@ class CourseReports:
         self.report = self.report.replace('@@sessions@@',data['sessions'])
 
     def save(self):
-        filename_html = 'rpt%s.html' % self.data['course_number']
-        filename_doc = 'rpt%s.docx' % self.data['course_number']
-        print "Saving: %s" % filename_html
-        open(gp.reports.src(filename_html), 'w+').write(self.report)
-        ofh = os.popen('lowriter --headless -convert-to docx -outdir %s %s' % (gp.reports.src(''),gp.reports.src(filename_html)))
+        filename_html = 'gslc%s.html' % self.data['course_number']
+        filename_doc = 'gslc%s.rtf' % self.data['course_number']
+        print "Generating: ./src/docroot/doc/%s" % filename_doc
+        open(gp.doc.src(filename_html), 'w+').write(self.report)
+        ofh = os.popen('lowriter --headless -convert-to rtf -outdir %s %s' % (gp.doc.src(''),gp.doc.src(filename_html)))
         ofh.close()
-        os.unlink(gp.reports.src(filename_html))
-        os.chmod(gp.reports.src(filename_doc),0777)
+        os.unlink(gp.doc.src(filename_html))
+        os.chmod(gp.doc.src(filename_doc),0777)
 
-    def aggregate(self):
-        zf = ZipFile(gp.reports.src('course-reports-%s.zip' % year), 'a')
-        for filename in os.listdir(gp.reports.src('')):
-            if filename.endswith('.docx'):
-                print "Moving %s to zip archive" % filename
-                zf.writestr(filename,open(gp.reports.src(filename)).read())
-                os.rename(gp.reports.src(filename),gp.coursescache.src(filename))
-        for fileobj in zf.infolist():
-            fileobj.external_attr = 0777 << 16L
-        zf.close()
-        os.chmod(gp.reports.src('course-reports-%s.zip' % year),0777)

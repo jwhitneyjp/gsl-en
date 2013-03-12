@@ -357,7 +357,6 @@ if report_update:
     for coursedata in course_c:
         reports.set(coursedata,instructors)
         reports.save()
-    reports.aggregate()
         
 print ""
 print "Done"

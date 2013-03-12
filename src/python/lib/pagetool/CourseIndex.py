@@ -45,8 +45,16 @@ class courseIndex:
             else:
                 instructor = displayname
         return instructor.strip()
+
+    def rowclass(self, num, classes):
+        rem = num % 2
+        if rem:
+            return '%s %s' % ('row-odd',classes)
+        else:
+            return '%s %s' % ('row-even',classes)
             
     def courseindex(self,coursenickname,start,end):
+        rowcount = 1
         row_content = ''
         for course in self.courses:
             if fixnum(course['course_number']) < start or fixnum(course['course_number']) > end:
@@ -59,9 +67,11 @@ class courseIndex:
 
             row = self.ci_row
             if course['compulsory']:
-                row = row.replace('@@class@@', 'required')
+                row = row.replace('@@required@@', 'required')
             else:
-                row = row.replace('@@class@@', 'none')
+                row = row.replace('@@required@@', 'none')
+            row = row.replace('@@class@@', self.rowclass(rowcount,''))
+            rowcount += 1
             
             button_url = "%s.ics" % os.path.splitext(course['course_url_cached'])[0]
             button_filename = os.path.split(button_url)[1]
@@ -69,8 +79,8 @@ class courseIndex:
                 button = self.ci_button.replace("@@NUMBER@@", course['course_number'])
                 button = button.replace("@@URL@@", button_url)
             else:
-                button = course['course_number']
-            row = row.replace('@@course-number@@', button)
+                button = "<span class=\"course-number\">%s</span>" % course['course_number']
+            row = row.replace('@@course-button@@', button)
             row = row.replace('@@course-subject@@', course['course_subject'])
             row = row.replace('@@course-url@@', course['course_url'])
             row = row.replace('@@course-url-cached@@', course['course_url_cached'])
@@ -80,6 +90,7 @@ class courseIndex:
             row = row.replace('@@format@@', course['format'])
             row = row.replace('@@open-to@@', course['open_to'])
             row = row.replace('@@term@@', course['term'])
+            row = row.replace('@@course-number@@', course['course_number'])
             row_content += row
         
         body = self.ci_body

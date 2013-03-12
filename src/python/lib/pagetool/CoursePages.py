@@ -105,6 +105,7 @@ class coursePages:
             #XXX
             filename = 'gslc%s.html' % data['course_number']
             icsname = 'gslc%s.ics' % data['course_number']
+            docname = 'gslc%s.rtf' % data['course_number']
             row_content = ''
             dateEngine = None
             for item in self.course_headers:
@@ -183,6 +184,10 @@ class coursePages:
             link = self.course_external_link.replace('@@category@@',category)
             cache_popup = popup.replace('@@popup-content-external-link@@',link)
             open( gp.coursescache.release(filename), 'w+' ).write(cache_popup)
+
+            # Move office file into place while we're at it
+            rtf = open(gp.doc.src(docname)).read()
+            open( gp.coursescache.release(docname), 'w+').write(rtf)
 
         fh.close()
         

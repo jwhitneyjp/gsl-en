@@ -6,6 +6,35 @@
 * { border: 1px solid red; }
 */
 
+table.std th {
+    border-bottom: 1px solid black;
+    vertical-align: middle;
+    background: white;
+    padding: 0.5em;
+    text-align: left;
+}
+
+table.std td {
+    vertical-align: middle;
+    padding: 0.75em 0.5em;
+    text-align: left;
+}
+
+table.std tbody tr.row-odd {
+    background: white;
+}
+
+table.std tbody tr.row-even {
+    background: #eeeeee;
+}
+
+table.std tbody td.required {
+    font-weight: bold;
+}
+
+table.std tbody td span.course-number {
+    font-family: Lato,sans;
+}
 
 div.toc-title {
     font-size: 0.83em;

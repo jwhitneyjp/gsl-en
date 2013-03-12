@@ -99,6 +99,10 @@ class gslpath:
         self._paths['xls']['src'] = 'src/docroot/xls/'
         self._paths['xls']['release'] = None
         
+        self._paths['doc'] = {}
+        self._paths['doc']['src'] = 'src/docroot/doc/'
+        self._paths['doc']['release'] = None
+        
         self._paths['pickle'] = {}
         self._paths['pickle']['src'] = 'src/docroot/pickle/'
         self._paths['pickle']['release'] = None

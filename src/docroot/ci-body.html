@@ -1,13 +1,18 @@
 <div id="#content">
-    <table width="750" border="1" cellspacing="3" cellpadding="5">
+    <table width="750" cellspacing="0" class="std">
+      <thead>
         <tr>
-            <th>Number</th>
-            <th>Title</th>
-            <th>Credit</th>
-            <th>Instructor</th>
-            <th>Format</th>
-            <th>Open to/ Term</th>
+          <th></th>
+          <th>Title</th>
+          <th>Instructor</th>
+          <th style="text-align:center;">Credit</th>
+          <th style="text-align:center;">Term</th>
+          <th style="text-align:center;"><div>Class<br/>Year</div></th>
+          <th style="text-align:center;"><div>office<br/>use</div></th>
         </tr>
+      </thead>
+      <tbody>
         @@rows@@
+      </tbody>
     </table>
 </div>

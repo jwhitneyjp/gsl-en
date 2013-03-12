@@ -31,7 +31,13 @@ class CourseReports:
         self.data = data
         self.report = report_template
         self.report = self.report.replace('@@course-title@@',self.data['course_title'])
-        self.report = self.report.replace('@@open-to@@',self.data['open_to'])
+        lst = re.split("\s*(?:&amp;|,| |&)\s*",self.data['open_to'])
+        for i in range(0,len(lst),1):
+            lst[i] = "<span style=\"text-decoration:underline;\">Year %s</span>" % lst[i]
+        lst.sort()
+        lst.reverse()
+        open_to = " ".join(lst)
+        self.report = self.report.replace('@@open-to@@',open_to)
         self.report = self.report.replace('@@credit@@',self.data['credit'])
         if str(data['term']) == "1":
             self.report = self.report.replace('@@term@@','Spring')

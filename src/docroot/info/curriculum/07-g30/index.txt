@@ -9,6 +9,8 @@ via the faculty's online Syllabus System:
 > [Visit the online Syllabus System][ss] (English)  
 > *(Password required)*{: style='color: red;'}
 
+*(Note: Editing of course schedules is in progress)*{: style='color: red;'}
+
 [ss]: http://infosv.nomolog.nagoya-u.ac.jp/english/syllabus/as/v/30g13
 
 

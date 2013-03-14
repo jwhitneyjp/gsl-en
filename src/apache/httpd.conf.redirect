@@ -210,7 +210,7 @@ SSLNoV2
 # directory index.  Separate multiple entries with spaces.
 #
 <IfModule mod_dir.c>
-    DirectoryIndex index.html index.htm index.cgi index.php index.shtml
+    DirectoryIndex index.html
 </IfModule>
 
 #
@@ -594,6 +594,11 @@ NameVirtualHost 203.105.81.135:443
         RewriteEngine On
         RewriteOptions inherit
     </IfModule>
+</VirtualHost>
+
+<VirtualHost 203.105.81.135:80>
+    ServerName www.gsl-nagoya-u.net
+    Redirect permanent / http://gsl-nagoya-u.net/
 </VirtualHost>
 
 <VirtualHost 203.105.81.135:80>

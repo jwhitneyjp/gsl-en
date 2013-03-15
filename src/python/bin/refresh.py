@@ -271,20 +271,26 @@ if syllabus_update:
             updat['course_subject'] = r.group(1).strip()
             updat['notes'] = r.group(2).strip()
     
-            r = rex5.match(pdat['term_data'])
+            term_data = pdat['term_data']
+            term_data = term_data.replace('(?:i)(fall)',' 1 ')
+            term_data = term_data.replace('(?:i)(spring)',' 2 ')
+            term_data = term_data.replace('[^ 0-9]*',' ')
+            term_data = term_data.replace('\s+',' ')
+            r = rex5.match(term_data)
             if not r:
-                updat['term'] = pdat['term_data'].strip()
-                updat['offered_this_year'] = ''
+                term = pdat['term_data'].strip()
                 updat['year_offered'] = ''
-            elif r.group(2).strip() == '2008':
-                updat['term'] = r.group(1).strip()
-                updat['offered_this_year'] = 'Yes'
-                updat['year_offered'] = r.group(2).strip()
             else:
-                updat['term'] = r.group(1).strip()
-                updat['offered_this_year'] = 'Yes'
+                term = r.group(1).strip()
                 updat['year_offered'] = r.group(2).strip()
-    
+            updat['offered_this_year'] = ''
+            if term == '1':
+                term = 'Spring'
+            elif term == '2':
+                term = 'Fall'
+            else:
+                pass
+            updat['term'] = term
             updat['instructor'] = pdat['teacher_data'].strip()
             updat['other_instructors'] = pdat['teachers_data'].strip()
             updat['format'] = pdat['lec_type_data'].strip()

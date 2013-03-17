@@ -42,9 +42,9 @@ class CourseReports:
         if str(data['term']) == "1":
             self.report = self.report.replace('@@term@@','Spring')
         elif str(data['term']) == "2":
-            self.report = self.report.replace('@@term@@','Spring')
+            self.report = self.report.replace('@@term@@','Fall')
         else:
-            self.report = self.report.replace('@@term@@','?????')
+            self.report = self.report.replace('@@term@@',str(data['term']))
         self.report = self.report.replace('@@year@@',year)
         dtstr = self.data['day_and_time']
         dtlst = dtstr.split("(Mon|Tue|Wed|Thu|Fri)")

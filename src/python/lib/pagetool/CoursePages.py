@@ -134,11 +134,14 @@ class coursePages:
                                         dateData['email'] = "%s@law.nagoya-u.ac.jp" % email
                         dateData['place'] = data['room']
                         dateData['start_date'] = data['start_date']
-                        m = re.match("^([12I]).*",data['term'])
+                        term = data['term']
+                        term = re.sub('(?i)spring','1',term)
+                        term = re.sub('(?i)fall','2',term)
+                        m = re.match("^([12I]).*",term)
                         if m:
                             dateData['term'] = m.group(1)
                         else:
-                            print "** WARNING: missing term for course %s, setting to 1" % data['course_number']
+                            print "** WARNING: missing term for course %s, setting to 1 (Fall)" % data['course_number']
                             dateData['term'] = "1"
                         dateEngine = DateEngine('Asia/Tokyo', gp.docroot.src(''), '/curriculum/cache/%s' % filename, dateData, term_dates=term_dates)
                         if dateEngine.valid:

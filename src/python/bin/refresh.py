@@ -39,7 +39,7 @@ report_update = options.report_update
 rex1 = re.compile(u'^([-0-9]*) *(.*)$',re.M)
 rex2 = re.compile(u'^(.*)\s*--\s*(.*)$')
 rex4 = re.compile(u'^.*\[Subject:(.*?)\](.*)$',re.M|re.S)
-rex5 = re.compile(u'^(.*)\[([0-9]*)\].*$',re.M|re.S)
+rex5 = re.compile(u'^(.*)\[([0-9]+)\].*$',re.M|re.S)
 
 currentdir = os.getcwd()
 
@@ -272,17 +272,17 @@ if syllabus_update:
             updat['notes'] = r.group(2).strip()
     
             term_data = pdat['term_data']
-            term_data = term_data.replace('(?:i)(fall)',' 1 ')
-            term_data = term_data.replace('(?:i)(spring)',' 2 ')
-            term_data = term_data.replace('[^ 0-9]*',' ')
-            term_data = term_data.replace('\s+',' ')
+            term_data = re.sub('(?i)(fall)',' 2 ',term_data)
+            term_data = re.sub('(?i)(spring)',' 1 ',term_data)
+            term_data = re.sub('[^ 0-9]',' ',term_data)
+            term_data = re.sub('\s+',' ',term_data).strip()
             r = rex5.match(term_data)
             if not r:
-                term = pdat['term_data'].strip()
+                term = term_data
                 updat['year_offered'] = ''
             else:
                 term = r.group(1).strip()
-                updat['year_offered'] = r.group(2).strip()
+                updat['year_offered'] = r.group(2)
             updat['offered_this_year'] = ''
             if term == '1':
                 term = 'Spring'

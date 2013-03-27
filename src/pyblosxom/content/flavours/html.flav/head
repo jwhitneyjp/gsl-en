@@ -114,7 +114,7 @@
             </tr>
           </table>
           <div class="menu nav-buttons">
-	        <a class="menu-first" style="border-left:1px solid #a0a0a0;" href="/en/programs/">Programs</a><a href="/en/admissions/">Admissions</a><a href="/en/curriculum/">Curriculum</a><a href="/en/faculty/">Staff</a><a href="/en/support/">Directory</a><a href="/en/alumni/">Alumni</a>
+	        <a class="menu-first" style="border-left:1px solid #a0a0a0;" href="/en/programs/">Programs</a><a href="/en/admissions/">Admissions</a><a href="/en/curriculum/">Curricula</a><a href="/en/faculty/">Staff</a><a href="/en/support/">Directory</a><a href="/en/alumni/">Alumni</a>
           </div>
         </div>
 $(alert)

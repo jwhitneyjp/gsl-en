@@ -614,6 +614,9 @@ NameVirtualHost 203.105.81.135:443
     RewriteEngine On
     RewriteOptions inherit
 
+    # Move some documents offsite
+    Redirect permanent /http/pub/citeproc-js-csl.html http://citationstylist.org/docs/citeproc-js-csl.html
+
     # Keep distro directory local
     RewriteRule ^/http/pub/.*$       -                  [L]
     RewriteRule ^(.*)$               http://law.nagoya-u.ac.jp/en$1 [R,L]

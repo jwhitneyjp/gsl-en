@@ -96,7 +96,7 @@ class staffPages:
 
             if have_photo:
                 photo = self.photo_template.replace('@@rowspan@@',str(rowspan))
-                photo = photo.replace('@@photo-url@@',data['photo_url'])
+                photo = photo.replace('@@photo-url@@',"/en%s" % data['photo_url'])
                 for key in [x[0] for x in self.staff_headers]:
                     if data[key] and key in tops:
                         rowspan = rowspan + 1

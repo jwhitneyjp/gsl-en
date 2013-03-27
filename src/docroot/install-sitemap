@@ -13,7 +13,7 @@ from pathtool import gslpath
 p = gslpath()
 
 tabs = ['programs','admissions','curriculum','faculty','support','alumni','appendix']
-labels = ['Programs','Admissions','Curriculum','Faculty','Directory','Alumni','Appendices']
+labels = ['Programs','Admissions','Curricula','Faculty','Directory','Alumni','Appendices']
 startdir = p.docroot.release("")
 startdirList = startdir.split(os.path.sep)
 bundles = []

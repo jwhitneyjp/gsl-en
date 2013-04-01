@@ -70,10 +70,13 @@ class staffPages:
                 for x in self.taughtby[ data['uid'] ]:
                     url = gp.courses.url('gslc%s.html' %x )
                     if not self.coursesbystaffuid.has_key(data['uid']):
-                        self.coursesbystaffuid[data['uid']] = {'GSL': False, 'Leading': False, 'G30': False}
+                        self.coursesbystaffuid[data['uid']] = {'GSL': False, 'Leading': False, 'G30': False, 'AW': False}
                     uid = fixnum(x)
                     if uid > 899 and uid < 1000:
                         course_index_url = '/curriculum/econ'
+                    elif uid > 799 and uid < 900:
+                        course_index_url = '/curriculum/aw'
+                        self.coursesbystaffuid[data['uid']]['AW'] = True
                     elif uid > 599 and uid < 700:
                         course_index_url = '/curriculum/leading'
                         self.coursesbystaffuid[data['uid']]['Leading'] = True

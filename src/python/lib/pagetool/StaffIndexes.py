@@ -17,6 +17,7 @@ class staffIndexes:
         self.si_row = open( gp.docroot.src('util-block.html') ).read().strip()
         self.si_profession = open( gp.docroot.src('util-profession.html') ).read()
         self.si_field = open( gp.docroot.src('util-field.html') ).read()
+        self.si_tutorial_link = open( gp.docroot.src('si-tutorial-link.html') ).read()
         
         self.si_section = open( gp.docroot.src('util-section.html') ).read()
         
@@ -66,6 +67,7 @@ class staffIndexes:
         self.mkindex('GSL', byteaching=True, strict=True)
         self.mkindex('LS')
         self.mkindex('Leading', byteaching=True)
+        self.mkindex('AW', byteaching=True)
         self.mkindex('G30')
         self.staffindex()
         
@@ -77,6 +79,11 @@ class staffIndexes:
         row = row.replace('@@full-name@@', data['full_name'])
         row = row.replace('@@status@@', data['status'])
         row = row.replace('@@affiliations@@', data['affiliations'])
+        if data['tutorial_link']:
+            tutorial_button = self.si_tutorial_link.replace('@@tutorial-link@@', data['tutorial_link'])
+        else:
+            tutorial_button = ''
+        row = row.replace('@@tutorial-button@@', tutorial_button)
         
         if data['profession']:
             profession = self.si_profession

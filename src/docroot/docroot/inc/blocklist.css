@@ -17,7 +17,7 @@ ul.blocklist li {
 ul.blocklist li img {
     float: left;
     margin-right: 0.5em;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.2em;
 }
 
 ul.blocklist li img + img {

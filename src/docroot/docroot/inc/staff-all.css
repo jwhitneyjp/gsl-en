@@ -4,6 +4,32 @@
 *  http://www.ruzee.com/blog/2007/05/align-list-items-horizontally-with-css/
 */
 
+a.tutorial-button {
+    clear:both;
+    display:block;
+    text-align:center;
+    margin:0.2em 5em 0.2em 0;
+    border-radius: 0.5em 0.5em;
+    font-family: Lato,sans;
+    font-weight:900;
+    cursor:pointer;
+    border: solid 1px #888888 !important;
+    font-size:smaller;
+    color:#444444;
+    padding: 0 0.2em 0.2em 0;
+}
+
+a.tutorial-button:hover {
+    border: solid 1px white !important;
+    color:white;
+    background: -moz-linear-gradient(top, #a78282, #800000, #a78282);
+    background: -webkit-linear-gradient(top, #a78282, #800000, #a78282);
+    background: -ms-linear-gradient(top, #a78282, #800000, #a78282);
+    background: -o-linear-gradient(top, #a78282, #800000, #a78282);
+    background: linear-gradient(top, #a78282, #800000, #a78282);
+}
+
+
 ul.blocklist {
     padding-left: 0px;
 }

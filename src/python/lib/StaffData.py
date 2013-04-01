@@ -22,6 +22,7 @@ def getStaffData(c,taughtby,imagedir):
         member = {}
     
         affiliations = {}
+        affiliations['AW'] = 'Academic Writing Support'
         affiliations['LS'] = 'Law School'
         affiliations['GSL'] = 'Graduate School'
         affiliations['Leading'] = 'Leading Program'
@@ -47,6 +48,7 @@ def getStaffData(c,taughtby,imagedir):
         member['profile_url'] = gp.faculty.url( 'gsli%s.html' % (data['uid'],) )
         member['profile_url_cached'] = gp.facultycache.url( 'gsli%s.html' % (data['uid'],) )
         member['photo_web_ok'] = data['photo_web_ok']
+        member['tutorial_link'] = data['tutorial_link']
 
         have_photo = False
         photo_filename = data['uid'] + '.jpg'

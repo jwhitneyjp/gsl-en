@@ -178,6 +178,8 @@ class coursePages:
 
             if fixnum(data['course_number']) > 899 and fixnum(data['course_number']) < 1000:
                 category = 'econ'
+            elif fixnum(data['course_number']) > 799 and fixnum(data['course_number']) < 900:
+                category = 'aw'
             elif fixnum(data['course_number']) > 599 and fixnum(data['course_number']) < 700:
                 category = 'leading'
             elif fixnum(data['course_number']) > 99 and fixnum(data['course_number']) < 200:

@@ -86,7 +86,7 @@ module QAM; class Install
 		gsub(Install.new.dirs.base + '/', '').
 		gsub(/\/Install$/, ''))
 	end
-	command = /^mswin/.match(Config::CONFIG['host_os']) ? 'ruby ' : 'ruby'
+	command = /^mswin/.match(Config::CONFIG['host_os']) ? 'ruby ' : ''
 	command += dir_or_file +
 	    (File.directory?(dir_or_file) ? '/Install' : '') +
 	    (($quiet || options[:quiet]) ? ' -q' : '')

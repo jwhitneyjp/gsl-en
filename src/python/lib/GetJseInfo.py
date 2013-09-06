@@ -75,7 +75,7 @@ def getJseUrls(webdoc):
     # Get a list of potential staff names from the
     # page
     l = []
-    res = webdoc.xpathEval('//h4/following-sibling::ul/li//a')
+    res = webdoc.xpathEval("//div[@class='amc']//div[@class='th']/a")
     for r in res:
         if r.prop('href'):
             name = r.content.decode('utf8')

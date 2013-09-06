@@ -34,8 +34,8 @@ scheme described in the [Admissions][admissions] page.
   of the application process.*
 
   Final application deadlines
-  : *September 4, 2012*{: style='color:red'} (Autumn selection)
-  : *January 8, 2013*{: style='color:red'} (Spring selection)
+  : *September 3, 2013*{: style='color:red'} (Autumn selection)
+  : *January 9, 2014*{: style='color:red'} (Spring selection)
 
   Download application form
   : [English-taught, April-entry LL.M.][llm-en-apr]

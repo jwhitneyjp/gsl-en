@@ -1,0 +1,28 @@
+title: A. Help!
+css: manual.css
+
+###### Step 2
+
+![](/en/materials/graphic/help01_tortoisesvn_new.png)
+
+# TortoiseSVN online help
+Tortoise SVN comes with an online help system that
+you can access from the right-click mouse button,
+as shown in the illustration to the right.  Subversion
+is a powerful version management tool, and there are
+many features and functions that are not described
+in this short guide.  Please visit the online help
+system to explore how to handle versioning in more
+depth.
+
+In particular, *delete* and *rename* operations on
+Subversion-aware files should be done through
+the Subversion menu, rather than through the normal
+Windows delete and rename commands.  You should
+also commit any such changes before updating
+your working copy, or they might be reversed
+by the update.
+
+Again, for more details, please see the much more
+complete documentation under the `Help` menu item.
+

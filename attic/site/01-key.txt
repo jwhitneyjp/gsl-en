@@ -1,0 +1,33 @@
+title: 1. Authentication
+css: manual.css
+
+###### Step 1
+
+![](/en/materials/graphic/man003_key_new.png)
+
+# The SSH Key
+To access Subversion on the server, you
+need to activate the security key.  This
+is contained in a special file, which on
+Windows systems displays a secret agent
+logo like that shown in the illustration
+to the right.  Click on this logo to activate
+your key.
+
+###### Step 2
+
+![](/en/materials/graphic/man004_passphrase_new.png)
+
+# Entering a password
+If your key is protected by a password (it
+should be, for security purposes), a prompt
+like that shown to the right will be displayed.
+Enter your password and hit `Enter`, or click
+on the `OK` button.  This will activate your
+security key for all connections to Subversion
+on the server.
+
+It is convenient to activate your security key
+in this way before beginning to work on the
+website.
+

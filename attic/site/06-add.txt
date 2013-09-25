@@ -1,0 +1,105 @@
+title: 6. Adding files
+css: manual.css
+
+# Adding files to Subversion
+
+You can add files and directories to your working
+copy of the website in the normal way, just as you
+would anywhere else.  However, to make your work
+available to others for review, and to publish your
+new pages on the website, you must tell your
+working copy that these new files are to be managed
+by Subversion.  Once you have performed the steps
+shown here, the content of the files
+will be sent to the Subversion server when you
+commit your changes.
+
+###### Step 2
+
+![](/en/materials/graphic/man012_admissions_new.png)
+
+# Select a folder
+In this example, we will add a file to the `admissions`
+folder.
+
+###### Step 2
+
+![](/en/materials/graphic/newfile02_menu_new.png)
+
+# Create a new text file
+All of the `*.txt` files for our website pages are
+plain text files.  On a Windows computer, you can
+create a plain text file from the right-click mouse
+menu, as show in the illustration to the right.
+
+###### Step 2
+
+![](/en/materials/graphic/newfile03_rename_new.png)
+
+# Name the file
+Give your new file a name.  To keep things simple
+for our users, use all lowercase letters, and
+*do not use spaces* in your filenames.  In this
+example, we will add a page called `fees` to the
+`admissions` folder.  The name
+of the file should end in `.txt`, as shown in the
+illustration to the right.
+
+###### Step 2
+
+![](/en/materials/graphic/newfile04_svnaddmenu_new.png)
+
+# Add the file to Subversion
+After the file has been created, tell the working
+copy that it should be managed by Subversion, by
+clicking on the right mouse button again, and
+selecting the `Add` option in the menu, as shown
+in the illustration.
+
+
+###### Step 2
+
+![](/en/materials/graphic/newfile05_add_file1_new.png)
+
+# Confirm the addition
+TurtleSVN will ask you to confirm additions to
+Subversion.  In this example, we are adding only
+our one file, `fees.txt`.  We do want to add
+this file, so we click on the `OK` button.
+
+
+###### Step 2
+
+![](/en/materials/graphic/newfile06_add_file2_new.png)
+
+# Additions reported
+TurtleSVN will report on the files it has added
+to Subversion.  If there are problems, it will
+tell you about them.
+
+###### Step 2
+
+![](/en/materials/graphic/newfile07_added_file_new.png)
+
+# File has been added
+The icon of the file will change, to show that
+it has been added to Subversion in your working
+copy, but is not yet up-to-date in the
+Subversion repository on the server.  Remember
+that you may need to [refresh the file browser
+display](/en/appendix/manual/site/refresh.html) before the icon will
+show correctly.
+
+###### Step
+
+![](/en/materials/graphic/newfile08_edit_new.png)
+
+# Edit as usual
+The newly added file can be opened, edited and
+saved in the normal way.  The illustration to
+the left shows file content with a correct
+`title:` header and Markdown markup.  This would
+create a page in the website when it is previewed
+or, after committing the change to the Subversion
+server, rolled out to the Internet.
+

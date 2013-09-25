@@ -1,0 +1,73 @@
+title: 8. Committing changes
+css: manual.css
+
+###### Step 2
+
+![](/en/materials/graphic/commit00_src_exclam_new.png)
+
+# Commit from above your changes
+It is possible to commit changes from the folders
+where you make them, as you go along.  If you have
+a lot of editing to do, however, this may be too
+time-consuming.  In that case, you will want to
+complete your editing work, and then commit all of
+your changes at once.  Because TurtleSVN commits
+only the files and folders that are *below* the
+current location in the folder tree, it is best to
+make the commit from the top-level folder of the
+working copy, as shown in the illustration to the
+right.
+
+In the illustration, the red exclamation mark shows
+that changes have been made somewhere in the tree
+below, that need to be committed before they will be
+accessible to other users and to the website.
+
+
+###### Step 2
+
+![](/en/materials/graphic/commit01_commitmenu_new.png)
+
+# Select the commit menu item
+A TurtleSVN commit operation is performed, like
+everything else, by selecting the operation from the
+right-click mouse menu.  The `Commit` option is
+shown in the illustration to the right.
+
+###### Step 2
+
+![](/en/materials/graphic/commit02_notemenu_new.png)
+
+# Commit memo
+TurtleSVN will invite you to enter a note
+concerning the changes.  You can leave this
+blank if you like, but it can be useful
+to have a short note of the purpose of changes,
+for future reference.  This note can be in any
+language, including Japanese.
+
+###### Step 2
+
+![](/en/materials/graphic/commit03_commitreport_new.png)
+
+# Commit report
+TurtleSVN will report the files and folders for
+which it has sent changes to the repository.
+If problems arise during the commit attempt,
+the complaint will appear here.  The illustration
+shows a commit in progress.  When it completes,
+TurtleSVN will report the current version number 
+in the repository, in the usual way.
+
+###### Step 2
+
+![](/en/materials/graphic/commit05_cleandir_new.png)
+
+# Icon update
+You may need to [refresh the file browser](/en/appendix/manual/site/refresh.html)
+to get the correct icon display, but after a successful
+commit operation, the files and directories for
+committing should show a green check-mark, as shown
+to the right.
+
+

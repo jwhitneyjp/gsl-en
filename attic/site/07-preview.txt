@@ -1,0 +1,71 @@
+title: 7. Previewing the website
+css: manual.css
+
+# Preview before committing
+
+After making a set of changes, it is a good
+idea to preview them
+before committing them to the Subversion
+server.  You can do this with the following
+steps.
+
+###### Step 2
+
+![](/en/materials/graphic/preview01_rubyinstallicon_new.png)
+
+# Ruby Install icon
+Find the Ruby `Install` icon in the top-level
+folder of your working copy.
+
+
+###### Step 2
+
+![](/en/materials/graphic/preview02_rubyinterpretermenu_new.png)
+
+# Run Ruby
+With the mouse pointer over this icon, run
+the Ruby interpreter, using the right-click mouse
+menu as shown in the illustration to the right.
+
+###### Step 2
+
+![](/en/materials/graphic/preview03_rubysiterunning_new.png)
+
+# Build the website
+Ruby will build the website for you.  While
+Ruby is running, it will show a black window
+like that shown in the illustration to the
+right.  It may take a minute or two for the
+build process to complete; when it is done
+and shows the message shown to the right,
+you can preview the site using a web browser.
+
+###### Step 2
+
+![](/en/materials/graphic/preview04_sitepreviewtoppage_new.png)
+
+# Start a browser
+Start a web browser and enter the following into the
+browser address field:
+
+    http://localhost:8080/
+
+The browser should display the top page of the site,
+as shown in the illustration to the right.
+
+###### Step 2
+
+![](/en/materials/graphic/preview05_sitepreviewadmission_new.png)
+
+# Explore your pages
+You can navigate in the preview of the website
+in the normal way.  In our examples, we have made
+changes in the **Admissions** folder, so we 
+navigate there to check that our changes came
+through okay.
+
+# That's it!
+If the changes are satisfactory, you are now ready
+to commit your changes to the Subversion server
+as explained in the next section.
+

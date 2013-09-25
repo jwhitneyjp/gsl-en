@@ -42,7 +42,8 @@ class SiteMap:
     def slurp_action(self, pagepath):
         # fetch the page
         page = open(pagepath).read()
-        doc = etree.parse(pagepath)
+        page = re.sub("(?:&amp;|&)", "&amp;", page)
+        doc = etree.fromstring(page)
         titlesXml = doc.findall(".//div[@class='toc-wrapper']/div/div")
         #
         # Okay. So we have heading and list object at the same level. We'll

@@ -27,7 +27,7 @@ class Page < DocrootFile
 
     @@pages_missing_titles = []
     def title
-	return header['title'].gsub('&','&amp;') if header['title']
+	return header['title'].gsub('&','&amp;').gsub('"', '&quot;') if header['title']
 	if parent
 	    unless @@pages_missing_titles.include?(self)
 		$stderr.puts("WARNING: #{sub_path} has no title.")

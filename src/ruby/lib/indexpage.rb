@@ -84,7 +84,7 @@ class IndexPage < Page
             myuri = uri
           end
 		"<li class='#{class_name}'>" +
-		    "<a href='#{myuri}' title='#{child.title}'>" +
+		    "<a href=\"#{myuri}\" title=\"#{child.title}\">" +
 		    "#{child.title}</a></li>"
         end
 	    }

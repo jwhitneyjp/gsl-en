@@ -1,0 +1,2 @@
+title: LEXIS (w/password)
+link: http://www.lexis.com/research

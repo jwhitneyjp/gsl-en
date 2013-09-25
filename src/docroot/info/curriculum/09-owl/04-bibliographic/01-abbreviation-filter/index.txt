@@ -1,0 +1,2 @@
+title: Abbreviation Filter
+link: http://citationstylist.org/tools/?#abbreviation-filter

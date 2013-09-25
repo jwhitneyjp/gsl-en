@@ -1,0 +1,53 @@
+title: Research Links
+
+No list of research links provide complete coverage: the range of
+potential resources is as large as the law is wide. Here, we provide
+suitable starting points for degree students setting out on
+comparative research projects.
+
+Constitute project
+: The "Constitute" project provides the constitutions of 160 countries,
+in English translation, in a readable uniform format.
+
+Google Scholar
+: Google Scholar is both a source of links to academic articles and to US
+case law, and works reasonably well with Multilingual Zotero.
+
+JSTOR
+: JSTOR provides access to the text of a huge collection of academic articles.
+It does not contain the most current materials, but with that single caveat
+it is an excellent source for English-language material.
+
+Japan: Legislative Council
+: For readers of Japanese, the minutes of the Legislative Council law
+reform committees are an important resource for exploring legislative history.
+
+Japan: Diet committee minutes
+: Again for readers of Japanese, the Diet Committee minutes can provide
+useful background to legislation. The government-maintained archive offers full-text search 
+of minutes from all sessions from 1945.
+
+Japan: Supreme Court website
+: As a third freely available source for readers of Japanese, the Japanese Supreme 
+Court offers a somewhat cumbersome search interface to all Supreme Court judgments
+and a selection of lower court judgments.
+
+Lao PDR: National Assembly
+: The laws of the Lao PDR are offered through a website maintained by the National Assembly.
+
+Mongolia: Legislation
+: Mongolian legislation, including important acts and regulations at the Aimag level,
+are published through a single website.
+
+United States: Cornell LII
+: The Legal Information Institute at Cornell University publishes the US Code,
+the Code of Federal Regulations, and numerous other instruments of the national
+government.
+
+United States: Lexis
+: Lexis is one of the leading providers of case law and other primary legal
+text in the US jurisdiction.
+
+Uzbekistan: LexUZ
+: The LexUZ service publishes all decrees, laws and regulations of Uzbekistan.
+

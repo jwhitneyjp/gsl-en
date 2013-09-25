@@ -1,0 +1,4 @@
+title: NUGSL Writing Guide
+
+The Writing Guide of the Nagoya University Faculty of Law provides students and faculty 
+with common criteria for the preparation of theses.

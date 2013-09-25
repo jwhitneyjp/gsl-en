@@ -1,0 +1,2 @@
+title: JSTOR
+link: http://www.jstor.org/

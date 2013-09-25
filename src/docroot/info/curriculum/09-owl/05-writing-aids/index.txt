@@ -1,0 +1,17 @@
+title: Writing aids
+
+When writing, it can be useful to see how a word or phrase
+has been used by other authors. The tools on this page provide
+"context glossaries" for that purpose.
+
+Springer Exemplar
+: This online service shows the context of a given word
+or phrase as it appears in articles published by Springer journals.
+
+Adelaide Text Analysis Tool (AdTAT)
+: AdTAT is a personalised writing tool created to help international
+researchers writing in English. Each user builds their own ‘corpus’
+from about 20 scholarly articles directly relevant to their thesis
+topic. The user can then do tailored ‘keyword in context’ searches of
+their corpus to quickly learn how to use the English words and phrases
+they need to use in their thesis.

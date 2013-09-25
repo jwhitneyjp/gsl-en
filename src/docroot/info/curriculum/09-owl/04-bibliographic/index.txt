@@ -1,0 +1,6 @@
+title: Bibliography management
+
+The Faculty provides several tools for managing references
+in thesis research and write-up. Further information on
+the items listed here is available on the [CitationStylist](http://citationstylist.org)
+project website maintained by Frank Bennett.

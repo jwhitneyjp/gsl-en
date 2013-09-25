@@ -58,6 +58,7 @@ class IndexPage < Page
         # is pick up the value.
 		uri = "/#{child.sub_path}".sub(/.txt$/, '.html').gsub(/\/[0-9][0-9]-(T-)*/, '/')
         download = dirs.base('src', 'docroot', 'info', child.sub_path + 'download.files' )
+        target_blank = ""
 		class_name = case child
 		    when IndexPage:
 		      if File.exists?download 
@@ -67,6 +68,7 @@ class IndexPage < Page
                   if child.link.match(/^\//)
                   'directory-listing-local'
                   else
+                  target_blank = 'target="_blank" '
                   'directory-listing-remote'
                   end
 		      else
@@ -84,7 +86,7 @@ class IndexPage < Page
             myuri = uri
           end
 		"<li class='#{class_name}'>" +
-		    "<a href=\"#{myuri}\" title=\"#{child.title}\">" +
+		    "<a href=\"#{myuri}\" #{target_blank}title=\"#{child.title}\">" +
 		    "#{child.title}</a></li>"
         end
 	    }

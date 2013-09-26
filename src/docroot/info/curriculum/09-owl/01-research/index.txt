@@ -5,10 +5,6 @@ potential resources is as large as the law is wide. Here, we provide
 suitable starting points for degree students setting out on
 comparative research projects.
 
-Constitute project
-: The "Constitute" project provides the constitutions of 160 countries,
-in English translation, in a readable uniform format.
-
 Google Scholar
 : Google Scholar is both a source of links to academic articles and to US
 case law, and works reasonably well with Multilingual Zotero.
@@ -17,6 +13,10 @@ JSTOR
 : JSTOR provides access to the text of a huge collection of academic articles.
 It does not contain the most current materials, but with that single caveat
 it is an excellent source for English-language material.
+
+"Constitute" project
+: The "Constitute" project provides the constitutions of 160 countries,
+in English translation, in a readable uniform format.
 
 Japan: Legislative Council
 : For readers of Japanese, the minutes of the Legislative Council law

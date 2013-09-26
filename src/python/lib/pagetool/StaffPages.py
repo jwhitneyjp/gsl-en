@@ -114,9 +114,10 @@ class staffPages:
                 if data[item[0]]:
                     mydata = data[item[0]]
                     if item[0] == 'website':
-                        m = re.match(".*[\"\']http:.*", mydata, re.S|re.M)
+                        m = re.match(".*href=.*", mydata, re.S|re.M)
                         if m:
-                            print "** WARNING: pre-wrapped URL in instructor website field of %s" % data['uid']
+                            print "** NOTICE: pre-wrapped URL in instructor website field of %s" % data['uid']
+                            mydata = re.sub("href=", "target=\"_blank\" href=", mydata)
                         else:
                             splits = re.split("(http:[^\"\'< ]+)",mydata,re.S|re.M)
                             for i in range(1, len(splits), 2):

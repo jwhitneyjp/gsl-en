@@ -13,7 +13,7 @@ class IndexPage < Page
     def initialize(parent, header, sub_path, content)
 	sub_path += '/' unless sub_path.match(/\/$/)
 	super(parent, header, sub_path)
-	@suffix_content_html = Maruku.new( content).to_html
+	@suffix_content_html = Maruku.new( content).to_html.gsub(/(href=.http:\/\/)/,'target="_blank" \1')
     end
 
     def css

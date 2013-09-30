@@ -6,6 +6,14 @@
 * { border: 1px solid red; }
 */
 
+img.clear {
+    float: none;
+}
+
+h1 {
+    clear:right;
+}
+
 table.std th {
     border-bottom: 1px solid black;
     vertical-align: middle;

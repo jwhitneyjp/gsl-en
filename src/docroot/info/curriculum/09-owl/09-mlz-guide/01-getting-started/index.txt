@@ -1,0 +1,256 @@
+title: Getting Started
+
+![Getting Started](/image/steering-wheel.jpg)
+
+* TOC
+{: toc}
+
+# Installation
+
+There are three steps to installing a working Multilingual Zotero system:
+
+- Install the [Multilingual Zotero](http://citationstylist.org/tools) client;
+- Install the [Abbreviation Filter](http://citationstylist.org/tools/#abbreviation-filter);
+- Install the appropriate [word processor plugin](https://www.zotero.org/support/word_processor_plugin_installation) from the Zotero website.
+
+# First Reference
+
+![image](/image/nulsearch.png)
+
+**Go to:** [Nagoya University Library OPAC](http://opac.nul.nagoya-u.ac.jp/webopac/locale.do?language=ja&page=/ctlsrh.do?gcattp_flag=all&gcattp=&arg5=@5&fromDsp=catsrk&initFlg=_RESULT_SET&words=homage%20to%20catalonia)
+
+Click through to one of the books listed in the search.
+
+You should see a small blue icon in the address bar.
+
+![Address bar icon](/image/browser-address-icon.png){: class='clear'}
+
+Just
+click on it…
+
+**See:**
+
+-   [Getting Stuff into Your Library](http://www.zotero.org/support/getting_stuff_into_your_library)
+-   [Saving Citations](http://research.library.gsu.edu/content.php?pid=24410&sid=175895)
+
+# The MLZ Client
+
+To find your saved reference you need to open up the MLZ client in
+the browser.
+
+## Accessing the MLZ pane
+
+Alternatives:
+
+-   browser *Tools* menu
+-   *Multilingual "Zotero"* icon in toolbar
+-   keyboard shortcuts: *Ctrl-Shift-Z* on Windows/Linux or *Shift-Command-Z*
+    on Mac OS X
+
+**Note:** There are often (at least) two different ways of doing the
+same thing in MLZ. When you have an item(s) selected, try
+right-clicking on it for a menu of options.  Many actions can also be
+performed via the top-row buttons (or the gear button).  There are
+also keyboard shortcuts for some actions (check out the Shortcuts tab in
+Preferences). Click around and explore!
+
+![image](/image/mlz-pane.png){: class='clear'}
+
+The buttons along the top row give access to a number of key functions
+including:
+
+-   new collection/group
+-   access to preferences and export functions
+-   add new item/note/attachment
+-   search
+
+The three sections from left to right show increasing detail, from the
+broad overview of collections to individual item metadata.
+
+-   **Right (from the top):** My Library; Group libraries I belong to; Tag selector
+-   **Centre:** List of items in selected library/collection. *Icons* denote
+    item type, an *arrow* (triangle) indicates there are attachments
+-   **Left:** Item metadata tab views (Info, Notes, Tags, Related)
+
+# Centre Section
+
+![Centre Pane](/image/mlz-pane-centre.png){: class='clear'}
+
+In the centre section of the MLZ pane, you can sort by different
+columns and choose which elements to show.
+
+# The Item Info tab
+
+![Info Panel](/image/mlz-reference-info.png){: class='clear'}
+
+-   Some fields are available for all item types (eg:
+    Title, Author, Date, URL)
+-   Other fields appear only on particular item types.
+-   Most are free text fields, but *Item Type* and
+    *Jurisdiction* can be entered only from a controlled list.
+
+
+## Important fields
+
+*Item Type*
+: Click on this to see the list of all the available types. If
+changing the *Item Type* will cause a loss of data in existing
+fields you will get a warning message
+
+*Title*
+: Most items have a title. (Exceptions include Japanese court judgments
+and isolated provisions of codified US statutes.)
+
+*Author*
+: On this field you can: (1) change the creator type if others are
+available; (2) add more creators with the + button or Shift+Enter; (3)
+change between single-field and two-field mode.
+
+*Date*
+: Zotero does its best to auto-detect date formats
+
+*URL*
+: When a URL is entered in this field, clicking on the label will open the
+webpage
+
+The Web Page item type is one of the simplest in Zotero: you can explore
+the others by changing the setting in the *Item Type* field.
+
+The limits on item types and fields within them are among the few
+absolute constraints in Zotero: you cannot have custom item types or
+custom fields within item types.
+
+# Preferences
+
+![Gear button](/image/mlz-gear-menu-context.png){: class='clear'}
+
+Click on the gear icon and select **Preferences**.
+
+There are a lot of available options (most of which you’ll probably
+never change!). The ones most likely to interest you are:
+
+*General*
+: Adjust appearance and set a number of useful features.
+
+*Sync*
+: Set your zotero user account details to enable syncing functions
+
+*Search
+: Turn full-text indexing of PDFs on and off (you might want this on)
+
+*Export*
+: Specify how bibliographies and data exports are generated, and
+drag-and-drop behaviour
+
+*Cite*
+: Install word processor plugins, add and remove citation styles
+
+**See:**
+
+-   [Preferences](http://www.zotero.org/support/preferences)
+
+## General preferences
+
+![Preferences dialog](/image/mlz-preferences-dialog.png){: class='clear'}
+
+Noteworthy settings:
+
+*Automatically snapshots for webpage items*
+: This can be useful for searching and to ensure you have an archived copy of the page
+
+*Automatically attach associated PDFs when saving items*
+: If this is checked Zotero will attempt to download and attach PDFs,
+for example when saving from Google Scholar or an online journal.
+
+*Automatically tag items with keywords and subject headings*
+: Some catalogues and websites will add a *lot* of keywords that
+aren’t necessarily relevant to your interests, so your mileage may
+vary with this one!
+
+*Data to be copied with items*
+: Select whether tags, notes and attachments are also copied when copying items
+between libraries
+
+## Sync preferences
+
+![image](/image/syncingprefs.jpg){: class='clear'}
+
+If you want Zotero to sync with a [zotero.org](http://zotero.org) account and across multiple
+devices you will need to fill in your account details here.
+
+You have the options to sync attached files as well as bibliographical
+information: bear in mind that if you turn this on it can eat into your
+storage allowance very quickly!
+
+Your basic bibliographical references *aren’t* included in storage
+allowance limits though - syncing those is unlimited. And if you run out
+of storage space, Zotero doesn’t delete anything - it just stops syncing
+attachments beyond that point.
+
+# Zotero website
+
+-   **[http://www.zotero.org](http://zotero.org/)**
+
+It’s quite possible to use Zotero effectively without a [zotero.org](http://zotero.org)
+account. But you won’t be able to use the file storage, syncing and
+group collaboration without one.
+
+## Registration
+
+[Registration form](http://www.zotero.org/user/register/)
+
+![Registration page](/image/zotreg.jpg){: class='clear'}
+
+## After registering
+
+-   Explore your profile and account settings - including privacy
+    settings, storage, email, etc
+-   Take a look at the [documentation and support
+    forums](http://www.zotero.org/support/).
+-   Keep a copy of [Citations, Out of the Box](http://citationstylist.org/public/mlzbook.pdf) close by.
+
+You can do many things interchangeably between the website and your
+Zotero client, so long as you have automatic syncing turned on (see the
+note below about where your stuff is).
+
+You can choose whether to make your library private (this is the
+default on registering) or public.
+
+**Note:** accounts can be deleted from within the user account settings.
+
+## Searching
+
+On most pages on [zotero.org](http://zotero.org) there is a quick search bar in the
+navigation menu, which changes according to context between ‘people’,
+‘groups’ and ‘support’. (In the search results you get the option to
+change to a different type of search if you want to.)
+
+When viewing a library, you can use the search bar to search that
+library.
+
+# Where is your stuff?
+
+The Zotero client is installed, and saves references, locally on your
+computer. If you don’t turn on syncing, that’s where it stays.
+
+When you turn on automatic syncing, your references are all copied to
+Zotero’s storage servers in the cloud. You will be able to access them,
+make changes, add more, delete and so on in your personal library at
+[zotero.org](http://zotero.org), and any changes you make there will sync back (within a few
+minutes, usually) to your local installation.
+
+You can then install the Zotero client on other computers, put in your
+account details and turn on syncing, and it will mirror your stuff
+across all those computers.
+
+Syncing can’t necessarily be relied on as a perfect, complete backup of
+everything in your library (for example, as already noted, if it runs
+out of storage space it will stop syncing attachments). The safest way
+to ensure you get a backup of everything in your Zotero installation
+(including things like plugins, customisations, additional citation
+styles, and so on, as well as the database of your references), is to
+regularly backup your full Firefox or Standalone profile as part of your
+backup routine for your computer (and if you’re not doing that, then you
+should start right now!).
+
+See: [Locating your Zotero Library](http://www.zotero.org/support/zotero_data)

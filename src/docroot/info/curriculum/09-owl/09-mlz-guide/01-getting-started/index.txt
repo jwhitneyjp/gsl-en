@@ -1,6 +1,11 @@
 title: Getting Started
 
-![Getting Started](/image/steering-wheel.jpg)
+![Photo by Jim Grant (Flickr)](/image/steering-wheel.jpg)
+
+<!-- http://www.flickr.com/photos/jimgrant/70088222/ -->
+
+* This content is adapted from [original materials](http://sharonhoward.org/zoterowiki/Main/GettingStarted) by [Sharon Howard](http://sharonhoward.org/).
+{: class='sidenote'}
 
 * TOC
 {: toc}
@@ -12,6 +17,8 @@ There are three steps to installing a working Multilingual Zotero system:
 - Install the [Multilingual Zotero](http://citationstylist.org/tools) client;
 - Install the [Abbreviation Filter](http://citationstylist.org/tools/#abbreviation-filter);
 - Install the appropriate [word processor plugin](https://www.zotero.org/support/word_processor_plugin_installation) from the Zotero website.
+
+------
 
 # First Reference
 
@@ -32,6 +39,8 @@ click on it…
 
 -   [Getting Stuff into Your Library](http://www.zotero.org/support/getting_stuff_into_your_library)
 -   [Saving Citations](http://research.library.gsu.edu/content.php?pid=24410&sid=175895)
+
+------
 
 # The MLZ Client
 
@@ -72,12 +81,16 @@ broad overview of collections to individual item metadata.
     item type, an *arrow* (triangle) indicates there are attachments
 -   **Left:** Item metadata tab views (Info, Notes, Tags, Related)
 
-# Centre Section
+------
 
-![Centre Pane](/image/mlz-pane-centre.png){: class='clear'}
+# Centre Panel
 
-In the centre section of the MLZ pane, you can sort by different
+![Centre Panel](/image/mlz-pane-centre.png){: class='clear'}
+
+In the centre panel of the MLZ pane, you can sort by different
 columns and choose which elements to show.
+
+------
 
 # The Item Info tab
 
@@ -107,18 +120,20 @@ available; (2) add more creators with the + button or Shift+Enter; (3)
 change between single-field and two-field mode.
 
 *Date*
-: Zotero does its best to auto-detect date formats
+: MLZ does its best to auto-detect date formats
 
 *URL*
 : When a URL is entered in this field, clicking on the label will open the
 webpage
 
-The Web Page item type is one of the simplest in Zotero: you can explore
+The Web Page item type is one of the simplest: you can explore
 the others by changing the setting in the *Item Type* field.
 
 The limits on item types and fields within them are among the few
-absolute constraints in Zotero: you cannot have custom item types or
+absolute constraints in Zotero and MLZ: you cannot have custom item types or
 custom fields within item types.
+
+------
 
 # Preferences
 
@@ -159,7 +174,7 @@ Noteworthy settings:
 : This can be useful for searching and to ensure you have an archived copy of the page
 
 *Automatically attach associated PDFs when saving items*
-: If this is checked Zotero will attempt to download and attach PDFs,
+: If this is checked MLZ will attempt to download and attach PDFs,
 for example when saving from Google Scholar or an online journal.
 
 *Automatically tag items with keywords and subject headings*
@@ -175,7 +190,7 @@ between libraries
 
 ![image](/image/syncingprefs.jpg){: class='clear'}
 
-If you want Zotero to sync with a [zotero.org](http://zotero.org) account and across multiple
+If you want ML to sync with a [zotero.org](http://zotero.org) account and across multiple
 devices you will need to fill in your account details here.
 
 You have the options to sync attached files as well as bibliographical
@@ -184,14 +199,16 @@ storage allowance very quickly!
 
 Your basic bibliographical references *aren’t* included in storage
 allowance limits though - syncing those is unlimited. And if you run out
-of storage space, Zotero doesn’t delete anything - it just stops syncing
+of storage space, MLZ doesn’t delete anything - it just stops syncing
 attachments beyond that point.
+
+------
 
 # Zotero website
 
 -   **[http://www.zotero.org](http://zotero.org/)**
 
-It’s quite possible to use Zotero effectively without a [zotero.org](http://zotero.org)
+It’s quite possible to use MLZ effectively without a [zotero.org](http://zotero.org)
 account. But you won’t be able to use the file storage, syncing and
 group collaboration without one.
 
@@ -210,7 +227,7 @@ group collaboration without one.
 -   Keep a copy of [Citations, Out of the Box](http://citationstylist.org/public/mlzbook.pdf) close by.
 
 You can do many things interchangeably between the website and your
-Zotero client, so long as you have automatic syncing turned on (see the
+MLZ client, so long as you have automatic syncing turned on (see the
 note below about where your stuff is).
 
 You can choose whether to make your library private (this is the
@@ -228,10 +245,13 @@ change to a different type of search if you want to.)
 When viewing a library, you can use the search bar to search that
 library.
 
+------
+
 # Where is your stuff?
 
-The Zotero client is installed, and saves references, locally on your
-computer. If you don’t turn on syncing, that’s where it stays.
+The MLZ client is installed directly on your computer, and saves
+references locally, on your computer. If you don’t turn on syncing,
+that’s where it stays.
 
 When you turn on automatic syncing, your references are all copied to
 Zotero’s storage servers in the cloud. You will be able to access them,
@@ -239,18 +259,18 @@ make changes, add more, delete and so on in your personal library at
 [zotero.org](http://zotero.org), and any changes you make there will sync back (within a few
 minutes, usually) to your local installation.
 
-You can then install the Zotero client on other computers, put in your
+You can then install the MLZ client on other computers, put in your
 account details and turn on syncing, and it will mirror your stuff
 across all those computers.
 
 Syncing can’t necessarily be relied on as a perfect, complete backup of
 everything in your library (for example, as already noted, if it runs
 out of storage space it will stop syncing attachments). The safest way
-to ensure you get a backup of everything in your Zotero installation
+to ensure you get a backup of everything in your MLZ installation
 (including things like plugins, customisations, additional citation
 styles, and so on, as well as the database of your references), is to
 regularly backup your full Firefox or Standalone profile as part of your
 backup routine for your computer (and if you’re not doing that, then you
 should start right now!).
 
-See: [Locating your Zotero Library](http://www.zotero.org/support/zotero_data)
+See: [Locating your Zotero Library (also applies to MLZ)](http://www.zotero.org/support/zotero_data)

@@ -100,7 +100,7 @@ class CourseReports:
         filename_doc = 'gslc%s.rtf' % self.data['course_number']
         print "Generating: ./src/docroot/doc/%s" % filename_doc
         open(gp.doc.src(filename_html), 'w+').write(self.report)
-        ofh = os.popen('lowriter --headless -convert-to rtf -outdir %s %s' % (gp.doc.src(''),gp.doc.src(filename_html)))
+        ofh = os.popen('lowriter --headless --invisible --convert-to rtf --outdir %s %s' % (gp.doc.src(''),gp.doc.src(filename_html)))
         ofh.close()
         os.unlink(gp.doc.src(filename_html))
         os.chmod(gp.doc.src(filename_doc),0777)

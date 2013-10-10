@@ -6,6 +6,7 @@ div.maruku_toc {
     display: inline-block;
     margin-left: 2em;
     padding-bottom: 1.35em;
+    padding-top: 0.5em;
     border-left: solid 1.5em #ddd;
     clear:left;
 }
@@ -16,6 +17,7 @@ div.maruku_toc > ul {
 
 div.maruku_toc li {
     display: block;
+    margin: 0px !important;
 }
 
 /* div.maruku_toc > ul:before {

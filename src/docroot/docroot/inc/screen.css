@@ -107,7 +107,7 @@ ul.sidenote {
 }
 
 ul.sidenote li {
-    margin: 0.5em 1em;
+    margin: 0.5em 1em !important;
 }
 
 div.toc-wrapper {
@@ -530,8 +530,8 @@ div.content-pane-left ul {
     margin-bottom: 0px;
 }
 div.content-pane-left li { 
-    padding: 0px 0px;
-    
+    padding: 0px;
+    margin: 0.3em;    
 }
 li.directory-listing { list-style-image: url('/en/image/gtk-directory.png'); }
 

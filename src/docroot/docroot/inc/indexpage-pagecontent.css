@@ -6,6 +6,14 @@
 * { border: 1px solid red; }
 */
 
+img {
+    margin-left: 5px;
+}
+
+h2.clear {
+    clear: both;
+}
+
 img.clear {
     float: none;
 }
@@ -111,3 +119,6 @@ div.toc-wrapper {
     margin: 0px;
 }
 
+div.maruku_toc {
+    width: 310px;
+}

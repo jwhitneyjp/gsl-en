@@ -1,6 +1,6 @@
 title: Getting Started
 
-![Photo by Jim Grant (Flickr)](/image/steering-wheel.jpg)
+[![Photo by Jim Grant (Flickr)](/en/image/steering-wheel.jpg)](http://www.flickr.com/photos/jimgrant/70088222/)
 
 <!-- http://www.flickr.com/photos/jimgrant/70088222/ -->
 
@@ -9,6 +9,8 @@ title: Getting Started
 
 * TOC
 {: toc}
+
+--------
 
 # Installation
 
@@ -22,7 +24,7 @@ There are three steps to installing a working Multilingual Zotero system:
 
 # First Reference
 
-![image](/image/nulsearch.png)
+![image](/en/image/nulsearch.png)
 
 **Go to:** [Nagoya University Library OPAC](http://opac.nul.nagoya-u.ac.jp/webopac/locale.do?language=ja&page=/ctlsrh.do?gcattp_flag=all&gcattp=&arg5=@5&fromDsp=catsrk&initFlg=_RESULT_SET&words=homage%20to%20catalonia)
 
@@ -30,7 +32,7 @@ Click through to one of the books listed in the search.
 
 You should see a small blue icon in the address bar.
 
-![Address bar icon](/image/browser-address-icon.png){: class='clear'}
+![Address bar icon](/en/image/browser-address-icon.png){: class='clear'}
 
 Just
 click on it…
@@ -63,7 +65,7 @@ performed via the top-row buttons (or the gear button).  There are
 also keyboard shortcuts for some actions (check out the Shortcuts tab in
 Preferences). Click around and explore!
 
-![image](/image/mlz-pane.png){: class='clear'}
+![image](/en/image/mlz-pane.png){: class='clear'}
 
 The buttons along the top row give access to a number of key functions
 including:
@@ -85,7 +87,7 @@ broad overview of collections to individual item metadata.
 
 # Centre Panel
 
-![Centre Panel](/image/mlz-pane-centre.png){: class='clear'}
+![Centre Panel](/en/image/mlz-pane-centre.png){: class='clear'}
 
 In the centre panel of the MLZ pane, you can sort by different
 columns and choose which elements to show.
@@ -94,7 +96,7 @@ columns and choose which elements to show.
 
 # The Item Info tab
 
-![Info Panel](/image/mlz-reference-info.png){: class='clear'}
+![Info Panel](/en/image/mlz-reference-info.png){: class='clear'}
 
 -   Some fields are available for all item types (eg:
     Title, Author, Date, URL)
@@ -137,7 +139,7 @@ custom fields within item types.
 
 # Preferences
 
-![Gear button](/image/mlz-gear-menu-context.png){: class='clear'}
+![Gear button](/en/image/mlz-gear-menu-context.png){: class='clear'}
 
 Click on the gear icon and select **Preferences**.
 
@@ -166,7 +168,7 @@ drag-and-drop behaviour
 
 ## General preferences
 
-![Preferences dialog](/image/mlz-preferences-dialog.png){: class='clear'}
+![Preferences dialog](/en/image/mlz-preferences-dialog.png){: class='clear'}
 
 Noteworthy settings:
 
@@ -188,7 +190,7 @@ between libraries
 
 ## Sync preferences
 
-![image](/image/syncingprefs.jpg){: class='clear'}
+![image](/en/image/syncingprefs.jpg){: class='clear'}
 
 If you want ML to sync with a [zotero.org](http://zotero.org) account and across multiple
 devices you will need to fill in your account details here.
@@ -216,7 +218,7 @@ group collaboration without one.
 
 [Registration form](http://www.zotero.org/user/register/)
 
-![Registration page](/image/zotreg.jpg){: class='clear'}
+![Registration page](/en/image/zotreg.jpg){: class='clear'}
 
 ## After registering
 
@@ -274,3 +276,10 @@ backup routine for your computer (and if you’re not doing that, then you
 should start right now!).
 
 See: [Locating your Zotero Library (also applies to MLZ)](http://www.zotero.org/support/zotero_data)
+
+--------
+
+[![Creative Commons BY-SA](http://i.creativecommons.org/l/by-sa/3.0/88x31.png)](http://creativecommons.org/licenses/by-sa/3.0/deed.en_US)
+
+This page is licensed by Frank Bennett on behalf of Nagoya University under a Creative Commons Attribution-ShareAlike 3.0 Unported License. 
+Credit to original author Sharon Howard must be retained.

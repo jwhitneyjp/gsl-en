@@ -1,0 +1,340 @@
+title: Doing More
+
+[![Photo by Huhu Uet (Flickr)](/en/image/autogyro.jpg)](http://commons.wikimedia.org/wiki/File:AutoGyro_Europe_MTOsport_%28D-MELF%29_05.jpg)
+
+* This content is adapted from [original materials](http://sharonhoward.org/zoterowiki/Main/GettingStarted) by [Sharon Howard](http://sharonhoward.org/).
+{: class='sidenote'}
+
+* TOC
+{: toc}
+
+--------
+
+# More on adding items to MLZ
+
+It needs to be emphasised that MLZ import is only as good as the
+metadata an online source provides.
+
+-   You should [check
+    metadata](http://www.zotero.org/support/getting_stuff_into_your_library#verify_and_edit_your_records)
+    after adding new items, especially if not familiar with the source.
+-   Often some editing or tidying up will be needed.
+-   Occasionally the results might not be what you expect at all…
+
+## Multiple import
+
+Many catalogues and search engines (not all) will show a **folder** icon in search
+results pages which enables you to import multiple items from the
+results list.
+
+**Example:** [Google Scholar (Legal documents)](http://scholar.google.com/scholar?hl=en&q=escola&btnG=&as_sdt=2%2C5)
+
+![image](/en/image/addmulti.png){: class='clear'}
+
+This is convenient for rapidly adding a lot of references for subsequent
+weeding and editing (eg, when exploring sources for a new or proposed
+research project).
+
+## Examples of legal catalogues that work well
+
+-   [British and Irish Legal Information Institute (court judgments)](http://www.bailii.org/)
+-   [Google Scholar (Legal documents)](http://scholar.google.com)
+-   [Lao PDR, National Assembly (legislation)](http://www.na.gov.la/)
+-   [Mongolia (laws, regulations and local ordinances)](http://www.legalinfo.mn/)
+-   [Uzbekistan (decrees and legislation)](http://lex.uz)
+-   [United States, Google Scholar (court judgments)](http://scholar.google.com/)
+-   [United States, Cornell LII (US Code)](http://www.law.cornell.edu)
+-   [Japan, Supreme Court (in Japanese)](http://courts.go.jp)
+-   [Japan, Diet Committees (in Japanese)](http://kokkai.ndl.go.jp/)
+-   [Japan, Law Reform Council (in Japanese)](http://www.moj.go.jp/shingi_index.html)
+
+**Example:** [Grace v. MacArthur, 170 F. Supp. 442 (E.D. Ark., 1959).](http://scholar.google.com/scholar_case?q=grace+v.+macarthur&hl=en&as_sdt=2,5&case=15978622162155990004&scilh=0)
+
+(click on **scales** icon to add to MLZ)
+
+![image](/en/image/estc.png){: class='clear'}
+
+This is pretty good - it’s got the right item type, jurisdiction, court name, reporter, volume, date of decision, and URL.
+
+**Improvements?**
+
+-   Add Related link(s) to parallel reporter(s)?
+-   Docket number, if known?
+-   Add short title
+
+A caveat about legal resources: when the layout or format of a website
+changes, the MLZ translator may break. If you have problems downloading
+items, please report the problem so that it can be fixed.
+
+## Examples of problematic legal catalogues
+
+After import, metadata from some sources will need some (or a lot of) editing:
+
+-   [WTO legal texts](http://www.wto.org/english/docs_e/legal_e/legal_e.htm)
+-   [UN Documents](http://www.un.org/en/documents/index.shtml)
+
+**Example:** [UN Charter](http://www.un.org/en/documents/charter/)
+
+![image](/en/image/mlz-un-charter.png){: class='clear'}
+
+Errmmm… where to start?!
+
+If the MLZ importer does not "know" a site, it will be treated as a
+*Web page* item. That is what has happened here, and the item
+must be fixed manually with complete and correct metadata.
+
+For this particular example, the item type should be changed to
+*Statute*, the date should be set in the *Date Enacted* field, and the
+*Jurisdiction* should be set to "United Nations". The corrected
+item will look like this:
+
+![image](/en/image/mlz-un-charter-fixed.png){: class='clear'}
+
+
+
+## Manually Adding Items
+
+What to do when you only have a printed document or a PDF files? In that case
+you will need to create an item yourself and enter the details manually.
+
+**Example:** [Martha Olcott, "Regional Study on Human Development and Human Rights: Central Asia" (UNDP)](http://hdr.undp.org/en/reports/global/hdr2000/papers/martha%20olcott.pdf)
+
+![image](/en/image/zotbuttadd.png){: class='clear'}
+
+Click on the **green plus** icon.
+
+The example item is a report, so choose the *Report* type. Enter the
+UNDP as the *Institution* (not the author!), and fill out the other
+fields with as much information as you can. For documents collected
+from the Web, be sure to enter their address in the URL field.
+
+After creating the item, you can attach the PDF itself to the item
+(see below).
+
+--------
+
+# Adding Attachments
+
+You can attach links, a snapshot of a webpage, files from your computer
+or from the web, etc, to items. You can add as many different ‘child’
+notes and attachments to any MLZ item as you like.
+
+(You can also save notes and items directly to MLZ without needing to
+attach them to anything, but they’ll have more limited metadata and
+options. We recommend creating *some* sort of parent item for
+objects if possible.)
+
+**Example:** [Martha Olcott, "Regional Study on Human Development and Human Rights: Central Asia" (UNDP)](http://hdr.undp.org/en/reports/global/hdr2000/papers/martha%20olcott.pdf) (the same example as above, saved to your Desktop)
+
+The item we have created manually (in the previous section) does not
+yet have a copy of the text of the report itself. Attaching a copy
+to the item will allow us to search it, and to call up the report
+when we are offline. 
+
+![image](/en/image/mlz-attachment-menu.jpg){: class='clear'}
+
+Select **Attach Stored Copy of File...** from the menu, find the document you want to 
+attach, and click **OK** (or **Open** or whatever).
+
+**Things to know:**
+
+-   You can rename the attachment by right-clicking on the item and
+    selecting **Rename File from Parent Metadata** from the menu.
+-   You can also rename the attachment by clicking in its title.
+-   After using **Attach Stored Copy of File...**, you can remove the
+    document from your desktop: the full copy is now stored in MLZ.
+-   To get a copy of the document (to send as an email attachment, etc.),
+    right-click on the attachment and select **Show File**.
+
+**See:**
+
+-   [Adding Files to Your Library](http://www.zotero.org/support/attaching_files)
+
+--------
+
+# Annotating
+
+Notes are another kind of attachment: click on the **Notes** tab, then the
+**Add** button. You can quickly type or paste in rich-text notes,
+transcripts, summaries -- any kind of annotation that seems useful.
+
+**See:**
+
+-   [Notes](http://www.zotero.org/support/notes)
+
+--------
+
+# Organising Items
+
+You can use collections, tags and relationships to organise and link
+items.
+
+## Collections and sub-collections
+
+"My Library" is a big bucket containing *all items* that you capture
+for personal use.  The *collections* underneath it (folder icons) are
+bundles of items from the parent library.
+
+An item can be put into multiple collections. A change to the item
+anywhere -- in the parent library or in any collection where it
+appears -- takes effect everywhere (i.e. in the parent library, and in
+all collections).
+
+**Example:** Create a Collection titled "Human Rights", and sub-collections
+"Human Trafficking" and "Refugees".
+
+![image](/en/image/mlz-mycoll.png){: class='clear'}
+
+To add the top-level collection click, on the "New Library" button (top,
+furthest left) or right-click on **My Library** for a menu.
+
+To add the sub-collections **right click** on the parent collection ("Human Rights") and
+select "New Subcollection".
+
+To add an item or items to a collection, just select them in the centre panel, drag, and drop.
+
+If you want to remove an item from a collection, right-click on it and
+select "Remove from Collection". (This does not delete the item from
+"My Library"; to do that, select "Move to Trash" instead.)
+
+To remove a collection from the panel tree, right-click on the collection.
+The menu option **Delete Collection** will remove only the collection (and its
+children). It will *not* remove the items it contains: they will still exist
+in "My Library", and in any other collections where it appears.
+
+To remove a collection *and* the items it contains, select **Delete Collection and Items...**
+from the right-click menu. This will remove the collection an put the items into the "Trash"
+folder. Be careful with this option -- it may delete items that you want to keep on file in
+"My Library"!
+
+
+## Tags
+{: class='clear'}
+
+![image](/en/image/mlz-tags-pane.png)
+
+In item view, go to the Tags tab.
+
+-   click on the **Add** button to add a new tag and type whatever you
+    want.
+-   Hit Enter to complete the tag and start a new one.
+-   Click on existing tags to edit them
+-   Delete tags using the **minus** button to the right of each tag.
+
+Note that items captured from the Web may include automatic tags.
+If any tags shown in the list do not seem useful, you can delete them.
+
+## Tag Selector
+{: class='clear'}
+
+This is located at the bottom of the Collections section on the left
+hand side of the MLZ pane. If you can’t see it, use *Ctrl-Shift-T* to bring
+it up (*Cmd-Shift-T* in Mac OSX).
+
+You can drag and drop single or multiple items into tags shown in the Tag
+Selector, and you can also edit and delete tag names here (using right-click).
+
+**Try these steps:**
+
+-   Add several items to the "Human Rights" collection.
+-   Select one item in the collection, and as described above, open its **Tags** tab in the right panel.
+-   Click on the **Add** button, enter "Human rights" as the tag name, and press the
+    Enter key.
+-   Open the Tag Selector (if it's not already showing).
+-   Select all items in the "Human Rights" collection, drag them to the "Human rights"
+    tag, and release the mouse button to drop them.
+-   Click on the items in the centre pane to check that the "Human rights" tag
+    has been added to all of them.
+-   Click on "My Library".
+-   Click on the "Human rights" tag to show only the tagged items.
+
+## Collections vs tags
+
+Collections and tags do something similar: each shows a subset of the
+items in the "My Library" bucket. There are some differences:
+
+-   Collections are hierarchical: you can create sub-folders, but you
+    can't create sub-tags.
+-   Multiple tag selections are cumulative: you can select
+    multiple tags to narrow a selection: you can't select multiple
+    collections.
+-   Tags are portable: when you drag an item to a separate group library (we'll
+    learn about groups in the next lesson), its tags are copied with
+    it: collections are not copied between libraries.
+
+**Which to use?**
+
+Each researcher has their own working style. Here is how I use
+collections and folders in my own work:
+
+-   I create collections for particular projects, such as my CV,
+    or a specific research project I am working on.
+-   I add several short tags to *every item* in "My Library". The tags allow me
+    to fetch all of the items related to a certain subject by choosing
+    the tags that describe it, such as "Civil Code" and "Japan".
+
+**See:** [Collections and Tags](http://www.zotero.org/support/collections_and_tags)
+
+## Relationships: another option
+
+You can also link items by creating a *relationship* between them,
+using the **Related** tab. I use this only to link the chapters of
+a book, or parallel reports of the same court judgment.
+
+-   **See:** [Related](http://www.zotero.org/support/related)
+
+--------
+
+# Importing and Exporting Data
+
+## Import
+
+If you already have a library built using another tool (such as EndNote), 
+you can move it to MLZ by importing it. MLZ recognises several import
+formats.
+
+**See:**
+
+-   [Importing from other tools](http://www.zotero.org/support/getting_stuff_into_your_library#importing_from_other_tools)
+
+## Export
+
+Similarly, you can export libraries in various structured data
+formats (including BibTex, XML). You can also produce formatted bibliographies
+directly from items in your MLZ library.
+
+To export, right-click on the collection or selection of items you want to export,
+and choose the **Export Collection** or **Export Items** option. You will
+see a dialogue to choose your required data format and any available
+options for that format (e.g. whether to export notes or files with the
+references) before downloading.
+
+![image](/en/image/exportdata.jpg){: class='clear'}
+
+**See:**
+
+-   [Exporting from MLZ](http://ica.library.oregonstate.edu/tutorials/lesson/631--Advanced-Zotero?mid=26241&type=MiscellaneousResource&uid=1271)
+-   [Import/Export support forum](http://forums.zotero.org/4/)
+
+## Exporting from Libraries at zotero.org
+
+You can also export single or multiple items from personal or group
+libraries on the website:
+
+![image](/en/image/export1.jpg){: class='clear'}
+
+Click on the export button and a dialogue will come up allowing you to
+choose a format to download. You will then be able to import this
+reference into your MLZ library or another reference manager or tool.
+(As far as I know, it does not export attachments; you’d need to upload
+those separately.)
+
+![image](/en/image/export2.jpg){: class='clear'}
+
+
+--------
+
+[![Creative Commons BY-SA](http://i.creativecommons.org/l/by-sa/3.0/88x31.png)](http://creativecommons.org/licenses/by-sa/3.0/deed.en_US)
+
+This page is licensed by Frank Bennett on behalf of Nagoya University under a Creative Commons Attribution-ShareAlike 3.0 Unported License.
+Credit to original author Sharon Howard must be retained.

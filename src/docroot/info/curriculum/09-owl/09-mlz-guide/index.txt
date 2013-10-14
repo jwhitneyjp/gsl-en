@@ -1,4 +1,5 @@
-title: A Multilingual Zotero Guide
+title: Multilingual Zotero Guide
+pagetitle: A Multilingual Zotero Guide
 
 The lessons linked to the right have been adapted from tutorial pages
 prepared by Dr. Sharon Howard for Zotero training sessions at the

@@ -1,4 +1,5 @@
 title: Getting Started
+pagetitle: Multilingual Zotero: Getting Started
 
 [![Photo by Jim Grant (Flickr)](/en/image/steering-wheel.jpg)](http://www.flickr.com/photos/jimgrant/70088222/)
 

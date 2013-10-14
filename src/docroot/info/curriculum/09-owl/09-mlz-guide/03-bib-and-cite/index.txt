@@ -1,0 +1,219 @@
+title: Citations
+pagetitle: Multilingual Zotero: Citations
+
+[![Photo by Phillip Martin](/en/image/la_bibliography.png)](http://languagearts.phillipmartin.info/la_bibliography.htm)
+
+* This content is adapted from [original materials](http://sharonhoward.org/zoterowiki/Main/GettingStarted) by [Sharon Howard](http://sharonhoward.org/).
+{: class='sidenote'}
+
+* TOC
+{: toc}
+
+--------
+
+# Plain Bibliographies
+
+It is quite simple to create and export formatted bibliographies for use
+in documents, web pages, etc.
+
+-   Right-click on the collection, item or selection of items you want
+    in your bibliography
+-   Select “Create Bibliography From Collection/Items”
+-   Choose desired citation style, output mode, and output method.
+-   If you choose a “save as…” or “print” option you’ll get the relevant
+    dialogue; if you choose “copy to clipboard”, just paste into a
+    document.
+-   If you paste into a word processor document, GoogleDoc or rich text
+    editing box in a browser - eg the visual editor in WordPress - it
+    should keep all the formatting intact.
+
+![image](/en/image/mlz-makebib.png){: class='clear'}
+
+**See:**
+
+-   ["Creating bibliographies" (GSU)](http://research.library.gsu.edu/content.php?pid=24410&sid=175896)
+-   ["Creating bibliographies" (Zotero)](http://www.zotero.org/support/creating_bibliographies)
+
+--------
+{: style='margin-top: 0.8em;'}
+
+# Citation Styles
+
+Both MLZ and Zotero come with a small selection of commonly-used
+citation styles for bibliographies and citations preinstalled.
+Further styles can be added to either tool, but it is important
+to understand the difference between "standard CSL" styles written for
+Zotero, and "CSL-m" styles written for MLZ.
+
+CSL stands for "Citation Style Language", a format for defining
+computerised citation styles. Standard CSL styles are recognised by
+Zotero and several other reference managers. The [Zotero Style Repository](http://www.zotero.org/support/styles)
+contains over 6,000 styles, covering a wide range of publishers and
+academic journals. Any of the styles in the Repository can be installed
+and used in Zotero.
+
+CSL-m stands for "Citation Style Language - Multilingual". This is a
+modified version of the CSL format, with added support for legal and
+multilingual references. The
+[CitationStylist](http://citationstylist.org/tools) website offers a
+small collection of CSL-m styles. For ease of recognition, the names
+of CSL-m styles begin with "MLZ" These are recognised only by MLZ:
+they cannot be used with official Zotero.
+
+Official CSL styles can be installed in MLZ, but where there is a choice,
+CSL-m styles should be used instead.
+
+With those points in mind, feel free to extend MLZ with additional
+styles and experiment with the output. The ability to switch citation
+styles is one of the most power features of Zotero and MLZ, and you
+should not hesitate to change things around.
+
+If you run into a problem and seek support on the Zotero forums,
+be sure to put "\[MLZ\]" in the title of your post, so that it will
+be picked up by the right people.
+
+-   [CSL Styles](http://www.zotero.org/support/styles)
+-   [CSL-m Styles](http://citationstylist.org/tools)
+-   [Citation Styles support forum](http://forums.zotero.org/11/)
+
+--------
+{: style='margin-top: 0.8em;'}
+
+# Word Processor Integration
+
+## MS Word and OpenOffice
+
+MLZ uses the same word processor plugins as official Zotero. To install
+a plugin, just visit the [Installing Word Processor Plugins for Zotero page](http://www.zotero.org/support/word_processor_plugin_installation),
+and select the plugin you need for your system.
+
+The three plugins (for LibreOffice, and for the Mac and Windows versions of Word) all work in the same way.
+
+To access the buttons:
+
+-   in Word 2008 for Mac the script menu is used; in Word 2010, the
+    MLZ toolbar is in the “Add-Ins” tab on the ribbon
+-   in Open/LibreOffice the buttons are in the main toolbar
+
+![credit: JF Beatty](/en/image/mlz-msword.jpg "credit: JF Beatty"){: class='clear'}
+
+![image](/en/image/mlz-libre.jpg){: class='clear'}
+
+The buttons to insert or edit footnotes/endnotes and bibliographies:
+
+![image](/en/image/mlz-fnbibbutt.jpg){: class='clear'}
+
+--------
+
+# Citations
+
+Two methods for inserting citations into a document are available in
+MLZ and Zotero. By default, MLZ uses the "Classic View" method,
+while Zotero offers the "QuickFormat" method when first installed.
+If you prefer, these settings can be changed.
+
+Regardless of which method is used, the first time you click the
+"new citation" button in a document, you will need to choose your
+desired citation style:
+
+![credit: JF Beatty](/en/image/mlz-citstyles.jpg "credit: JF Beatty"){: class='clear'}
+
+
+
+
+## Classic View method
+
+When first installed, MLZ uses the "Classic View" method. 
+
+![](/en/image/mlz-classic-view.png){: class='clear'}
+
+To add multiple cites to a single citation, click the **Multiple
+Sources** button, then use the left/right arrow buttons that appear to
+add citations from your libraries. You can also change the order of
+the selected cites in the right-hand list using up/down buttons.
+
+## QuickFormat method
+
+\1. Place cursor in document where you want the citation and click on
+the "new citation" button (you do not need to create a footnote manually -- 
+MLZ will do that automatically).
+
+\2. In the small popup window that appears:
+
+-   start typing an author or title for suggestions from your MLZ
+    database
+-   select the correct reference
+-   click in shaded text to open the page number/prefix/suffix dialogue
+-   hit Enter when done
+
+![credit: JF Beatty](/en/image/mlz-fnwindow.jpg "credit: JF Beatty"){: class='clear'}
+
+**See:**
+
+-   [Using MLZ with word processor plugins](http://www.zotero.org/support/word_processor_plugin_usage)
+
+## Editing citations
+
+For both entry methods, you can change the items in the selected
+citation by placing the cursor in it and using the "edit citation"
+button.
+
+You can edit the formatted text of citations in the document manually,
+but *this is not recommended*. When you change the text of a citation by
+hand without using MLZ, it is "frozen". It will not update correctly
+if you add or remove other citations that trigger a formatting change
+under the rules of the citation style.
+
+If you place the cursor in a modified citation and click the "edit citation" button,
+you will get a message like this:
+
+![](/en/image/mlz-modified-citation.png){: class='clear'}
+
+Clicking **OK** will override your manual changes and reinsert the automatically
+generated MLZ citation text.
+
+--------
+
+# Bibliography
+
+## Adding a bibliography
+
+You can add a bibliography to your document at any time, by placing
+the cursor at the location where you wish to insert the text, and
+clicking the "new bibliography" button.
+
+Bibliographies inserted in this way are "live", just like MLZ citations:
+the text will change as you add and remove citations in the document.
+This can slow things down, so it makes sense to omit the bibliography
+until the final stage of document preparation.
+
+After inserting the bibliography, you may find that the text requires
+some adjustment. For example, the bibliography may contain a mixture
+of references to statutes, court decisions, and secondary materials
+that you wish to place under separate headings. For a bibliography
+without numbered entries, the following steps work well:
+
+\1. Make a copy of your document, with a file name that shows it is
+    a final, non-MLZ version.
+\2. Use the "remove Zotero codes" button to remove *all* MLZ codes
+    from the document. The document will no longer connect to MLZ.
+\3. Make your final changes manually.
+
+--------
+
+# GoogleDocs and other software
+
+Users of GoogleDocs, Scrivener, and any other wordprocessing software
+that uses the OpenDocument .ODF format now have the option of using the
+RTF/ODF-Scan for Zotero plugin. See the links below for further information.
+
+-   [Announcing RTF/ODF-Scan for Zotero](http://zoteromusings.wordpress.com/2013/05/06/announcing-rtfodf-scan-for-zotero/)
+-   [RTF/ODF-Scan for Zotero](http://zotero-odf-scan.github.io/zotero-odf-scan/)
+
+--------
+{: style='margin-top: 0.8em;'}
+
+[![Creative Commons BY-SA](http://i.creativecommons.org/l/by-sa/3.0/88x31.png)](http://creativecommons.org/licenses/by-sa/3.0/deed.en_US)
+
+This page is licensed by Frank Bennett on behalf of Nagoya University under a Creative Commons Attribution-ShareAlike 3.0 Unported License. 
+Credit to original author Sharon Howard must be retained.

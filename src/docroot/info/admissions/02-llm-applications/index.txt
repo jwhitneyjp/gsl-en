@@ -47,8 +47,7 @@ scheme described in the [Admissions][admissions] page.
 
 * # English-taught, October-entry
 
-  This two-year program is open only to students
-  applying from [selected partner institutions][partners].
+  In principle, this two-year program is limited to students applying from [selected partner institutions][partners]. However applications from other prospective candidates who fulfill the admission requirements will be considered.
   The curriculum requires
   preparation of a thesis and completion of 
   coursework.  The applicable scholarship program

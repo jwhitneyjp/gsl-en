@@ -3,7 +3,7 @@ pagetitle: Multilingual Zotero: Citations
 
 [![Photo by Phillip Martin](/en/image/la_bibliography.png)](http://languagearts.phillipmartin.info/la_bibliography.htm)
 
-* This content is adapted from [original materials](http://sharonhoward.org/zoterowiki/Main/GettingStarted) by [Sharon Howard](http://sharonhoward.org/).
+* This content is adapted from [original materials](http://sharonhoward.org/zoterowiki/Main/BibliographyCitation) by [Sharon Howard](http://sharonhoward.org/).
 {: class='sidenote'}
 
 * TOC

@@ -15,8 +15,9 @@ pagetitle: Multilingual Zotero: Getting Started
 
 # Installation
 
-There are three steps to installing a working Multilingual Zotero system:
+There are four steps to installing a working Multilingual Zotero system:
 
+- Install [Firefox](http://www.mozilla.org/en-US/firefox/all/);
 - Install the [Multilingual Zotero](http://citationstylist.org/tools) client;
 - Install the [Abbreviation Filter](http://citationstylist.org/tools/#abbreviation-filter);
 - Install the appropriate [word processor plugin](https://www.zotero.org/support/word_processor_plugin_installation) from the Zotero website.

@@ -3,7 +3,7 @@ pagetitle: Multilingual Zotero: Doing More
 
 [![Photo by Huhu Uet (Flickr)](/en/image/autogyro.jpg)](http://commons.wikimedia.org/wiki/File:AutoGyro_Europe_MTOsport_%28D-MELF%29_05.jpg)
 
-* This content is adapted from [original materials](http://sharonhoward.org/zoterowiki/Main/GettingStarted) by [Sharon Howard](http://sharonhoward.org/).
+* This content is adapted from [original materials](http://sharonhoward.org/zoterowiki/Main/DoingMore) by [Sharon Howard](http://sharonhoward.org/).
 {: class='sidenote'}
 
 * TOC

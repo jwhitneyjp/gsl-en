@@ -1,0 +1,143 @@
+title: Groups
+pagetitle: Multilingual Zotero: Groups
+
+[![Photo by cindiann](/en/image/group-library-people.png)](http://www.flickr.com/photos/trucolorsfly/1732302968/lightbox/)
+
+* This content is adapted from [original materials](http://sharonhoward.org/zoterowiki/Main/Libraries) by [Sharon Howard](http://sharonhoward.org/).
+{: class='sidenote'}
+
+* TOC
+{: toc}
+
+--------
+
+# Personal Libraries
+
+People use their libraries for a wide range of items -- not just academic
+references -- and organise them in a multitude of ways. A brief guide
+can’t really do this justice, so the best way to find out more is to
+explore for yourself!
+
+A few examples:
+
+-   [Sharon Howard](http://www.zotero.org/sharonhoward/items)
+-   [Tim Sherratt](http://www.zotero.org/wragge)
+-   [Frank Bennett](http://www.zotero.org/fbennett/items)
+
+Consider:
+
+-   Different kinds of items saved in libraries
+-   Different organisation methods, collections and tagging
+-   Use of the social features (following/followers)
+-   Use and membership of groups
+
+Looking for people with similar interests? Try the [Zotero People Page](http://www.zotero.org/people/).
+
+-   Use the [people search](http://www.zotero.org/search/type/people)
+-   Browse disciplines
+
+# Group Libraries
+
+As with personal libraries, there are many uses for Groups. A "Group"
+Library can simply be used as a way to publish and share an individual’s
+bibliography more visibly than if it’s in a personal library: it doesn’t
+have to be a collaborative affair at all. Nonetheless, collaborative
+bibliographies are an important feature facilitated by Groups.
+
+-   See Sharon Howard's 
+    [GroupCollaboration](http://sharonhoward.org/zoterowiki/Main/GroupCollaboration)
+    for examples of different uses for teaching and research.
+
+## Creating a new group
+
+Groups are created on the Zotero website. Groups that you own and
+groups that you have joined as a member will appear in your MLZ client
+when you sync your account. There are two ways to get started with
+creating a group:
+
+-   Click on the New Group button (top left) in the MLZ client
+    (this will take you to the website)
+-   Or click on "Create a New Group" at
+    [http://www.zotero.org/groups/](http://www.zotero.org/groups/)
+
+![](/en/image/newgroup.jpg){: class="clear"}
+
+This is a simple process, but you should take note of the
+different privacy settings for libraries:
+
+Completely Public
+: anyone can view and join and edit
+
+Public to View
+: invitation only to join and edit
+
+Completely Private
+: invitation only to view or edit
+
+When setting up a Group, ensure you have the settings the way you want
+them!
+
+[Groups documentation](http://www.zotero.org/support/groups)
+
+## Adding items to a Group library
+
+Some groups are read-only to ordinary members. If you have write permissions
+to a group library, you can add items to it (and delete items -- but be careful
+with that, other users will not be happy if content they need suddenly disappears).
+(If you need write access to a library, contact the administrator to negotiate
+for permission.)
+
+There are two ways to add items to a group library:
+
+\1. Put items in your personal library first and then copy (drag and
+drop) to the group library in your MLZ pane.
+
+-   **NB:** this creates a completely separate copy of the item; any
+    subsequent changes you make to the copy in your personal library
+    will *not* affect the copy in the group library.
+
+\2. Or just add them straight to the group library.
+
+-   In the MLZ pane, open the library’s folder, and then import the
+    item. It should import straight into that library.
+-   You can also add items at zotero.org
+
+To copy items from a Group library into your personal library in the
+MLZ pane, just drag and drop whichever items you want. Again, this
+will create new copies completely separate from those in the group
+library.
+
+## Editing queues
+
+Group libraries meant for public consumption may have a separate
+partner library used as a submission queue. The Japanese Judgments
+and Rulings group is an example of this kind:
+
+* [Japanese Judgments and Rulings](https://www.zotero.org/groups/japanese_judgments_and_rulings/items)
+* [Japanese Judgments and Rulings (submissions)](https://www.zotero.org/groups/japanese_judgments_and_rulings_submissions/items)
+
+![](/en/image/edited-group-library.png){: class="clear"}
+
+The submission queue is where the editors accept and edit
+contributions from members before approving them for "full" public
+release. In such groups, membership with editing privileges in the
+submission queue group is relatively open, while only the editors have
+write permissions to the full public library.
+
+## Duplicates
+
+In group collaborations it’s likely that sooner or later two people will
+add the same reference to a library. Don’t worry too much about it.
+MLZ will save them both and they can be tidied up afterwards using
+the ‘Merge’ function in the MLZ pane (select both items and
+right-click for the dialogue).
+
+**See also**: [Groups](http://www.zotero.org/groups/)
+
+--------
+{: style='margin-top: 0.8em;'}
+
+[![Creative Commons BY-SA](http://i.creativecommons.org/l/by-sa/3.0/88x31.png)](http://creativecommons.org/licenses/by-sa/3.0/deed.en_US)
+
+This page is licensed by Frank Bennett on behalf of Nagoya University under a Creative Commons Attribution-ShareAlike 3.0 Unported License. 
+Credit to original author Sharon Howard must be retained.

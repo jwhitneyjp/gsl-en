@@ -57,7 +57,7 @@ scheme described in the [Admissions][admissions] page.
   the forms for which are included
   in the application booklet.
 
-  [partners]: index.html#exchangebased_integrated_scholarship_special_program
+  [partners]: /en/admissions/#exchangebased_integrated_scholarship_special_program
 
   *Please consult the application form for details
   of the application process.*

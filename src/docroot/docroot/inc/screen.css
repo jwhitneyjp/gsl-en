@@ -8,6 +8,10 @@
 @import "doctoc-format.css";
 @import "blocklist.css";
 
+hr {
+    clear: both;
+}
+
 .bdtext {
     white-space: nowrap;
 }
@@ -310,6 +314,7 @@ div.goodies {
 img { 
     border: none;
     float: right;
+    margin-bottom: 4px;
 }
 
 img.static {

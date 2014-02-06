@@ -428,6 +428,7 @@ while 1:
     status = {}
     status['Professor'] = '教授'
     status['Associate Professor'] = '准教授'
+    status['Designated Professor'] = '特任教授'
     status['Designated Associate Professor'] = '特任准教授'
     status['Assistant Professor'] = '講師'
     status['Designated Assistant Professor'] = '特任講師'

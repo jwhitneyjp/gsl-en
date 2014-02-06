@@ -53,6 +53,8 @@ class staffIndexes:
                 self.adjunct.append(data)
             elif data['status'] == 'Professor':
                 self.professors.append(data)
+            elif data['status'] == 'Designated Professor':
+                self.professors.append(data)
             elif data['status'] == 'Associate Professor':
                 self.associate_professors.append(data)
             elif data['status'] == 'Designated Associate Professor':

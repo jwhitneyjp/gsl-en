@@ -188,7 +188,7 @@ if syllabus_update:
     s = formatter(ws)
     s.setup_courses_worksheet()
     
-    stubs = ['30g13/list_all','gs13/list_all']
+    stubs = ['30g14/list_all','gs14/list_all']
     for stub in stubs:
         url = "http://infosv.law.nagoya-u.ac.jp/english/syllabus/as/v/%s" % (stub,)
         print "  Fetching page index"

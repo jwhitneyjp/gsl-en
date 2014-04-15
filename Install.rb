@@ -1,7 +1,8 @@
 puts("Building website.")
+
 system("ruby Install -C -q")
 
-system("./Frontend.sh")
+#system("./Frontend.sh")
 
 WEB_SERVER_PORT = 8080
 require 'webrick'

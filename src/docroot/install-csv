@@ -80,7 +80,7 @@ pg.coursepages('courses.csv')
 pg.courseindex('gslenglish',200,299)
 pg.courseindex('leading',600,699)
 pg.courseindex('econ',900,999)
-pg.courseindex('g30',100,199)
+pg.courseindex('g30',2000,2999)
 
 
 ###### staff popups ######

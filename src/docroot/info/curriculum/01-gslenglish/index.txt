@@ -16,6 +16,6 @@ Entries in **bold** in the list below are compulsory subjects.
   style='color: red;'}
 -->
 
-[ss]: http://infosv.nomolog.nagoya-u.ac.jp/english/syllabus/as/v/gs13
+[ss]: http://infosv.nomolog.nagoya-u.ac.jp/english/syllabus/as/v/gs14
 
 %%content%%

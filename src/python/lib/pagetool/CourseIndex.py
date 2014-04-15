@@ -15,8 +15,13 @@ from csvtool import gslCsv
 
 # py:strip="not reqd"
 
-def fixnum(x):
-    return int(str(x)[:3])
+def fixnum(s):
+    m = re.match('^([0-9]+).*',str(s))
+    if m:
+        n = int(m.group(1))
+    else :
+        n = 0
+    return n
 
 class courseIndex:
     def __init__(self):

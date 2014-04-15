@@ -14,6 +14,8 @@ from newslists import DateEngine
 from csvtool import gslCsv
 from CourseReports import CourseReports
 
+print 'XXXX %s' % (term_dates)
+
 def fixnum(x):
     return int(str(x)[:3])
 

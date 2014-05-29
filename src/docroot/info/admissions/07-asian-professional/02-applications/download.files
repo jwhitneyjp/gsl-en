@@ -1,0 +1,4 @@
+*-instructions.pdf: Instructions for @@version@@
+*-application-forms-doc.zip: Word/Excel forms (preferred)
+*-application-forms-pdf.zip: PDF forms
+*.pdf: Application for @@version@@

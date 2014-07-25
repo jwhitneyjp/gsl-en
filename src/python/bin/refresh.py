@@ -251,6 +251,7 @@ if syllabus_update:
                 print 'Missing course number at %s' % (url1,)
                 sys.exit()
             updat['course_number'] = r.group(1).strip()
+            print "  BLOODY COURSE NUMBER: %s" % updat['course_number']
             updat['course_title'] = r.group(2).strip()
             #
             # Workaround to cope with the fact that courses

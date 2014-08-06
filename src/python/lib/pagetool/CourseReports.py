@@ -98,7 +98,7 @@ class CourseReports:
     def save(self):
         filename_html = 'gslc%s.html' % self.data['course_number']
         filename_doc = 'gslc%s.rtf' % self.data['course_number']
-        print "Generating: ./src/docroot/doc/%s" % filename_doc
+        print "Generating: ./src/docroot/doc/%s (%s)" % (filename_doc,filename_html)
         open(gp.doc.src(filename_html), 'w+').write(self.report)
         ofh = os.popen('lowriter --headless --invisible --convert-to rtf --outdir %s %s' % (gp.doc.src(''),gp.doc.src(filename_html)))
         ofh.close()

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-import os,sys,re,urllib,Image
+from PIL import Image
+import os,sys,re,urllib
 from os.path import basename
 from pathtool import gslpath
 p = gslpath()

@@ -349,8 +349,11 @@ if syllabus_update:
     #f.close()
     w.save( gp.xls.src('courses.xls') )
 
-    trial= WrappedWorkbook( gp.xls.src("courses.xls") )
-    trial.dump_csv( gp.csv.src("courses.csv"), sheetoffset=0,sheets=1,rowoffset=1)
+
+print ""
+print "Generating courses.csv"
+trial= WrappedWorkbook( gp.xls.src("courses.xls") )
+trial.dump_csv( gp.csv.src("courses.csv"), sheetoffset=0,sheets=1,rowoffset=1)
 
 if report_update:
     reports = CourseReports()

@@ -17,7 +17,11 @@ from CourseReports import CourseReports
 print 'XXXX %s' % (term_dates)
 
 def fixnum(x):
-    return int(str(x)[:3])
+    m = re.match("^([0-9]+).*",x)
+    if m:
+        x = m.group(1)
+        x = int(str(x))
+    return x
 
 class coursePages:
     def __init__(self):
@@ -184,7 +188,7 @@ class coursePages:
                 category = 'aw'
             elif fixnum(data['course_number']) > 599 and fixnum(data['course_number']) < 700:
                 category = 'leading'
-            elif fixnum(data['course_number']) > 99 and fixnum(data['course_number']) < 200:
+            elif fixnum(data['course_number']) > 1000 and fixnum(data['course_number']) < 3000:
                 category = 'g30'
             else:
                 category = 'gslenglish'

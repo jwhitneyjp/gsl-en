@@ -34,8 +34,8 @@ scheme described in the [Admissions][admissions] page.
   of the application process.*
 
   Final application deadlines
-  : *September 3, 2013*{: style='color:red'} (Autumn selection)
-  : *January 9, 2014*{: style='color:red'} (Spring selection)
+  : *September 2, 2014*{: style='color:red'} (Autumn selection)
+  : *January 7, 2015*{: style='color:red'} (Spring selection)
 
   Download application form
   : [English-taught, April-entry LL.M.][llm-en-apr]
@@ -62,7 +62,7 @@ scheme described in the [Admissions][admissions] page.
   of the application process.*
 
   Final application deadline
-  : *January 9, 2014*{: style='color:red'}
+  : *January 15, 2015*{: style='color:red'}
 
   Download application form
   : [English-taught, October-entry LL.M.][llm-en-oct]
@@ -88,7 +88,7 @@ scheme described in the [Admissions][admissions] page.
   of the application process.*
 
   Final application deadline
-  : *January 31, 2014*{: style='color:red'}
+  : *January 30, 2015*{: style='color:red'}
 
   Download application form
   : [Japanese-taught, October-entry LL.M.][llm-ja-oct]

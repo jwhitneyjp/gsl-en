@@ -16,6 +16,6 @@ Entries in **bold** in the list below are compulsory subjects.
   style='color: red;'}
 -->
 
-[ss]: http://infosv.law.nagoya-u.ac.jp/syllabus/as/v/ngo/law/gs/15
+[ss]: http://infosv.law.nagoya-u.ac.jp/english/syllabus/as/v/15gs
 
 %%content%%

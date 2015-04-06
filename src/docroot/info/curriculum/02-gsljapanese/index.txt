@@ -23,6 +23,6 @@ is available from the main GSL website:
 [hogaku-courses]: http://infosv.law.nagoya-u.ac.jp/syllabus/as/v/ngo/law/gs/13/pubList
 [llm-cl]: http://www.law.nagoya-u.ac.jp/gs/curri_gcjp.html
 [llm-gen]: http://www.law.nagoya-u.ac.jp/gs/curri_gc1.html
-[ss]: http://infosv.nomolog.nagoya-u.ac.jp/syllabus/as/v/ngo/law/ug/13
+[ss]: http://infosv.nomolog.nagoya-u.ac.jp/syllabus/as/v/ngo/law/ug/15
 
 

@@ -1,4 +1,4 @@
-title: Overview and Applications
+title: ASCI: Applications Overview
 pagetitle: Asian Satellite Campus Institutes Doctoral Program
 
 Overview

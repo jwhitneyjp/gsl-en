@@ -110,12 +110,7 @@ def fetch (url,coding,field=[],file=[],debug=None,skipauth=None):
           text = text.encode('utf8','replace')
           
     options = dict(char_encoding='utf8',wrap=0,indent='auto')
-    io = cStringIO.StringIO()
-    tidier = tidy.parseString(text,**options)
-    tidier.write(io)
-    
-    io.seek(0)
-    text = io.read()
+    text = tidylib.tidy_document(text, options)[0]
     # Check if there are http:// strings in the string
     # anywhere, and grab the range that consists of
     # the following characters only.  Wrap it in 

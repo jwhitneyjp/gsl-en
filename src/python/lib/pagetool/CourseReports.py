@@ -1,7 +1,7 @@
 ''' Make a module of me
 '''
 
-year = '2013'
+year = '2015'
 
 affiliation_table = {
     "GSL":"Graduate School of Law",

@@ -188,10 +188,10 @@ if syllabus_update:
     s = formatter(ws)
     s.setup_courses_worksheet()
     
-    stubs = ['30g14/list_all','gs14/list_all']
+    stubs = ['30g15/list_all','15gs/list_all']
     for stub in stubs:
         url = "http://infosv.law.nagoya-u.ac.jp/english/syllabus/as/v/%s" % (stub,)
-        print "  Fetching page index"
+        print "  Fetching page index for: %s" % url
 
         idoc = fetch(url,'EUC-JP')
         
@@ -262,15 +262,19 @@ if syllabus_update:
                 continue
     
             r = rex4.match(pdat['mycomment'])
-            if not r:
-                print 'Missing subject at %s' % (url2,)
-                sys.exit()
+            if r:
+                scraped_subject = r.group(1).strip()
+                scraped_notes = r.group(2).strip()
+                if scraped_subject == 'placeholder':
+                    continue
+            else:
+                print 'WARNING: Missing subject at %s' % (url2,)
+                scraped_subject = "See printed syllabus"
+                scraped_notes = ''
+                #sys.exit()
             
-            if r.group(1).strip() == 'placeholder':
-                continue
-    
-            updat['course_subject'] = r.group(1).strip()
-            updat['notes'] = r.group(2).strip()
+            updat['course_subject'] = scraped_subject
+            updat['notes'] = scraped_notes
     
             term_data = pdat['term_data']
             term_data = re.sub('(?i)(fall)',' 2 ',term_data)

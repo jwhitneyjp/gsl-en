@@ -21,7 +21,7 @@ auth = {}
 
 a = {}
 a['id'] = 'bennett'
-a['pwd'] = 'cu4Quelph'
+a['pwd'] = 'Lnosiatl'
 a['realm'] = 'Zope'
 a['logintype'] = 'basic'
 auth['infosv.law.nagoya-u.ac.jp'] = a

@@ -8,7 +8,7 @@ import cookielib
 import urllib2
 import popen2
 import cStringIO
-import tidy
+import tidylib
 import libxml2
 import sys
 import codecs

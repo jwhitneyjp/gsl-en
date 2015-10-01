@@ -13,6 +13,6 @@ Entries in **bold** in the list below are compulsory subjects.
 
 **(Note: Editing of course schedules is in progress)**{: style='color: red;'}
 
-[ss]: http://infosv.nomolog.nagoya-u.ac.jp/english/syllabus/as/v/gs14
+[ss]: http://infosv.law.nagoya-u.ac.jp/english/syllabus/as/v/15gs
 
 %%content%%

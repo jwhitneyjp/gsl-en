@@ -11,6 +11,9 @@ rm -fR release/docroot/Alert
 rm -fR release/docroot/Events
 rm -fR release/docroot/News
 
+# DKLDFLKJ+DF+LKJDF+LKJSDF
+# DFL+KDF+LKJsdFL+KJSDF+Lkj
+
 if [ -d ../gsl-prerendered/Alert ]; then
   cp -R ../gsl-prerendered/Alert release/docroot
 fi
